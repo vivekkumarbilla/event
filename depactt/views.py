@@ -50,7 +50,6 @@ from fpdf import Template
 from docx import Document
 import xlwt
 from openpyxl import Workbook
-import win32com.client as win32
 from openpyxl.utils import get_column_letter
 from docx.shared import RGBColor
 
