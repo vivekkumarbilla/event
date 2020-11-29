@@ -25,7 +25,6 @@ pypiwin32==223
 python-docx==0.8.10
 pytz==2020.1
 pywebpush==1.9.4
-pywin32==32
 requests==2.24.0
 six==1.15.0
 sqlparse==0.3.1
