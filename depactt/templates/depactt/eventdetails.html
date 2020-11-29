@@ -775,7 +775,7 @@
 				<div>
 					<button id="button2" class="buts rightelements" onclick="noexpor()" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-remove"></i></button>
 				</div>
-				<form action="totxted" method="POST" class="onese rightelements">
+				<form action="totxtall" method="POST" class="onese rightelements">
 					{% csrf_token %}
 					<input style="display: none;" type="text" name="delltitle" value="{{ event.title }}">
 					<input style="display: none;" type="text" name="delldate" value="{{ event.date }}">
@@ -800,7 +800,7 @@
 					<input style="display: none;" type="text" name="dellcont2" value="{{ event.contact2 }}">
 					<button name="dell" class="buts rightelements" id="txt" style="display: none;" value="{{ event.id }}">TXT</button>
 				</form>
-				<form action="topdfed" method="POST" class="onese rightelements">
+				<form action="topdfall" method="POST" class="onese rightelements">
 					{% csrf_token %}
 					<input style="display: none;" type="text" name="delltitle" value="{{ event.title }}">
 					<input style="display: none;" type="text" name="delldate" value="{{ event.date }}">
@@ -825,7 +825,7 @@
 					<input style="display: none;" type="text" name="dellcont2" value="{{ event.contact2 }}">
 					<button name="dell" class="buts rightelements" id="pdf" style="display: none;" value="{{ event.id }}">PDF</button>
 				</form>
-				<form action="todoced" method="POST" class="rightelements">
+				<form action="todocall" method="POST" class="rightelements">
 					{% csrf_token %}
 					<input style="display: none;" type="text" name="delltitle" value="{{ event.title }}">
 					<input style="display: none;" type="text" name="delldate" value="{{ event.date }}">
