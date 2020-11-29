@@ -1061,7 +1061,7 @@ def eventdetails(request):
 		evna=request.POST.get("eventname", "")
 		print(sender)
 		if Event.objects.filter(id=sender).exists():
-			if (len(combod)==0) or (len(evna==0)):
+			if (len(combod)==0):
 				user=Event.objects.filter(id=sender)
 				userob=Event.objects.get(id=sender)
 				comments=Comment.objects.filter(ecref=userob).order_by('cdate')

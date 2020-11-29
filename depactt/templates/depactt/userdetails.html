@@ -524,6 +524,7 @@
 				<p class="fullheight2 leftelements">{{ user.first_name }}</p>
 		    	<p class="fullheight2 leftelements">{{ user.last_name }}</p>
 				<p class="fullheight2 leftelements">{{ userd.designation }}</p>
+				<p class="fullheight2 leftelements">{{ userd.department }}</p>
 		    	<input type="text" name="gmail" id="email{{ user.id }}" class="{{ user.email }}" value="{{ user.email }}" style="display: none;">
 		    	<p class="fullheight2 leftelements">{{ user.email }}</p>
 		    	<button class="leftelements fullheight2 copbut" onclick="copy('{{ user.id }}')"><i class="glyphicon glyphicon-duplicate"></i></button>
@@ -692,7 +693,7 @@
 			
 		</button>
 	</nav>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script type="text/javascript">
 		var today = new Date();
 		var d = today.getDate();
