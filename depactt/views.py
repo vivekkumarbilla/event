@@ -1647,7 +1647,7 @@ def topdfall(request):
 		pdf.cell(195,4,"Conveners :  "+conv1+",  "+conv2,0,1,'L')
 		pdf.ln()
 		pdf.cell(195,4,"Contact :  "+cont1+",  "+cont2,0,1,'L')
-		pdf.output("Desktop\\"+"Event_"+evid+"_data.pdf")
+		pdf.output('D',"Event_"+evid+"_data.pdf")
 		messages.add_message(request, messages.SUCCESS, "Downloaded data to Event_"+evid+"_data.pdf file in your desktop")
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
 	else:
@@ -1779,7 +1779,7 @@ def tocerti(request):
 			pdf.cell(259.4,5,' '+con1+'              '+con2+'               Dr. Sunitha Patil              Dr. Suresh Ukarande',0,1,'C')
 		pdf.set_font('Arial', '', 9)
 		pdf.cell(259.4,6,' ( Convener of Event )                           ( Head of the Department )                   ( Vice Principal,KJSIEIT )                   ( Principal, KJSIEIT )',0,1,'C')
-		pdf.output("Desktop\\"+"Certi_"+evid+".pdf")
+		pdf.output('D',"Certi_"+evid+".pdf")
 		messages.add_message(request, messages.SUCCESS, "Downloaded data to Certificate_"+evid+"_data.pdf file in your desktop")
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
 	else:
@@ -1906,7 +1906,7 @@ def torep(request):
 		pdf.cell(195,4,"Conveners :  "+rep.erref.convener1+",  "+rep.erref.convener2,0,1,'L')
 		pdf.ln()
 		pdf.cell(195,4,"Contact :  "+rep.erref.contact1+",  "+rep.erref.contact2,0,1,'L')
-		pdf.output("Desktop\\"+"Report_"+rnum+".pdf")
+		pdf.output('D',"Report_"+rnum+".pdf")
 		messages.add_message(request, messages.SUCCESS, "Downloaded Report to Report_"+rnum+".pdf file in your desktop")
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
 	else:
@@ -1951,10 +1951,10 @@ def todocall(request):
 		p = edoc.add_paragraph('Faculty Co-ordinators : '+faccod1+', '+faccod2+', '+faccod3)
 		p = edoc.add_paragraph('Conveners : '+conv1+', '+conv2)
 		p = edoc.add_paragraph('Contacts : '+cont1+', '+cont2)
-		if path.isfile('Desktop/Event'+evid+'.docx')==True:
+		if path.isfile('Event'+evid+'.docx')==True:
 			messages.add_message(request, messages.WARNING, "File Event"+evid+".doc already exists in your desktop")
 		else:
-			edoc.save('Desktop/Event'+evid+'.docx')
+			edoc.save('Event'+evid+'.docx')
 			messages.add_message(request, messages.SUCCESS, "Downloaded data to Event"+evid+".doc file in your desktop")
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
 	else:
