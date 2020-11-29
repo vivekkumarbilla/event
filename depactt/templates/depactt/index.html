@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Departmental Activity
+	</title>
+
+	<link rel="icon" type="image/png" href="{% static 'kj.png' %}">
+	<style type="text/css">
+		body{
+			margin: 0px;
+			background-color: #FFF;
+		}
+		.headd{
+			margin-top: 0;
+			height: 20%;
+			padding-top: 30px;
+			padding-bottom: 30px;
+			padding-left: 30px;
+			background-color: #FFF ;
+			/*border-bottom: 2px solid #2B7A78;*/
+			border-bottom: 1px solid #AAAABB;
+		}
+		#daa{
+			width: 10%;
+		}
+		a{
+			text-decoration-style: none;
+			text-decoration: none;
+		}
+		.linkk{
+			font-size: 3vw;
+			color: #17252A;
+			margin-top: 0px;
+			font-family: Calibri;
+		}
+		.linkk:hover{
+			opacity: 0.8;
+		}
+		.mainelements{
+			margin-top: 5vw;
+			width: 30vw;
+			height: 20vw;
+			background-color: #DDDDEE;
+			border: 0.5px solid #AAAABB;
+		}
+		.mainelements:hover{
+			transform: scale(1.03);
+			border: 0.5px solid #AAAABB;
+		}
+		
+		.log{
+			font-size: 1.2vw;
+			width: 100%;
+			padding: 10px 0px;
+			margin-top: 0;
+			margin-bottom: 13px;
+			background-color: #9292A4;
+			color: white;
+		}
+		.lab{
+			margin-top: 10px;
+			width: 100%;
+			padding: 5px 0px;
+		}
+		.in{
+			outline: 0;
+			margin-top: 30px;
+			padding: 10px 10px;
+			width: 60%;
+			border: none;
+		}
+		.but{
+			background-color: black;
+			color: white;
+			padding: 10px 15px;
+			outline: 0;
+			border: none;
+			text-decoration: none;
+			margin-top: 30px;
+		}
+		.but:hover{
+			background-color: white;
+			color: black;
+			border: 1px solid black;
+		}
+	</style>
+	<!-- <img id="daa" src="{% static 'das.jpg' %}"> -->
+</head>
+<body>
+	<header class="headd">
+		<div>
+			<center><a class="linkk" href="{% url 'index' %}"> DEPARTMENT ACTIVITY</a></center>
+		</div>
+		
+	</header>
+	<center>
+	<div id="main" class="login mainelements">
+		<p class="log">
+			Log In 
+		</p>
+		<div class="lab">
+			<input placeholder="Enter Teacher Code" class="in" id="in" type="password">
+		</div>
+		<button id="butn" onclick="teachercode()" class="but">
+			Enter
+		</button>
+	</div>
+	</center>
+	<script type="text/javascript">
+
+		var tc = document.getElementsByClassName('inn').value;
+		// var loginpass = document.getElementById('inn').value;
+		var input = document.getElementById("in");
+
+		function teachercode(){
+			tc = document.getElementById('in').value;
+			//console.log(tc);
+			if (tc.length==0) {
+				window.alert('Please Enter Credentials');
+			}
+			else{
+				if (tc=='kjsieitteachers') {
+					window.location.assign("kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login");
+				}
+				else{
+					window.alert('Wrong code');
+				}
+			}
+			
+		}
+
+		console.log(input);
+		if(input){
+			input.addEventListener("keyup", function(event) {
+				console.log(input);
+		    	if (event.keyCode === 13) {
+		    	    // event.preventDefault();
+			        document.getElementById("butn").click();
+			    }
+			});
+		}
+
+	</script>
+</body>
+</html>

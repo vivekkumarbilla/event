@@ -1,0 +1,888 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Profile DepAct
+	</title>
+	<link rel="icon" type="image/png" href="{% static 'kj.png' %}">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<style type="text/css">
+		body{
+			background-color: #000;
+			font-family: Calibri;
+			overflow-x: hidden;
+		}
+		nav{
+			background-color: yellow;
+			width: 100vw;
+			overflow-x: hidden;
+		}
+		::-webkit-scrollbar {
+		    /*width: 0px;   Remove scrollbar space */
+		    /*background: white;*/  /* Optional: just make scrollbar invisible */
+		    background-color: #FFF;
+		}
+		::-webkit-scrollbar-thumb{
+			background-color: #17252A;
+			border-radius: 8px;
+		}
+		 .fixed-position {
+	    	position: fixed;
+		}
+		/*--------------------------------------------------------------------HEADER------------------------------------------------------------------------
+		----------------------------------------------------------------------HEADER------------------------------------------------------------------------
+		----------------------------------------------------------------------HEADER------------------------------------------------------------------------
+		----------------------------------------------------------------------HEADER------------------------------------------------------------------------*/
+		.basicheader{
+			float: left;
+			background-color: #FFFFFF;
+			width: 100vw;
+			position: fixed;
+			/*box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);*/
+			font-family: Calibri;
+			border-bottom: 1px solid #AAAABB;
+		}
+		.but{
+			outline: 0;
+			border: none;
+		}
+		.basicbutton{
+			padding: 2vw 2.5vw;
+			float: left;
+			color: black;
+			background-color: #FFFFFF;
+			font-size: 2.5vw;
+			height: 7.5vw;
+		}
+		.basicbutton:hover{
+			color: #FFF;
+			background-color: #000;
+		}
+		#basictitle, #basicpage{
+			margin-top: 0px;
+			margin-bottom: 0px;
+			color: #000;
+			float: left;
+			height: 7.5vw;
+			font-size: 2.5vw;
+			padding-top: 2.3vw;
+		}
+		#basictitle{
+			padding-left: 2vw;
+			padding-right: 2vw;
+		}
+		#basicpage{
+			margin-left: 29vw;
+		}
+		#basicdt{
+			margin-left: 8vw;
+			font-size: 2vw;
+			float: right;
+			margin-top: 0px;
+			margin-bottom: 0px;
+			height: 7.5vw;
+			width: 20vw;
+			padding-top: 2.5vw;
+			padding-left: 1vw;
+			color: #000;
+		}
+		#basicprofile, #basichelp{
+			float: right;
+			height: 7.5vw;
+			margin-right: 1vw;
+		}
+		#basicprofilebut{
+			font-size: 2.5vw;
+			border-radius: 8vw;
+		}
+		#basichelpbut{
+			font-size: 2vw;
+			padding: 1.5vw 0.5vw;
+		}
+		#basichelp{
+			width: 3vw;
+		}
+		#basictime{
+			margin-left: 3vw;
+		}
+		/*--------------------------------------------------------------------BASIC NAV BAR CONTENT STYLES------------------------------------------------------------------------
+		----------------------------------------------------------------------BASIC NAV BAR CONTENT STYLES------------------------------------------------------------------------
+		----------------------------------------------------------------------BASIC NAV BAR CONTENT STYLES------------------------------------------------------------------------
+		----------------------------------------------------------------------BASIC NAV BAR CONTENT STYLES------------------------------------------------------------------------*/
+		.profilelink{
+			background-color: #FFFFFF;
+			float: left;
+			margin-top: 0px;
+			margin-left: 0px;
+			height: 5vw;
+			width: 12vw;
+			font-size: 1vw;
+			padding-top: 1.7vw;
+			text-decoration: none;
+			color: #000;
+			box-sizing: border-box;
+			border-left: 1px solid #000;
+			border-right: 1px solid #000;
+			outline: 0;
+			border: none;
+		}
+		.profilelink:hover{
+			background-color: #000;
+			color: #FFF;
+			border-bottom: 2px solid #CCCCCC;
+		}
+		.profiletdp{
+			width: 100%;
+			float: left;
+		}
+		.profiletext{
+			float: right;
+			margin-top: 0px;
+		}
+		.profiledp{
+			float: right;
+			height: 1.6vw;
+			font-size: 1.1vw;
+			padding-left: 0.5vw;
+			padding-right: 0.5vw;
+			padding-top: 0.2vw;
+		}
+		button .profiledp{
+			padding-top: 0vw;
+		}
+		.low{
+			padding-right: 3.6vw;
+		}
+		.mid{
+			padding-right: 2vw;
+		}
+		.high{
+			padding-right: 0.2vw;
+		}
+
+		/*--------------------------------------------------------------------NAVBAR_1------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_1------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_1------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_1------------------------------------------------------------------------*/
+		#profilediv3{
+			position: absolute;
+			top: 0vw;
+			bottom: 0;
+			background-color: #FFFFFF;
+			width: 15vw;
+			border-right: 1px solid #000;
+			box-sizing: content-box;
+		}
+		.basicpro{
+			background-color: #FFFFFF;
+			width: 7.5vw;
+			margin-top: 0px;
+			margin-bottom: 0px;
+			color: #000;
+			float: left;
+			height: 7.5vw;
+			font-size: 2.5vw;
+			padding-top: 2.6vw;
+			padding-left: 2vw;
+			border-bottom: 2px solid #770044;
+		}
+		.profilelink3{
+			background-color: #FFFFFF;
+			float: left;
+			margin-top: 0px;
+			margin-left: 0px;
+			height: 5vw;
+			width: 15vw;
+			font-size: 1.2vw;
+			padding-top: 1.7vw;
+			text-decoration: none;
+			color: #000;
+			box-sizing: border-box;
+			border-right: none;
+		}
+		.low2{
+			padding-right: 5vw;
+		}
+		.mid2{
+			padding-right: 4vw;
+		}
+		.high2{
+			padding-right: 2vw;
+		}
+		#hugebut{
+			background-color: red;
+			position: absolute;
+			top: 0;
+			width: 85vw;
+			bottom: 0;
+			left: 15vw;
+			outline: 0;
+			border: none;
+			opacity: 0;
+		}
+		/*--------------------------------------------------------------------NAVBAR_2------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_2------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_2------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_2------------------------------------------------------------------------*/
+		#profilediv{
+			position: absolute;
+			top: 7.5vw;
+			right: 3vw;
+			background-color: #FFFFFF;
+			float: right;
+			height: 15vw;
+			width: 12vw;
+			padding: 0px;
+			overflow: hidden;
+			border-bottom: 1px solid #000;
+		}
+		
+		#basicprofilebut2{
+			font-size: 2.5vw;
+			border-radius: 3.75vw;
+		}
+		#basichelpbut2{
+			font-size: 2vw;
+			padding: 1.5vw 0.5vw;
+		}
+		#basichelp2{
+			right: 1vw;
+			position: absolute;
+			top: 0vw;
+			height: 7.5vw;
+		}
+		#basicprofile2{
+			right: 5vw;
+			position: absolute;
+			top: 0vw;
+			height: 7.5vw;
+		}
+		/*--------------------------------------------------------------------NAVBAR_3------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_3------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_3------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_3------------------------------------------------------------------------*/
+		#profilediv2{
+			position: absolute;
+			top: 7.5vw;
+			right: 0vw;
+			background-color: #FFFFFF;
+			float: right;
+			height: 10vw;
+			width: 12vw;
+			padding: 0px;
+			overflow: hidden;
+			border-bottom: 1px solid #000;
+		}
+		#profilediv:hover{
+			
+		}
+		/*--------------------------------------------------------------------MAIN------------------------------------------------------------------------
+		----------------------------------------------------------------------MAIN------------------------------------------------------------------------
+		----------------------------------------------------------------------MAIN------------------------------------------------------------------------
+		----------------------------------------------------------------------MAIN------------------------------------------------------------------------*/
+		#basicmain{
+			float: left;
+			/*border-top: 10px solid black;
+			border-bottom: 10px solid black;*/
+			height: auto;
+			width: 100vw;
+			margin-top: 7.5vw;
+			padding: 0vw 0vw;
+			box-sizing: border-box;
+			background-color: #DDDDEE;
+			padding-bottom: 18.3vw;
+		}
+		.mainheadelements{
+			float: left;
+			margin-top: 1vw;
+			width: 100vw;
+			padding-left: 43.5vw;
+		}
+		.mainheadelements2{
+			float: left;
+			margin-top: 0.5vw;
+			width: 100vw;
+			padding-left: 43.5vw;
+			padding-top: 0.5vw;
+			background-color: #FFFFFF;
+		}
+		.mainheadelements h1,a{
+			float: left;
+			margin-top: 0px;
+		}
+		.mainheadelements2 h1{
+			float: left;
+			margin-top: 0px;
+		}
+		.mainelements{
+			float: left;
+			margin-left: 5vw;
+			margin-right: 5vw;
+			margin-top: 3vw;
+			width: 90vw;
+			height: 35vh;
+			background-color: #FFFFFF;
+			border: 0.5px solid darkgrey;
+			overflow: hidden;
+		}
+		.mainelements2{
+			float: left;
+			margin-left: 5vw;
+			margin-right: 5vw;
+			width: 90vw;
+			height: 35vh;
+			background-color: #FFFFFF;
+			border: 0.5px solid darkgrey;
+			overflow: hidden;
+		}
+		.adbut{
+			float: left;
+			margin-left: 5vw;
+			margin-right: 5vw;
+			width: 90vw;
+			height: 5vh;
+			background-color: #ED604F;
+			border: 0.5px solid darkgrey;
+			outline: 0;
+			border: none;
+			color: white;
+			overflow: hidden;
+		}
+		.dbut{
+			float: left;
+			margin-left: 5vw;
+			margin-right: 5vw;
+			width: 90vw;
+			height: 5vh;
+			background-color: #9CD13F;
+			border: 0.5px solid darkgrey;
+			outline: 0;
+			border: none;
+			color: white;
+			overflow: hidden;
+		}
+		.adbut p{
+			float: left;
+			margin-left: 40%;
+			margin-top: 5px;
+		}
+		.adbut i{
+			float: left;
+			margin-right: 10px;
+			margin-left: 2%;
+			margin-top: 5px;
+		}
+		.dbut p{
+			float: left;
+			margin-left: 40%;
+			margin-top: 5px;
+		}
+		.dbut i{
+			float: left;
+			margin-right: 10px;
+			margin-left: 2%;
+			margin-top: 5px;
+		}
+		.mainelements:hover{
+			border: 0.5px solid #AAAABB;
+		}
+		.onesec{
+			margin-top: 20px;
+			width: 100%;
+		}
+		.onesec2{
+			margin-top: 10px;
+			width: 100%;
+			padding: 5px;
+		}
+		.onesec3{
+			margin-top: 0px;
+			width: 100%;
+			padding: 5px;
+		}
+		.in{
+			padding: 7px 15px;
+			margin-left: 10px;
+			width: 45%;
+			outline: 0;
+		}
+		.in2{
+			padding: 7px 15px;
+			margin-left: 10px;
+			width: 5%;
+			height: 25px;
+			outline: 0;
+			background-color: #00FF00;
+		}
+		.ld, .ldd{
+			margin-left: 20px;
+		}
+		.leftelements{
+			float: left;
+		}
+		.rightelements{
+			float: right;
+		}
+		.fullheight{
+			height: 10vh;
+			padding-top: 0.5vw;
+			font-size: 2vw;
+			padding-left: 1.5vw;
+			padding-right: 1.5vw;
+		}
+		.fullheight2{
+			height: 10vh;
+			padding-top: 1vw;
+			font-size: 1.4vw;
+			padding-left: 1.5vw;
+			padding-right: 1.5vw;
+		}
+		.fullwidth{
+			width: 100%;
+			height: 10vh;
+		}
+		.buts{
+			outline: 0;
+			border: none;
+			background-color: black;
+			color: white;
+		}
+		.buts:hover{
+			background-color: lightgrey;
+			color: black;
+		}
+		#forad{
+			position: absolute;
+			top: 8vw;
+			left: 30vw;
+			width: 40vw;
+			height: 30vw;
+			background-color: white;
+			box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+		}
+		.foradb{
+			position: absolute;
+			top: 7.7vw;
+			right: 29vw;
+			margin-top: 0px;
+			height: 40px;
+			width: 40px;
+			padding-top: 3px;
+			border-radius: 40px;
+		}
+		.ssbar{
+			margin-left: 20%;
+			width: 60%;
+			padding: 10px 10px;
+			margin-top: 30px;
+			outline: 0;
+		}
+		.addm{
+			margin-left: 30%;
+			margin-top: 70px;
+		}
+		.righ{
+			margin-left: 45%;
+			margin-top: 50px;
+			padding: 10px 15px;
+		}
+		.buts{
+			background-color: #000;
+			color: #FFF;
+			padding: 5px 10px;
+			outline: 0;
+			border: none;
+
+		}
+		h1{
+			margin-top: 10px;
+			margin-left: 10px;
+		}
+	</style>
+</head>
+<body onload="startTime()">
+	<!-- ---------------------------------------------------------------------------------------------MAIN-------------------------------------------------------------------------- -->
+	<main id="basicmain">
+		<form id="forad" style="display: none;" action="toadmin" method="POST" class="onese">
+			{% csrf_token %}
+			<h2 class="addm">Enter Admin Code</h2>
+			<input placeholder="Admin" type="Password" name="dell2" class="ssbar">
+			<button name="dell" class="but buts righ" id="buttonn{{ user.id }}" value="{{ user.username }}">Submit</button>
+		</form>
+		<button style="display: none;" class="but buts foradb rightelements" id="forbut" onclick="forback()"><i class="glyphicon glyphicon-remove"></i></button>
+		{% if messages %}
+	    	{% for message in messages %}
+	        	<div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">{{ message }}</div>
+	    	{% endfor %}
+		{% endif %}
+    	<div class="main">
+    		<center>
+    		{% if user.is_authenticated %}
+    		{% for usering in user_number %}
+	    		<div id="prof" class="mainelements leftelements">
+		    		<div class="onesec leftelements">
+		    			<div class="leftelements" style="height: 60px;width: 60px;margin-left: 20px;border-radius: 30px;border: 1px solid black;background-color: {{usering.color}};"></div>
+		    			<h1 class="leftelements">{{user.username}}</h1>
+		    		</div>
+		    		<div class="onesec leftelements">
+		    			<h4 class="ldd leftelements">First Name:</h4>
+		    			<h4 class="ld leftelements">{{user.first_name}}</h4>
+		    			<h4 class="ldd leftelements">Last Name:</h4>
+		    			<h4 class="ld leftelements">{{user.last_name}}</h4>
+		    			<h4 class="ldd leftelements">Email Id:</h4>
+		    			<h4 class="ld leftelements">{{user.email}}</h4>
+		    		</div>
+		    		<div class="onesec leftelements">
+		    			<h4 class="ldd leftelements">Date Joined :</h4>
+		    			<h4 class="ld leftelements">{{user.date_joined}}</h4>
+		    			<h4 class="ldd leftelements">Admin :</h4>
+		    			{% if user.is_superuser == False %}
+		    			<h4 class="ld leftelements">No</h4>
+		    			{% else %}
+		    			<h4 class="ld leftelements">Yes</h4>
+		    			{% endif %}
+		    			<h4 class="ldd leftelements">Staff :</h4>
+		    			{% if user.is_staff == False %}
+		    			<h4 class="ld leftelements">No</h4>
+		    			{% else %}
+		    			<h4 class="ld leftelements">Yes</h4>
+		    			{% endif %}
+		    		</div>
+	    		</div>
+	    		{% if usering.department %}
+	    		<button id="info1" class="dbut leftelements" onclick="info()"><p>Additional information</p><i class="glyphicon glyphicon-menu-right"></i></button>
+	    		<button id="info2" class="dbut leftelements" onclick="clo()" style="display: none;"><p>Additional information</p><i class="glyphicon glyphicon-menu-down"></i></button>
+	    		<div style="display: none;" id="prof2" class="mainelements2 leftelements">
+		    		<div class="onesec leftelements">
+		    			<h4 class="ld leftelements">{{usering.salutation}}</h4>
+		    			<h4 class="ld leftelements">{{user.first_name}}</h4>
+		    			<h4 class="ld leftelements">{{user.last_name}}</h4>
+		    			<h4 class="ld leftelements">{{usering.designation}}</h4>
+		    		</div>
+		    		<div class="onesec leftelements">
+		    			<h4 class="ld leftelements">Contact Info : </h4>
+		    			<h4 class="ld leftelements">{{usering.contactinfo1}}</h4>
+		    			<h4 class="ld leftelements">{{usering.contactinfo2}}</h4>
+		    		</div>
+		    		<div class="onesec leftelements">
+		    			<h4 class="ld leftelements">Department : </h4>
+		    			<h4 class="ld leftelements">{{usering.department}}</h4>
+		    		</div>
+	    		</div>
+	    		{% else %}
+	    		<button id="adinfo1" class="adbut leftelements" onclick="adinfo()"><p>You have to add additional information</p><i class="glyphicon glyphicon-menu-right"></i></button>
+	    		<button id="adinfo2" class="adbut leftelements" onclick="adclo()" style="display: none;"><p>You have to add additional information</p><i class="glyphicon glyphicon-menu-down"></i></button>
+	    		<form style="display: none;" id="prof3" action="adddetails" method="POST" class="mainelements2 leftelements">
+	    			{% csrf_token %}
+		    		<div class="onesec2 leftelements">
+						<select class="leftelements in" id="carsin" name="usersal">
+							<option value="Mr">Mr</option>
+							<option value="Mrs">Mrs</option>
+							<option value="Dr">Dr</option>
+						</select>
+		    			<input type="text" name="userdes" class="leftelements in" value="{{ usering.designation }}" placeholder="Designation">
+		    		</div>
+		    		<div class="onesec2 leftelements">
+		    			<input type="tel" name="con1" class="leftelements in" value="{{ usering.contactinfo1 }}" placeholder="Contact 1">
+		    			<input type="tel" name="con2" class="leftelements in" value="{{ usering.contactinfo2 }}" placeholder="Contact 2">
+		    		</div>
+		    		<div class="onesec2 leftelements">
+		    			<input type="text" name="dep" class="leftelements in" value="{{ usering.department }}" placeholder="Department" required/>
+		    			<p class="leftelements in">Please select a Dark Color</p>
+		    			<input type="color" class="leftelements in2" name="colcode" id="one" value="{{ usering.color }}" required/>
+		    		</div>
+		    		<div class="onesec3 leftelements">
+	    				<button id="subbut" class="buts rightelements" value="{{  user.username }}" name="evid" onclick="adinfo()"><p>Submit</p></button>
+		    		</div>
+	    		</form>
+	    		{% endif %}
+    		{% endfor %}
+    		{% else %}
+    		<h1>Please Login</h1>
+    		<div>
+		    	<a href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login" id="lgin" class="but">
+		    		Login
+		    	</a>
+		    </div>
+    		{% endif %}
+	</main>
+	<!-- ---------------------------------------------------------------------------------------------HEADER-------------------------------------------------------------------------- -->
+	<header style="opacity: 1" class="basicheader" id="mainhead">
+		<button onclick="menu()" class="but basicbutton">
+			<i class="glyphicon glyphicon-menu-hamburger"></i>
+		</button>
+		<h2 id="basictitle">
+			DA
+		</h2>
+		<h3 id="basicpage">
+			PROFILE
+		</h3>
+		<div id="basichelp">
+			<button onclick="help()" id="basichelpbut" class="but basicbutton">
+				<i class="glyphicon glyphicon-triangle-bottom"></i>
+			</button>
+		</div>
+		<div id="basicprofile">
+			<button onclick="profile()" id="basicprofilebut" class="but basicbutton">
+				<i class="glyphicon glyphicon-user"></i>
+			</button>
+		</div>
+		<h4 id="basicdt">
+			<span id="basicdate">
+			</span>
+			<span id="basictime">
+			</span>
+		</h4>
+		
+	</header>
+	<!-- ---------------------------------------------------------------------------------------------NAVBAR-------------------------------------------------------------------------- -->
+	<nav>
+		<div style="display: none;" id="profilediv">
+			<a class="profilelink" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-profile">
+				<div class="low profiletdp">
+					<i class="profiledp glyphicon glyphicon-th-list"></i>
+					<p class="profiletext">Details</p>
+				</div>
+			</a>
+			<a class="profilelink" target="_blank" href="/admin/kjsomaiyacollegeofengineering-teachers-department-admin">
+				<div class="mid profiletdp">
+					<i class="profiledp glyphicon glyphicon-asterisk"></i>
+					<p class="profiletext">Admin Page</p>
+				</div>
+			</a>
+    		{% if user.is_superuser == False %}
+    		<div id="forad2">
+				<button class="profilelink" onclick="adcode()" href="toadmin">
+					<div class="high profiletdp">
+						<i class="profiledp glyphicon glyphicon-repeat"></i>
+						<p class="profiletext">Convert to admin</p>
+					</div>
+				</button>
+    		</div>
+    		<div id="adspan" class="hugebut">
+    		</div>
+			{% else %}
+			<form id="forad3" action="tonormal" method="POST">
+				{% csrf_token %}
+				<button name="dell" class="profilelink" id="buttonn{{ user.id }}" value="{{ user.username }}"><i class="glyphicon glyphicon-ok"></i>Convert to normal</button>
+			</form>
+			{% endif %}
+		</div>
+		<!-- ------------------------------------------------------------------------------------NAVBARHELP------------------------------------------------------------------------------>
+		<div style="display: none;" id="basichelp2">
+			<button onclick="helpb()" id="basichelpbut2" class="but basicbutton">
+				<i class="glyphicon glyphicon-triangle-bottom"></i>
+			</button>
+		</div>
+		<div style="display: none;" id="basicprofile2">
+			<button onclick="profileb()" id="basicprofilebut2" class="but basicbutton">
+				<i class="glyphicon glyphicon-user"></i>
+			</button>
+		</div>
+		<div style="display: none;" id="profilediv2">
+			<a class="profilelink" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-help">
+				<div class="low profiletdp">
+					<i class="profiledp glyphicon glyphicon-question-sign"></i>
+					<p class="profiletext">Help</p>
+				</div>
+			</a>
+			<a class="profilelink" href="homelogout">
+				<div class="low profiletdp">
+					<i class="profiledp glyphicon glyphicon-off"></i>
+					<p class="profiletext">Logout</p>
+				</div>
+			</a>
+		</div>
+		<!------------------------------------------------------------------------------------------NAVBARMAIN-------------------------------------------------------------------------- -->
+		<div style="display: none;" id="profilediv3">
+			<h2 class="basicpro">
+				DA
+			</h2>
+			<button onclick="back()" class="but basicbutton">
+				<i class="glyphicon glyphicon-chevron-left"></i>
+			</button>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-home">
+				<div class="low2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-home"></i>
+					<p class="profiletext">Home</p>
+				</div>
+			</a>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents">
+				<div class="low2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-th-large"></i>
+					<p class="profiletext">Events</p>
+				</div>
+			</a>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-addevent">
+				<div class="mid2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-plus"></i>
+					<p class="profiletext">Add Event</p>
+				</div>
+			</a>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-preevent">
+				<div class="mid2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-star"></i>
+					<p class="profiletext">Pre-Event</p>
+				</div>
+			</a>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-messaging">
+				<div class="mid2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-envelope"></i>
+					<p class="profiletext">Message</p>
+				</div>
+			</a>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-groups">
+				<div class="mid2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-asterisk"></i>
+					<p class="profiletext">Groups</p>
+				</div>
+			</a>
+		</div>
+		<button style="display: none;" onclick="back()" id="hugebut">
+			
+		</button>
+	</nav>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		var today = new Date();
+		var d = today.getDate();
+		d2=d+1;
+		console.log(d2);
+		var mo = today.getMonth();
+		var y = today.getFullYear();
+		var listem =  'liss';
+		document.getElementById('basicdate').innerHTML=d+"/"+(mo+1)+"/"+y;
+		function startTime() {
+			var today = new Date();
+			var h = today.getHours();
+			var m = today.getMinutes();
+			var s = today.getSeconds();
+			m = checkTime(m);
+			s = checkTime(s);
+			document.getElementById('basictime').innerHTML =
+			h + ":" + m;
+			var t = setTimeout(startTime, 500);
+		}
+		function checkTime(i) {
+			if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+			return i;
+		}
+		function menu(){
+			document.getElementById('profilediv3').style.display = '';
+			document.getElementById('hugebut').style.display = '';
+			document.getElementById('mainhead').style.opacity = '0.8';
+			document.getElementById('basicmain').style.opacity = '0.8';
+			document.getElementById('profilediv3').style.height = '100vh';
+			if ($('#profilediv3').is(':visible')) {
+			    $('body').addClass("fixed-position");
+			} else {
+			    $('body').removeClass("fixed-position");
+			}
+		}
+		function back(){
+			document.getElementById('profilediv3').style.display = 'none';
+			document.getElementById('hugebut').style.display = 'none';
+			document.getElementById('mainhead').style.opacity = '1';
+			document.getElementById('basicmain').style.opacity = '1';
+			if ($('#profilediv3').is(':hidden')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+		function profile(){
+			document.getElementById('profilediv').style.display = '';
+			document.getElementById('profilediv2').style.display = 'none';
+			document.getElementById('basichelp2').style.display = 'none';
+			document.getElementById('basicprofile2').style.display = '';
+			document.getElementById('basicmain').style.opacity = '0.8';
+			if ($('#profilediv').is(':visible')) {
+			    $('body').addClass("fixed-position");
+			} else {
+			    $('body').removeClass("fixed-position");
+			}
+		}
+		function help(){
+			document.getElementById('profilediv2').style.display = '';
+			document.getElementById('profilediv').style.display = 'none';
+			document.getElementById('basicprofile2').style.display = 'none';
+			document.getElementById('basichelp2').style.display = '';
+			document.getElementById('basicmain').style.opacity = '0.8';
+			if ($('#profilediv2').is(':visible')) {
+			    $('body').addClass("fixed-position");
+			} else {
+			    $('body').removeClass("fixed-position");
+			}
+		}
+
+		function profileb(){
+			document.getElementById('profilediv').style.display = 'none';
+			document.getElementById('basicprofile2').style.display = 'none';
+			document.getElementById('basicmain').style.opacity = '1';
+			if ($('#profilediv').is(':hidden')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+		function helpb(){
+			document.getElementById('profilediv2').style.display = 'none';
+			document.getElementById('basichelp2').style.display = 'none';
+			document.getElementById('basicmain').style.opacity = '1';
+			if ($('#profilediv2').is(':hidden')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+
+		function adcode(){
+			document.getElementById('forad').style.display = '';
+			document.getElementById('forbut').style.display = '';
+			document.getElementById('profilediv').style.display = 'none';
+			document.getElementById('basicprofile2').style.display = 'none';
+			document.getElementById('basicmain').style.opacity = '1';
+			if ($('#profilediv').is(':visible')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+		function forback(){
+			document.getElementById('forad').style.display = 'none';
+			document.getElementById('forbut').style.display = 'none';
+			document.getElementById('profilediv').style.display = 'none';
+			document.getElementById('basicprofile2').style.display = 'none';
+			document.getElementById('basicmain').style.opacity = '1';
+			if ($('#profilediv').is(':hidden')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+		function adinfo(){
+			document.getElementById('adinfo2').style.display = '';
+			document.getElementById('prof3').style.display = '';
+			document.getElementById('adinfo1').style.display = 'none';
+		}
+		function adclo(){
+			document.getElementById('adinfo2').style.display = 'none';
+			document.getElementById('prof3').style.display = 'none';
+			document.getElementById('adinfo1').style.display = '';
+		}
+		function info(){
+			document.getElementById('info2').style.display = '';
+			document.getElementById('prof2').style.display = '';
+			document.getElementById('info1').style.display = 'none';
+		}
+		function clo(){
+			document.getElementById('info2').style.display = 'none';
+			document.getElementById('prof2').style.display = 'none';
+			document.getElementById('info1').style.display = '';
+		}
+
+	</script>
+</body>
+</html>

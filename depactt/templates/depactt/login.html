@@ -1,0 +1,340 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Login DepAct
+	</title>
+	<link rel="icon" type="image/png" href="{% static 'kj.png' %}">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<style type="text/css">
+		body{
+			background-color: #000;
+			font-family: Calibri;
+			overflow-x: hidden;
+			overflow-y: hidden;
+		}
+		nav{
+			background-color: yellow;
+			width: 100vw;
+			overflow-x: hidden;
+		}
+		::-webkit-scrollbar {
+		    /*width: 0px;   Remove scrollbar space */
+		    /*background: white;*/  /* Optional: just make scrollbar invisible */
+		    background-color: #FFF;
+		}
+		::-webkit-scrollbar-thumb{
+			background-color: #17252A;
+			border-radius: 8px;
+		}
+		 .fixed-position {
+	    	position: fixed;
+		}
+		/*--------------------------------------------------------------------HEADER------------------------------------------------------------------------
+		----------------------------------------------------------------------HEADER------------------------------------------------------------------------
+		----------------------------------------------------------------------HEADER------------------------------------------------------------------------
+		----------------------------------------------------------------------HEADER------------------------------------------------------------------------*/
+		.basicheader{
+			float: left;
+			background-color: #FFFFFF;
+			width: 100vw;
+			position: fixed;
+			/*box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);*/
+			font-family: Calibri;
+			border-bottom: 1px solid #AAAABB;
+		}
+		.but{
+			outline: 0;
+			border: none;
+		}
+		.basicbutton{
+			padding: 2vw 2.5vw;
+			float: left;
+			color: black;
+			background-color: #FFFFFF;
+			font-size: 2.5vw;
+			height: 7.5vw;
+		}
+		.basicbutton:hover{
+			color: #FFF;
+			background-color: #000;
+		}
+		#basictitle, #basicpage{
+			margin-top: 0px;
+			margin-bottom: 0px;
+			color: #000;
+			float: left;
+			height: 7.5vw;
+			font-size: 2.5vw;
+			padding-top: 2.3vw;
+		}
+		#basictitle{
+			padding-left: 2vw;
+			padding-right: 2vw;
+		}
+		#basicpage{
+			margin-left: 35vw;
+		}
+		/*--------------------------------------------------------------------BASIC NAV BAR CONTENT STYLES------------------------------------------------------------------------
+		----------------------------------------------------------------------BASIC NAV BAR CONTENT STYLES------------------------------------------------------------------------
+		----------------------------------------------------------------------BASIC NAV BAR CONTENT STYLES------------------------------------------------------------------------
+		----------------------------------------------------------------------BASIC NAV BAR CONTENT STYLES------------------------------------------------------------------------*/
+		
+		.low{
+			padding-right: 3.6vw;
+		}
+		.mid{
+			padding-right: 2vw;
+		}
+		.high{
+			padding-right: 0.2vw;
+		}
+		/*--------------------------------------------------------------------MAIN------------------------------------------------------------------------
+		----------------------------------------------------------------------MAIN------------------------------------------------------------------------
+		----------------------------------------------------------------------MAIN------------------------------------------------------------------------
+		----------------------------------------------------------------------MAIN------------------------------------------------------------------------*/
+		#basicmain{
+			float: left;
+			/*border-top: 10px solid black;
+			border-bottom: 10px solid black;*/
+			height: 100vw;
+			width: 100vw;
+			margin-top: 7.5vw;
+			padding: 0vw 0vw;
+			box-sizing: border-box;
+			background-color: #FFFFFF;
+		}
+		.mainheadelements{
+			float: left;
+			margin-top: 1vw;
+			width: 100vw;
+		}
+		.mainheadelements2{
+			float: left;
+			margin-top: 0.5vw;
+			width: 100vw;
+			padding-top: 0.5vw;
+			padding-left: 43.5vw;
+			background-color: #FFFFFF;
+		}
+		.mainheadelements h1{
+			float: left;
+			margin-top: 0px;
+			margin-left: 2vw;
+			font-size: 1.5vw;
+		}
+		.mainheadelements2 h1{
+			float: left;
+			margin-top: 0px;
+		}
+		.mainelements{
+			float: left;
+			margin-left: 13vw;
+			margin-top: 2vw;
+			width: 30vw;
+			height: 30vw;
+			background-color: #DDDDEE;
+			border: 0.5px solid #AAAABB;
+		}
+		.mainelements:hover{
+			transform: scale(1.03);
+			border: 0.5px solid #AAAABB;
+		}
+		.leftelements{
+			float: left;
+		}
+		.rightelements{
+			float: right;
+		}
+		.buts{
+			float: left;
+			text-decoration: none;
+			background-color: black;
+			color: white;
+			padding: 10px 15px;
+			margin-left: 48vw;
+		}
+		.buts:hover{
+			text-decoration: none;
+			background-color: white;
+			color: black;
+		}
+		.log{
+			font-size: 1.2vw;
+			width: 100%;
+			padding: 10px 45%;
+			margin-top: 0;
+			margin-bottom: 13px;
+			background-color: #9292A4;
+			color: white;
+		}
+		.log2{
+			font-size: 1.2vw;
+			width: 100%;
+			padding: 10px 35.5%;
+			margin-top: 20px;
+			margin-bottom: 13px;
+			background-color: #9292A4;
+			color: white;
+		}
+		.lab{
+			margin-top: 0;
+			width: 100%;
+			padding: 5px 10px;
+		}
+		.in{
+			outline: 0;
+			padding: 5px 10px;
+			width: 100%;
+		}
+		.but{
+			background-color: black;
+			color: white;
+			padding: 10px 15px;
+			outline: 0;
+			border: none;
+			text-decoration: none;
+			margin-left: 42%;
+		}
+		.but:hover{
+			background-color: white;
+			color: black;
+			border: 1px solid black;
+		}
+		.mainlink{
+			text-decoration: none;
+			padding: 8px 15px;
+			border-radius: 4px;
+			background-color: #7ADF40;
+			border: 1px solid #62C529;
+			color: white;
+			margin-left: 46%;
+			margin-top: 30px;
+		}
+		.mainlink:hover{
+			background-color: #62C529;
+			color: white;
+			text-decoration: none;
+		}
+	</style>
+</head>
+<body onload="startTime()">
+	<!-- ---------------------------------------------------------------------------------------------MAIN-------------------------------------------------------------------------- -->
+	<main id="basicmain">
+	{% if messages %}
+    	{% for message in messages %}
+        	<div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">{{ message }}</div>
+    	{% endfor %}
+	{% endif %}
+	<div class="mainelements">
+		<form  action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login" id="main" method="POST" class="login">
+			{% csrf_token %}
+			<p class="log">
+				Log In 
+			</p>
+			<div class="lab">
+				<input id="in" type="text" name="usname" class="in" placeholder="Username">
+			</div>
+			<div class="lab">
+				<input id="inn" type="password"  name="pssword" class="in" placeholder="Password">
+			</div>
+			<div class="lab">
+				<button id="butnlo" class="but">
+					Submit
+				</button>
+			</div>
+		</form>
+		<form  action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-forgotpassword" id="main" method="POST" class="login2">
+			{% csrf_token %}
+			<p class="log2">
+				Forgot Password? 
+			</p>
+			<div class="lab">
+				<input id="in" type="text" name="usname" class="in" placeholder="Username">
+			</div>
+			<div class="lab">
+				<button id="butnlo" class="but">
+					Submit
+				</button>
+			</div>
+		</form>
+	</div>
+	<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-signup" id="main" method="POST" class="mainelements">
+		{% csrf_token %}
+		<p class="log">
+			Signup
+		</p>
+		<div class="lab">
+			<input autocomplete="off" type="text" id="fname" name="firstname" class="in" placeholder="Enter First Name">
+		</div>
+		<div class="lab">
+			<input autocomplete="off" type="text" id="fname" name="lastname" class="in" placeholder="Enter Last Name">
+		</div>
+		<div class="lab">
+			<input autocomplete="off" type="email" id="email" name="emailid" class="in" placeholder="Enter Email">
+		</div>
+		<div class="lab">
+			<input autocomplete="off" type="text" id="username" name="username" class="in" placeholder="Enter Username">
+		</div>
+		<div class="lab">
+			<input autocomplete="off" type="Password" id="passs" name="password1" class="in" placeholder="Setup Password">
+		</div>
+		<div class="lab">
+			<input autocomplete="off" type="Password" id="passs2" name="password2" class="in" placeholder="Confirm Password">
+		</div>
+		<div class="lab">
+			<select class="in" id="carsin" name="dd">
+				<option value="staff">Staff</option>
+				<option value="student">Student</option>
+			</select>
+		</div>
+		<div class="lab">
+			<button id="butnsi" class="but">
+				Submit
+			</button>
+		</div>
+	</form>
+	<a class="mainlink" href="/admin/kjsomaiyacollegeofengineering-teachers-department-admin">Admin/Help</a>
+	</center>
+	</main>
+	<!-- ---------------------------------------------------------------------------------------------HEADER-------------------------------------------------------------------------- -->
+	<header style="opacity: 1" class="basicheader" id="mainhead">
+		<h2 id="basictitle">
+			DA
+		</h2>
+		<h3 id="basicpage">
+			LOGIN /SIGNUP
+		</h3>
+		
+	</header>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		var input1 = document.getElementById('pass2');
+		var input2 = document.getElementById('inn');
+		var input3 = document.getElementById('pass3');
+
+		if(input1){
+			input1.addEventListener("keyup", function(event) {
+				console.log(input);
+		    	if (event.keyCode === 13) {
+		    	    // event.preventDefault();
+			        document.getElementById("butnsn").click();
+			    }
+			});
+		}
+		if(input2){
+			input2.addEventListener("keyup", function(event) {
+				console.log(input);
+		    	if (event.keyCode === 13) {
+		    	    // event.preventDefault();
+			        document.getElementById("butnlo").click();
+			    }
+			});
+		}
+
+
+	</script>
+</body>
+</html>

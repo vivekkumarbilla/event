@@ -1,0 +1,3029 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		All Events DepAct
+	</title>
+	<link rel="icon" type="image/png" href="{% static 'kj.png' %}">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<style type="text/css">
+		body{
+			background-color: #DDDDEE;
+			font-family: Calibri;
+			overflow-x: hidden;
+		}
+		nav{
+			background-color: yellow;
+			width: 100vw;
+			overflow-x: hidden;
+		}
+		 .fixed-position {
+	    	position: fixed;
+		}
+		::-webkit-scrollbar {
+		    /*width: 0px;   Remove scrollbar space */
+		    /*background: white;*/  /* Optional: just make scrollbar invisible */
+		    background-color: transparent;
+		    opacity: 0;
+		    width: 10px;
+		}
+		::-webkit-scrollbar-thumb{
+			background-color: #17252A;
+			border-radius: 8px;
+		}
+		.lock-scroll{
+			overflow: hidden;
+		}
+		/*--------------------------------------------------------------------HEADER------------------------------------------------------------------------
+		----------------------------------------------------------------------HEADER------------------------------------------------------------------------
+		----------------------------------------------------------------------HEADER------------------------------------------------------------------------
+		----------------------------------------------------------------------HEADER------------------------------------------------------------------------*/
+		.basicheader{
+			float: left;
+			background-color: #FFFFFF;
+			width: 100vw;
+			position: fixed;
+			/*box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);*/
+			font-family: Calibri;
+			border-bottom: 1px solid #AAAABB;
+		}
+		.but{
+			outline: 0;
+			border: none;
+		}
+		.basicbutton{
+			padding: 2vw 2.5vw;
+			float: left;
+			color: black;
+			background-color: #FFFFFF;
+			font-size: 2.5vw;
+			height: 7.5vw;
+		}
+		.basicbutton:hover{
+			color: #FFF;
+			background-color: #000;
+		}
+		#basictitle, #basicpage{
+			margin-top: 0px;
+			margin-bottom: 0px;
+			color: #000;
+			float: left;
+			height: 7.5vw;
+			font-size: 2.5vw;
+			padding-top: 2.3vw;
+		}
+		#basictitle{
+			padding-left: 2vw;
+			padding-right: 2vw;
+		}
+		#basicpage{
+			margin-left: 32vw;
+		}
+		#basicdt{
+			margin-left: 8vw;
+			font-size: 2vw;
+			float: right;
+			margin-top: 0px;
+			margin-bottom: 0px;
+			height: 7.5vw;
+			width: 20vw;
+			padding-top: 2.5vw;
+			padding-left: 1vw;
+			color: #000;
+		}
+		#basicprofile, #basichelp{
+			float: right;
+			height: 7.5vw;
+			margin-right: 1vw;
+		}
+		#basicprofilebut{
+			font-size: 2.5vw;
+			border-radius: 8vw;
+		}
+		#basichelpbut{
+			font-size: 2vw;
+			padding: 1.5vw 0.5vw;
+		}
+		#basichelp{
+			width: 3vw;
+		}
+		#basictime{
+			margin-left: 3vw;
+		}
+		/*--------------------------------------------------------------------BASIC NAV BAR CONTENT STYLES------------------------------------------------------------------------
+		----------------------------------------------------------------------BASIC NAV BAR CONTENT STYLES------------------------------------------------------------------------
+		----------------------------------------------------------------------BASIC NAV BAR CONTENT STYLES------------------------------------------------------------------------
+		----------------------------------------------------------------------BASIC NAV BAR CONTENT STYLES------------------------------------------------------------------------*/
+		.profilelink{
+			background-color: #FFFFFF;
+			float: left;
+			margin-top: 0px;
+			margin-left: 0px;
+			height: 5vw;
+			width: 12vw;
+			font-size: 1vw;
+			padding-top: 1.7vw;
+			text-decoration: none;
+			color: #000;
+			box-sizing: border-box;
+			border-left: 1px solid #000;
+			border-right: 1px solid #000;
+			outline: 0;
+			border: none;
+		}
+		.profilelink:hover{
+			background-color: #000;
+			color: #FFF;
+			/*text-shadow: 0px 2px 10px #C770A4, 2px 0px 10px #C770A4, -2px 0px 10px #C770A4, 0px -2px 10px #C770A4;*/
+			border-bottom: 2px solid #CCCCCC;
+		}
+		.profiletdp{
+			width: 100%;
+			float: left;
+		}
+		.profiletext{
+			float: right;
+			margin-top: 0px;
+		}
+		.profiledp{
+			float: right;
+			height: 1.6vw;
+			font-size: 1.1vw;
+			padding-left: 0.5vw;
+			padding-right: 0.5vw;
+			padding-top: 0.2vw;
+		}
+		button .profiledp{
+			padding-top: 0vw;
+		}
+		.low{
+			padding-right: 3.6vw;
+		}
+		.mid{
+			padding-right: 2vw;
+		}
+		.high{
+			padding-right: 0.2vw;
+		}
+
+		/*--------------------------------------------------------------------NAVBAR_1------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_1------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_1------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_1------------------------------------------------------------------------*/
+		#profilediv3{
+			position: absolute;
+			top: 0vw;
+			background-color: #FFFFFF;
+			width: 15vw;
+			border-right: 1px solid #000;
+			box-sizing: content-box;
+		}
+		.basicpro{
+			background-color: #FFFFFF;
+			width: 7.5vw;
+			margin-top: 0px;
+			margin-bottom: 0px;
+			color: #000;
+			float: left;
+			height: 7.5vw;
+			font-size: 2.5vw;
+			padding-top: 2.6vw;
+			padding-left: 2vw;
+			border-bottom: 2px solid #770044;
+		}
+		.profilelink3{
+			background-color: #FFFFFF;
+			float: left;
+			margin-top: 0px;
+			margin-left: 0px;
+			height: 5vw;
+			width: 15vw;
+			font-size: 1.2vw;
+			padding-top: 1.7vw;
+			text-decoration: none;
+			color: #000;
+			box-sizing: border-box;
+			border-right: none;
+		}
+		.low2{
+			padding-right: 5vw;
+		}
+		.mid2{
+			padding-right: 4vw;
+		}
+		.high2{
+			padding-right: 2vw;
+		}
+		#hugebut{
+			background-color: black;
+			position: absolute;
+			top: 0;
+			width: 85vw;
+			bottom: 0;
+			left: 15vw;
+			outline: 0;
+			border: none;
+			opacity: 0.5;
+		}
+		/*--------------------------------------------------------------------NAVBAR_2------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_2------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_2------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_2------------------------------------------------------------------------*/
+		#profilediv{
+			position: absolute;
+			top: 7.5vw;
+			right: 3vw;
+			background-color: #FFFFFF;
+			float: right;
+			height: 15vw;
+			width: 12vw;
+			padding: 0px;
+			overflow: hidden;
+			border-bottom: 1px solid #000;
+		}
+		
+		#basicprofilebut2{
+			font-size: 2.5vw;
+			border-radius: 3.75vw;
+		}
+		#basichelpbut2{
+			font-size: 2vw;
+			padding: 1.5vw 0.5vw;
+		}
+		#basichelp2{
+			right: 1vw;
+			position: absolute;
+			top: 0vw;
+			height: 7.5vw;
+		}
+		#basicprofile2{
+			right: 5vw;
+			position: absolute;
+			top: 0vw;
+			height: 7.5vw;
+		}
+		/*--------------------------------------------------------------------NAVBAR_3------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_3------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_3------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_3------------------------------------------------------------------------*/
+		#profilediv2{
+			position: absolute;
+			top: 7.5vw;
+			right: 0vw;
+			background-color: #FFFFFF;
+			float: right;
+			height: 10vw;
+			width: 12vw;
+			padding: 0px;
+			overflow: hidden;
+			border-bottom: 1px solid #000;
+		}
+		#profilediv:hover{
+			
+		}
+
+
+		/* Modal Content (image) */
+		.modal {
+			display: none; /* Hidden by default */
+			position: fixed; /* Stay in place */
+			z-index: 1; /* Sit on top */
+			padding-top: 10px;
+			padding-bottom: 10px; /* Location of the box */
+			left: 0;
+			top: 0;/* Full width */
+			height: 100%; /* Full height */ /* Enable scroll if needed */
+			background-color: rgb(0,0,1); /* Fallback color */
+			background-color: rgba(0,0,1,1); /* Black w/ opacity */
+		}
+
+		.modal-content {
+			margin: auto;
+			display: block;
+			margin-left: 18%;
+			height: 100%;
+		}
+
+		/* Caption of Modal Image */
+		#caption {
+			margin: auto;
+			display: block;
+			width: 80%;
+			max-width: 500px;
+			text-align: center;
+			color: #fff;
+			padding: 10px 0;
+			height: 150px;
+		}
+		#captionup {
+			margin: auto;
+			display: block;
+			width: 80%;
+			max-width: 500px;
+			text-align: center;
+			color: #fff;
+			padding: 10px 0;
+			height: 150px;
+		}
+		#captionfin {
+			margin: auto;
+			display: block;
+			width: 80%;
+			max-width: 500px;
+			text-align: center;
+			color: #fff;
+			padding: 10px 0;
+			height: 150px;
+		}
+
+		/* The Close Button */
+		.close {
+			position: fixed;
+			top: 2%;
+			right: 5%;
+			color: white;
+			font-size: 60px;
+		}
+
+		.close:hover {
+			color: #fff;
+			text-decoration: none;
+		}
+		.close2{
+			position: fixed;
+			top: 2%;
+			right: 22%;
+			color: white;
+			font-size: 60px;
+		}
+
+		.close2:hover {
+			color: #fff;
+			text-decoration: none;
+		}
+		.close3{
+			position: fixed;
+			top: 2%;
+			right: 22%;
+			color: white;
+			font-size: 60px;
+		}
+
+		.close3:hover {
+			color: #fff;
+			text-decoration: none;
+		}
+		/*--------------------------------------------------------------------MAIN------------------------------------------------------------------------
+		----------------------------------------------------------------------MAIN------------------------------------------------------------------------
+		----------------------------------------------------------------------MAIN------------------------------------------------------------------------
+		----------------------------------------------------------------------MAIN------------------------------------------------------------------------*/
+		#basicmain{
+			float: left;
+			/*border-top: 10px solid black;
+			border-bottom: 10px solid black;*/
+			height: auto;
+			width: 100vw;
+			margin-top: 7.5vw;
+			padding: 0vw 0vw;
+			box-sizing: border-box;
+			background-color: #DDDDEE;
+			padding-bottom: 15vw;
+		}
+		.mainheadelements{
+			float: left;
+			/*margin-top: 1vw;*/
+			width: 100vw;
+		}
+		.mainheadelements2{
+			float: left;
+			width: 100vw;
+			height: 3vw;
+			background-color: #FFFFFF;
+		}
+		.mainheadelements h1,a{
+			float: left;
+			margin-top: 0px;
+		}
+		.mainheadelements2 h1{
+			float: left;
+			margin-top: 0px;
+		}
+		.mainelements{
+			float: left;
+			margin-left: 2vw;
+			margin-top: 2vw;
+			width: 76.8vw;
+			height: 25vw;
+			background-color: #FFFFFF;
+			border: 0.5px solid #AAAABB;
+			overflow: hidden;
+			border-radius: 4px;
+		}
+		.mainelements:hover{
+			/*transform: scale(1.01);*/
+			/*border: 0.5px solid #000;*/
+			/*width: 97vw;*/
+		}
+		.alert{
+			padding-left: 40vw;
+		}
+		/*14A098*/
+
+		/*14A098*/
+		/*-------------------------------------------SEARCHBAR AND FILTER--------------------------------------------*/
+		/*-------------------------------------------SEARCHBAR AND FILTER--------------------------------------------*/
+		/*-------------------------------------------SEARCHBAR AND FILTER--------------------------------------------*/
+		/*-------------------------------------------SEARCHBAR AND FILTER--------------------------------------------*/
+		/*-------------------------------------------SEARCHBAR AND FILTER--------------------------------------------*/
+		/*-------------------------------------------SEARCHBAR AND FILTER--------------------------------------------*/
+		/*-------------------------------------------SEARCHBAR AND FILTER--------------------------------------------*/
+		.inputbarall{
+			height: 4vw;
+			width: 90vw;
+			margin-left: 2vw;
+			padding-left: 0vw;
+			margin-top: 2vw;
+			margin-bottom: 0px;
+		}
+		.inputbarall2{
+			margin-left: 14%;
+			float: left;
+			background-color: red;
+			height: 100%;
+			width: 60%;
+			padding-left: 0vw;
+			border: 1px solid #AAAABB;
+			box-shadow: 0 1px 6px rgba(32,33,36,.28);
+			border-right: none;
+		}
+		#searchbarall{
+			width: 90%;
+			height: 100%;
+			outline: 0;
+			border: none;
+			padding-left: 10px;
+			/*border-left: 1px solid black;
+			border-top: 1px solid black;
+			border-bottom: 1px solid black;*/
+		}
+		#searchbarup{
+			width: 100%;
+			height: 100%;
+			outline: 0;
+			border: none;
+			padding-left: 10px;
+			/*border-left: 1px solid black;
+			border-top: 1px solid black;
+			border-bottom: 1px solid black;*/
+		}
+		#searchbarfin{
+			width: 100%;
+			height: 100%;
+			outline: 0;
+			border: none;
+			padding-left: 10px;
+			/*border-left: 1px solid black;
+			border-top: 1px solid black;
+			border-bottom: 1px solid black;*/
+		}
+		.inputbarall button{
+			height: 100%;
+			width: 10%;
+			border-left: 1px solid #AAAABB;
+			background-color: black;
+			color: white;
+		}
+		.inputbarall button:hover{
+			background-color: white;
+			color: black;
+		}
+		.inputbarall > button{
+			width: 7%;
+		}
+		.inputbarall a{
+			font-size: 1.3vw;
+			height: 100%;
+			width: 7%;
+			background-color: black;
+			color: white;
+			text-decoration: none;
+			padding-left: 0.9vw;
+			padding-top: 1.1vw;
+		}
+		.inputbarall a:hover{
+			background-color: white;
+			color: black;
+		}
+		.inputbarall2 button{
+			background-color: white;
+			color: black;
+		}
+		.inputbarall3{
+			background-color: orange;
+			height: 4vw;
+			width: 60.3vw;
+			margin-left: 20.9vw;
+			padding-left: 0vw;
+			border: 1px solid #AAAABB;
+			border-top: none;
+			background-color: pink;
+			box-shadow: 0 1px 6px rgba(32,33,36,.28);
+		}
+		.inputbarall4{
+			float: left;
+			background-color: red;
+			height: 100%;
+			width: 89.5%;
+			padding-left: 0vw;
+		}
+		.searchin{
+			width: 60%;
+			height: 100%;
+			outline: 0;
+			border: none;
+			padding-left: 10px;
+			/*border-left: 1px solid black;
+			border-top: 1px solid black;
+			border-bottom: 1px solid black;*/
+		}
+		.searchin2{
+			width: 30%;
+			height: 100%;
+			outline: 0;
+			border: none;
+			padding-left: 10px;
+			/*border-left: 1px solid black;
+			border-top: 1px solid black;
+			border-bottom: 1px solid black;*/
+		}
+		.inputbarall3 button{
+			height: 100%;
+			width: 10.5%;
+			border-left: 1px solid #AAAABB;
+			background-color: black;
+			color: white;
+		}
+		.inputbarall3 button:hover{
+			background-color: white;
+			color: black;
+		}
+		.inputbarall4 p{
+			height: 100%;
+			width: 40%;
+			background-color: white;
+			color: black;
+			border-right: 1px solid #AAAABB;
+			font-size: 2vw;
+			padding-left: 1vw;
+			padding-top: 0.5vw;
+		}
+
+		/*-------------------------------------------PARTICULAR ALL EVENTS--------------------------------------------*/
+		/*-------------------------------------------PARTICULAR ALL EVENTS--------------------------------------------*/
+		/*-------------------------------------------PARTICULAR ALL EVENTS--------------------------------------------*/
+		/*-------------------------------------------PARTICULAR ALL EVENTS--------------------------------------------*/
+		/*-------------------------------------------PARTICULAR ALL EVENTS--------------------------------------------*/
+		/*-------------------------------------------PARTICULAR ALL EVENTS--------------------------------------------*/
+		/*-------------------------------------------PARTICULAR ALL EVENTS--------------------------------------------*/
+		.underelements{
+			width: 100%;
+			float: left;
+			height: 100%;
+		}
+		.main2{
+			float: left;
+			padding-left: 0px;
+			margin-left: 0vw;
+			margin-right: 1vw;
+			margin-top: 2vw;
+			width: 19.2vw;
+			height: 25vw;
+			border-radius: 4px;
+		}
+		.comsecbut{
+			position: absolute;
+			margin-top: 1px;
+			outline: 0;
+			border: none;
+			padding: 5px 10px;
+			background-color: white;
+			color: black;
+			border: 0.5px solid #AAAABB;
+			border-radius: 4px;
+		}
+		.comsecbut:hover{
+			background-color: black;
+			color: white;
+		}
+		.comsecbut2{
+			position: absolute;
+			outline: 0;
+			border: none;
+			padding: 5px 10px;
+			background-color: white;
+			color: black;
+		}
+		.comsecbut2:hover{
+			background-color: black;
+			color: white;
+		}
+		.underelements2{
+			width: 19.2vw;
+			position: absolute;
+			height: 25vw;
+			background-color: orange;
+		}
+		.twodiv2{
+			float: left;
+			width: 100%;
+			height: 100%;
+		}
+		.twodivmain{
+			height: 90%;
+			width: 100%;
+			float: left;
+			background-color: cyan;
+		}
+		.twodivform{
+			float: left;
+			width: 100%;
+			height: 10%;
+		}
+		.twodivform2{
+			float: left;
+			width: 100%;
+			height: 10%;
+			padding-left: 36%;
+			padding-top: 5px;
+			background-color: #7A8073;
+			border-bottom: 0.5px solid black;
+			color: white;
+		}
+		.twodivform3{
+			float: left;
+			width: 100%;
+			height: 90%;
+			overflow-y: scroll;
+			overflow-x: hidden;
+			border-left: 0.5px solid #AAAABB;
+			background-color: #FFF;
+		}
+		.twodivform3::-webkit-scrollbar{
+			width: 5px;
+		}
+		.actualcom{
+			width: 60%;
+			margin-top: 10px;
+			border: 0.5px solid #7A8073;
+			border-left: none;
+			background-color: lightgrey;
+			border-radius: 8px;
+		}
+		.actualcom2{
+			margin-top: 10px;
+			border: 0.5px solid #7A8073;
+			border-right: none;
+			width: 60%;
+			background-color: lightgrey;
+			border-radius: 8px;
+		}
+		.comt{
+			width: 100%;
+			margin-top: 0px;
+			background-color: #C6CBBF;
+			height: 10%;
+			padding: 0px 10px;
+			margin-bottom: 0px;
+		}
+		.combody{
+			width: 100%;
+			padding: 0px 10px;
+			margin-top: 0px;
+			margin-bottom: 0px;
+		}
+		.comm{
+			outline: 0;
+			float: left;
+			height: 100%;
+			width: 80%;
+		}
+		.commbut{
+			float: left;
+			border: none;
+			outline: 0;
+			height: 100%;
+			width: 20%;
+		}
+		.mdiv{
+			float: left;
+			width: 100%;
+			height: 80%;
+		}
+		.pdiv{
+			float: left;
+			width: 100%;
+			height: 10%;
+		}
+		.eimage, .ei, .emage{
+			background-color: lightgrey;
+			width: 100%;
+			height: 100%;
+		}
+		.onesecond2{
+			float: left;
+			width: 25%;
+			height: 100%;
+		}
+		.onesecond{
+			float: left;
+			width: 75%;
+			height: 50%;
+		}
+		.onesecond3{
+			float: left;
+			width: 75%;
+			height: 50%;
+		}
+		.onediv{
+			float: left;
+			width: 100%;
+			height: 100%;
+		}
+		.onediv h2{
+			width: 100%;
+		}
+		.onediv2{
+			float: left;
+			width: 40%;
+			height: 100%;
+		}
+		.onedivunder{
+			width: 100%;
+			float: left;
+			height: 50%;
+			padding: 0px 10px;
+		}
+		.onedivunder h4{
+			margin-left: 5px;
+		}
+		.twodiv{
+			float: left;
+			width: 100%;
+			height: 100%;
+		}
+		.twodivunder{
+			float: left;
+			width: 100%;
+		}
+		.threediv{
+			float: left;
+			width: 100%;
+		}
+		.threediv2{
+			float: left;
+			width: 100%;
+		}
+		.leftelements{
+			float: left;
+		}
+		.rightelements{
+			float: right;
+		}
+		.vbuts{
+			position: absolute;
+		}
+		.fullwidth{
+			width: 100%;
+			margin-bottom: 0px;
+			margin-top: 0px;
+		}
+		.fullwidth p{
+			margin-top: 0px;
+			margin-left: 0px;
+			margin-bottom: 0px;
+		}
+		.buts{
+			background-color: white;
+			color: black;
+			outline: 0;
+			border: none;
+			padding: 5px 10px;
+			border: 0.5px solid #AAAABB;
+			border-radius: 4px;
+			margin-left: 2px;
+		}
+		.butspending{
+			float: left;
+			background-color: #F07373;
+			color: black;
+			outline: 0;
+			border: none;
+			padding: 5px 10px;
+			border: 0.5px solid #AAAABB;
+			border-bottom-right-radius: 4px;
+			margin-left: 0px;
+		}
+		.butsongoing{
+			float: left;
+			background-color: #A4D8E3;
+			color: black;
+			outline: 0;
+			border: none;
+			padding: 5px 10px;
+			border: 0.5px solid #AAAABB;
+			border-bottom-right-radius: 4px;
+			margin-left: 0px;
+		}
+		.butsconfirmed{
+			float: left;
+			background-color: #B0F365;
+			color: black;
+			outline: 0;
+			border: none;
+			padding: 5px 10px;
+			border: 0.5px solid #AAAABB;
+			border-bottom-right-radius: 4px;
+			margin-left: 0px;
+		}
+		.butp{
+			background-color: white;
+			color: black;
+			outline: 0;
+			border: none;
+			padding: 5px 10px;
+			border-radius: 4px;
+			margin-left: 2px;
+		}
+		.buts:hover{
+			background-color: black;
+			color: white;
+		}
+		.ars{
+			/*margin-top: 2vw;*/
+			margin-left: 0.5vw;
+			font-size: 1.5vw;
+		}
+		.current{
+			background-color: white;
+			border-bottom: 3px solid black;
+			color: black;
+		}
+		.topbut{
+			height: 100%;
+			width: 33%;
+			margin-top: 0px;
+		}
+		.slmargin{
+			margin-left: 10px;
+		}
+		.nomargin{
+			margin-top: 0px;
+			margin-bottom: 10px;
+		}
+		#forad{
+			position: absolute;
+			top: 8vw;
+			left: 30vw;
+			width: 40vw;
+			height: 30vw;
+			background-color: white;
+			box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+		}
+		.foradb{
+			position: absolute;
+			top: 7.7vw;
+			right: 29vw;
+			margin-top: 0px;
+			height: 40px;
+			width: 40px;
+			padding-top: 3px;
+			border-radius: 40px;
+		}
+		.ssbar{
+			margin-left: 20%;
+			width: 60%;
+			padding: 10px 10px;
+			margin-top: 30px;
+			outline: 0;
+		}
+		.addm{
+			margin-left: 30%;
+			margin-top: 70px;
+		}
+		.righ{
+			margin-left: 45%;
+			margin-top: 50px;
+			padding: 10px 15px;
+		}
+		#repbut{
+			background-color: black;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100vw;
+			height: 100vh;
+			opacity: 0.5;
+		}
+		.addreport{
+			position: absolute;
+			top: 10vw;
+			left: 25vw;
+			width: 50vw;
+			height: 70vh;
+			background-color: white;
+			border: 1px solid black;
+			padding: 10px 30px;
+		}
+		.addreport p{
+			float: left;
+			margin-left: 45%;
+			margin-bottom: 0px;
+			font-size: 1.2vw;
+		}
+		.repin{
+			outline: 0;
+			padding: 10px 15px;
+			float: left;
+			resize: none;
+			margin-top: 10px;
+		}
+		.rebut{
+			/*margin-left: 45%;*/
+			float: right;
+			margin-top: 10px;
+			padding: 7px 10px;
+			outline: 0;
+			border: none;
+			border-radius: 4px;
+			background-color: black;
+			color: white;
+			box-sizing: border-box;
+		}
+		.rebut:hover{
+			background-color: white;
+			color: black;
+			border: 0.5px solid black;
+		}
+		.rebutc{
+			top: 10vw;
+			right: 21.5vw;
+			width: 30px;
+			height: 30px;
+			position: absolute;
+			margin-top: 0px;
+			border-radius: 10px;
+			padding: 7px 7px;
+			outline: 0;
+			border: none;
+			border-radius: 4px;
+			background-color: black;
+			color: white;
+			box-sizing: border-box;
+		}
+		.rebutc:hover{
+			background-color: white;
+			color: black;
+			border: none;
+		}
+		.butp a:hover{
+			text-decoration: none;
+			color: black;
+		}
+		button[title]:hover {
+			content: attr(title);
+			background-color: black;
+			color: white;
+		}
+		.butsud{
+			background-color: transparent;
+			padding-top: 5px;
+			outline: 0;
+			border: none;
+			color: black;
+		}
+		.butsud:hover{
+			color: darkgrey;
+		}
+		.butsud2{
+			background-color: transparent;
+			outline: 0;
+			border: none;
+			color: black;
+			margin-bottom: 0;
+			font-size: 1.5vw;
+		}
+		.butsud2:hover{
+			color: darkgrey;
+		}
+		.fullwidth h4{
+			margin-left: 0px;
+		}
+		.onediv h3{
+			margin-top: 0px;
+		}
+		a:hover, button:hover {
+    	cursor: pointer;
+	}
+	</style>
+</head>
+<body style="overflow-y: scroll;" id="bod" onload="startTime()">
+	<!-- ---------------------------------------------------------------------------------------------MAIN-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------MAIN-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------MAIN-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------MAIN-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------MAIN-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------MAIN-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------MAIN-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------MAIN-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------MAIN-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------MAIN-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------MAIN-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------MAIN-------------------------------------------------------------------------- -->
+	<main id="basicmain">
+		<form id="forad" style="display: none;" action="toadmin" method="POST" class="onese">
+			{% csrf_token %}
+			<h2 class="addm">Enter Admin Code</h2>
+			<input placeholder="Admin" type="Password" name="dell2" class="ssbar">
+			<button name="dell" class="but buts righ" id="buttonn3{{ user.id }}" value="{{ user.username }}">Submit</button>
+		</form>
+		<button style="display: none;" class="but buts foradb rightelements" id="forbut" onclick="forback()"><i class="glyphicon glyphicon-remove"></i></button>
+	{% if user.is_authenticated %}
+		<div class="mainheadelements2">
+			<button onclick="display(2,3,1)" id="butevent2" class="leftelements fullheight buts topbut" >Upcoming</button>
+			<button onclick="display(1,2,3)" id="butevent1" class="leftelements fullheight buts topbut" >All</button>
+			<button onclick="display(3,1,2)" id="butevent3" class="leftelements fullheight buts topbut" >Finished</button>
+		</div>
+		<div class="mainheadelements nomargin">
+			{% if messages %}
+		    	{% for message in messages %}
+		        	<div class="almsg alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">{{ message }}</div>
+		    	{% endfor %}
+		    {% else %}
+		    	<div style="height: 0; width: 0;"> </div>
+			{% endif %}
+		</div>
+		<div id="event1">
+			<div class="searchbarall mainheadelements inputbarall">
+				<a href="toxl" class="but leftelements" >Data <i class="glyphicon glyphicon-print"></i></a>
+				<div class="leftelements inputbarall2">
+					<input autocomplete="off" placeholder="Search Events" type="text" id="searchbarall" name="search" class="leftelements">	
+	    			<button id="down" class="but leftelements" onclick="filter()"><i class="glyphicon glyphicon-chevron-down"></i></button>	
+	    			<button style="display: none;" id="up" class="but leftelements" onclick="filterclose()"><i class="glyphicon glyphicon-chevron-up"></i></button>
+				</div>
+	    		<button id="sbutnall" class="but leftelements" onclick="search_event()"><i class="glyphicon glyphicon-search"></i></button>	
+			</div>
+			<div style="display: none;" id="teachersfilter" class="searchbarall2 mainheadelements inputbarall3">
+				<div class="leftelements inputbarall4">
+	    			<p class="leftelements">Filter By Teacher</p>	
+					<input autocomplete="off" id="teachersin" placeholder="Search Teachers involved in Events" type="text" name="search" class="searchin leftelements">	
+				</div>
+	    		<button id="sbutnall2" class="but leftelements" onclick="filterevent_teachers()"><i class="glyphicon glyphicon-chevron-right"></i></button>	
+			</div>
+			<div style="display: none;" id="monthsfilter" class="searchbarall2 mainheadelements inputbarall3">
+				<div class="leftelements inputbarall4">
+	    			<p class="leftelements">Filter By Date</p>
+					<select id="monthin2" type="month" name="search" class="datein searchin2 leftelements">
+						<option value="Jan" selected>January</option>
+						<option value="Feb">February</option>
+						<option value="Mar">March</option>
+						<option value="Apr">April</option>
+						<option value="May">May</option>
+						<option value="June">June</option>
+						<option value="July">July</option>
+						<option value="Aug">August</option>
+						<option value="Sep">September</option>
+						<option value="Oct">October</option>
+						<option value="Nov">November</option>
+						<option value="Dec">December</option>
+					</select>
+					<select autocomplete="off" id="monthin1" type="month" name="search" class="datein searchin2 leftelements">
+						<option value="2019">2019</option>
+						<option value="2020" selected>2020</option>
+						<option value="2021">2021</option>
+						<option value="2022">2022</option>
+						<option value="2023">2023</option>
+						<option value="2024">2024</option>
+						<option value="2025">2025</option>
+						<option value="2026">2026</option>
+						<option value="2027">2027</option>
+						<option value="2028">2028</option>
+						<option value="2029">2029</option>
+						<option value="2030">2030</option>
+					</select>
+				</div>
+	    		<button id="sbutnall3" class="but leftelements" onclick="filterevent_month()"><i class="glyphicon glyphicon-chevron-right"></i></button>	
+			</div>
+			{% for event in event_number %}
+			<div class="{{ event.date }} {{ event.organizer }} {{ event.department }} {{ event.convener1 }} {{ event.convener2 }} {{ event.teacher1 }} {{ event.teacher2 }} {{ event.teacher3 }} searchelementall">
+				<div id="allevents" class="mainelements">
+					<div class="underelements">
+					<div class="pdiv">
+						{% ifequal event.status 'Pending' %}
+						<div class="butspending">Pending</div>
+						{% endifequal %}
+						{% ifequal event.status 'Ongoing' %}
+						<div class="butsongoing">Ongoing</div>
+						{% endifequal %}
+						{% ifequal event.status 'Confirmed' %}
+						<div class="butsconfirmed">Confirmed</div>
+						{% endifequal %}
+						<button id="del{{ event.id }}" class="buts del rightelements" onclick="del('butter','{{ event.id }}')" ><i class="glyphicon glyphicon-trash"></i></button>
+						<div>
+							<button id="button{{ event.id }}" class="buts rightelements" onclick="abrt('{{ event.id }}')" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-remove"></i></button>
+						</div>
+						<form action="alldel" method="POST" class="onese rightelements">
+							{% csrf_token %}
+							<button name="dell" class="buts rightelements" id="buttonn{{ event.id }}" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-ok"></i></button>
+							<span class="ars" id="ars{{ event.id }}"></span>
+						</form>
+						<button id="ex{{ event.id }}" class="buts del rightelements" onclick="expor('butter','{{ event.id }}')" >Get Data</button>
+						<div>
+							<button id="button2{{ event.id }}" class="buts rightelements" onclick="noexpor('{{ event.id }}')" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-remove"></i></button>
+						</div>
+						<form action="totxtall" method="POST" class="onese rightelements">
+							{% csrf_token %}
+							<input style="display: none;" type="text" name="delltitle" value="{{ event.title }}">
+							<input style="display: none;" type="text" name="delldate" value="{{ event.date }}">
+							<input style="display: none;" type="text" name="delldesc" value="{{ event.description }}">
+							<input style="display: none;" type="text" name="delltype" value="{{ event.etype }}">
+							<input style="display: none;" type="text" name="dellfrom" value="{{ event.tfrom }}">
+							<input style="display: none;" type="text" name="dellto" value="{{ event.tto }}">
+							<input style="display: none;" type="text" name="dellregf" value="{{ event.regfrom }}">
+							<input style="display: none;" type="text" name="dellregt" value="{{ event.regto }}">
+							<input style="display: none;" type="text" name="dellorg" value="{{ event.organizer }}">
+							<input style="display: none;" type="text" name="dellpresenter" value="{{ event.presenter }}">
+							<input style="display: none;" type="text" name="dellpresenterd" value="{{ event.presenterd }}">
+							<input style="display: none;" type="text" name="delldep" value="{{ event.department }}">
+							<input style="display: none;" type="text" name="dellperks" value="{{ event.perks }}">
+							<input style="display: none;" type="text" name="dellcerti" value="{{ event.certi }}">
+							<input style="display: none;" type="text" name="dellfaccod1" value="{{ event.teacher1 }}">
+							<input style="display: none;" type="text" name="dellfaccod2" value="{{ event.teacher2 }}">
+							<input style="display: none;" type="text" name="dellfaccod3" value="{{ event.teacher3 }}">
+							<input style="display: none;" type="text" name="dellconv1" value="{{ event.convener1 }}">
+							<input style="display: none;" type="text" name="dellconv2" value="{{ event.convener2 }}">
+							<input style="display: none;" type="text" name="dellcont1" value="{{ event.contact1 }}">
+							<input style="display: none;" type="text" name="dellcont2" value="{{ event.contact2 }}">
+							<button name="dell" class="buts rightelements" id="txt{{ event.id }}" style="display: none;" value="{{ event.id }}">TXT</button>
+						</form>
+						<form action="topdfall" method="POST" class="onese rightelements">
+							{% csrf_token %}
+							<input style="display: none;" type="text" name="delltitle" value="{{ event.title }}">
+							<input style="display: none;" type="text" name="delldate" value="{{ event.date }}">
+							<input style="display: none;" type="text" name="delldesc" value="{{ event.description }}">
+							<input style="display: none;" type="text" name="delltype" value="{{ event.etype }}">
+							<input style="display: none;" type="text" name="dellfrom" value="{{ event.tfrom }}">
+							<input style="display: none;" type="text" name="dellto" value="{{ event.tto }}">
+							<input style="display: none;" type="text" name="dellregf" value="{{ event.regfrom }}">
+							<input style="display: none;" type="text" name="dellregt" value="{{ event.regto }}">
+							<input style="display: none;" type="text" name="dellorg" value="{{ event.organizer }}">
+							<input style="display: none;" type="text" name="dellpresenter" value="{{ event.presenter }}">
+							<input style="display: none;" type="text" name="dellpresenterd" value="{{ event.presenterd }}">
+							<input style="display: none;" type="text" name="delldep" value="{{ event.department }}">
+							<input style="display: none;" type="text" name="dellperks" value="{{ event.perks }}">
+							<input style="display: none;" type="text" name="dellcerti" value="{{ event.certi }}">
+							<input style="display: none;" type="text" name="dellfaccod1" value="{{ event.teacher1 }}">
+							<input style="display: none;" type="text" name="dellfaccod2" value="{{ event.teacher2 }}">
+							<input style="display: none;" type="text" name="dellfaccod3" value="{{ event.teacher3 }}">
+							<input style="display: none;" type="text" name="dellconv1" value="{{ event.convener1 }}">
+							<input style="display: none;" type="text" name="dellconv2" value="{{ event.convener2 }}">
+							<input style="display: none;" type="text" name="dellcont1" value="{{ event.contact1 }}">
+							<input style="display: none;" type="text" name="dellcont2" value="{{ event.contact2 }}">
+							<button name="dell" class="buts rightelements" id="pdf{{ event.id }}" style="display: none;" value="{{ event.id }}">PDF</button>
+						</form>
+						<form action="todocall" method="POST" class="rightelements">
+							{% csrf_token %}
+							<input style="display: none;" type="text" name="delltitle" value="{{ event.title }}">
+							<input style="display: none;" type="text" name="delldate" value="{{ event.date }}">
+							<input style="display: none;" type="text" name="delldesc" value="{{ event.description }}">
+							<input style="display: none;" type="text" name="delltype" value="{{ event.etype }}">
+							<input style="display: none;" type="text" name="dellfrom" value="{{ event.tfrom }}">
+							<input style="display: none;" type="text" name="dellto" value="{{ event.tto }}">
+							<input style="display: none;" type="text" name="dellregf" value="{{ event.regfrom }}">
+							<input style="display: none;" type="text" name="dellregt" value="{{ event.regto }}">
+							<input style="display: none;" type="text" name="dellorg" value="{{ event.organizer }}">
+							<input style="display: none;" type="text" name="dellpresenter" value="{{ event.presenter }}">
+							<input style="display: none;" type="text" name="dellpresenterd" value="{{ event.presenterd }}">
+							<input style="display: none;" type="text" name="delldep" value="{{ event.department }}">
+							<input style="display: none;" type="text" name="dellperks" value="{{ event.perks }}">
+							<input style="display: none;" type="text" name="dellcerti" value="{{ event.certi }}">
+							<input style="display: none;" type="text" name="dellfaccod1" value="{{ event.teacher1 }}">
+							<input style="display: none;" type="text" name="dellfaccod2" value="{{ event.teacher2 }}">
+							<input style="display: none;" type="text" name="dellfaccod3" value="{{ event.teacher3 }}">
+							<input style="display: none;" type="text" name="dellconv1" value="{{ event.convener1 }}">
+							<input style="display: none;" type="text" name="dellconv2" value="{{ event.convener2 }}">
+							<input style="display: none;" type="text" name="dellcont1" value="{{ event.contact1 }}">
+							<input style="display: none;" type="text" name="dellcont2" value="{{ event.contact2 }}">
+							<button name="dell" class="buts rightelements" id="xls{{ event.id }}" style="display: none;" value="{{ event.id }}">DOC</button>
+						</form>
+						<button id="shareo{{ event.id }}" class="buts del rightelements" onclick="shareo('butter','{{ event.id }}')" >Share</button>
+						<div>
+							<button id="sharec{{ event.id }}" class="buts rightelements" onclick="sharec('{{ event.id }}')" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-remove"></i></button>
+						</div>
+						<button class="buts rightelements" id="shareg{{ event.id }}" style="display: none;" value="{{ event.id }}" onclick="sendmail('{{ event.title }}','{{ event.date |date }}','{{ event.description }}','{{ event.organizer }}','{{ event.perks }}','{{ event.link }}','{{ event.type }}','{{ event.tfrom }}','{{ event.tto }}','{{ event.regfrom }}','{{ event.regto }}','{{ event.presenter }}','{{ event.presenterd }}','{{ event.target }}','{{ event.department }}','{{ event.teacher1 }}','{{ event.teacher2 }}','{{ event.convener1 }}','{{ event.contact1 }}','{{ event.teacher3 }}','{{ event.convener2 }}','{{ event.contact2 }}')" title="Share to Gmail" class="rightelements buts"><i class="fa fa-envelope"></i></button>
+						<button class="buts rightelements" id="sharew{{ event.id }}" style="display: none;" value="{{ event.id }}" onclick="sendmsg('{{ event.title }}','{{ event.date |date }}','{{ event.description }}','{{ event.organizer }}','{{ event.perks }}','{{ event.link }}','{{ event.type }}','{{ event.tfrom }}','{{ event.tto }}','{{ event.regfrom }}','{{ event.regto }}','{{ event.presenter }}','{{ event.presenterd }}','{{ event.target }}','{{ event.department }}','{{ event.teacher1 }}','{{ event.teacher2 }}','{{ event.convener1 }}','{{ event.contact1 }}','{{ event.teacher3 }}','{{ event.convener2 }}','{{ event.contact2 }}')" title="Share to Gmail" class="rightelements buts"><i class="fa fa-whatsapp"></i></button>
+						{% for rep in report_num %}
+						{% ifequal rep.erref.title event.title %}
+						{% if user.is_staff == True %}
+						<form action="torep" method="POST" class="rightelements">
+							{% csrf_token %}
+							<button name="dell" class="buts rightelements" id="rep{{ event.id }}" value="{{ rep.id }}">Get Report</button>
+						</form>
+						{% endif %}
+						{% endifequal %}
+						{% endfor %}
+						
+						{% ifequal event.status 'Pending' %}
+						{% if user.is_superuser == True %}
+						<button id="markp{{ event.id }}" class="buts del rightelements" onclick="markpo('butter','{{ event.id }}')" >Mark as</button>
+						<div>
+							<button id="penbut{{ event.id }}" class="buts rightelements" onclick="markpc('{{ event.id }}')" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-remove"></i></button>
+						</div>
+						<form action="ongoing" method="POST" class="onese rightelements">
+							{% csrf_token %}
+							<button name="dell" class="buts rightelements" id="markasongoingp{{ event.id }}" style="display: none;" value="{{ event.id }}">Ongoing</button>
+						</form>
+						<form action="confirmed" method="POST" class="onese rightelements">
+							{% csrf_token %}
+							<button name="dell" class="buts rightelements" id="markasconfirmp{{ event.id }}" style="display: none;" value="{{ event.id }}">Confirmed</button>
+						</form>
+						{% endif %}
+						{% endifequal %}
+						{% ifequal event.status 'Ongoing' %}
+						{% if user.is_superuser == True %}
+						<button id="marko{{ event.id }}" class="buts del rightelements" onclick="markoo('butter','{{ event.id }}')" >Mark as</button>
+						<div>
+							<button id="ongbut{{ event.id }}" class="buts rightelements" onclick="markoc('{{ event.id }}')" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-remove"></i></button>
+						</div>
+						<form action="pending" method="POST" class="onese rightelements">
+							{% csrf_token %}
+							<button name="dell" class="buts rightelements" id="markaspendingo{{ event.id }}" style="display: none;" value="{{ event.id }}">Pending</button>
+						</form>
+						<form action="confirmed" method="POST" class="onese rightelements">
+							{% csrf_token %}
+							<button name="dell" class="buts rightelements" id="markasconfirmo{{ event.id }}" style="display: none;" value="{{ event.id }}">Confirmed</button>
+						</form>
+						{% endif %}
+						{% endifequal %}
+						{% ifequal event.status 'Confirmed' %}
+						{% if user.is_superuser == True %}
+						<button id="markc{{ event.id }}" class="buts del rightelements" onclick="markco('butter','{{ event.id }}')" >Mark as</button>
+						<div>
+							<button id="conbut{{ event.id }}" class="buts rightelements" onclick="markcc('{{ event.id }}')" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-remove"></i></button>
+						</div>
+						<form action="ongoing" method="POST" class="onese rightelements">
+							{% csrf_token %}
+							<button name="dell" class="buts rightelements" id="markasongoingc{{ event.id }}" style="display: none;" value="{{ event.id }}">Ongoing</button>
+						</form>
+						<form action="pending" method="POST" class="onese rightelements">
+							{% csrf_token %}
+							<button name="dell" class="buts rightelements" id="markaspendingc{{ event.id }}" style="display: none;" value="{{ event.id }}">Pending</button>
+						</form>
+						{% endif %}
+						{% endifequal %}
+						<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-eventdetails2" method="POST" class="onese rightelements">
+							{% csrf_token %}
+							<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
+							<button name="dell" class="buts rightelements" id="editevent{{ event.id }}" value="{{ event.id }}">Edit Event</button>
+						</form>
+					</div>
+					<div class="mdiv">
+						<div class="onesecond2">
+							{% if event.poster %}
+							<div class="leftelements eimage">
+								<button class="leftelements vbuts buts" id="view{{ event.id }}" onclick="pressed('{{ event.id }}')"><i class="glyphicon glyphicon-eye-open"></i></button>
+								<span style="position: absolute;background-color: lightgrey" class="leftelements spaimage" id="spa{{ event.id }}"></span>
+								<img class="leftelements emage" id="{{event.id}}" style="margin-right: 0px;" width="183px" src="{{ event.poster.url }}">
+							</div>
+							{% else %}
+							<div class="leftelements ei"><p> No Image </p></div>
+							{% endif %}
+							<div id="myModal" class="modal">
+						  		<span class="close">&times;</span>
+						 		<img class="modal-content" id="img01">
+						  		<div id="caption"></div>
+							</div>
+						</div>
+						<div class="onesecond">
+							<div class="onediv">
+								<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-eventdetails" method="POST">
+									{% csrf_token %}
+									<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
+									<button name="send" value="{{ event.id }}" class="butsud2 leftelements fullheight">{{ event.title }}</button>
+								</form>
+								<h4 class="leftelements divelements slmargin fullwidth">
+								     ({{ event.etype }})
+				    			</h4>
+				    			<p class="slmargin"></p>
+			    				<div class="onedivunder">
+			    					<div class="leftelements fullwidth">
+				    					<h4 class="leftelements divelements"> {{ event.presenter }} ,</h4>
+					    				<h4 class="leftelements divelements"> {{ event.presenterd }} </h4>
+					    				<h4 class="rightelements divelements"> {{ event.tfrom }} - {{ event.tto }} </h4>
+				    					<h4 class="rightelements divelements"> {{ event.date }} ,</h4>
+			    					</div>
+			    					<div class="fullwidth leftelements">
+				    					{% if event.description %}
+						    			<p class="leftelements  divelements">{{ event.description }}</p>
+										{% else %}
+										<p class="leftelements  divelements">No Description</p>
+										{% endif %}
+										{% if event.perks %}
+						    			<p class="leftelements slmargin divelements">{{ event.perks }}</p>
+										{% else %}
+										<p class="leftelements slmargin divelements">, No Perks Specified</p>
+										{% endif %}
+			    					</div>
+			    				</div>
+			    			</div>
+						</div>
+						<div class="onesecond3">
+							<div class="twodiv">
+								<div class="twodivunder fullwidth">
+									<h5 class="leftelements slmargin">Organizer :</h5>
+									<h5 class="leftelements slmargin oned">
+										{{ event.organizer }}
+									</h5>
+									<h5 class="leftelements slmargin oned">Department :</h5>
+									<h5 class="leftelements slmargin oned">
+										{{ event.department }}
+									</h5>
+								</div>
+								<div class="twodivunder">
+									<h5 class="leftelements slmargin twod">Conveners :</h5>
+									<h5 class="leftelements slmargin oned oned">
+										{{ event.convener1 }}
+									</h5>
+									<h5 class="leftelements slmargin oned">
+										{{ event.convener2 }}
+									</h5>
+									<h5 class="leftelements slmargin">Faculty Co-ordinators :</h5>
+									<h5 class="leftelements slmargin oned">
+										{{ event.teacher1 }}
+									</h5>
+									<h5 class="leftelements slmargin oned">
+										{{ event.teacher2 }}
+									</h5>
+
+									<h5 class="leftelements slmargin oned">
+										{{ event.teacher3 }}
+									</h5>	
+								</div>
+								<div class="twodivunder" >
+									{% if event.certi is True %}
+					    			<div class="desc">
+					    				<p class="leftelements slmargin divelements">Certificates will be given</p>
+					    			</div>
+									{% else %}
+									<div class="desc">
+										<p class="leftelements slmargin divelements">Certificates will not be given</p>
+									</div>
+									{% endif %}
+									{% if event.reminders %}
+					    			<div class="desc">
+					    				<p class="leftelements slmargin divelements">{{ event.reminders }}</p>
+					    			</div>
+									{% else %}
+									<div class="desc">
+										<p class="leftelements slmargin divelements">No Reminders</p>
+									</div>
+									{% endif %}
+								</div>
+								<div class="twodivunder">
+									{% if event.tags %}
+										<p style="margin-top: 5px;" class="leftelements slmargin oned">
+											Tags : 
+										</p>
+										{% for mem in event.tags.all %}
+										<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-userdetails" method="POST">
+											{% csrf_token %}
+											<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
+											<button name="send" value="{{ mem }}" class="butsud bbs leftelements">{{ mem }}</button>
+										</form>
+										{% endfor %}
+									{% endif %}
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="leftelements pdiv" id="pubda">
+						<p class="butp leftelements">Published on : {{ event.pubdate }}</p>
+						<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-userdetails" method="POST">
+							{% csrf_token %}
+							<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
+							<p class="butp leftelements again oned">Published by : </p>
+							<button name="send" value="{{ event.by.username }}" class="butsud butp again oned leftelements">{{ event.by.username }}</button>
+						</form>
+						{% if event.link %}
+						<p class="butp leftelements"><a class="leftelements" target="_blank" href="{{ event.link }}">Registration Link</a></p>
+						{% endif %}
+						{% if event.whatsapp %}
+						<p class="butp leftelements"><a class="leftelements" target="_blank" href="{{ event.whatsapp }}">Whatsapp Group Link</a></p>
+						{% endif %}
+						<p class="butp leftelements">Contact : {{ event.contact1 }} {{ event.contact2 }}</p>
+						<p class="butp rightelements ids">{{ event.id }}</p>
+					</div>
+					</div>
+				</div>
+				<div class="main2" >
+				<div  style="display: none" id="commentsec{{ event.id }}" class="underelements2">
+					<div class="twodiv2">
+						<div class="twodivmain">
+							<div class="twodivform2">
+								Comments
+							</div>
+							<div class="twodivform3">
+								{% for com in comment_num %}
+								{% ifequal com.ecref.title event.title %}
+								{% ifequal com.cby.username user.username %}
+								<div class="actualcom2 rightelements">
+									<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-userdetails" method="POST" class="comt leftelements">
+										{% csrf_token %}
+										<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
+										<button name="send" value="{{com.cby.username}}" class="butsud comt leftelements fullheight">You</button>
+									</form>
+									<p class="combody">{{ com.body }}</p>
+								</div>
+								{% else %}
+								<div class="actualcom leftelements">
+									<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-userdetails" method="POST" class="comt leftelements">
+										{% csrf_token %}
+										<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
+										<button name="send" value="{{ com.cby.username }}" class="butsud comt leftelements fullheight">{{ com.cby.username }}</button>
+									</form>
+									<p class="combody">{{ com.body }}</p>
+								</div>
+								{% endifequal %}
+								{% endifequal %}
+								{% endfor %}	
+							</div>
+						</div>
+						<form class="twodivform" method="POST" action="comment">
+						{% csrf_token %}
+							<input style="display: none;" class="comm" type="text" name="eventname" value="{{ event.title }}">
+							<input autocomplete="off" class="comm" type="text" name="comment">
+							<button class="commbut"><i class="glyphicon glyphicon-send"></i></button>
+						</form>
+					</div>
+				</div>
+				<button class="comsecbut" id="but1{{ event.id }}" onclick="comopen('{{ event.id }}')"><i class="glyphicon glyphicon-menu-right"></i></button>
+				<button class="comsecbut2" id="but2{{ event.id }}" onclick="comclose('{{ event.id }}')" style="display: none"><i class="glyphicon glyphicon-menu-left"></i><i class="glyphicon glyphicon-menu-left"></i></button>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	<!-- ---------------------------------------------------------------------------------------------UPCOMIN-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------UPCOMIN-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------UPCOMIN-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------UPCOMIN-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------UPCOMIN-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------UPCOMIN-------------------------------------------------------------------------- -->
+		<div style="display: none;" id="event2">
+			<div class="searchbarall mainheadelements inputbarall">
+				<a href="toxl" class="but leftelements" >Data <i class="glyphicon glyphicon-print"></i></a>
+				<div class="leftelements inputbarall2">
+					<input autocomplete="off" placeholder="Search Events" type="text" id="searchbarup" name="search" class="leftelements">
+				</div>
+	    		<button id="sbutnup" class="but leftelements" onclick="search_event()"><i class="glyphicon glyphicon-search"></i></button>	
+			</div>
+			{% for event in event_number2 %}
+			<div id="upevents" class="mainelements searchelementup">
+				<div class="underelements">
+				<div class="pdiv">
+					{% ifequal event.status 'Pending' %}
+					<div class="butspending">Pending</div>
+					{% endifequal %}
+					{% ifequal event.status 'Ongoing' %}
+					<div class="butsongoing">Ongoing</div>
+					{% endifequal %}
+					{% ifequal event.status 'Confirmed' %}
+					<div class="butsconfirmed">Confirmed</div>
+					{% endifequal %}
+					<button id="updel{{ event.id }}" class="buts del rightelements" onclick="updel('butter','{{ event.id }}')" ><i class="glyphicon glyphicon-trash"></i></button>
+					<div>
+						<button id="upbutton{{ event.id }}" class="buts rightelements" onclick="upabrt('{{ event.id }}')" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-remove"></i></button>
+					</div>
+					<form action="alldel" method="POST" class="onese rightelements">
+						{% csrf_token %}
+						<button name="dell" class="buts rightelements" id="upbuttonn{{ event.id }}" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-ok"></i></button>
+						<span class="ars" id="upars{{ event.id }}"></span>
+					</form>
+					<button id="upex{{ event.id }}" class="buts del rightelements" onclick="upexpor('butter','{{ event.id }}')" >Get Data</button>
+					<div>
+						<button id="upbutton2{{ event.id }}" class="buts rightelements" onclick="upnoexpor('{{ event.id }}')" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-remove"></i></button>
+					</div>
+					<form action="totxtall" method="POST" class="onese rightelements">
+						{% csrf_token %}
+						<input style="display: none;" type="text" name="delltitle" value="{{ event.title }}">
+						<input style="display: none;" type="text" name="delldate" value="{{ event.date }}">
+						<input style="display: none;" type="text" name="delldesc" value="{{ event.description }}">
+						<input style="display: none;" type="text" name="dellorg" value="{{ event.organizer }}">
+						<input style="display: none;" type="text" name="delldep" value="{{ event.department }}">
+						<input style="display: none;" type="text" name="dellfaccod1" value="{{ event.teacher1 }}">
+						<input style="display: none;" type="text" name="dellfaccod2" value="{{ event.teacher2 }}">
+						<input style="display: none;" type="text" name="dellfaccod3" value="{{ event.teacher3 }}">
+						<input style="display: none;" type="text" name="dellconv1" value="{{ event.convener1 }}">
+						<input style="display: none;" type="text" name="dellconv2" value="{{ event.convener2 }}">
+						<button name="dell" class="buts rightelements" id="uptxt{{ event.id }}" style="display: none;" value="{{ event.id }}">TXT</button>
+					</form>
+					<form action="topdfall" method="POST" class="onese rightelements">
+						{% csrf_token %}
+						<input style="display: none;" type="text" name="delltitle" value="{{ event.title }}">
+						<input style="display: none;" type="text" name="delldate" value="{{ event.date }}">
+						<input style="display: none;" type="text" name="delldesc" value="{{ event.description }}">
+						<input style="display: none;" type="text" name="delltype" value="{{ event.etype }}">
+						<input style="display: none;" type="text" name="dellfrom" value="{{ event.tfrom }}">
+						<input style="display: none;" type="text" name="dellto" value="{{ event.tto }}">
+						<input style="display: none;" type="text" name="dellregf" value="{{ event.regfrom }}">
+						<input style="display: none;" type="text" name="dellregt" value="{{ event.regto }}">
+						<input style="display: none;" type="text" name="dellorg" value="{{ event.organizer }}">
+						<input style="display: none;" type="text" name="dellpresenter" value="{{ event.presenter }}">
+						<input style="display: none;" type="text" name="dellpresenterd" value="{{ event.presenterd }}">
+						<input style="display: none;" type="text" name="delldep" value="{{ event.department }}">
+						<input style="display: none;" type="text" name="dellperks" value="{{ event.perks }}">
+						<input style="display: none;" type="text" name="dellcerti" value="{{ event.certi }}">
+						<input style="display: none;" type="text" name="dellfaccod1" value="{{ event.teacher1 }}">
+						<input style="display: none;" type="text" name="dellfaccod2" value="{{ event.teacher2 }}">
+						<input style="display: none;" type="text" name="dellfaccod3" value="{{ event.teacher3 }}">
+						<input style="display: none;" type="text" name="dellconv1" value="{{ event.convener1 }}">
+						<input style="display: none;" type="text" name="dellconv2" value="{{ event.convener2 }}">
+						<input style="display: none;" type="text" name="dellcont1" value="{{ event.contact1 }}">
+						<input style="display: none;" type="text" name="dellcont2" value="{{ event.contact2 }}">
+						<button name="dell" class="buts rightelements" id="uppdf{{ event.id }}" style="display: none;" value="{{ event.id }}">PDF</button>
+					</form>
+					<form action="todocall" method="POST" class="rightelements">
+						{% csrf_token %}
+						<input style="display: none;" type="text" name="delltitle" value="{{ event.title }}">
+						<input style="display: none;" type="text" name="delldate" value="{{ event.date }}">
+						<input style="display: none;" type="text" name="delldesc" value="{{ event.description }}">
+						<input style="display: none;" type="text" name="dellorg" value="{{ event.organizer }}">
+						<input style="display: none;" type="text" name="delldep" value="{{ event.department }}">
+						<input style="display: none;" type="text" name="dellfaccod1" value="{{ event.teacher1 }}">
+						<input style="display: none;" type="text" name="dellfaccod2" value="{{ event.teacher2 }}">
+						<input style="display: none;" type="text" name="dellfaccod3" value="{{ event.teacher3 }}">
+						<input style="display: none;" type="text" name="dellconv1" value="{{ event.convener1 }}">
+						<input style="display: none;" type="text" name="dellconv2" value="{{ event.convener2 }}">
+						<button name="dell" class="buts rightelements" id="upxls{{ event.id }}" style="display: none;" value="{{ event.id }}">DOC</button>
+					</form>
+					<button onclick="sendmail('{{ event.title }}','{{ event.date |date }}','{{ event.organizer }}','{{ event.department }}','{{ event.teacher1 }}','{{ event.teacher2 }}','{{ event.teacher3 }}','{{ event.convener1 }}','{{ event.convener2 }}')" class="rightelements buts">Share to gmail</button>
+				</div>
+				<div class="mdiv">
+					<div class="onesecond2">
+						{% if event.poster %}
+						<div class="leftelements eimage">
+							<button class="leftelements vbuts buts" id="upview{{ event.id }}" onclick="pressed2('{{ event.id }}')"><i class="glyphicon glyphicon-eye-open"></i></button>
+							<span style="position: absolute;background-color: lightgrey" class="leftelements spaimage" id="upspa{{ event.id }}"></span>
+							<img class="leftelements emage" id="up{{event.id}}" style="margin-right: 0px;" width="183px" src="{{ event.poster.url }}">
+						</div>
+						{% else %}
+						<div class="leftelements ei"><p> No Image </p></div>
+						{% endif %}
+						<div id="myModal2" class="modal">
+					  		<span id="close2{{ event.id }}" class="close">&times;</span>
+					 		<img class="modal-content" id="img012">
+					  		<div id="caption2"></div>
+						</div>
+					</div>
+					<div class="onesecond">
+						<div class="onediv">
+							<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-eventdetails" method="POST">
+								{% csrf_token %}
+								<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
+								<button name="send" value="{{ event.id }}" class="butsud2 leftelements fullheight">{{ event.title }}</button>
+							</form>
+							<h3 class="leftelements divelements slmargin fullwidth">
+							     ({{ event.etype }})
+			    			</h3>
+			    			<p class="slmargin"></p>
+		    				<div class="onedivunder">
+		    					<div class="leftelements fullwidth">
+			    					<h4 class="leftelements divelements nomargin"> {{ event.presenter }} ,</h4>
+				    				<h4 class="leftelements divelements nomargin"> {{ event.presenterd }} </h4>
+				    				<h4 class="rightelements divelements nomargin"> {{ event.tfrom }} - {{ event.tto }} </h4>
+			    					<h4 class="rightelements divelements nomargin"> {{ event.date }} ,</h4>
+		    					</div>
+		    					<div class="fullwidth leftelements">
+			    					{% if event.description %}
+					    			<p class="leftelements  divelements nomargin">{{ event.description }}</p>
+									{% else %}
+									<p class="leftelements  divelements nomargin">No Description</p>
+									{% endif %}
+									{% if event.perks %}
+					    			<p class="leftelements slmargin divelements nomargin">{{ event.perks }}</p>
+									{% else %}
+									<p class="leftelements slmargin divelements nomargin">No Perks Specified</p>
+									{% endif %}
+		    					</div>
+		    				</div>
+		    			</div>
+					</div>
+					<div class="onesecond3">
+						<div class="twodiv">
+							<div class="twodivunder">
+								<h5 class="leftelements slmargin nomargin">Organizer :</h5>
+								<h5 class="leftelements slmargin oned nomargin">
+									{{ event.organizer }}
+								</h5>
+								<h5 class="leftelements slmargin oned nomargin">Department :</h5>
+								<h5 class="leftelements slmargin oned nomargin">
+									{{ event.department }}
+								</h5>
+							</div>
+							<div class="twodivunder">
+								<h5 class="leftelements slmargin twod nomargin">Conveners :</h5>
+								<h5 class="leftelements slmargin oned oned nomargin">
+									{{ event.convener1 }}
+								</h5>
+								<h5 class="leftelements slmargin oned nomargin">
+									{{ event.convener2 }}
+								</h5>
+							</div>
+							<div class="twodivunder">
+								<h5 class="leftelements slmargin nomargin">Faculty Co-ordinators :</h5>
+								<h5 class="leftelements slmargin oned nomargin">
+									{{ event.teacher1 }}
+								</h5>
+								<h5 class="leftelements slmargin oned nomargin">
+									{{ event.teacher2 }}
+								</h5>
+
+								<h5 class="leftelements slmargin oned nomargin">
+									{{ event.teacher3 }}
+								</h5>	
+							</div>
+							<div>
+								{% if event.certi is True %}
+				    			<div class="desc">
+				    				<p class="leftelements slmargin divelements">Certificates will be given</p>
+				    			</div>
+								{% else %}
+								<div class="desc">
+									<p class="leftelements slmargin divelements">Certificates will not be given</p>
+								</div>
+								{% endif %}
+								{% if event.reminders %}
+				    			<div class="desc">
+				    				<p class="leftelements slmargin divelements">{{ event.reminders }}</p>
+				    			</div>
+								{% else %}
+								<div class="desc">
+									<p class="leftelements slmargin divelements">No Reminders</p>
+								</div>
+								{% endif %}
+								<div class="twodivunder">
+									{% if event.tags %}
+										<p style="margin-top: 5px;" class="leftelements slmargin oned">
+											Tags : 
+										</p>
+										{% for mem in event.tags.all %}
+										<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-userdetails" method="POST">
+											{% csrf_token %}
+											<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
+											<button name="send" value="{{ mem }}" class="butsud bbs leftelements">{{ mem }}</button>
+										</form>
+										{% endfor %}
+									{% endif %}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="leftelements pdiv" id="pubda">
+					<p class="butp leftelements">Published on : {{ event.pubdate }}</p>
+					<p class="butp leftelements again oned">Published by : {{ event.by }} </p>
+					{% if event.link %}
+					<p class="butp leftelements"><a class="leftelements" target="_blank" href="{{ event.link }}">Registration Link</a></p>
+					{% endif %}
+					{% if event.whatsapp %}
+					<p class="butp leftelements"><a class="leftelements" target="_blank" href="{{ event.whatsapp }}">Whatsapp Group Link</a></p>
+					{% endif %}
+					<p class="butp leftelements">Contact : {{ event.contact1 }} {{ event.contact2 }}</p>
+					<p class="butp rightelements ids">{{ event.id }}</p>
+				</div>
+				</div>
+			</div>
+			<div class="main2" >
+			<div  style="display: none" id="upcommentsec{{ event.id }}" class="underelements2">
+				<div class="twodiv2">
+					<div class="twodivmain">
+						<div class="twodivform2">
+							Comments
+						</div>
+						<div class="twodivform3">
+							{% for com in comment_num %}
+							{% ifequal com.ecref.title event.title %}
+							{% ifequal com.cby.username user.username %}
+							<div class="actualcom2 rightelements">
+								<p class="comt"><b>You </b></p>
+								<p class="combody">{{ com.body }}</p>
+							</div>
+							{% else %}
+							<div class="actualcom leftelements">
+								<p class="comt"><b>{{ com.cby.username }} </b></p>
+								<p class="combody">{{ com.body }}</p>
+							</div>
+							{% endifequal %}
+							{% endifequal %}
+							{% endfor %}	
+						</div>
+					</div>
+					<form class="twodivform" method="POST" action="comment">
+					{% csrf_token %}
+						<input style="display: none;" class="comm" type="text" name="eventname" value="{{ event.title }}">
+						<input autocomplete="off" class="comm" type="text" name="comment">
+						<button class="commbut"><i class="glyphicon glyphicon-send"></i></button>
+					</form>
+				</div>
+			</div>
+			<button class="comsecbut" id="upbut1{{ event.id }}" onclick="upcomopen('{{ event.id }}')"><i class="glyphicon glyphicon-menu-right"></i></button>
+			<button class="comsecbut2" id="upbut2{{ event.id }}" onclick="upcomclose('{{ event.id }}')" style="display: none"><i class="glyphicon glyphicon-menu-left"></i><i class="glyphicon glyphicon-menu-left"></i></button>
+			</div>
+			
+			{% endfor %}
+		</div>
+	<!-- ---------------------------------------------------------------------------------------------Finish-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------Finish-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------Finish-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------Finish-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------Finish-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------Finish-------------------------------------------------------------------------- -->
+		<div style="display: none;" id="event3">
+			<div class="searchbarall mainheadelements inputbarall">
+				<a href="toxl" class="but leftelements" >Data <i class="glyphicon glyphicon-print"></i></a>
+				<div class="leftelements inputbarall2">
+					<input autocomplete="off" placeholder="Search Events" type="text" id="searchbarfin" name="search" class="leftelements">	
+				</div>
+	    		<button id="sbutnfin" class="but leftelements" onclick="search_eventfin()"><i class="glyphicon glyphicon-search"></i></button>	
+			</div>
+			{% for event in event_number3 %}
+			<div id="finevents" class="mainelements searchelementfin">
+				<div class="underelements">
+				<div class="pdiv">
+					{% ifequal event.status 'Pending' %}
+					<div class="butspending">Pending</div>
+					{% endifequal %}
+					{% ifequal event.status 'Ongoing' %}
+					<div class="butsongoing">Ongoing</div>
+					{% endifequal %}
+					{% ifequal event.status 'Confirmed' %}
+					<div class="butsconfirmed">Confirmed</div>
+					{% endifequal %}
+					<button id="findel{{ event.id }}" class="buts del rightelements" onclick="findel('butter','{{ event.id }}')" ><i class="glyphicon glyphicon-trash"></i></button>
+					<div>
+						<button id="finbutton{{ event.id }}" class="buts rightelements" onclick="finabrt('{{ event.id }}')" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-remove"></i></button>
+					</div>
+					<form action="alldel" method="POST" class="onese rightelements">
+						{% csrf_token %}
+						<button name="dell" class="buts rightelements" id="finbuttonn{{ event.id }}" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-ok"></i></button>
+						<span class="ars" id="finars{{ event.id }}"></span>
+					</form>
+					<button id="finex{{ event.id }}" class="buts del rightelements" onclick="finexpor('butter','{{ event.id }}')" >Get Data</button>
+					<div>
+						<button id="finbutton2{{ event.id }}" class="buts rightelements" onclick="finnoexpor('{{ event.id }}')" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-remove"></i></button>
+					</div>
+					<form action="totxtall" method="POST" class="onese rightelements">
+						{% csrf_token %}
+						<input style="display: none;" type="text" name="delltitle" value="{{ event.title }}">
+						<input style="display: none;" type="text" name="delldate" value="{{ event.date }}">
+						<input style="display: none;" type="text" name="delldesc" value="{{ event.description }}">
+						<input style="display: none;" type="text" name="dellorg" value="{{ event.organizer }}">
+						<input style="display: none;" type="text" name="delldep" value="{{ event.department }}">
+						<input style="display: none;" type="text" name="dellfaccod1" value="{{ event.teacher1 }}">
+						<input style="display: none;" type="text" name="dellfaccod2" value="{{ event.teacher2 }}">
+						<input style="display: none;" type="text" name="dellfaccod3" value="{{ event.teacher3 }}">
+						<input style="display: none;" type="text" name="dellconv1" value="{{ event.convener1 }}">
+						<input style="display: none;" type="text" name="dellconv2" value="{{ event.convener2 }}">
+						<button name="dell" class="buts rightelements" id="fintxt{{ event.id }}" style="display: none;" value="{{ event.id }}">TXT</button>
+					</form>
+					<form action="topdfall" method="POST" class="onese rightelements">
+						{% csrf_token %}
+						<input style="display: none;" type="text" name="delltitle" value="{{ event.title }}">
+						<input style="display: none;" type="text" name="delldate" value="{{ event.date }}">
+						<input style="display: none;" type="text" name="delldesc" value="{{ event.description }}">
+						<input style="display: none;" type="text" name="delltype" value="{{ event.etype }}">
+						<input style="display: none;" type="text" name="dellfrom" value="{{ event.tfrom }}">
+						<input style="display: none;" type="text" name="dellto" value="{{ event.tto }}">
+						<input style="display: none;" type="text" name="dellregf" value="{{ event.regfrom }}">
+						<input style="display: none;" type="text" name="dellregt" value="{{ event.regto }}">
+						<input style="display: none;" type="text" name="dellorg" value="{{ event.organizer }}">
+						<input style="display: none;" type="text" name="dellpresenter" value="{{ event.presenter }}">
+						<input style="display: none;" type="text" name="dellpresenterd" value="{{ event.presenterd }}">
+						<input style="display: none;" type="text" name="delldep" value="{{ event.department }}">
+						<input style="display: none;" type="text" name="dellperks" value="{{ event.perks }}">
+						<input style="display: none;" type="text" name="dellcerti" value="{{ event.certi }}">
+						<input style="display: none;" type="text" name="dellfaccod1" value="{{ event.teacher1 }}">
+						<input style="display: none;" type="text" name="dellfaccod2" value="{{ event.teacher2 }}">
+						<input style="display: none;" type="text" name="dellfaccod3" value="{{ event.teacher3 }}">
+						<input style="display: none;" type="text" name="dellconv1" value="{{ event.convener1 }}">
+						<input style="display: none;" type="text" name="dellconv2" value="{{ event.convener2 }}">
+						<input style="display: none;" type="text" name="dellcont1" value="{{ event.contact1 }}">
+						<input style="display: none;" type="text" name="dellcont2" value="{{ event.contact2 }}">
+						<button name="dell" class="buts rightelements" id="finpdf{{ event.id }}" style="display: none;" value="{{ event.id }}">PDF</button>
+					</form>
+					<form action="todocall" method="POST" class="rightelements">
+						{% csrf_token %}
+						<input style="display: none;" type="text" name="delltitle" value="{{ event.title }}">
+						<input style="display: none;" type="text" name="delldate" value="{{ event.date }}">
+						<input style="display: none;" type="text" name="delldesc" value="{{ event.description }}">
+						<input style="display: none;" type="text" name="dellorg" value="{{ event.organizer }}">
+						<input style="display: none;" type="text" name="delldep" value="{{ event.department }}">
+						<input style="display: none;" type="text" name="dellfaccod1" value="{{ event.teacher1 }}">
+						<input style="display: none;" type="text" name="dellfaccod2" value="{{ event.teacher2 }}">
+						<input style="display: none;" type="text" name="dellfaccod3" value="{{ event.teacher3 }}">
+						<input style="display: none;" type="text" name="dellconv1" value="{{ event.convener1 }}">
+						<input style="display: none;" type="text" name="dellconv2" value="{{ event.convener2 }}">
+						<button name="dell" class="buts rightelements" id="finxls{{ event.id }}" style="display: none;" value="{{ event.id }}">DOC</button>
+					</form>
+					<button onclick="sendmail('{{ event.title }}','{{ event.date |date }}','{{ event.organizer }}','{{ event.department }}','{{ event.teacher1 }}','{{ event.teacher2 }}','{{ event.teacher3 }}','{{ event.convener1 }}','{{ event.convener2 }}')" class="rightelements buts">Share to gmail</button>
+					{% for rep in report_num %}
+					{% ifequal rep.erref.title event.title %}
+					<form action="torep" method="POST" class="rightelements">
+						{% csrf_token %}
+						<button name="dell" class="buts rightelements" id="repfin{{ event.id }}" value="{{ rep.id }}">Get Report</button>
+					</form>
+					{% else %}
+					<button class="buts rightelements" id="reop{{ event.id }}" onclick="repopen('butter','{{ event.id }}')">Add Report</button>
+					{% endifequal %}
+					{% endfor %}
+				</div>
+				<div class="mdiv">
+					<div class="onesecond2">
+						{% if event.poster %}
+						<div class="leftelements eimage">
+							<button class="leftelements vbuts buts" id="finview{{ event.id }}" onclick="pressed3('{{ event.id }}')"><i class="glyphicon glyphicon-eye-open"></i></button>
+							<span style="position: absolute;background-color: lightgrey" class="leftelements spaimage" id="finspa{{ event.id }}"></span>
+							<img class="leftelements emage" id="fin{{event.id}}" style="margin-right: 0px;" width="183px" src="{{ event.poster.url }}">
+						</div>
+						{% else %}
+						<div class="leftelements ei"><p> No Image </p></div>
+						{% endif %}
+						<div id="myModal3" class="modal">
+					  		<span id="close{{ event.id }}" class="close">&times;</span>
+					 		<img class="modal-content" id="img013">
+					  		<div id="caption3"></div>
+						</div>
+					</div>
+					<div class="onesecond">
+						<div class="onediv">
+							<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-eventdetails" method="POST">
+								{% csrf_token %}
+								<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
+								<button name="send" value="{{ event.id }}" class="butsud2 leftelements fullheight">{{ event.title }}</button>
+							</form>
+							<h3 class="leftelements divelements slmargin fullwidth">
+							     ({{ event.etype }})
+			    			</h3>
+			    			<p class="slmargin"></p>
+		    				<div class="onedivunder">
+		    					<div class="leftelements fullwidth">
+			    					<h4 class="leftelements divelements"> {{ event.presenter }} ,</h4>
+				    				<h4 class="leftelements divelements"> {{ event.presenterd }} </h4>
+				    				<h4 class="rightelements divelements"> {{ event.tfrom }} - {{ event.tto }} </h4>
+			    					<h4 class="rightelements divelements"> {{ event.date }} ,</h4>
+		    					</div>
+		    					<div class="fullwidth leftelements">
+			    					{% if event.description %}
+					    			<p class="leftelements  divelements">{{ event.description }}</p>
+									{% else %}
+									<p class="leftelements  divelements">No Description</p>
+									{% endif %}
+									{% if event.perks %}
+					    			<p class="leftelements slmargin divelements">{{ event.perks }}</p>
+									{% else %}
+									<p class="leftelements slmargin divelements">No Perks Specified</p>
+									{% endif %}
+		    					</div>
+		    				</div>
+		    			</div>
+					</div>
+					<div class="onesecond3">
+						<div class="twodiv">
+							<div class="twodivunder">
+								<h5 class="leftelements slmargin nomargin">Organizer :</h5>
+								<h5 class="leftelements slmargin oned nomargin">
+									{{ event.organizer }}
+								</h5>
+								<h5 class="leftelements slmargin oned nomargin">Department :</h5>
+								<h5 class="leftelements slmargin oned nomargin">
+									{{ event.department }}
+								</h5>
+							</div>
+							<div class="twodivunder">
+								<h5 class="leftelements slmargin twod nomargin">Conveners :</h5>
+								<h5 class="leftelements slmargin oned oned nomargin">
+									{{ event.convener1 }}
+								</h5>
+								<h5 class="leftelements slmargin oned nomargin">
+									{{ event.convener2 }}
+								</h5>
+							</div>
+							<div class="twodivunder">
+								<h5 class="leftelements slmargin nomargin">Faculty Co=ordinators :</h5>
+								<h5 class="leftelements slmargin oned nomargin">
+									{{ event.teacher1 }}
+								</h5>
+								<h5 class="leftelements slmargin oned nomargin">
+									{{ event.teacher2 }}
+								</h5>
+
+								<h5 class="leftelements slmargin oned nomargin">
+									{{ event.teacher3 }}
+								</h5>	
+							</div>
+							<div>
+								{% if event.certi is True %}
+				    			<div class="desc">
+				    				<p class="leftelements slmargin divelements">Certificates will be given</p>
+				    			</div>
+								{% else %}
+								<div class="desc">
+									<p class="leftelements slmargin divelements">Certificates will not be given</p>
+								</div>
+								{% endif %}
+								{% if event.reminders %}
+				    			<div class="desc">
+				    				<p class="leftelements slmargin divelements">{{ event.reminders }}</p>
+				    			</div>
+								{% else %}
+								<div class="desc">
+									<p class="leftelements slmargin divelements">No Reminders</p>
+								</div>
+								{% endif %}
+								<div class="twodivunder">
+									{% if event.tags %}
+										<p style="margin-top: 5px;" class="leftelements slmargin oned">
+											Tags : 
+										</p>
+										{% for mem in event.tags.all %}
+										<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-userdetails" method="POST">
+											{% csrf_token %}
+											<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
+											<button name="send" value="{{ mem }}" class="butsud bbs leftelements">{{ mem }}</button>
+										</form>
+										{% endfor %}
+									{% endif %}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="leftelements pdiv" id="pubda">
+					<p class="butp leftelements">Published on : {{ event.pubdate }}</p>
+					<p class="butp leftelements again oned">Published by : {{ event.by }} </p>
+					{% if event.link %}
+					<p class="butp leftelements"><a class="leftelements" target="_blank" href="{{ event.link }}">Registration Link</a></p>
+					{% endif %}
+					{% if event.whatsapp %}
+					<p class="butp leftelements"><a class="leftelements" target="_blank" href="{{ event.whatsapp }}">Whatsapp Group Link</a></p>
+					{% endif %}
+					<p class="butp leftelements">Contact : {{ event.contact1 }} {{ event.contact2 }}</p>
+					<p class="butp rightelements ids">{{ event.id }}</p>
+				</div>
+				</div>
+			</div>
+			<div class="main2" >
+			<div  style="display: none" id="fincommentsec{{ event.id }}" class="underelements2">
+				<div class="twodiv2">
+					<div class="twodivmain">
+						<div class="twodivform2">
+							Comments
+						</div>
+						<div class="twodivform3">
+							{% for com in comment_num %}
+							{% ifequal com.ecref.title event.title %}
+							{% ifequal com.cby.username user.username %}
+							<div class="actualcom2 rightelements">
+								<p class="comt"><b>You </b></p>
+								<p class="combody">{{ com.body }}</p>
+							</div>
+							{% else %}
+							<div class="actualcom leftelements">
+								<p class="comt"><b>{{ com.cby.username }} </b></p>
+								<p class="combody">{{ com.body }}</p>
+							</div>
+							{% endifequal %}
+							{% endifequal %}
+							{% endfor %}	
+						</div>
+					</div>
+					<form class="twodivform" method="POST" action="comment">
+					{% csrf_token %}
+						<input style="display: none;" class="comm" type="text" name="eventname" value="{{ event.title }}">
+						<input autocomplete="off" class="comm" type="text" name="comment">
+						<button class="commbut"><i class="glyphicon glyphicon-send"></i></button>
+					</form>
+				</div>
+			</div>
+			<button class="comsecbut" id="finbut1{{ event.id }}" onclick="fincomopen('{{ event.id }}')"><i class="glyphicon glyphicon-menu-right"></i></button>
+			<button class="comsecbut2" id="finbut2{{ event.id }}" onclick="fincomclose('{{ event.id }}')" style="display: none"><i class="glyphicon glyphicon-menu-left"></i><i class="glyphicon glyphicon-menu-left"></i></button>
+			</div>
+			<div style="display: none;" id="repbut">
+				
+			</div>
+			<form style="display: none;" id="reform{{ event.id }}" class="rightelements addreport" name="reform{{ event.id }}" method="POST" action="report">
+				{% csrf_token %}
+				<div class="fullwidth leftelements" style="background-color: cyan">
+					<p>Add Report</p>
+				</div>
+				<input style="display: none;" type="text" name="eventname" value="{{ event.title }}">
+				<input autocomplete="off" id="rtitle{{ event.id }}" class="fullwidth repin" type="text" name="reporttitle">
+				<textarea rows="13" cols="50" id="rbody{{ event.id }}" class="fullwidth repin" name="reportbody" form="reform{{ event.id }}"></textarea>
+				<button class="rebut">Submit</button>
+			</form>
+			<button style="display: none;" class="rebutc rightelements" id="reclose{{ event.id }}" onclick="repclo('butter','{{ event.id }}')"><i class="glyphicon glyphicon-remove"></i></button>
+			{% endfor %}
+		</div>
+		</div>
+		{% else %}
+		<div class="mainheadelements">
+			<h1>Please Login</h1>
+	    	<a href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login" id="lgin" class="but">
+	    		Login
+	    	</a>
+	    </div>
+		{% endif %}
+	</main>
+	<!-- ---------------------------------------------------------------------------------------------HEADER-------------------------------------------------------------------------- -->
+	<header style="opacity: 1" class="basicheader" id="mainhead">
+		<button onclick="menu()" class="but basicbutton">
+			<i class="glyphicon glyphicon-menu-hamburger"></i>
+		</button>
+		<h2 id="basictitle">
+			DA
+		</h2>
+		<h3 id="basicpage">
+			EVENTS
+		</h3>
+		<div id="basichelp">
+			<button onclick="help()" id="basichelpbut" class="but basicbutton">
+				<i class="glyphicon glyphicon-triangle-bottom"></i>
+			</button>
+		</div>
+		<div id="basicprofile">
+			<button onclick="profile()" id="basicprofilebut" class="but basicbutton">
+				<i class="glyphicon glyphicon-user"></i>
+			</button>
+		</div>
+		<h4 id="basicdt">
+			<span id="basicdate">
+			</span>
+			<span id="basictime">
+			</span>
+		</h4>
+		
+	</header>
+	<!-- ---------------------------------------------------------------------------------------------NAVBAR-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------NAVBAR-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------NAVBAR-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------NAVBAR-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------NAVBAR-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------NAVBAR-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------NAVBAR-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------NAVBAR-------------------------------------------------------------------------- -->
+	<nav id="navs">
+		<div style="display: none;" id="profilediv">
+			<a class="profilelink" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-profile">
+				<div class="low profiletdp">
+					<i class="profiledp glyphicon glyphicon-th-list"></i>
+					<p class="profiletext">Details</p>
+				</div>
+			</a>
+			<a target="_blank" class="profilelink" href="/admin/kjsomaiyacollegeofengineering-teachers-department-admin">
+				<div class="mid profiletdp">
+					<i class="profiledp glyphicon glyphicon-asterisk"></i>
+					<p class="profiletext">Admin Page</p>
+				</div>
+			</a>
+    		{% if user.is_superuser == False %}
+    		<div id="forad2">
+				<button class="profilelink" onclick="adcode()" href="toadmin">
+					<div class="high profiletdp">
+						<i class="profiledp glyphicon glyphicon-repeat"></i>
+						<p class="profiletext">Convert to admin</p>
+					</div>
+				</button>
+    		</div>
+    		<div id="adspan" class="hugebut">
+    		</div>
+			{% else %}
+			<form id="forad3" action="tonormal" method="POST">
+				{% csrf_token %}
+				<button name="dell" class="profilelink" id="buttonn{{ user.id }}" value="{{ user.username }}"><i class="glyphicon glyphicon-ok"></i>Convert to normal</button>
+			</form>
+			{% endif %}
+		</div>
+		<!-- ------------------------------------------------------------------------------------NAVBARHELP------------------------------------------------------------------------------>
+		<div style="display: none;" id="basichelp2">
+			<button onclick="helpb()" id="basichelpbut2" class="but basicbutton">
+				<i class="glyphicon glyphicon-triangle-bottom"></i>
+			</button>
+		</div>
+		<div style="display: none;" id="basicprofile2">
+			<button onclick="profileb()" id="basicprofilebut2" class="but basicbutton">
+				<i class="glyphicon glyphicon-user"></i>
+			</button>
+		</div>
+		<div style="display: none;" id="profilediv2">
+			<a class="profilelink" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-help">
+				<div class="low profiletdp">
+					<i class="profiledp glyphicon glyphicon-question-sign"></i>
+					<p class="profiletext">Help</p>
+				</div>
+			</a>
+			<a class="profilelink" href="homelogout">
+				<div class="low profiletdp">
+					<i class="profiledp glyphicon glyphicon-off"></i>
+					<p class="profiletext">Logout</p>
+				</div>
+			</a>
+		</div>
+		<!------------------------------------------------------------------------------------------NAVBARMAIN-------------------------------------------------------------------------- -->
+		<div style="display: none;" id="profilediv3">
+			<h2 class="basicpro">
+				DA
+			</h2>
+			<button onclick="back()" class="but basicbutton">
+				<i class="glyphicon glyphicon-chevron-left"></i>
+			</button>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-home">
+				<div class="low2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-home"></i>
+					<p class="profiletext">Home</p>
+				</div>
+			</a>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents">
+				<div class="low2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-th-large"></i>
+					<p class="profiletext">Events</p>
+				</div>
+			</a>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-addevent">
+				<div class="mid2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-plus"></i>
+					<p class="profiletext">Add Event</p>
+				</div>
+			</a>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-preevent">
+				<div class="mid2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-star"></i>
+					<p class="profiletext">Pre-Event</p>
+				</div>
+			</a>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-messaging">
+				<div class="mid2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-envelope"></i>
+					<p class="profiletext">Message</p>
+				</div>
+			</a>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-groups">
+				<div class="mid2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-asterisk"></i>
+					<p class="profiletext">Groups</p>
+				</div>
+			</a>
+		</div>
+		<button style="display: none;" onclick="back()" id="hugebut">
+			
+		</button>
+	</nav>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		var today = new Date();
+		var d = today.getDate();
+		var mo = today.getMonth();
+		var y = today.getFullYear();
+		var listem =  'liss';
+		document.getElementById('basicdate').innerHTML=d+"/"+(mo+1)+"/"+y;
+		function startTime() {
+			var today = new Date();
+			var h = today.getHours();
+			var m = today.getMinutes();
+			var s = today.getSeconds();
+			m = checkTime(m);
+			s = checkTime(s);
+			document.getElementById('basictime').innerHTML =
+			h + ":" + m;
+			var t = setTimeout(startTime, 500);
+		}
+		// Allevents
+		var modal = document.getElementById("myModal");
+
+		var modalImg
+		var captionText
+
+		function pressed(numm){
+			spanname ='spa'+numm;
+			butname = 'view'+numm;
+			document.getElementById(spanname).innerHTML = "Click on the image" ;
+			document.getElementById(butname).style.display = 'none';
+			imm = document.getElementById(numm);
+			imm.onclick = function(){
+				modalImg = document.getElementById("img01");
+				captionText = document.getElementById("caption");
+				modal.style.display = "block";
+				modalImg.src = this.src;
+				captionText.innerHTML = this.alt;
+				$('body').addClass("fixed-position");
+			}
+			var span = document.getElementsByClassName("close")[0];
+
+			span.onclick = function() { 
+			  console.log('allevent')
+			  modal.style.display = "none";
+			  $('body').removeClass("fixed-position");
+			}
+
+		}
+		
+		
+		// Upcomingevents
+		
+		function pressed2(numm){
+			spanname ='upspa'+numm;
+			butname = 'upview'+numm;
+			aha='up'+numm
+			cv='close2'+numm;
+			document.getElementById(spanname).innerHTML = "Click on the image" ;
+			document.getElementById(butname).style.display = 'none';
+			var modal2 = document.getElementById("myModal2")
+			imm = document.getElementById(aha);
+			imm.onclick = function(){
+				modalImg = document.getElementById("img012");
+				captionText = document.getElementById("caption2");
+				modal2.style.display = "block";
+				modalImg.src = this.src;
+				captionText.innerHTML = this.alt;
+				$('body').addClass("fixed-position");
+			}
+			var span = document.getElementById(cv);
+
+			span.onclick = function() { 
+			  console.log('ok')
+			  modal2.style.display = "none";
+			  $('body').removeClass("fixed-position");
+			}
+		}
+		
+		
+		// Upcomingevents
+		
+		function pressed3(numm){
+			spanname ='finspa'+numm;
+			butname = 'finview'+numm;
+			aha='fin'+numm;
+			cv='close'+numm;
+			document.getElementById(spanname).innerHTML = "Click on the image" ;
+			document.getElementById(butname).style.display = 'none';
+			imm = document.getElementById(aha);
+			imm.onclick = function(){
+				modalImg = document.getElementById("img013");
+				captionText = document.getElementById("caption3");
+				modal3.style.display = "block";
+				modalImg.src = this.src;
+				captionText.innerHTML = this.alt;
+				$('body').addClass("fixed-position");
+			}
+			var modal3 = document.getElementById("myModal3");
+			var span = document.getElementById(cv);
+
+			span.onclick = function() { 
+			  console.log('ok')
+			  modal3.style.display = "none";
+			  $('body').removeClass("fixed-position");
+			}
+		}
+		
+		
+		function checkTime(i) {
+			if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+			return i;
+		}
+		function menu(){
+			document.getElementById('profilediv3').style.display = '';
+			document.getElementById('bod').style.overflowy='hidden'
+			document.getElementById('hugebut').style.display = '';
+			document.getElementById('mainhead').style.opacity = '0.8';
+			document.getElementById('basicmain').style.opacity = '0.8';
+			document.getElementById('profilediv3').style.height = '100vh';
+			if ($('#profilediv3').is(':visible')) {
+			    $('body').addClass("fixed-position");
+			} else {
+			    $('body').removeClass("fixed-position");
+			}
+		}
+		function back(){
+			document.getElementById('profilediv3').style.display = 'none';
+			document.getElementById('hugebut').style.display = 'none';
+			document.getElementById('mainhead').style.opacity = '1';
+			document.getElementById('basicmain').style.opacity = '1';
+			if ($('#profilediv3').is(':hidden')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+		function profile(){
+			document.getElementById('profilediv').style.display = '';
+			document.getElementById('profilediv2').style.display = 'none';
+			document.getElementById('basichelp2').style.display = 'none';
+			document.getElementById('basicprofile2').style.display = '';
+			if ($('#profilediv').is(':visible')) {
+			    $('body').addClass("fixed-position");
+			} else {
+			    $('body').removeClass("fixed-position");
+			}
+		}
+		function help(){
+			document.getElementById('profilediv2').style.display = '';
+			document.getElementById('profilediv').style.display = 'none';
+			document.getElementById('basicprofile2').style.display = 'none';
+			document.getElementById('basichelp2').style.display = '';
+			if ($('#profilediv2').is(':visible')) {
+			    $('body').addClass("fixed-position");
+			} else {
+			    $('body').removeClass("fixed-position");
+			}
+		}
+
+		function profileb(){
+			document.getElementById('profilediv').style.display = 'none';
+			document.getElementById('basicprofile2').style.display = 'none';
+			document.getElementById('basicmain').style.opacity = '1';
+			if ($('#profilediv').is(':hidden')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+		function helpb(){
+			document.getElementById('profilediv2').style.display = 'none';
+			document.getElementById('basichelp2').style.display = 'none';
+			document.getElementById('basicmain').style.opacity = '1';
+			if ($('#profilediv2').is(':hidden')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+
+		function search_event() { 
+		    let input = document.getElementById('searchbarall').value 
+		    input=input.toLowerCase(); 
+		    let x = document.getElementsByClassName('searchelementall'); 
+		    console.log(x.length)
+		    for (i = 0; i < x.length; i++) {  
+		        if (!x[i].innerHTML.toLowerCase().includes(input)) { 
+		            x[i].style.display="none"; 
+		        } 
+		        else { 
+		            x[i].style.display="list-item";                  
+		        } 
+		    } 
+		} 
+		var inp = document.getElementById('searchbarall');
+		if(inp){
+			inp.addEventListener("keyup", function(event) {
+				console.log(inp);
+		    	if (event.keyCode === 13) {
+		    	    // event.preventDefault();
+			        document.getElementById("sbutnall").click();
+			    }
+			});
+		}
+		var inp5 = document.getElementById('searchbarup');
+		if(inp5){
+			inp5.addEventListener("keyup", function(event) {
+				console.log(inp5);
+		    	if (event.keyCode === 13) {
+		    	    // event.preventDefault();
+			        document.getElementById("sbutnup").click();
+			    }
+			});
+		}
+		var inp6 = document.getElementById('searchbarfin');
+		if(inp6){
+			inp6.addEventListener("keyup", function(event) {
+				console.log(inp6);
+		    	if (event.keyCode === 13) {
+		    	    // event.preventDefault();
+			        document.getElementById("sbutnfin").click();
+			    }
+			});
+		}
+		function del(butId,numb) {
+			if (butId == 'butter') {
+				show = 'button'+numb;
+				show2 = 'buttonn'+numb;
+				show3 = 'ars'+numb;
+				show4 = 'del'+numb;
+				show6 = 'txt'+numb;
+				show7 = 'pdf'+numb;
+				show8 = 'xls'+numb;
+				show9 = 'ex'+numb;
+				show5 = 'button2'+numb;
+			}
+			document.getElementById(show).style.display = ''; 
+			document.getElementById(show2).style.display = ''; 
+			document.getElementById(show3).innerHTML = "Are You Sure?" ;
+			document.getElementById(show4).style.display = 'none';
+
+			document.getElementById(show6).style.display = 'none'; 
+			document.getElementById(show7).style.display = 'none'; 
+			document.getElementById(show8).style.display = 'none';
+			document.getElementById(show9).style.display = '';
+			document.getElementById(show5).style.display = 'none';
+		}
+		function expor(butId,numb) {
+			if (butId == 'butter') {
+				show = 'txt'+numb;
+				show2 = 'pdf'+numb;
+				show3 = 'xls'+numb;
+				show4 = 'ex'+numb;
+				show5 = 'button2'+numb;
+				show6 = 'button'+numb;
+				show7 = 'buttonn'+numb;
+				show8 = 'ars'+numb;
+				show9 = 'del'+numb;
+			}
+			document.getElementById(show).style.display = ''; 
+			document.getElementById(show2).style.display = ''; 
+			document.getElementById(show3).style.display = '';
+			document.getElementById(show4).style.display = 'none';
+			document.getElementById(show5).style.display = '';
+
+			document.getElementById(show6).style.display = 'none'; 
+			document.getElementById(show7).style.display = 'none'; 
+			document.getElementById(show8).innerHTML = "" ;
+			document.getElementById(show9).style.display = '';
+		}
+		function noexpor(butId,numb) {
+			if (butId == 'butter') {
+				show = 'txt'+numb;
+				show2 = 'pdf'+numb;
+				show3 = 'xls'+numb;
+				show4 = 'ex'+numb;
+				show5 = 'button2'+numb;
+			}
+			document.getElementById(show).style.display = 'none'; 
+			document.getElementById(show2).style.display = 'none'; 
+			document.getElementById(show3).style.display = 'none';
+			document.getElementById(show4).style.display = '';
+			document.getElementById(show5).style.display = 'none';
+		}
+		function abrt(numb){
+			show = 'button'+numb;
+			show2 = 'buttonn'+numb;
+			show3 = 'ars'+numb;
+			show4 = 'del'+numb;
+			document.getElementById(show).style.display = 'none'; 
+			document.getElementById(show2).style.display = 'none'; 
+			document.getElementById(show3).innerHTML = "" ;
+			document.getElementById(show4).style.display = '';
+		}
+		function sendmail(delltitle,delldate,delldesc,dellorg,dellperks,delllink,delltype,dellfro,dellto,dellregfro,dellregto,dellpres,dellpresd,delltarget,delldep,dellfaccod1,dellfaccod2,dellconv1,dellcont1,dellfaccod3,dellconv2,dellcont2){
+			msgbody1="K.J. somaiya Institute of Engineering and Information Technology (KJSIEIT) Sion, Mumbai"
+			msgbody2="KJSIEIT is accredited by NAAC with A grade Three programs accredited by National Board of Accreditation Best College awarded by University of Mumbai, ISTE (MH) and CSI (Mumbai)"
+			cname="KJSIEIT-"
+			str="%0D%0A"
+			space=" "
+			org1="is organizing a"
+			org2=" on topic "
+			org3=""
+			st="'"
+			if (delltarget!=undefined) {
+				org3=" for "
+			}
+			org4=" in association with "
+			fustp="."
+			sp=", "
+			dep=" Department"
+			msgbody3=cname.concat(dellorg,space,org1,space,delltype,org2,st,delltitle,st,org3,delltarget,org4,delldep,dep,fustp)
+			dte="Date : "
+			tme="Time : "
+			to=" to "
+			descc="Description : "
+			speaker="Speaker : "
+			msgbody4=dte.concat(delldate,str,tme,dellfro,to,dellto,str,speaker,dellpres,sp,dellpresd,fustp)
+			msgbody5=str.concat(str,descc,delldesc)
+			if (dellperks!=undefined) {
+				msgbodyo=msgbody5.concat(str,dellperks);
+			}
+			subj=delltitle
+			reg="Registration Link : "
+			msgbody5=reg.concat(space,delllink,str,dellregfro,to,dellregto)
+			dep="Department : "
+			faccod="Faculty Co-ordinators : "
+			conv="Conveners : "
+			cont="Contact : "
+			msgbody6=faccod.concat(dellfaccod1,sp,dellfaccod2,sp,dellfaccod3,str,conv,dellconv1,sp,dellconv2,str,cont,dellcont1,dellcont2)
+			msgbodyf=msgbody1.concat(str,str,msgbody2,str,str,msgbody3,str,str,msgbody4,str,str,msgbody5,str,str,msgbody6)
+
+			subj=delltitle
+			console.log(msgbodyf)
+			let url = 'https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=&su='+subj+'&body='+msgbodyf+'&ui=2&tf=1&pli=1';
+			window.open(url, 'sharer', 'toolbar=0,status=0,width=648,height=395,top=200,left=300');
+		}
+		function sendmsg(delltitle,delldate,delldesc,dellorg,dellperks,delllink,delltype,dellfro,dellto,dellregfro,dellregto,dellpres,dellpresd,delltarget,delldep,dellfaccod1,dellfaccod2,dellconv1,dellcont1,dellfaccod3,dellconv2,dellcont2){
+			msgbody1="K.J. somaiya Institute of Engineering and Information Technology (KJSIEIT) Sion, Mumbai"
+			msgbody2="KJSIEIT is accredited by NAAC with A grade Three programs accredited by National Board of Accreditation Best College awarded by University of Mumbai, ISTE (MH) and CSI (Mumbai)"
+			cname="KJSIEIT-"
+			str="%0D%0A"
+			space=" "
+			org1="is organizing a"
+			org2=" on topic "
+			org3=""
+			st="*"
+			if (delltarget!=undefined) {
+				org3=" for "
+			}
+			org4=" in association with "
+			fustp="."
+			sp=", "
+			dep=" Department"
+			msgbody3=cname.concat(dellorg,space,org1,space,delltype,org2,st,delltitle,st,org3,delltarget,org4,delldep,dep,fustp)
+			dte="Date : "
+			tme="Time : "
+			to=" to "
+			descc="Description : "
+			speaker="Speaker : "
+			msgbody4=dte.concat(delldate,str,tme,dellfro,to,dellto,str,speaker,dellpres,sp,dellpresd,fustp)
+			msgbody5=str.concat(str,descc,delldesc)
+			if (dellperks!=undefined) {
+				msgbodyo=msgbody5.concat(str,dellperks);
+			}
+			subj=delltitle
+			reg="Registration Link : "
+			msgbody5=reg.concat(space,delllink,str,dellregfro,to,dellregto)
+			dep="Department : "
+			faccod="Faculty Co-ordinators : "
+			conv="Conveners : "
+			cont="Contact : "
+			msgbody6=faccod.concat(dellfaccod1,sp,dellfaccod2,sp,dellfaccod3,str,conv,dellconv1,sp,dellconv2,str,cont,dellcont1,dellcont2)
+			msgbodyf=msgbody1.concat(str,str,msgbody2,str,str,msgbody3,str,str,msgbody4,str,str,msgbody5,str,str,msgbody6)
+			console.log(msgbodyf)
+			let url = 'whatsapp://send?text='+msgbodyf+'';
+			window.open(url, 'sharer', 'toolbar=0,status=0,width=648,height=395,top=200,left=300');
+		}
+
+		var inp2 = document.getElementById('teachersin');
+		if(inp2){
+			inp2.addEventListener("keyup", function(event) {
+		    	if (event.keyCode === 13) {
+		    	    // event.preventDefault();
+			        document.getElementById("sbutnall2").click();
+			    }
+			});
+		}
+		var inp3 = document.getElementById('monthin');
+		if(inp3){
+			inp3.addEventListener("keyup", function(event) {
+		    	if (event.keyCode === 13) {
+		    	    // event.preventDefault();
+			        document.getElementById("sbutnall3").click();
+			    }
+			});
+		}
+		function filter(){
+			document.getElementById('teachersfilter').style.display='';
+			document.getElementById('monthsfilter').style.display='';
+			document.getElementById('down').style.display='none';
+			document.getElementById('up').style.display='';
+		}
+		function filterclose(){
+			document.getElementById('teachersfilter').style.display='none';
+			document.getElementById('monthsfilter').style.display='none';
+			document.getElementById('down').style.display='';
+			document.getElementById('up').style.display='none';
+		}
+		function filterevent_teachers(){
+			teacherin=document.getElementById('teachersin').value
+		    teacherin=teacherin.toLowerCase(); 
+			console.log(teacherin)
+		    let x = document.getElementsByClassName('searchelementall');
+		    for (i = 0; i < x.length; i++) { 
+	    		res1=x[i].classList[0];
+	    		res2=x[i].classList[1];
+	    		res3=x[i].classList[2];
+	    		res4=x[i].classList[3];
+	    		res5=x[i].classList[4];
+	    		res6=x[i].classList[5];
+	    		res7=x[i].classList[6];
+	    		res8=x[i].classList[7];
+	    		res9=x[i].classList[8];
+	    		res10=x[i].classList[9];
+	    		res11=x[i].classList[10];
+	    		res12=x[i].classList[11];
+	    		res13=x[i].classList[12];
+	    		res14=x[i].classList[13];
+	    		res15=x[i].classList[14];
+	    		res16=x[i].classList[15];
+	    		res17=x[i].classList[16];
+	    		res18=x[i].classList[17];
+	    		res19=x[i].classList[18];
+	    		res20=x[i].classList[19];
+	    		res21=x[i].classList[20];
+	    		// console.log(x[i]);
+	    		res=res1.concat(res2,res3,res4,res5,res6,res7,res8,res9,res10,res11,res12,res13,res14,res15,res16,res17,res18,res19,res20,res21)
+
+		    	res=res.toLowerCase(); 
+	    		console.log(res);
+	    		if (res.includes(teacherin)==true){
+	    			x[i].style.display="block";
+	    		}
+	    		else{
+	    			x[i].style.display="none";   
+	    		}
+		    }
+		}
+		function filterevent_month(){
+			monthn1=document.getElementById('monthin1').value
+			monthn2=document.getElementById('monthin2').value
+			let x = document.getElementsByClassName('searchelementall');
+		    for (i = 0; i < x.length; i++) { 
+	    		res1=x[i].classList[0];
+	    		res2=x[i].classList[2];
+	    		if ((res1.includes(monthn2)==true)&&(res2.includes(monthn1)==true)){
+	    			x[i].style.display="list-item";
+	    		}
+	    		else{
+	    			x[i].style.display="none";   
+	    		}
+	    	}
+		}
+		display(1,2,3);
+		function display(numb1,numb2,numb3){
+			dis1='event'+numb1;
+			dis2='event'+numb2;
+			dis3='event'+numb3;
+			cc1='#butevent'+numb1;
+			cc2='#butevent'+numb2;
+			cc3='#butevent'+numb3;
+			document.getElementById(dis1).style.display='';
+			document.getElementById(dis2).style.display='none';
+			document.getElementById(dis3).style.display='none';
+			$(cc1).addClass("current");
+			$(cc2).removeClass("current");
+			$(cc3).removeClass("current");
+		}
+		function adcode(){
+			document.getElementById('forad').style.display = '';
+			document.getElementById('forbut').style.display = '';
+			document.getElementById('profilediv').style.display = 'none';
+			document.getElementById('basicprofile2').style.display = 'none';
+			document.getElementById('basicmain').style.opacity = '1';
+			if ($('#profilediv').is(':visible')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+		function forback(){
+			document.getElementById('forad').style.display = 'none';
+			document.getElementById('forbut').style.display = 'none';
+			document.getElementById('profilediv').style.display = 'none';
+			document.getElementById('basicprofile2').style.display = 'none';
+			document.getElementById('basicmain').style.opacity = '1';
+			if ($('#profilediv').is(':hidden')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+		function comopen(numb){
+			show1='commentsec'+numb
+			show2='but2'+numb
+			noshow='but1'+numb
+			document.getElementById(show1).style.display='';
+			document.getElementById(show2).style.display='';
+			document.getElementById(noshow).style.display='none';
+		}
+		function comclose(numb){
+			show1='commentsec'+numb
+			show2='but2'+numb
+			noshow='but1'+numb
+			document.getElementById(show1).style.display='none';
+			document.getElementById(show2).style.display='none';
+			document.getElementById(noshow).style.display='';
+		}
+		function fincomopen(numb){
+			show1='fincommentsec'+numb
+			show2='finbut2'+numb
+			noshow='finbut1'+numb
+			document.getElementById(show1).style.display='';
+			document.getElementById(show2).style.display='';
+			document.getElementById(noshow).style.display='none';
+		}
+		function fincomclose(numb){
+			show1='fincommentsec'+numb
+			show2='finbut2'+numb
+			noshow='finbut1'+numb
+			document.getElementById(show1).style.display='none';
+			document.getElementById(show2).style.display='none';
+			document.getElementById(noshow).style.display='';
+		}
+		function upcomopen(numb){
+			show1='upcommentsec'+numb
+			show2='upbut2'+numb
+			noshow='upbut1'+numb
+			document.getElementById(show1).style.display='';
+			document.getElementById(show2).style.display='';
+			document.getElementById(noshow).style.display='none';
+		}
+		function upcomclose(numb){
+			show1='upcommentsec'+numb
+			show2='upbut2'+numb
+			noshow='upbut1'+numb
+			document.getElementById(show1).style.display='none';
+			document.getElementById(show2).style.display='none';
+			document.getElementById(noshow).style.display='';
+		}
+		function findel(butId,numb) {
+			if (butId == 'butter') {
+				show = 'finbutton'+numb;
+				show2 = 'finbuttonn'+numb;
+				show3 = 'finars'+numb;
+				show4 = 'findel'+numb;
+				show6 = 'fintxt'+numb;
+				show7 = 'finpdf'+numb;
+				show8 = 'finxls'+numb;
+				show9 = 'finex'+numb;
+				show5 = 'finbutton2'+numb;
+			}
+			document.getElementById(show).style.display = ''; 
+			document.getElementById(show2).style.display = ''; 
+			document.getElementById(show3).innerHTML = "Are You Sure?" ;
+			document.getElementById(show4).style.display = 'none';
+
+			document.getElementById(show6).style.display = 'none'; 
+			document.getElementById(show7).style.display = 'none'; 
+			document.getElementById(show8).style.display = 'none';
+			document.getElementById(show9).style.display = '';
+			document.getElementById(show5).style.display = 'none';
+		}
+		function finexpor(butId,numb) {
+			if (butId == 'butter') {
+				show = 'fintxt'+numb;
+				show2 = 'finpdf'+numb;
+				show3 = 'finxls'+numb;
+				show4 = 'finex'+numb;
+				show5 = 'finbutton2'+numb;
+				show6 = 'finbutton'+numb;
+				show7 = 'finbuttonn'+numb;
+				show8 = 'finars'+numb;
+				show9 = 'findel'+numb;
+			}
+			document.getElementById(show).style.display = ''; 
+			document.getElementById(show2).style.display = ''; 
+			document.getElementById(show3).style.display = '';
+			document.getElementById(show4).style.display = 'none';
+			document.getElementById(show5).style.display = '';
+
+			document.getElementById(show6).style.display = 'none'; 
+			document.getElementById(show7).style.display = 'none'; 
+			document.getElementById(show8).innerHTML = "" ;
+			document.getElementById(show9).style.display = '';
+		}
+		function finnoexpor(butId,numb) {
+			if (butId == 'butter') {
+				show = 'fintxt'+numb;
+				show2 = 'finpdf'+numb;
+				show3 = 'finxls'+numb;
+				show4 = 'finex'+numb;
+				show5 = 'finbutton2'+numb;
+			}
+			document.getElementById(show).style.display = 'none'; 
+			document.getElementById(show2).style.display = 'none'; 
+			document.getElementById(show3).style.display = 'none';
+			document.getElementById(show4).style.display = '';
+			document.getElementById(show5).style.display = 'none';
+		}
+		function finabrt(numb){
+			show = 'finbutton'+numb;
+			show2 = 'finbuttonn'+numb;
+			show3 = 'finars'+numb;
+			show4 = 'findel'+numb;
+			document.getElementById(show).style.display = 'none'; 
+			document.getElementById(show2).style.display = 'none'; 
+			document.getElementById(show3).innerHTML = "" ;
+			document.getElementById(show4).style.display = '';
+		}
+		function updel(butId,numb) {
+			if (butId == 'butter') {
+				show = 'upbutton'+numb;
+				show2 = 'upbuttonn'+numb;
+				show3 = 'upars'+numb;
+				show4 = 'updel'+numb;
+				show6 = 'uptxt'+numb;
+				show7 = 'uppdf'+numb;
+				show8 = 'upxls'+numb;
+				show9 = 'upex'+numb;
+				show5 = 'upbutton2'+numb;
+			}
+			document.getElementById(show).style.display = ''; 
+			document.getElementById(show2).style.display = ''; 
+			document.getElementById(show3).innerHTML = "Are You Sure?" ;
+			document.getElementById(show4).style.display = 'none';
+
+			document.getElementById(show6).style.display = 'none'; 
+			document.getElementById(show7).style.display = 'none'; 
+			document.getElementById(show8).style.display = 'none';
+			document.getElementById(show9).style.display = '';
+			document.getElementById(show5).style.display = 'none';
+		}
+		function upexpor(butId,numb) {
+			if (butId == 'butter') {
+				show = 'uptxt'+numb;
+				show2 = 'uppdf'+numb;
+				show3 = 'upxls'+numb;
+				show4 = 'upex'+numb;
+				show5 = 'upbutton2'+numb;
+				show6 = 'upbutton'+numb;
+				show7 = 'upbuttonn'+numb;
+				show8 = 'upars'+numb;
+				show9 = 'updel'+numb;
+			}
+			document.getElementById(show).style.display = ''; 
+			document.getElementById(show2).style.display = ''; 
+			document.getElementById(show3).style.display = '';
+			document.getElementById(show4).style.display = 'none';
+			document.getElementById(show5).style.display = '';
+
+			document.getElementById(show6).style.display = 'none'; 
+			document.getElementById(show7).style.display = 'none'; 
+			document.getElementById(show8).innerHTML = "" ;
+			document.getElementById(show9).style.display = '';
+		}
+		function upnoexpor(butId,numb) {
+			if (butId == 'butter') {
+				show = 'uptxt'+numb;
+				show2 = 'uppdf'+numb;
+				show3 = 'upxls'+numb;
+				show4 = 'upex'+numb;
+				show5 = 'upbutton2'+numb;
+			}
+			document.getElementById(show).style.display = 'none'; 
+			document.getElementById(show2).style.display = 'none'; 
+			document.getElementById(show3).style.display = 'none';
+			document.getElementById(show4).style.display = '';
+			document.getElementById(show5).style.display = 'none';
+		}
+		function upabrt(numb){
+			show = 'upbutton'+numb;
+			show2 = 'upbuttonn'+numb;
+			show3 = 'upars'+numb;
+			show4 = 'updel'+numb;
+			document.getElementById(show).style.display = 'none'; 
+			document.getElementById(show2).style.display = 'none'; 
+			document.getElementById(show3).innerHTML = "" ;
+			document.getElementById(show4).style.display = '';
+		}
+		function markpo(butId,numb) {
+			if (butId == 'butter') {
+				show = 'markasconfirmp'+numb;
+				show2 = 'markasongoingp'+numb;
+				show4 = 'markp'+numb;
+				show5 = 'penbut'+numb;
+			}
+			document.getElementById(show).style.display = ''; 
+			document.getElementById(show2).style.display = ''; 
+			document.getElementById(show4).style.display = 'none';
+			document.getElementById(show5).style.display = '';
+		}
+		function markpc(butId,numb) {
+			if (butId == 'butter') {
+				show = 'markasconfirmp'+numb;
+				show2 = 'markasongoingp'+numb;
+				show4 = 'markp'+numb;
+				show5 = 'penbut'+numb;
+			}
+			document.getElementById(show).style.display = 'none'; 
+			document.getElementById(show2).style.display = 'none'; 
+			document.getElementById(show4).style.display = '';
+			document.getElementById(show5).style.display = 'none';
+		}
+		function markoo(butId,numb) {
+			if (butId == 'butter') {
+				show = 'markasconfirmo'+numb;
+				show2 = 'markaspendingo'+numb;
+				show4 = 'marko'+numb;
+				show5 = 'ongbut'+numb;
+			}
+			document.getElementById(show).style.display = ''; 
+			document.getElementById(show2).style.display = ''; 
+			document.getElementById(show4).style.display = 'none';
+			document.getElementById(show5).style.display = '';
+		}
+		function markoc(butId,numb) {
+			if (butId == 'butter') {
+				show = 'markasconfirmo'+numb;
+				show2 = 'markaspendingo'+numb;
+				show4 = 'marko'+numb;
+				show5 = 'ongbut'+numb;
+			}
+			document.getElementById(show).style.display = 'none'; 
+			document.getElementById(show2).style.display = 'none'; 
+			document.getElementById(show4).style.display = '';
+			document.getElementById(show5).style.display = 'none';
+		}
+		function markco(butId,numb) {
+			if (butId == 'butter') {
+				show = 'markaspendingc'+numb;
+				show2 = 'markasongoingc'+numb;
+				show4 = 'markc'+numb;
+				show5 = 'conbut'+numb;
+			}
+			document.getElementById(show).style.display = ''; 
+			document.getElementById(show2).style.display = ''; 
+			document.getElementById(show4).style.display = 'none';
+			document.getElementById(show5).style.display = '';
+		}
+		function markcc(butId,numb) {
+			if (butId == 'butter') {
+				show = 'markaspendingc'+numb;
+				show2 = 'markasongoingc'+numb;
+				show4 = 'markc'+numb;
+				show5 = 'conbut'+numb;
+			}
+			document.getElementById(show).style.display = 'none'; 
+			document.getElementById(show2).style.display = 'none'; 
+			document.getElementById(show4).style.display = '';
+			document.getElementById(show5).style.display = 'none';
+		}
+		function repopen(butId,numb) {
+			if (butId == 'butter') {
+				show = 'reform'+numb;
+				show2 = 'reclose'+numb;
+				show4 = 'reop'+numb;
+				show5 = 'repbut';
+			}
+			document.getElementById(show).style.display = '';
+			document.getElementById(show2).style.display = '';
+			document.getElementById(show4).style.display = 'none';
+			document.getElementById(show5).style.display = '';
+			if ($('#repbut').is(':hidden')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+		function repclo(butId,numb) {
+			if (butId == 'butter') {
+				show = 'reform'+numb;
+				show2 = 'reclose'+numb;
+				show4 = 'reop'+numb;
+				show5 = 'repbut';
+			}
+			document.getElementById(show).style.display = 'none';
+			document.getElementById(show2).style.display = 'none';
+			document.getElementById(show4).style.display = '';
+			document.getElementById(show5).style.display = 'none';
+			if ($('#repbut').is(':hidden')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+		function shareo(butId,numb) {
+			if (butId == 'butter') {
+				show = 'shareg'+numb;
+				show2 = 'sharew'+numb;
+				show4 = 'shareo'+numb;
+				show5 = 'sharec'+numb;
+			}
+			document.getElementById(show).style.display = ''; 
+			document.getElementById(show2).style.display = ''; 
+			document.getElementById(show4).style.display = 'none';
+			document.getElementById(show5).style.display = '';
+		}
+		function sharec(butId,numb) {
+			if (butId == 'butter') {
+				show = 'shareg'+numb;
+				show2 = 'sharew'+numb;
+				show4 = 'shareo'+numb;
+				show5 = 'sharec'+numb;
+			}
+			document.getElementById(show).style.display = 'none'; 
+			document.getElementById(show2).style.display = 'none'; 
+			document.getElementById(show4).style.display = '';
+			document.getElementById(show5).style.display = 'none';
+		}	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

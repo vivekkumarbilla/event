@@ -1,0 +1,986 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Messages DepAct
+	</title>
+	<link rel="icon" type="image/png" href="{% static 'kj.png' %}">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<style type="text/css">
+		body{
+			background-color: #000;
+			font-family: Calibri;
+			overflow: hidden;
+		}
+		nav{
+			background-color: yellow;
+			width: 100vw;
+			overflow-x: hidden;
+		}
+		::-webkit-scrollbar {
+		    width: 10px;   /*Remove scrollbar space */
+		    /*background: white;*/  /* Optional: just make scrollbar invisible */
+		    background-color: transparent;
+		}
+		::-webkit-scrollbar-thumb{
+			background-color: grey;
+		}
+		 .fixed-position {
+	    	position: fixed;
+		}
+		/*--------------------------------------------------------------------HEADER------------------------------------------------------------------------
+		----------------------------------------------------------------------HEADER------------------------------------------------------------------------
+		----------------------------------------------------------------------HEADER------------------------------------------------------------------------
+		----------------------------------------------------------------------HEADER------------------------------------------------------------------------*/
+		.basicheader{
+			float: left;
+			background-color: #FFFFFF;
+			width: 100vw;
+			position: fixed;
+			/*box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);*/
+			font-family: Calibri;
+			border-bottom: 1px solid #AAAABB;
+		}
+		.but{
+			outline: 0;
+			border: none;
+		}
+		.basicbutton{
+			padding: 2vw 2.5vw;
+			float: left;
+			color: black;
+			background-color: #FFFFFF;
+			font-size: 2.5vw;
+			height: 7.5vw;
+		}
+		.basicbutton:hover{
+			color: #FFF;
+			background-color: #000;
+		}
+		#basictitle, #basicpage{
+			margin-top: 0px;
+			margin-bottom: 0px;
+			color: #000;
+			float: left;
+			height: 7.5vw;
+			font-size: 2.5vw;
+			padding-top: 2.3vw;
+		}
+		#basictitle{
+			padding-left: 2vw;
+			padding-right: 2vw;
+		}
+		#basicpage{
+			margin-left: 29vw;
+		}
+		#basicdt{
+			margin-left: 8vw;
+			font-size: 2vw;
+			float: right;
+			margin-top: 0px;
+			margin-bottom: 0px;
+			height: 7.5vw;
+			width: 20vw;
+			padding-top: 2.5vw;
+			padding-left: 1vw;
+			color: #000;
+		}
+		#basicprofile, #basichelp{
+			float: right;
+			height: 7.5vw;
+			margin-right: 1vw;
+		}
+		#basicprofilebut{
+			font-size: 2.5vw;
+			border-radius: 8vw;
+		}
+		#basichelpbut{
+			font-size: 2vw;
+			padding: 1.5vw 0.5vw;
+		}
+		#basichelp{
+			width: 3vw;
+		}
+		#basictime{
+			margin-left: 3vw;
+		}
+		/*--------------------------------------------------------------------BASIC NAV BAR CONTENT STYLES------------------------------------------------------------------------
+		----------------------------------------------------------------------BASIC NAV BAR CONTENT STYLES------------------------------------------------------------------------
+		----------------------------------------------------------------------BASIC NAV BAR CONTENT STYLES------------------------------------------------------------------------
+		----------------------------------------------------------------------BASIC NAV BAR CONTENT STYLES------------------------------------------------------------------------*/
+		.profilelink{
+			background-color: #FFFFFF;
+			float: left;
+			margin-top: 0px;
+			margin-left: 0px;
+			height: 5vw;
+			width: 12vw;
+			font-size: 1vw;
+			padding-top: 1.7vw;
+			text-decoration: none;
+			color: #000;
+			box-sizing: border-box;
+			border-left: 1px solid #000;
+			border-right: 1px solid #000;
+			outline: 0;
+			border: none;
+		}
+		.profilelink:hover{
+			background-color: #000;
+			color: #FFF;
+			/*text-shadow: 0px 2px 10px #C770A4, 2px 0px 10px #C770A4, -2px 0px 10px #C770A4, 0px -2px 10px #C770A4;*/
+			border-bottom: 2px solid #CCCCCC;
+		}
+		.profiletdp{
+			width: 100%;
+			float: left;
+		}
+		.profiletext{
+			float: right;
+			margin-top: 0px;
+		}
+		.profiledp{
+			float: right;
+			height: 1.6vw;
+			font-size: 1.1vw;
+			padding-left: 0.5vw;
+			padding-right: 0.5vw;
+			padding-top: 0.2vw;
+		}
+		button .profiledp{
+			padding-top: 0vw;
+		}
+		.low{
+			padding-right: 3.6vw;
+		}
+		.mid{
+			padding-right: 2vw;
+		}
+		.high{
+			padding-right: 0.2vw;
+		}
+
+		/*--------------------------------------------------------------------NAVBAR_1------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_1------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_1------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_1------------------------------------------------------------------------*/
+		#profilediv3{
+			position: absolute;
+			top: 0vw;
+			bottom: 0;
+			background-color: #FFFFFF;
+			width: 15vw;
+			border-right: 1px solid #000;
+			box-sizing: content-box;
+		}
+		.basicpro{
+			background-color: #FFFFFF;
+			width: 7.5vw;
+			margin-top: 0px;
+			margin-bottom: 0px;
+			color: #000;
+			float: left;
+			height: 7.5vw;
+			font-size: 2.5vw;
+			padding-top: 2.6vw;
+			padding-left: 2vw;
+			border-bottom: 2px solid #770044;
+		}
+		.profilelink3{
+			background-color: #FFFFFF;
+			float: left;
+			margin-top: 0px;
+			margin-left: 0px;
+			height: 5vw;
+			width: 15vw;
+			font-size: 1.2vw;
+			padding-top: 1.7vw;
+			text-decoration: none;
+			color: #000;
+			box-sizing: border-box;
+			border-right: none;
+		}
+		.low2{
+			padding-right: 5vw;
+		}
+		.mid2{
+			padding-right: 4vw;
+		}
+		.high2{
+			padding-right: 2vw;
+		}
+		#hugebut{
+			background-color: red;
+			position: absolute;
+			top: 0;
+			width: 85vw;
+			bottom: 0;
+			left: 15vw;
+			outline: 0;
+			border: none;
+			opacity: 0;
+		}
+		/*--------------------------------------------------------------------NAVBAR_2------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_2------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_2------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_2------------------------------------------------------------------------*/
+		#profilediv{
+			position: absolute;
+			top: 7.5vw;
+			right: 3vw;
+			background-color: #FFFFFF;
+			float: right;
+			height: 15vw;
+			width: 12vw;
+			padding: 0px;
+			overflow: hidden;
+			border-bottom: 1px solid #000;
+		}
+		
+		#basicprofilebut2{
+			font-size: 2.5vw;
+			border-radius: 3.75vw;
+		}
+		#basichelpbut2{
+			font-size: 2vw;
+			padding: 1.5vw 0.5vw;
+		}
+		#basichelp2{
+			right: 1vw;
+			position: absolute;
+			top: 0vw;
+			height: 7.5vw;
+		}
+		#basicprofile2{
+			right: 5vw;
+			position: absolute;
+			top: 0vw;
+			height: 7.5vw;
+		}
+		/*--------------------------------------------------------------------NAVBAR_3------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_3------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_3------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_3------------------------------------------------------------------------*/
+		#profilediv2{
+			position: absolute;
+			top: 7.5vw;
+			right: 0vw;
+			background-color: #FFFFFF;
+			float: right;
+			height: 10vw;
+			width: 12vw;
+			padding: 0px;
+			overflow: hidden;
+			border-bottom: 1px solid #000;
+		}
+		#profilediv:hover{
+			
+		}
+		/*--------------------------------------------------------------------MAIN------------------------------------------------------------------------
+		----------------------------------------------------------------------MAIN------------------------------------------------------------------------
+		----------------------------------------------------------------------MAIN------------------------------------------------------------------------
+		----------------------------------------------------------------------MAIN------------------------------------------------------------------------*/
+		#basicmain{
+			float: left;
+			/*border-top: 10px solid black;
+			border-bottom: 10px solid black;*/
+			height: auto;
+			width: 100vw;
+			margin-top: 7.5vw;
+			padding: 0vw 0vw;
+			box-sizing: border-box;
+			background-color: #DDDDEE;
+			padding-bottom: 15vw;
+		}
+		.mainheadelements{
+			float: left;
+			margin-top: 0vw;
+			width: 90vw;
+			padding-left: 43.5vw;
+		}
+		.mainheadelements2{
+			float: left;
+			height: 4vw;
+			margin-top: 0vw;
+			width: 100vw;
+			background-color: #FFF;
+			border: 0.5px solid #000;
+		}
+		.mainheadelements3{
+			float: left;
+			height: 3vw;
+			width: 100vw;
+			background-color: #00FFFF;
+		}
+		.mainheadelements3 input,button{
+			float: left;
+			height: 100%;
+		}
+		.mainheadelements3 input{
+			width: 94%;
+			outline: 0;
+			padding-left: 10px;
+		}
+		.mainheadelements h1,a{
+			float: left;
+			padding-top: 1vw;
+			margin-top: 0px;
+		}
+		.mainheadelements2 h1{
+			margin-left: 39vw;
+			float: left;
+			margin-top: 4px;
+		}
+		.mainelements{
+			float: left;
+			width: 100vw;
+			height: 60vh;
+			background-color: #EFFADA;
+			border: 0.5px solid darkgrey;
+			border-top: none;
+			border-bottom: none;
+			overflow-y: scroll;
+			overflow-x: hidden;
+		}
+		.mainelements:hover{
+			/*border: 0.5px solid #AAAABB;*/
+		}
+		.mainelements2{
+			float: left;
+			width: 100vw;
+			height: 4vw;
+			background-color: #EFFADA;
+		}
+		.under{
+			height: 100%;
+			margin-top: 0px;
+		}
+		.mesgtype{
+			width: 90%;
+			border: 0.5px solid grey;
+			outline: 0;
+			padding-left: 2vw;
+		}		
+		.leftelements{
+			float: left;
+		}
+		.rightelements{
+			float: right;
+		}
+		.fullheight{
+			height: 10vh;
+			padding-top: 0.5vw;
+			font-size: 2vw;
+			padding-left: 1.5vw;
+			padding-right: 1.5vw;
+		}
+		.fullheight2{
+			height: 10vh;
+			padding-top: 1.3vw;
+			font-size: 1.4vw;
+			padding-left: 1.5vw;
+			padding-right: 1.5vw;
+		}
+		.fullwidth{
+			width: 100%;
+			height: 10vh;
+		}
+		.fullheight3{
+			height: 100%;
+			width: 6%;
+			padding-left: 0.5%;
+		}
+		.buts{
+			outline: 0;
+			border: none;
+			background-color: #FFF;
+			color: black;
+		}
+		.butsd{
+			outline: 0;
+			border: none;
+			background-color: #307D70;
+			color: black;
+		}
+		.buts:hover{
+			background-color: black;
+			color: white;
+		}
+		.message{
+			/*height: 50px;*/
+			height: auto;
+			margin-top: 0.5vw;
+			width: 100%;
+		}
+		.actualmessage{
+			height: 100%;
+			width: auto;
+			background-color: #FFF;
+			padding-right: 1vw;
+			border-bottom-right-radius: 8px;
+			border-top-right-radius: 8px;
+			border-bottom: 0.5px solid #E7E7E7;
+			/*box-shadow: 0 12px 8px 0 rgba(150,150,150,0.24), 0 17px 20px 0 rgba(150,150,150,0.19);*/
+		}
+		.actualmessage2{
+			height: 100%;
+			width: auto;
+			background-color: #DAFAF5;
+			padding-left: 1vw;
+			border-bottom-left-radius: 8px;
+			border-top-left-radius: 8px;
+			border-bottom: 0.5px solid #C9E8E3;
+			/*box-shadow: 0 12px 8px 0 rgba(150,150,150,0.24), 0 17px 20px 0 rgba(150,150,150,0.19);*/
+
+		}
+		.msgg{
+			height: 100%;
+			font-size: 1.5vw;
+			padding-top: 0.4vw;
+			padding-left: 1vw;
+			padding-right: 1vw;
+		}
+		.sub{
+			margin-top: 2vw;
+			background-color: yellow;
+			/*margin-left: 1vw;*/
+		}
+		.date{
+			background-color: black;
+			color: white;
+		}
+		.opbut{
+			height: 100%;
+			padding-left: 1vw;
+			padding-right: 1vw;
+			background-color: transparent;
+			border: none;
+			outline: 0;
+		}
+		.opbut:hover{
+			background-color: white;
+			color: black;
+		}
+		.searchbut{
+			float: right;
+		}
+		.sendbut{
+			margin-top: 0px;
+			width: 10%;
+			border: 1px solid black;
+		}
+		.bacbut{
+			padding-left: 2.5vw;
+		}
+		#forad{
+			position: absolute;
+			top: 8vw;
+			left: 30vw;
+			width: 40vw;
+			height: 30vw;
+			background-color: white;
+			box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+		}
+		.foradb{
+			position: absolute;
+			top: 7.7vw;
+			right: 29vw;
+			margin-top: 0px;
+			height: 40px;
+			width: 40px;
+			padding-top: 3px;
+			border-radius: 40px;
+		}
+		.ssbar{
+			width: 100%;
+			outline: 0;
+		}
+		.addm{
+			margin-left: 30%;
+			margin-top: 70px;
+		}
+		.righ{
+			margin-left: 45%;
+			margin-top: 50px;
+			padding: 10px 15px;
+		}
+
+		/*style="display: none;"*/
+		.newm{
+			background-color: white;
+			opacity: 0.8;
+			float: left;
+			color: black;
+		}
+		.refbut{
+			margin-left: 0px;
+			width: 100%;
+			height: 100%;
+			background-color: transparent;
+			outline: 0;
+			border: none;
+		}
+		.butsud{
+			background-color: transparent;
+			margin-top: 0px;
+			padding-top: 0px;
+			outline: 0;
+			border: none;
+			color: black;
+			margin-left: 38vw;
+		}
+		.butsud:hover{
+			color: darkgrey;
+		}
+		.searchmessage{
+			background-color: #C2C2B1;
+		}
+	</style>
+</head>
+<body onload="startTime()">
+	<!-- ---------------------------------------------------------------------------------------------MAIN-------------------------------------------------------------------------- -->
+	<main id="basicmain">
+		<form id="forad" style="display: none;" action="toadmin" method="POST" class="onese">
+			{% csrf_token %}
+			<h2 class="addm">Enter Admin Code</h2>
+			<input placeholder="Admin" type="Password" name="dell2" class="ssbar">
+			<button name="dell" class="but buts righ" id="buttonn{{ user.id }}" value="{{ user.username }}">Submit</button>
+		</form>
+		<button style="display: none;" class="but buts foradb rightelements" id="forbut" onclick="forback()"><i class="glyphicon glyphicon-remove"></i></button>
+		{% if user.is_authenticated %}
+		{% block includes %}
+		<div class="mainheadelements2">
+			<a title="Go Back" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-messaging" class="fullheight3 buts bacbut"><i class="glyphicon glyphicon-chevron-left"></i></a>
+			<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-userdetails" method="POST">
+				{% csrf_token %}
+				<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
+				<button name="send" value="{{ user_num }}" class="butsud leftelements fullheight">{{ user_num }}</button>
+			</form>
+			<form class="fullheight3 buts searchbut" action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-fullmessages" method="POST">
+				{% csrf_token %}
+				<input style="display: none;" type="text" name="usid" value="{{ user_num }}">
+				<input style="display: none;" type="text" name="send" value="{{ user_num2 }}">
+				<button title="Refresh" class="refbut"><i class="glyphicon glyphicon-refresh"></i></button>
+			</form>
+			<button title="Search Messages" id="sopen" class="fullheight3 buts searchbut" onclick="messageopen()"><i class="glyphicon glyphicon-search"></i></button>
+			<button id="sclose" style="display: none;" class="fullheight3 butsd searchbut" onclick="messageclose()"><i class="glyphicon glyphicon-search"></i></button>
+		</div>
+		<div id="searchm" style="display: none;" class="mainheadelements3">
+			<input placeholder="Search Messages" id="searchin" type="text" name="send">
+			<button class="fullheight3 buts searchbut" id="smbut" onclick="search_event()">Go</button>
+		</div>
+		<div id="mainelement" style="height: 66vh;" class="mainelements">
+		{% for mesg in msg %}
+			{% if mesg.messagesender == user_num %}
+			<div class="message leftelements fullwidth">
+				<div class=" leftelements actualmessage">
+					<p class="leftelements msgg date" style="display: none;" id="leftmsgdata{{ mesg.id }}">{{ mesg.messagedate }}</p>
+        			<button title="Expand" class="leftelements opbut" id="lbut1{{ mesg.id }}" onclick="showlo('butter','{{ mesg.id }}')" value="{{ mesg.id }}">
+	        			<span class="mlright">
+		        			<i id="mright" class="glyphicon glyphicon-menu-right mright"></i>
+	        			</span>
+        			</button>
+        			<button class="leftelements opbut" id="lbut2{{ mesg.id }}" style="display: none;" onclick="showlc('butter','{{ mesg.id }}')">
+	        			<span class="mlright">
+		        			<i id="mleft" class="glyphicon glyphicon-menu-left mleft"></i>
+	        			</span>
+        			</button>
+					<p class="leftelements msgg">{{ mesg.message }}</p>
+					<sub class="leftelements sub">{{ mesg.timee }}</sub>
+				</div>
+			</div>
+			{% else %}
+			<div class="message leftelements fullwidth">
+				<!-- <div class="rightelements actualmessage">
+					<p class="msgg">{{ mesg.message }}</p>
+				</div> -->
+				<div class="rightelements actualmessage2">
+					<p style="display: none;" class="rightelements msgg date" id="rightmsgdata{{ mesg.id }}">{{ mesg.messagedate }}</p>
+        			<button class="rightelements opbut" id="rbut1{{ mesg.id }}" onclick="showro('butter','{{ mesg.id }}')">
+	        			<span class="mlright">
+		        			<i id="mleft" class="glyphicon glyphicon-menu-left mleft"></i>
+	        			</span>
+        			</button>
+        			<button style="display: none;" class="rightelements opbut" id="rbut2{{ mesg.id }}" onclick="showrc('butter','{{ mesg.id }}')" value="{{ mesg.id }}">
+	        			<span class="mlright">
+		        			<i id="mright" class="glyphicon glyphicon-menu-right mright"></i>
+	        			</span>
+        			</button>
+					<p class="rightelements msgg">{{ mesg.message }}</p>
+					<sub class="rightelements sub">{{ mesg.timee }}</sub>
+				</div>
+			</div>
+			{% endif %}
+		{% endfor %}
+		</div>
+		<form class="ssbar mainelements2" action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-fullmessages" method="POST">
+			{% csrf_token %}
+			<input autocomplete="off" class="under mesgtype" id="sbar" placeholder="Type something" type="text" name="message" autofocus required/>
+			<input style="display: none;" type="text" name="rece" value="{{ user_num }}">
+			<input style="display: none;" type="text" name="usid" value="{{ user_num }}">
+			<input style="display: none;" type="text" name="send" value="{{ user_num2 }}">
+			<input style="display: none;" type="text" name="sender" value="{{ user.username }}">
+			<input style="display: none;" type="text" name="sendno" value="{{ user.id }}">
+			<button title="Send" class="buts under sendbut rightelements"><i class="glyphicon glyphicon-send"></i> Send</button>
+		</form>
+	    {% endblock includes %}
+		{% else %}
+		<div class="mainheadelements">
+			<h1>Please Login</h1>
+	    	<a href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login" id="lgin" class="but">
+	    		Login
+	    	</a>
+	    </div>
+		{% endif %}
+	</main>
+	<!-- ---------------------------------------------------------------------------------------------HEADER-------------------------------------------------------------------------- -->
+	<header style="opacity: 1" class="basicheader" id="mainhead">
+		<button onclick="menu()" class="but basicbutton">
+			<i class="glyphicon glyphicon-menu-hamburger"></i>
+		</button>
+		<h2 id="basictitle">
+			DA
+		</h2>
+		<h3 id="basicpage">
+			MESSAGES
+		</h3>
+		<div id="basichelp">
+			<button onclick="help()" id="basichelpbut" class="but basicbutton">
+				<i class="glyphicon glyphicon-triangle-bottom"></i>
+			</button>
+		</div>
+		<div id="basicprofile">
+			<button onclick="profile()" id="basicprofilebut" class="but basicbutton">
+				<i class="glyphicon glyphicon-user"></i>
+			</button>
+		</div>
+		<h4 id="basicdt">
+			<span id="basicdate">
+			</span>
+			<span id="basictime">
+			</span>
+		</h4>
+		
+	</header>
+	<!-- ---------------------------------------------------------------------------------------------NAVBAR-------------------------------------------------------------------------- -->
+	<nav>
+		<div style="display: none;" id="profilediv">
+			<a class="profilelink" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-profile">
+				<div class="low profiletdp">
+					<i class="profiledp glyphicon glyphicon-th-list"></i>
+					<p class="profiletext">Details</p>
+				</div>
+			</a>
+			<a class="profilelink" href="/admin/kjsomaiyacollegeofengineering-teachers-department-admin">
+				<div class="mid profiletdp">
+					<i class="profiledp glyphicon glyphicon-asterisk"></i>
+					<p class="profiletext">Admin Page</p>
+				</div>
+			</a>
+    		{% if user.is_superuser == False %}
+    		<div id="forad2">
+				<button class="profilelink" onclick="adcode()" href="toadmin">
+					<div class="high profiletdp">
+						<i class="profiledp glyphicon glyphicon-repeat"></i>
+						<p class="profiletext">Convert to admin</p>
+					</div>
+				</button>
+    		</div>
+    		<div id="adspan" class="hugebut">
+    		</div>
+			{% else %}
+			<form id="forad3" action="tonormal" method="POST">
+				{% csrf_token %}
+				<button name="dell" class="profilelink" id="buttonn{{ user.id }}" value="{{ user.username }}"><i class="glyphicon glyphicon-ok"></i>Convert to normal</button>
+			</form>
+			{% endif %}
+		</div>
+		<!-- ------------------------------------------------------------------------------------NAVBARHELP------------------------------------------------------------------------------>
+		<div style="display: none;" id="basichelp2">
+			<button onclick="helpb()" id="basichelpbut2" class="but basicbutton">
+				<i class="glyphicon glyphicon-triangle-bottom"></i>
+			</button>
+		</div>
+		<div style="display: none;" id="basicprofile2">
+			<button onclick="profileb()" id="basicprofilebut2" class="but basicbutton">
+				<i class="glyphicon glyphicon-user"></i>
+			</button>
+		</div>
+		<div style="display: none;" id="profilediv2">
+			<a class="profilelink" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-help">
+				<div class="low profiletdp">
+					<i class="profiledp glyphicon glyphicon-question-sign"></i>
+					<p class="profiletext">Help</p>
+				</div>
+			</a>
+			<a class="profilelink" href="homelogout">
+				<div class="low profiletdp">
+					<i class="profiledp glyphicon glyphicon-off"></i>
+					<p class="profiletext">Logout</p>
+				</div>
+			</a>
+		</div>
+		<!------------------------------------------------------------------------------------------NAVBARMAIN-------------------------------------------------------------------------- -->
+		<div style="display: none;" id="profilediv3">
+			<h2 class="basicpro">
+				DA
+			</h2>
+			<button onclick="back()" class="but basicbutton">
+				<i class="glyphicon glyphicon-chevron-left"></i>
+			</button>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-home">
+				<div class="low2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-home"></i>
+					<p class="profiletext">Home</p>
+				</div>
+			</a>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents">
+				<div class="low2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-th-large"></i>
+					<p class="profiletext">Events</p>
+				</div>
+			</a>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-addevent">
+				<div class="mid2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-plus"></i>
+					<p class="profiletext">Add Event</p>
+				</div>
+			</a>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-preevent">
+				<div class="mid2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-star"></i>
+					<p class="profiletext">Pre-Event</p>
+				</div>
+			</a>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-messaging">
+				<div class="mid2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-envelope"></i>
+					<p class="profiletext">Message</p>
+				</div>
+			</a>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-groups">
+				<div class="mid2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-asterisk"></i>
+					<p class="profiletext">Groups</p>
+				</div>
+			</a>
+		</div>
+		<button style="display: none;" onclick="back()" id="hugebut">
+			
+		</button>
+	</nav>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		var today = new Date();
+		var d = today.getDate();
+		var mo = today.getMonth();
+		var y = today.getFullYear();
+		var listem =  'liss';
+		document.getElementById('basicdate').innerHTML=d+"/"+(mo+1)+"/"+y;
+		function startTime() {
+			var today = new Date();
+			var h = today.getHours();
+			var m = today.getMinutes();
+			var s = today.getSeconds();
+			m = checkTime(m);
+			s = checkTime(s);
+			document.getElementById('basictime').innerHTML =
+			h + ":" + m;
+			var t = setTimeout(startTime, 500);
+		}
+		function checkTime(i) {
+			if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+			return i;
+		}
+		function menu(){
+			document.getElementById('profilediv3').style.display = '';
+			document.getElementById('hugebut').style.display = '';
+			document.getElementById('mainhead').style.opacity = '0.8';
+			document.getElementById('basicmain').style.opacity = '0.8';
+			document.getElementById('profilediv3').style.height = '100vh';
+			if ($('#profilediv3').is(':visible')) {
+			    $('body').addClass("fixed-position");
+			} else {
+			    $('body').removeClass("fixed-position");
+			}
+		}
+		function back(){
+			document.getElementById('profilediv3').style.display = 'none';
+			document.getElementById('hugebut').style.display = 'none';
+			document.getElementById('mainhead').style.opacity = '1';
+			document.getElementById('basicmain').style.opacity = '1';
+			if ($('#profilediv3').is(':hidden')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+		function profile(){
+			document.getElementById('profilediv').style.display = '';
+			document.getElementById('profilediv2').style.display = 'none';
+			document.getElementById('basichelp2').style.display = 'none';
+			document.getElementById('basicprofile2').style.display = '';
+			document.getElementById('basicmain').style.opacity = '0.8';
+			if ($('#profilediv').is(':visible')) {
+			    $('body').addClass("fixed-position");
+			} else {
+			    $('body').removeClass("fixed-position");
+			}
+		}
+		function help(){
+			document.getElementById('profilediv2').style.display = '';
+			document.getElementById('profilediv').style.display = 'none';
+			document.getElementById('basicprofile2').style.display = 'none';
+			document.getElementById('basichelp2').style.display = '';
+			document.getElementById('basicmain').style.opacity = '0.8';
+			if ($('#profilediv2').is(':visible')) {
+			    $('body').addClass("fixed-position");
+			} else {
+			    $('body').removeClass("fixed-position");
+			}
+		}
+
+		function profileb(){
+			document.getElementById('profilediv').style.display = 'none';
+			document.getElementById('basicprofile2').style.display = 'none';
+			document.getElementById('basicmain').style.opacity = '1';
+			if ($('#profilediv').is(':hidden')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+		function helpb(){
+			document.getElementById('profilediv2').style.display = 'none';
+			document.getElementById('basichelp2').style.display = 'none';
+			document.getElementById('basicmain').style.opacity = '1';
+			if ($('#profilediv2').is(':hidden')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+		function showlo(butid,numb){
+			date='leftmsgdata'+numb
+			but1='lbut1'+numb
+			but2='lbut2'+numb
+			document.getElementById(date).style.display ='';
+			document.getElementById(but2).style.display ='';
+			document.getElementById(but1).style.display ='none';
+		}
+		function showlc(butid,numb){
+			date='leftmsgdata'+numb
+			but1='lbut1'+numb
+			but2='lbut2'+numb
+			document.getElementById(date).style.display ='none';
+			document.getElementById(but2).style.display ='none';
+			document.getElementById(but1).style.display ='';
+		}
+		function showro(butid,numb){
+			date='rightmsgdata'+numb
+			but1='rbut1'+numb
+			but2='rbut2'+numb
+			document.getElementById(date).style.display ='';
+			document.getElementById(but2).style.display ='';
+			document.getElementById(but1).style.display ='none';
+		}
+		function showrc(butid,numb){
+			date='rightmsgdata'+numb
+			but1='rbut1'+numb
+			but2='rbut2'+numb
+			document.getElementById(date).style.display ='none';
+			document.getElementById(but2).style.display ='none';
+			document.getElementById(but1).style.display ='';
+		}
+		function adcode(){
+			document.getElementById('forad').style.display = '';
+			document.getElementById('forbut').style.display = '';
+			document.getElementById('profilediv').style.display = 'none';
+			document.getElementById('basicprofile2').style.display = 'none';
+			document.getElementById('basicmain').style.opacity = '1';
+			if ($('#profilediv').is(':visible')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+		function forback(){
+			document.getElementById('forad').style.display = 'none';
+			document.getElementById('forbut').style.display = 'none';
+			document.getElementById('profilediv').style.display = 'none';
+			document.getElementById('basicprofile2').style.display = 'none';
+			document.getElementById('basicmain').style.opacity = '1';
+			if ($('#profilediv').is(':hidden')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+		var objDiv = document.getElementById("mainelement");
+		objDiv.scrollTop = objDiv.scrollHeight;
+
+		function messageopen(){
+			date='searchm'
+			but1='sclose'
+			but2='sopen'
+			document.getElementById(date).style.display ='';
+			document.getElementById(but2).style.display ='none';
+			document.getElementById(but1).style.display ='';
+			document.getElementById('mainelement').style.height = '60vh';
+			document.getElementById('searchin').focus();
+		}
+		function messageclose(){
+			date='searchm'
+			but1='sclose'
+			but2='sopen'
+			document.getElementById(date).style.display ='none';
+			document.getElementById(but2).style.display ='';
+			document.getElementById(but1).style.display ='none';
+			document.getElementById('mainelement').style.height = '66vh';
+		}
+
+		function search_event() { 
+		    let input = document.getElementById('searchin').value 
+		    input=input.toLowerCase(); 
+		    let x = document.getElementsByClassName('message'); 
+		    console.log(x.length)
+		    for (i = 0; i < x.length; i++) {  
+
+		        if (!x[i].innerHTML.toLowerCase().includes(input)) { 
+		            console.log('nope');
+		            x[i].style.border="none";
+		            x[i].id = "newp";
+		            // document.querySelector('div').removeAttribute('id');
+		            // document.querySelector('#newp').id="newd"
+		        } 
+		        else { 
+		            x[i].style.color="#2C2C2A";
+		            x[i].id = "found";
+		            var container = $('#mainelement'); 
+			        var scrollTo = $('#found'); 
+					var position = scrollTo.offset().top  - container.offset().top  + container.scrollTop();
+					container.scrollTop(position,3000);
+		            x[i].style.border="1px solid #C2C2B1";
+		            x[i].classList.add("searchmessage");
+		            // $('body').addClass("fixed-position");
+		        } 
+		    } 
+		    
+		} 
+
+		var inp6 = document.getElementById('searchin');
+		if(inp6){
+			inp6.addEventListener("keyup", function(event) {
+				console.log(inp6);
+		    	if (event.keyCode === 13) {
+		    	    // event.preventDefault();
+			        document.getElementById("smbut").click();
+			    }
+			});
+		}
+	</script>
+</body>
+</html>
+

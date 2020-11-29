@@ -1,0 +1,1085 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Home DepAct
+	</title>
+	<link rel="icon" type="image/png" href="{% static 'kj.png' %}">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<style type="text/css">
+		body{
+			background-color: #000;
+			font-family: Calibri;
+			overflow-x: hidden;
+		}
+		nav{
+			background-color: yellow;
+			width: 100vw;
+			overflow-x: hidden;
+		}
+		::-webkit-scrollbar {
+		    /*width: 0px;   Remove scrollbar space */
+		    /*background: white;*/  /* Optional: just make scrollbar invisible */
+		    background-color: #FFF;
+		    width: 10px;
+		}
+		::-webkit-scrollbar-thumb{
+			background-color: #17252A;
+			border-radius: 8px;
+		}
+		 .fixed-position {
+	    	position: fixed;
+		}
+		/*--------------------------------------------------------------------HEADER------------------------------------------------------------------------
+		----------------------------------------------------------------------HEADER------------------------------------------------------------------------
+		----------------------------------------------------------------------HEADER------------------------------------------------------------------------
+		----------------------------------------------------------------------HEADER------------------------------------------------------------------------*/
+		.basicheader{
+			float: left;
+			background-color: #FFFFFF;
+			width: 100vw;
+			position: fixed;
+			/*box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);*/
+			font-family: Calibri;
+			border-bottom: 1px solid #AAAABB;
+		}
+		.but{
+			outline: 0;
+			border: none;
+		}
+		.basicbutton{
+			padding: 2vw 2.5vw;
+			float: left;
+			color: black;
+			background-color: #FFFFFF;
+			font-size: 2.5vw;
+			height: 7.5vw;
+		}
+		.basicbutton:hover{
+			color: #FFF;
+			background-color: #000;
+		}
+		#basictitle, #basicpage{
+			margin-top: 0px;
+			margin-bottom: 0px;
+			color: #000;
+			float: left;
+			height: 7.5vw;
+			font-size: 2.5vw;
+			padding-top: 2.3vw;
+		}
+		#basictitle{
+			padding-left: 2vw;
+			padding-right: 2vw;
+		}
+		#basicpage{
+			margin-left: 32vw;
+		}
+		#basicdt{
+			margin-left: 6.5vw;
+			font-size: 2vw;
+			float: right;
+			margin-top: 0px;
+			margin-bottom: 0px;
+			height: 7.5vw;
+			width: 20vw;
+			padding-top: 2.5vw;
+			padding-left: 1vw;
+			color: #000;
+		}
+		#basicprofile, #basichelp{
+			float: right;
+			height: 7.5vw;
+			margin-right: 1vw;
+		}
+		#basicprofilebut{
+			font-size: 2.5vw;
+			border-radius: 8vw;
+		}
+		#basichelpbut{
+			font-size: 2vw;
+			padding: 1.5vw 0.5vw;
+		}
+		#basichelp{
+			width: 3vw;
+		}
+		#basictime{
+			margin-left: 3vw;
+		}
+		/*--------------------------------------------------------------------BASIC NAV BAR CONTENT STYLES------------------------------------------------------------------------
+		----------------------------------------------------------------------BASIC NAV BAR CONTENT STYLES------------------------------------------------------------------------
+		----------------------------------------------------------------------BASIC NAV BAR CONTENT STYLES------------------------------------------------------------------------
+		----------------------------------------------------------------------BASIC NAV BAR CONTENT STYLES------------------------------------------------------------------------*/
+		.profilelink{
+			background-color: #FFFFFF;
+			float: left;
+			margin-top: 0px;
+			margin-left: 0px;
+			height: 5vw;
+			width: 12vw;
+			font-size: 1vw;
+			padding-top: 1.7vw;
+			text-decoration: none;
+			color: #000;
+			box-sizing: border-box;
+			border-left: 1px solid #000;
+			border-right: 1px solid #000;
+			outline: 0;
+			border: none;
+		}
+		.profilelink:hover{
+			background-color: #000;
+			color: #FFF;
+			/*text-shadow: 0px 2px 10px #C770A4, 2px 0px 10px #C770A4, -2px 0px 10px #C770A4, 0px -2px 10px #C770A4;*/
+			border-bottom: 2px solid #CCCCCC;
+		}
+		.profiletdp{
+			width: 100%;
+			float: left;
+		}
+		.profiletext{
+			float: right;
+			margin-top: 0px;
+		}
+		.profiledp{
+			float: right;
+			height: 1.6vw;
+			font-size: 1.1vw;
+			padding-left: 0.5vw;
+			padding-right: 0.5vw;
+			padding-top: 0.2vw;
+		}
+		button .profiledp{
+			padding-top: 0vw;
+		}
+		.low{
+			padding-right: 3.6vw;
+		}
+		.mid{
+			padding-right: 2vw;
+		}
+		.high{
+			padding-right: 0.2vw;
+		}
+
+		/*--------------------------------------------------------------------NAVBAR_1------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_1------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_1------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_1------------------------------------------------------------------------*/
+		#profilediv3{
+			position: absolute;
+			top: 0vw;
+			bottom: 0;
+			background-color: #FFFFFF;
+			width: 15vw;
+			border-right: 1px solid #000;
+			box-sizing: content-box;
+		}
+		.basicpro{
+			background-color: #FFFFFF;
+			width: 7.5vw;
+			margin-top: 0px;
+			margin-bottom: 0px;
+			color: #000;
+			float: left;
+			height: 7.5vw;
+			font-size: 2.5vw;
+			padding-top: 2.6vw;
+			padding-left: 2vw;
+			border-bottom: 2px solid #770044;
+		}
+		.profilelink3{
+			background-color: #FFFFFF;
+			float: left;
+			margin-top: 0px;
+			margin-left: 0px;
+			height: 5vw;
+			width: 15vw;
+			font-size: 1.2vw;
+			padding-top: 1.7vw;
+			text-decoration: none;
+			color: #000;
+			box-sizing: border-box;
+			border-right: none;
+		}
+		.low2{
+			padding-right: 5vw;
+		}
+		.mid2{
+			padding-right: 4vw;
+		}
+		.high2{
+			padding-right: 2vw;
+		}
+		#hugebut{
+			background-color: red;
+			position: absolute;
+			top: 0;
+			width: 85vw;
+			bottom: 0;
+			left: 15vw;
+			outline: 0;
+			border: none;
+			opacity: 0;
+		}
+		/*--------------------------------------------------------------------NAVBAR_2------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_2------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_2------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_2------------------------------------------------------------------------*/
+		#profilediv{
+			position: absolute;
+			top: 7.5vw;
+			right: 3vw;
+			background-color: #FFFFFF;
+			float: right;
+			height: 15vw;
+			width: 12vw;
+			padding: 0px;
+			overflow: hidden;
+			border-bottom: 1px solid #000;
+		}
+		
+		#basicprofilebut2{
+			font-size: 2.5vw;
+			border-radius: 3.75vw;
+		}
+		#basichelpbut2{
+			font-size: 2vw;
+			padding: 1.5vw 0.5vw;
+		}
+		#basichelp2{
+			right: 1vw;
+			position: absolute;
+			top: 0vw;
+			height: 7.5vw;
+		}
+		#basicprofile2{
+			right: 5vw;
+			position: absolute;
+			top: 0vw;
+			height: 7.5vw;
+		}
+		/*--------------------------------------------------------------------NAVBAR_3------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_3------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_3------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_3------------------------------------------------------------------------*/
+		#profilediv2{
+			position: absolute;
+			top: 7.5vw;
+			right: 0vw;
+			background-color: #FFFFFF;
+			float: right;
+			height: 10vw;
+			width: 12vw;
+			padding: 0px;
+			overflow: hidden;
+			border-bottom: 1px solid #000;
+		}
+		#profilediv:hover{
+			
+		}
+		/*--------------------------------------------------------------------MAIN------------------------------------------------------------------------
+		----------------------------------------------------------------------MAIN------------------------------------------------------------------------
+		----------------------------------------------------------------------MAIN------------------------------------------------------------------------
+		----------------------------------------------------------------------MAIN------------------------------------------------------------------------*/
+		#basicmain{
+			float: left;
+			/*border-top: 10px solid black;
+			border-bottom: 10px solid black;*/
+			height: auto;
+			width: 100vw;
+			margin-top: 7.5vw;
+			padding: 0vw 0vw;
+			box-sizing: border-box;
+			background-color: #DDDDEE;
+			padding-bottom: 15vw;
+		}
+		.mainheadelements{
+			float: left;
+			margin-top: 1vw;
+			width: 100vw;
+		}
+		.mainheadelements2{
+			float: left;
+			margin-top: 0.5vw;
+			width: 100vw;
+			padding-top: 0.5vw;
+			padding-left: 43.5vw;
+			background-color: #FFFFFF;
+		}
+		.mainheadelements h1{
+			float: left;
+			margin-top: 0px;
+			margin-left: 2vw;
+			font-size: 1.5vw;
+		}
+		.mainheadelements2 h1{
+			float: left;
+			margin-top: 0px;
+		}
+		.mainelements{
+			float: left;
+			margin-left: 5vw;
+			margin-right: 5vw;
+			margin-top: 5vw;
+			width: 40vw;
+			height: 20vw;
+			background-color: #FFFFFF;
+			border: 0.5px solid #AAAABB;
+		}
+		.mainelements:hover{
+			transform: scale(1.01);
+			border: 0.5px solid #AAAABB;
+		}
+		.leftelements{
+			float: left;
+		}
+		.rightelements{
+			float: right;
+		}
+		.noti{
+			width: 100%;
+			background-color: #FECE7A;
+			border-top-right-radius: 20px;
+			border-bottom-right-radius: 20px;
+			padding: 10px 15px;
+			font-size: 1.2vw;
+			height: auto;
+		}
+		.noti:hover{
+			background-color: #FBC463;
+		}
+		.noti100{
+			width: 100%;
+			background-color: #DFAE55;
+			border-top-right-radius: 20px;
+			border-bottom-right-radius: 20px;
+			padding: 10px 15px;
+			font-size: 1.2vw;
+			height: auto;
+		}
+		.noti100:hover{
+			background-color: #D49E3B;
+		}
+		.noti2{
+			width: 100%;
+			background-color: #B4ED4F;
+			border-top-right-radius: 20px;
+			border-bottom-right-radius: 20px;
+			padding: 10px 15px;
+			font-size: 1.2vw;
+			height: 20%;
+		}
+		.noti2:hover{
+			background-color: #A0C858;
+		}
+		.noti4{
+			width: 100%;
+			background-color: #4FED9C;
+			border-top-right-radius: 20px;
+			border-bottom-right-radius: 20px;
+			padding: 10px 15px;
+			font-size: 1.2vw;
+			height: 20%;
+		}
+		.noti4:hover{
+			background-color: #57C28C;
+		}
+		.noti5{
+			width: 100%;
+			background-color: #AB6CEE;
+			border-top-right-radius: 20px;
+			border-bottom-right-radius: 20px;
+			padding: 10px 15px;
+			font-size: 1.2vw;
+			height: 20%;
+		}
+		.noti5:hover{
+			background-color: #8B4BD0;
+		}
+		.noti6{
+			width: 100%;
+			background-color: #EE6CC7;
+			border-top-right-radius: 20px;
+			border-bottom-right-radius: 20px;
+			padding: 10px 15px;
+			font-size: 1.2vw;
+			height: auto;
+		}
+		.noti7{
+			width: 100%;
+			background-color: #EDEB4F;
+			border-top-right-radius: 20px;
+			border-bottom-right-radius: 20px;
+			padding: 10px 15px;
+			font-size: 1.2vw;
+			height: auto;
+		}
+		.noti3{
+			width: 100%;
+			background-color: #ED604F;
+			border-top-right-radius: 20px;
+			border-bottom-right-radius: 20px;
+			color: white;
+			font-size: 1.2vw;
+			height: 20%;
+		}
+		.noti13{
+			width: 100%;
+			background-color: #ED604F;
+			border-top-right-radius: 20px;
+			border-bottom-right-radius: 20px;
+			color: white;
+			font-size: 1.2vw;
+			height: 20%;
+			padding: 10px 15px;
+		}
+		.noti14{
+			width: 100%;
+			background-color: #FA99ED;
+			border-top-right-radius: 20px;
+			border-bottom-right-radius: 20px;
+			color: black;
+			font-size: 1.2vw;
+			height: 20%;
+			padding: 10px 15px;
+		}
+		.notiunder{
+			width: 100%;
+			background-color: #FFFFFF;
+			margin-right: 0px;
+			font-size: 1.2vw;
+			height: 85%;
+			overflow-y: scroll;
+		}
+		.action{
+			width: 27%;
+			background-color: #98D8D8;
+			padding: 10px 15px;
+			font-size: 1.2vw;
+			height: 15%;
+			text-decoration: none;
+			color: black;
+		}
+		.action:hover{
+			background-color: #186868;
+			text-decoration: none;
+			color: white;
+		}
+		.logp{
+			padding-bottom: 41vh;
+		}
+		.butunder{
+			float: left;
+			width: 100vw;
+		}
+		.buts{
+			outline: 0;
+			border: none;
+			background-color: black;
+			color: white;
+		}
+		.buts:hover{
+			background-color: lightgrey;
+			color: black;
+		}
+		#forad{
+			position: absolute;
+			top: 8vw;
+			left: 30vw;
+			width: 40vw;
+			height: 30vw;
+			background-color: white;
+			box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+		}
+		.foradb{
+			position: absolute;
+			top: 7.7vw;
+			right: 29vw;
+			margin-top: 0px;
+			height: 40px;
+			width: 40px;
+			padding-top: 3px;
+			border-radius: 40px;
+		}
+		.ssbar{
+			margin-left: 20%;
+			width: 60%;
+			padding: 10px 10px;
+			margin-top: 30px;
+			outline: 0;
+		}
+		.addm{
+			margin-left: 30%;
+			margin-top: 70px;
+		}
+		.righ{
+			margin-left: 45%;
+			margin-top: 50px;
+			padding: 10px 15px;
+		}
+		.but3{
+			outline: 0;
+			border: none;
+		}
+		.mbutton{
+			outline: 0;
+			border: none;
+			background-color: transparent;
+			color: white;
+			margin-left: 0px;
+			width: 100%;
+			height: 100%;
+			margin-top: 0px;
+			padding: 5px 15px;
+
+		}
+		.glyphicon2{
+			font-size: 12px;
+			margin-left: 0px;
+			margin-top: 6px;
+		}
+		.para2{
+			float: left;
+			margin: 0;
+			width: 20%;
+		}
+		.para{
+			float: left;
+			margin: 0;
+			width: auto;
+			max-width: 80%;
+		    overflow: hidden;
+		    text-overflow: ellipsis;
+		    white-space: nowrap;
+		}
+		.para2{
+			float: left;
+			margin: 0;
+			width: auto;
+			max-width: 80%;
+		    overflow: hidden;
+		    text-overflow: ellipsis;
+		    white-space: nowrap;
+		}
+		a{
+			text-decoration: none;
+		}
+		a:hover{
+			text-decoration: none;
+		}
+	</style>
+</head>
+<body onload="startTime()">
+	<!-- ---------------------------------------------------------------------------------------------MAIN-------------------------------------------------------------------------- -->
+	<main id="basicmain">
+		<form id="forad" style="display: none;" action="toadmin" method="POST" class="onese">
+			{% csrf_token %}
+			<h2 class="addm">Enter Admin Code</h2>
+			<input placeholder="Admin" type="Password" name="dell2" class="ssbar">
+			<button name="dell" class="but buts righ" id="buttonn{{ user.id }}" value="{{ user.username }}">Submit</button>
+		</form>
+		<button style="display: none;" class="but buts foradb rightelements" id="forbut" onclick="forback()"><i class="glyphicon glyphicon-remove"></i></button>
+		{% if user.is_authenticated %}
+		<div class="mainheadelements">
+			<h1>Hello, {{user.first_name}} {{user.last_name}}</h1>
+		</div>
+		<div class="mainheadelements2">
+			<h1>Quick Links</h1>
+		</div>
+		<!-- -------------------------------------------------Notifications of Messages from everyone, done--------------------------------------------------------->
+		<div class="mainelements" >
+			{% if nomessages2 %}
+			<div class="leftelements notiunder">
+				<div class="leftelements noti3">
+					<button style="float: left;" id="ombutton" class="mbutton" onclick="mesgo()"><i style="float: right;" class="glyphicon glyphicon-triangle-right glyphicon2"></i><p style="float: left;">You have a total {{ nomessages2.count }} messages</p></button>
+					<button style="display: none;float: left;" id="cmbutton" class="mbutton" onclick="mesgc()"><i style="float: right;" class="glyphicon glyphicon-triangle-bottom glyphicon2"></i><p style="float: left;">You have a total {{ nomessages2.count }} messages</p></button>
+				</div>
+				<div style="display: none;" id="msgs">
+					{% for nom in nomessages2 %}
+						<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-fullmessages" method="POST">
+							{% csrf_token %}
+							<input style="display: none;" value="{{ nom.messagesenderid }}" type="text" name="send">
+							<button class="leftelements noti2 but3 fullheight" name="usid" value="{{ nom.messagesender }}"><p class="leftelements para2"><b>{{ nom.messagesender }}</b></p><p style="margin-left: 5px;" class="leftelements para">{{ nom.message }}  </p><p style="margin-left: 5px;" class="rightelements para"> [{{ nom.timee }}]</p></button>
+						</form>
+					{% endfor %}
+				</div>
+			</div>
+			{% else %}
+			<div class="leftelements notiunder">
+				<div class="leftelements noti13"><p>No New messages for now</p></div>
+			</div>
+			{% endif %}
+			<a href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-messaging" class="action rightelements">Go to Messages </a>
+		</div>
+		<!-- ----------------------------------------------Notifications of Group Messages from groups , done--------------------------------------------------->
+		{% if group_num %}
+		<div class="mainelements" >
+			<div class="leftelements notiunder">
+				<div class="leftelements noti3">
+					<button style="float: left;" id="gombutton" class="mbutton" onclick="gmesgo()"><i style="float: right;" class="glyphicon glyphicon-triangle-right glyphicon2"></i><p style="float: left;">You have a total {{ group_num.count }} messages from Groups </p></button>
+					<button style="display: none;float: left;" id="gcmbutton" class="mbutton" onclick="gmesgc()"><i style="float: right;" class="glyphicon glyphicon-triangle-bottom glyphicon2"></i><p style="float: left;">You have a total {{ group_num.count }} messages</p></button>
+				</div>
+				<div style="display: none;" class="links" id="gmsgs">
+					{% for user in group_num %}
+					<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-groupmessages" method="POST">
+						{% csrf_token %}
+						<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
+						<button name="send" value="{{ user.groupref.name }}" class="but3 noti2 leftelements fullheight"><p class="leftelements para2"><b>{{ user.groupref.name }}</b></p><p class="leftelements para2" > | {{ user.gmessagesender }} : {{ user.gmessage }}</p></button>
+					</form>
+					{% endfor %}
+				</div>
+			</div>
+			<a href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-groups" class="action rightelements">Go to Groups </a>
+		</div>
+		{% endif %}
+		<!------------------------------------------------------Notifications of Certificates  ,not working-------------------------------------------------------------------->
+		{% if certificate %}
+		<div class="mainelements" >
+			<div class="leftelements notiunder">
+				{% for com in certificate %}
+				<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-eventdetails" method="POST">
+					{% csrf_token %}
+					<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
+					<button name="send" value="{{ com.id }}" class="noti6 but3 leftelements fullheight">Certificate distributions for '{{ com.title }}' is open, Get your certificates now</button>
+				</form>
+				{% endfor %}
+			</div>
+			<a href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents" class="action rightelements">Go to Events </a>
+		</div>
+		{% endif %}
+		<!----------------------------------------------Notifications of incomplete Profile Details  , done---------------------------------------------------------->
+		{% if profile_number %}
+			{% for usering in profile_number %}
+				{% ifequal usering.urref.username user.username %}
+				{% if usering.designation %}
+				{% else %}
+				<div class="mainelements" >
+					<div class="leftelements notiunder">
+						<p class="leftelements noti14 but3 fullheight" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-profile">You need to add more details about you</p>
+					</div>
+					<a href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-profile" class="action rightelements">Go to Profile </a>
+				</div>
+				{% endif %}
+				{% endifequal %}
+			{% endfor %}
+		{% endif %}
+		<!------------------------------------------------------Notifications of adding event, done------------------------------------------------------------------>
+		{% if event_number %}
+		<div class="mainelements" >
+			<div class="leftelements notiunder">
+			{% for event in event_number %}
+				{% ifnotequal event.by.username user.username %}
+				<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-eventdetails" method="POST">
+					{% csrf_token %}
+					<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
+					<button class="leftelements noti but3 fullheight" name="send" value="{{ event.id }}" ><p class="leftelements">'{{ event.title }}' has been added by {{ event.by.first_name }} {{ event.by.last_name }}</p></button>
+				</form>
+				{% else %}
+				<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-eventdetails" method="POST">
+					{% csrf_token %}
+					<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
+					<button class="leftelements noti but3 fullheight" name="send" value="{{ event.id }}" ><p class="leftelements">You added '{{ event.title }}' recently, Check if everything's right</p></button>
+				</form>
+				{% endifnotequal %}
+			{% endfor %}
+			</div>
+			<a href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents" class="action rightelements">Go to Events </a>
+		</div>
+		{% endif %}
+		<!------------------------------------------------------Notifications of adding pre event, done------------------------------------------------------------------>
+		{% if event_number2 %}
+		<div class="mainelements" >
+			<div class="leftelements notiunder">
+			{% for event in event_number2 %}
+				{% ifnotequal event.by.username user.username %}
+				<form>
+					{% csrf_token %}
+					<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
+					<button class="leftelements noti100 but3 fullheight" name="send" value="{{ event.id }}" ><p class="leftelements">'{{ event.description }}' has been added by {{ event.by.first_name }} {{ event.by.last_name }}</p></button>
+				</form>
+				{% else %}
+				<form>
+					{% csrf_token %}
+					<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
+					<button class="leftelements noti100 but3 fullheight" name="send" value="{{ event.id }}" ><p class="leftelements">You added '{{ event.description }}' recently, Check if everything's right</p></button>
+				</form>
+				{% endifnotequal %}
+			{% endfor %}
+			</div>
+			<a href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-preevent" class="action rightelements">Go to Pre-Events </a>
+		</div>
+		{% endif %}
+		<!------------------------------------------------------Notifications of Upcoming events, working------------------------------------------------------------------>
+		{% if event_upcoming %}
+		<div class="mainelements" >
+			<div class="leftelements notiunder">
+			{% for event in event_upcoming %}
+				<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-eventdetails" method="POST">
+					{% csrf_token %}
+					<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
+					<button name="send" value="{{ event.id }}" class="noti4 but3 leftelements fullheight">You have an Upcoming Event '{{ event.title }}'</button>
+				</form>
+			{% endfor %}
+			</div>
+			<a href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents" class="action rightelements">Go to Upcoming </a>
+		</div>
+		{% endif %}
+		<!------------------------------------------------------Notifications of Finished events,dk working--------------------------------------------------------------->
+		{% if user.is_staff == True %}
+		{% if event_finished %}
+		<div class="mainelements" >
+			<div class="leftelements notiunder">
+			{% for event in event_finished %}
+				<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-eventdetails" method="POST">
+					{% csrf_token %}
+					<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
+					<button name="send" value="{{ event.id }}" class="noti5 but3 leftelements fullheight">'{{ event.title }}' has completed, you might want to submit the report</button>
+				</form>
+			{% endfor %}
+			</div>
+			<a href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents" class="action rightelements">Go to Finished </a>
+		</div>
+		{% endif %}
+		{% endif %}
+		<!------------------------------------------------------Notifications of Comments  ,working-------------------------------------------------------------------->
+		{% if comment_num %}
+		<div class="mainelements" >
+			<div class="leftelements notiunder">
+				{% for com in comment_num %}
+				{% ifnotequal com.cby.username user.username %}
+				<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-eventdetails" method="POST">
+					{% csrf_token %}
+					<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
+					<button name="send" value="{{ com.ecref.id }}" class="noti6 but3 leftelements fullheight">'{{ com.cby.username }}' has commented on the event '{{ com.ecref.title }}' you uploaded</button>
+				</form>
+				{% endifnotequal %}
+				{% endfor %}
+			</div>
+			<a href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents" class="action rightelements">Go to Events </a>
+		</div>
+		{% endif %}
+		<!------------------------------------------------------Notifications of Pre Comments  ,working-------------------------------------------------------------------->
+		{% if comment_num2 %}
+		{% for com in comment_num2 %}
+		{% ifnotequal com.cby.username user.username %}
+		<div class="mainelements" >
+			<div class="leftelements notiunder">
+				<form>
+					{% csrf_token %}
+					<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
+					<button name="send" value="{{ com.ecref.id }}" class="noti6 but3 leftelements fullheight">'{{ com.cby.username }}' has commented on the event '{{ com.ecref.description }}'</button>
+				</form>
+			</div>
+			<a href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-preevent" class="action rightelements">Go to Pre-Events </a>
+		</div>
+		{% endifnotequal %}
+		{% endfor %}
+		{% endif %}
+		<!------------------------------------------------------Notifications of Report  ,working------------------------------------------------------------------>
+		{% if user.is_staff == True %}
+		{% if report_num %}
+		<div class="mainelements" >
+			<div class="leftelements notiunder">
+			{% for rep in report_num %}
+			{% ifnotequal rep.rby.username user.username %}
+				<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-eventdetails" method="POST">
+					{% csrf_token %}
+					<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
+					<button name="send" value="{{ rep.erref.id }}" class="but3 fullheight leftelements noti7">'{{ rep.rby.username }}' has added report on the event '{{ rep.erref.title }}'</button>
+				</form>
+			{% endifnotequal %}
+			{% endfor %}
+			</div>
+			<a href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents" class="action rightelements">Go to Events </a>
+		</div>
+		{% endif %}
+		{% endif %}
+		{% else %}
+		<div class="mainheadelements logp">
+			<h1>Please Login</h1>
+			<div class="butunder">
+	    	<a class="buts" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login" id="lgin" class="but">
+	    		Login
+	    	</a>
+			</div>
+	    </div>
+		{% endif %}
+	</main>
+	<!-- ---------------------------------------------------------------------------------------------HEADER-------------------------------------------------------------------------- -->
+	<header style="opacity: 1" class="basicheader" id="mainhead">
+		<button onclick="menu()" class="but basicbutton">
+			<i class="glyphicon glyphicon-menu-hamburger"></i>
+		</button>
+		<h2 id="basictitle">
+			DA
+		</h2>
+		<h3 id="basicpage">
+			HOME
+		</h3>
+		<div id="basichelp">
+			<button onclick="help()" id="basichelpbut" class="but basicbutton">
+				<i class="glyphicon glyphicon-triangle-bottom"></i>
+			</button>
+		</div>
+		<div id="basicprofile">
+			<button onclick="profile()" id="basicprofilebut" class="but basicbutton">
+				<i class="glyphicon glyphicon-user"></i>
+			</button>
+		</div>
+		<h4 id="basicdt">
+			<span id="basicdate">
+			</span>
+			<span id="basictime">
+			</span>
+		</h4>
+		
+	</header>
+	<!-- ---------------------------------------------------------------------------------------------NAVBAR-------------------------------------------------------------------------- -->
+	<nav>
+		<div style="display: none;" id="profilediv">
+			<a class="profilelink" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-profile">
+				<div class="low profiletdp">
+					<i class="profiledp glyphicon glyphicon-th-list"></i>
+					<p class="profiletext">Details</p>
+				</div>
+			</a>
+			<a class="profilelink" target="_blank" href="/admin/kjsomaiyacollegeofengineering-teachers-department-admin">
+				<div class="mid profiletdp">
+					<i class="profiledp glyphicon glyphicon-asterisk"></i>
+					<p class="profiletext">Admin Page</p>
+				</div>
+			</a>
+    		{% if user.is_superuser == False %}
+    		<div id="forad2">
+				<button class="profilelink" onclick="adcode()" href="toadmin">
+					<div class="high profiletdp">
+						<i class="profiledp glyphicon glyphicon-repeat"></i>
+						<p class="profiletext">Convert to admin</p>
+					</div>
+				</button>
+    		</div>
+    		<div id="adspan" class="hugebut">
+    		</div>
+			{% else %}
+			<form id="forad3" action="tonormal" method="POST">
+				{% csrf_token %}
+				<button name="dell" class="profilelink" id="buttonn{{ user.id }}" value="{{ user.username }}"><i class="glyphicon glyphicon-ok"></i>Convert to normal</button>
+			</form>
+			{% endif %}
+		</div>
+		<!-- ------------------------------------------------------------------------------------NAVBARHELP------------------------------------------------------------------------------>
+		<div style="display: none;" id="basichelp2">
+			<button onclick="helpb()" id="basichelpbut2" class="but basicbutton">
+				<i class="glyphicon glyphicon-triangle-bottom"></i>
+			</button>
+		</div>
+		<div style="display: none;" id="basicprofile2">
+			<button onclick="profileb()" id="basicprofilebut2" class="but basicbutton">
+				<i class="glyphicon glyphicon-user"></i>
+			</button>
+		</div>
+		<div style="display: none;" id="profilediv2">
+			<a class="profilelink" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-help">
+				<div class="low profiletdp">
+					<i class="profiledp glyphicon glyphicon-question-sign"></i>
+					<p class="profiletext">Help</p>
+				</div>
+			</a>
+			<a class="profilelink" href="homelogout">
+				<div class="low profiletdp">
+					<i class="profiledp glyphicon glyphicon-off"></i>
+					<p class="profiletext">Logout</p>
+				</div>
+			</a>
+		</div>
+		<!------------------------------------------------------------------------------------------NAVBARMAIN-------------------------------------------------------------------------- -->
+		<div style="display: none;" id="profilediv3">
+			<h2 class="basicpro">
+				DA
+			</h2>
+			<button onclick="back()" class="but basicbutton">
+				<i class="glyphicon glyphicon-chevron-left"></i>
+			</button>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-home">
+				<div class="low2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-home"></i>
+					<p class="profiletext">Home</p>
+				</div>
+			</a>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents">
+				<div class="low2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-th-large"></i>
+					<p class="profiletext">Events</p>
+				</div>
+			</a>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-addevent">
+				<div class="mid2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-plus"></i>
+					<p class="profiletext">Add Event</p>
+				</div>
+			</a>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-preevent">
+				<div class="mid2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-star"></i>
+					<p class="profiletext">Pre-Event</p>
+				</div>
+			</a>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-messaging">
+				<div class="mid2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-envelope"></i>
+					<p class="profiletext">Message</p>
+				</div>
+			</a>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-groups">
+				<div class="mid2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-asterisk"></i>
+					<p class="profiletext">Groups</p>
+				</div>
+			</a>
+		</div>
+		<button style="display: none;" onclick="back()" id="hugebut">
+			
+		</button>
+	</nav>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		var today = new Date();
+		var d = today.getDate();
+		var mo = today.getMonth();
+		var y = today.getFullYear();
+		var listem =  'liss';
+		document.getElementById('basicdate').innerHTML=d+"/"+(mo+1)+"/"+y;
+		function startTime() {
+			var today = new Date();
+			var h = today.getHours();
+			var m = today.getMinutes();
+			var s = today.getSeconds();
+			m = checkTime(m);
+			s = checkTime(s);
+			document.getElementById('basictime').innerHTML =
+			h + ":" + m;
+			var t = setTimeout(startTime, 500);
+		}
+		function checkTime(i) {
+			if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+			return i;
+		}
+		function menu(){
+			document.getElementById('profilediv3').style.display = '';
+			document.getElementById('hugebut').style.display = '';
+			document.getElementById('mainhead').style.opacity = '0.8';
+			document.getElementById('basicmain').style.opacity = '0.8';
+			document.getElementById('profilediv3').style.height = '100vh';
+			if ($('#profilediv3').is(':visible')) {
+			    $('body').addClass("fixed-position");
+			} else {
+			    $('body').removeClass("fixed-position");
+			}
+		}
+		function back(){
+			document.getElementById('profilediv3').style.display = 'none';
+			document.getElementById('hugebut').style.display = 'none';
+			document.getElementById('mainhead').style.opacity = '1';
+			document.getElementById('basicmain').style.opacity = '1';
+			if ($('#profilediv3').is(':hidden')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+		function profile(){
+			document.getElementById('profilediv').style.display = '';
+			document.getElementById('profilediv2').style.display = 'none';
+			document.getElementById('basichelp2').style.display = 'none';
+			document.getElementById('basicprofile2').style.display = '';
+			document.getElementById('basicmain').style.opacity = '0.8';
+			if ($('#profilediv').is(':visible')) {
+			    $('body').addClass("fixed-position");
+			} else {
+			    $('body').removeClass("fixed-position");
+			}
+		}
+		function help(){
+			document.getElementById('profilediv2').style.display = '';
+			document.getElementById('profilediv').style.display = 'none';
+			document.getElementById('basicprofile2').style.display = 'none';
+			document.getElementById('basichelp2').style.display = '';
+			document.getElementById('basicmain').style.opacity = '0.8';
+			if ($('#profilediv2').is(':visible')) {
+			    $('body').addClass("fixed-position");
+			} else {
+			    $('body').removeClass("fixed-position");
+			}
+		}
+
+		function profileb(){
+			document.getElementById('profilediv').style.display = 'none';
+			document.getElementById('basicprofile2').style.display = 'none';
+			document.getElementById('basicmain').style.opacity = '1';
+			if ($('#profilediv').is(':hidden')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+		function helpb(){
+			document.getElementById('profilediv2').style.display = 'none';
+			document.getElementById('basichelp2').style.display = 'none';
+			document.getElementById('basicmain').style.opacity = '1';
+			if ($('#profilediv2').is(':hidden')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+		function adcode(){
+			document.getElementById('forad').style.display = '';
+			document.getElementById('forbut').style.display = '';
+			document.getElementById('profilediv').style.display = 'none';
+			document.getElementById('basicprofile2').style.display = 'none';
+			document.getElementById('basicmain').style.opacity = '1';
+			if ($('#profilediv').is(':visible')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+		function forback(){
+			document.getElementById('forad').style.display = 'none';
+			document.getElementById('forbut').style.display = 'none';
+			document.getElementById('profilediv').style.display = 'none';
+			document.getElementById('basicprofile2').style.display = 'none';
+			document.getElementById('basicmain').style.opacity = '1';
+			if ($('#profilediv').is(':hidden')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+		function mesgo(){
+			document.getElementById('cmbutton').style.display = '';
+			document.getElementById('msgs').style.display = '';
+			document.getElementById('ombutton').style.display = 'none';
+		}
+		function mesgc(){
+			document.getElementById('cmbutton').style.display = 'none';
+			document.getElementById('msgs').style.display = 'none';
+			document.getElementById('ombutton').style.display = '';
+		}
+		function gmesgo(){
+			document.getElementById('gcmbutton').style.display = '';
+			document.getElementById('gmsgs').style.display = '';
+			document.getElementById('gombutton').style.display = 'none';
+		}
+		function gmesgc(){
+			document.getElementById('gcmbutton').style.display = 'none';
+			document.getElementById('gmsgs').style.display = 'none';
+			document.getElementById('gombutton').style.display = '';
+		}
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,1412 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Groups DepAct
+	</title>
+	<link rel="icon" type="image/png" href="{% static 'kj.png' %}">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<style type="text/css">
+		body{
+			background-color: #000;
+			font-family: Calibri;
+			overflow-x: hidden;
+		}
+		nav{
+			background-color: yellow;
+			width: 100vw;
+			overflow-x: hidden;
+		}
+		::-webkit-scrollbar {
+		    /*width: 0px;   Remove scrollbar space */
+		    /*background: white;*/  /* Optional: just make scrollbar invisible */
+		    background-color: #FFF;
+		    width: 10px;
+		}
+		::-webkit-scrollbar-thumb{
+			background-color: #17252A;
+			border-radius: 8px;
+		}
+		 .fixed-position {
+	    	position: fixed;
+		}
+		/*--------------------------------------------------------------------HEADER------------------------------------------------------------------------
+		----------------------------------------------------------------------HEADER------------------------------------------------------------------------
+		----------------------------------------------------------------------HEADER------------------------------------------------------------------------
+		----------------------------------------------------------------------HEADER------------------------------------------------------------------------*/
+		.basicheader{
+			float: left;
+			background-color: #FFFFFF;
+			width: 100vw;
+			position: fixed;
+			/*box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);*/
+			font-family: Calibri;
+			border-bottom: 1px solid #AAAABB;
+		}
+		.but{
+			outline: 0;
+			border: none;
+		}
+		.basicbutton{
+			padding: 2vw 2.5vw;
+			float: left;
+			color: black;
+			background-color: #FFFFFF;
+			font-size: 2.5vw;
+			height: 7.5vw;
+		}
+		.basicbutton:hover{
+			color: #FFF;
+			background-color: #000;
+		}
+		#basictitle, #basicpage{
+			margin-top: 0px;
+			margin-bottom: 0px;
+			color: #000;
+			float: left;
+			height: 7.5vw;
+			font-size: 2.5vw;
+			padding-top: 2.3vw;
+		}
+		#basictitle{
+			padding-left: 2vw;
+			padding-right: 2vw;
+		}
+		#basicpage{
+			margin-left: 29vw;
+		}
+		#basicdt{
+			margin-left: 8vw;
+			font-size: 2vw;
+			float: right;
+			margin-top: 0px;
+			margin-bottom: 0px;
+			height: 7.5vw;
+			width: 20vw;
+			padding-top: 2.5vw;
+			padding-left: 1vw;
+			color: #000;
+		}
+		#basicprofile, #basichelp{
+			float: right;
+			height: 7.5vw;
+			margin-right: 1vw;
+		}
+		#basicprofilebut{
+			font-size: 2.5vw;
+			border-radius: 8vw;
+		}
+		#basichelpbut{
+			font-size: 2vw;
+			padding: 1.5vw 0.5vw;
+		}
+		#basichelp{
+			width: 3vw;
+		}
+		#basictime{
+			margin-left: 3vw;
+		}
+		/*--------------------------------------------------------------------BASIC NAV BAR CONTENT STYLES------------------------------------------------------------------------
+		----------------------------------------------------------------------BASIC NAV BAR CONTENT STYLES------------------------------------------------------------------------
+		----------------------------------------------------------------------BASIC NAV BAR CONTENT STYLES------------------------------------------------------------------------
+		----------------------------------------------------------------------BASIC NAV BAR CONTENT STYLES------------------------------------------------------------------------*/
+		.profilelink{
+			background-color: #FFFFFF;
+			float: left;
+			margin-top: 0px;
+			margin-left: 0px;
+			height: 5vw;
+			width: 12vw;
+			font-size: 1vw;
+			padding-top: 1.7vw;
+			text-decoration: none;
+			color: #000;
+			box-sizing: border-box;
+			border-left: 1px solid #000;
+			border-right: 1px solid #000;
+			outline: 0;
+			border: none;
+		}
+		.profilelink:hover{
+			background-color: #000;
+			color: #FFF;
+			/*text-shadow: 0px 2px 10px #C770A4, 2px 0px 10px #C770A4, -2px 0px 10px #C770A4, 0px -2px 10px #C770A4;*/
+			border-bottom: 2px solid #CCCCCC;
+		}
+		.profiletdp{
+			width: 100%;
+			float: left;
+		}
+		.profiletext{
+			float: right;
+			margin-top: 0px;
+		}
+		.profiledp{
+			float: right;
+			height: 1.6vw;
+			font-size: 1.1vw;
+			padding-left: 0.5vw;
+			padding-right: 0.5vw;
+			padding-top: 0.2vw;
+		}
+		button .profiledp{
+			padding-top: 0vw;
+		}
+		.low{
+			padding-right: 3.6vw;
+		}
+		.mid{
+			padding-right: 2vw;
+		}
+		.high{
+			padding-right: 0.2vw;
+		}
+
+		/*--------------------------------------------------------------------NAVBAR_1------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_1------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_1------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_1------------------------------------------------------------------------*/
+		#profilediv3{
+			position: absolute;
+			top: 0vw;
+			bottom: 0;
+			background-color: #FFFFFF;
+			width: 15vw;
+			border-right: 1px solid #000;
+			box-sizing: content-box;
+		}
+		.basicpro{
+			background-color: #FFFFFF;
+			width: 7.5vw;
+			margin-top: 0px;
+			margin-bottom: 0px;
+			color: #000;
+			float: left;
+			height: 7.5vw;
+			font-size: 2.5vw;
+			padding-top: 2.6vw;
+			padding-left: 2vw;
+			border-bottom: 2px solid #770044;
+		}
+		.profilelink3{
+			background-color: #FFFFFF;
+			float: left;
+			margin-top: 0px;
+			margin-left: 0px;
+			height: 5vw;
+			width: 15vw;
+			font-size: 1.2vw;
+			padding-top: 1.7vw;
+			text-decoration: none;
+			color: #000;
+			box-sizing: border-box;
+			border-right: none;
+		}
+		.low2{
+			padding-right: 5vw;
+		}
+		.mid2{
+			padding-right: 4vw;
+		}
+		.high2{
+			padding-right: 2vw;
+		}
+		#hugebut{
+			background-color: red;
+			position: absolute;
+			top: 0;
+			width: 85vw;
+			bottom: 0;
+			left: 15vw;
+			outline: 0;
+			border: none;
+			opacity: 0;
+		}
+		/*--------------------------------------------------------------------NAVBAR_2------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_2------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_2------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_2------------------------------------------------------------------------*/
+		#profilediv{
+			position: absolute;
+			top: 7.5vw;
+			right: 3vw;
+			background-color: #FFFFFF;
+			float: right;
+			height: 15vw;
+			width: 12vw;
+			padding: 0px;
+			overflow: hidden;
+			border-bottom: 1px solid #000;
+		}
+		
+		#basicprofilebut2{
+			font-size: 2.5vw;
+			border-radius: 3.75vw;
+		}
+		#basichelpbut2{
+			font-size: 2vw;
+			padding: 1.5vw 0.5vw;
+		}
+		#basichelp2{
+			right: 1vw;
+			position: absolute;
+			top: 0vw;
+			height: 7.5vw;
+		}
+		#basicprofile2{
+			right: 5vw;
+			position: absolute;
+			top: 0vw;
+			height: 7.5vw;
+		}
+		/*--------------------------------------------------------------------NAVBAR_3------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_3------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_3------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_3------------------------------------------------------------------------*/
+		#profilediv2{
+			position: absolute;
+			top: 7.5vw;
+			right: 0vw;
+			background-color: #FFFFFF;
+			float: right;
+			height: 10vw;
+			width: 12vw;
+			padding: 0px;
+			overflow: hidden;
+			border-bottom: 1px solid #000;
+		}
+		#profilediv:hover{
+			
+		}
+		/*--------------------------------------------------------------------MAIN------------------------------------------------------------------------
+		----------------------------------------------------------------------MAIN------------------------------------------------------------------------
+		----------------------------------------------------------------------MAIN------------------------------------------------------------------------
+		----------------------------------------------------------------------MAIN------------------------------------------------------------------------*/
+		#basicmain{
+			float: left;
+			/*border-top: 10px solid black;
+			border-bottom: 10px solid black;*/
+			height: auto;
+			width: 100vw;
+			margin-top: 7.5vw;
+			padding: 0vw 0vw;
+			box-sizing: border-box;
+			background-color: #DDDDEE;
+			padding-bottom: 31vw;
+		}
+		.mainheadelements{
+			float: left;
+			margin-top: 0vw;
+			width: 100vw;
+			padding-left: 0vw;
+		}
+		.mainheadelements2{
+			position: fixed;
+			left: 20vw;
+			width: 80vw;
+			height: 100vh;
+			padding-left: 0vw;
+			background-color: #FFFFFF;
+			background-color: grey;
+		}
+		.mainheadelements h1,a{
+			float: left;
+			margin-top: 0px;
+		}
+		.mainheadelements2 h1{
+			float: left;
+			margin-top: 0px;
+		}
+		.mainelements2{
+			float: left;
+			width: 100%;
+			height: 10%;
+			background-color: #FFFFFF;
+			border: 0.5px solid darkgrey;
+			overflow: hidden;
+		}
+		.inputbar{
+			height: 8%;
+			width: 100%;
+			margin-left: 0vw;
+			padding-left: 0vw;
+			margin-top: 0vw;
+			margin-bottom: 0px;
+			background-color: white;
+		}
+		.inputbar2{
+			float: left;
+			margin-left: 5%;
+			background-color: red;
+			height: 100%;
+			width: 83%;
+			padding-left: 0vw;
+		}
+		#searchbar{
+			width: 100%;
+			height: 100%;
+			outline: 0;
+			border: none;
+			padding-left: 10px;
+			/*border-left: 1px solid black;
+			border-top: 1px solid black;
+			border-bottom: 1px solid black;*/
+		}
+		.inputbar button{
+			height: 100%;
+			width: 7%;
+			background-color: black;
+			color: white;
+		}
+		.inputbar button:hover{
+			background-color: white;
+			color: black;
+		}
+		#sbutn2{
+			width: 10%;
+			height: 100%;
+			float: right;
+			background-color: grey;
+			color: black;
+		}
+		#sbutn2:hover{
+			background-color: black;
+			color: white;
+		}
+		#sbutn1{
+			width: 10%;
+			height: 100%;
+			float: right;
+			background-color: white;
+			color: black;
+		}
+		#sbutn1:hover{
+			background-color: black;
+			color: white;
+		}
+		#sbutn3{
+			width: 100%;
+			height: 100%;
+			float: right;
+			background-color: white;
+			color: black;
+		}
+		#sbutn3:hover{
+			background-color: black;
+			color: white;
+		}
+		.leftelements{
+			float: left;
+		}
+		.rightelements{
+			float: right;
+		}
+		.fullheight{
+			height: 10vh;
+			padding-top: 0.5vw;
+			font-size: 2vw;
+			padding-left: 1.5vw;
+			padding-right: 1.5vw;
+		}
+		.fullheight2{
+			height: 10vh;
+			padding-top: 1vw;
+			font-size: 1.4vw;
+			padding-left: 1.5vw;
+			padding-right: 1.5vw;
+		}
+		.nomargin{
+			margin: 0px;
+			width: 10%;
+		}
+		.fullheight3{
+			height: 100%;
+		}
+		.fullwidth{
+			width: 100%;
+			height: 10vh;
+		}
+		.buts{
+			outline: 0;
+			border: none;
+			background-color: black;
+			color: white;
+		}
+		.buts:hover{
+			background-color: lightgrey;
+			color: black;
+		}
+		.copbut{
+			background-color: transparent;
+			padding-top: 0.4vw;
+			padding-left: 0vw;
+			color: black;
+			outline: 0;
+			border: none;
+		}
+		.copbut:hover{
+			color: grey;
+		}
+		.messagepop{
+			background-color: red;
+			color: white;
+			border-radius: 10vh;
+			width: 10vh;
+			padding-left: 1.6vw;
+		}
+		#forad{
+			position: absolute;
+			top: 8vw;
+			left: 30vw;
+			width: 40vw;
+			height: 30vw;
+			background-color: white;
+			box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+		}
+		#forad2{
+			position: absolute;
+			top: 8vw;
+			left: 30vw;
+			width: 40vw;
+			height: 37vw;
+			background-color: white;
+			box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+		}
+		.foradb{
+			position: absolute;
+			top: 7.7vw;
+			right: 29vw;
+			margin-top: 0px;
+			height: 40px;
+			width: 40px;
+			padding-top: 3px;
+			border-radius: 40px;
+		}
+		.ssbar{
+			margin-left: 20%;
+			width: 60%;
+			padding: 10px 10px;
+			margin-top: 30px;
+			outline: 0;
+		}
+		.ssbar2{
+			margin-left: 7%;
+			width: 40%;
+			padding: 10px 10px;
+			margin-top: 15px;
+			outline: 0;
+		}
+		.addm{
+			margin-left: 30%;
+			margin-top: 70px;
+		}
+		.addm2{
+			margin-left: 37%;
+			margin-top: 10px;
+		}
+		.righ{
+			margin-left: 45%;
+			margin-top: 50px;
+			padding: 10px 15px;
+		}
+		.righ2{
+			margin-left: 45%;
+			margin-top: 15px;
+			padding: 10px 15px;
+		}
+		.par{
+			margin: 0px;
+			padding-left: 7%;
+			margin-top: 5px;
+			color: red;
+			height: 15px;
+			padding-bottom: 0px;
+		}
+		.butsud{
+			background-color: transparent;
+			padding-top: 0px;
+			outline: 0;
+			border: none;
+			color: black;
+		}
+		.butsud:hover{
+			color: darkgrey;
+		}
+		.other{
+			position: fixed;
+			top: 0px;
+			padding-top: 7.5vw;
+			left: 0px;
+			width: 20vw;
+			height: 100vh;
+			overflow-y: scroll;
+			background-color: white;
+			border-right: 1px solid #CFD3C7;
+
+		}
+		.mainelement{
+			width: 80vw;
+			height: 90%;
+			background-color: #EFFADA;
+		}
+		.mainelement::-webkit-scrollbar{
+			width: 5px;
+		}
+		.other::-webkit-scrollbar{
+			width: 0px;
+		}
+		.links{
+			border-bottom: 0.5px solid #CFD3C7;
+			width: 100%;
+			float: left;
+			height: 15%;
+			background-color: white;
+			color: black;
+		}
+		.heading{
+			margin-top: 0px;
+			padding-left: 30vw;
+			background-color: white;
+			margin-bottom: 0px;
+			width: 100%;
+			height: 10%;
+			border-bottom: 0.5px solid black;
+		}
+		.heading2{
+			padding-top: 10px;
+			background-color: white;
+			height: 100%;
+			margin-bottom: 0px;
+		}
+		.mainmessage{
+			width: 100%;
+			height: 100%;
+			background-color: #EFFADA;
+			overflow-y: scroll;
+			padding-bottom: 10px;
+		}
+		#sbar{
+			padding-left: 5px;
+			width: 90%;
+		}
+		.sendbut{
+			width: 10%;
+			background-color: black;
+			color: white;
+		}
+		.sendbut:hover{
+			background-color: white;
+			color: black;
+		}
+		.message{
+			/*height: 50px;*/
+			height: auto;
+			margin-top: 0.5vw;
+			width: 100%;
+		}
+		.actualmessage{
+			height: 100%;
+			width: auto;
+			max-width: 60%;
+			background-color: #FFF;
+			padding-right: 0vw;
+			border-bottom-right-radius: 8px;
+			border-top-right-radius: 8px;
+			border-bottom: 0.5px solid #E7E7E7;
+		    overflow: hidden;
+		    text-overflow: ellipsis;
+		    white-space: nowrap;
+			/*box-shadow: 0 12px 8px 0 rgba(150,150,150,0.24), 0 17px 20px 0 rgba(150,150,150,0.19);*/
+		}
+		.actualmessage2{
+			height: 100%;
+			width: auto;
+			max-width: 60%;
+			background-color: #DAFAF5;
+			padding-left: 0vw;
+			border-bottom-left-radius: 8px;
+			border-top-left-radius: 8px;
+			border-bottom: 0.5px solid #C9E8E3;
+		    overflow: hidden;
+		    text-overflow: ellipsis;
+		    white-space: nowrap;
+			/*box-shadow: 0 12px 8px 0 rgba(150,150,150,0.24), 0 17px 20px 0 rgba(150,150,150,0.19);*/
+
+		}
+		.msgg{
+			height: 100%;
+			font-size: 1.5vw;
+			padding-top: 0.4vw;
+			padding-left: 1vw;
+			padding-right: 1vw;
+		}
+		.sub{
+			margin-top: 2vw;
+			background-color: yellow;
+			/*margin-left: 1vw;*/
+		}
+		.date{
+			background-color: black;
+			color: white;
+		}
+		.opbut{
+			height: 100%;
+			padding-left: 1vw;
+			padding-right: 1vw;
+			background-color: transparent;
+			border: none;
+			outline: 0;
+		}
+		.opbut:hover{
+			background-color: white;
+			color: black;
+		}
+		.fullwidth5{
+			width: 100%;
+		}
+		.butsud2{
+			background-color: transparent;
+			outline: 0;
+			border: none;
+			color: black;
+			margin-bottom: 0;
+		}
+		.butsud2:hover{
+			color: darkgrey;
+		}
+		.butsud3{
+			background-color: transparent;
+			outline: 0;
+			border: none;
+			color: black;
+			margin-bottom: 0;
+		}
+		.pdiv{
+			float: left;
+			width: 100%;
+			height: 15%;
+			border-bottom: 0.5px solid black;
+		}
+		.mdiv{
+			float: left;
+			width: 100%;
+			height: 70%;
+			padding-left: 10px;
+		}
+		.bbs{
+			height: 100%;
+			padding: 10px 10px;
+		}
+		.butspending{
+			height: 100%;
+			padding: 10px 10px;
+			background-color: #F07373;
+			color: black;
+			border-bottom-right-radius: 4px;
+		}
+		.butsongoing{
+			height: 100%;
+			padding: 10px 10px;
+			background-color: #A4D8E3;
+			color: black;
+			border-bottom-right-radius: 4px;
+
+		}
+		.butsconfirmed{
+			height: 100%;
+			padding: 10px 10px;
+			background-color: #B0F365;
+			color: black;
+			border-bottom-right-radius: 4px;
+
+		}
+		.butns{
+			outline: 0;
+			border: 0.5px solid black;
+			background-color: white;
+			color: black;
+			padding: 7px 10px;
+		}
+		.butns:hover{
+			background-color: black;
+			color: white;
+		}
+		.current{
+			background-color: #EFFADA;
+			color: black;
+		}
+		.msg{
+			height: 15px;
+			width: 15px;
+			background-color: red;
+			border-radius: 8px;
+			margin-top: 30px;
+			margin-right: 5px;
+		}
+	</style>
+</head>
+<body onload="startTime()">
+	<!-- ---------------------------------------------------------------------------------------------MAIN-------------------------------------------------------------------------- -->
+	<main id="basicmain">
+		<form id="forad" style="display: none;" action="toadmin" method="POST" class="onese">
+			{% csrf_token %}
+			<h2 class="addm">Enter Admin Code</h2>
+			<input placeholder="Admin" type="Password" name="dell2" class="ssbar">
+			<button name="dell" class="but buts righ" id="buttonn{{ user.id }}" value="{{ user.username }}">Submit</button>
+		</form>
+		<button style="display: none;" class="but buts foradb rightelements" id="forbut" onclick="forback()"><i class="glyphicon glyphicon-remove"></i></button>
+		{% if user.is_authenticated %}
+		{% for num2 in current_num %}
+		<div class="mainheadelements nomargin">
+			{% if messages %}
+		    	{% for message in messages %}
+		        	<div class="almsg alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">{{ message }}</div>
+		    	{% endfor %}
+		    {% else %}
+		    	<div style="height: 0; width: 0;"> </div>
+			{% endif %}
+		</div>
+		<div class="mainheadelements2">
+			<div class="heading">
+				<h1 class="heading2">{{ num2.name }}</h1>
+				<form class="fullheight3 rightelements nomargin" action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-groupmessages" method="POST">
+					{% csrf_token %}
+					<input style="display: none;" type="text" name="send" value="{{ num2.name }}">
+					<button id="sbutn3" class="but leftelements"><i class="glyphicon glyphicon-refresh"></i></button>
+				</form>
+	    		<button id="sbutn1" class="but leftelements" onclick="messageopen()"><i class="glyphicon glyphicon-search"></i></button>
+	    		<button style="display: none;" id="sbutn2" class="but leftelements" onclick="messageclose()"><i class="glyphicon glyphicon-search"></i></button>
+			</div>
+			<div style="display: none;" id="searchin" class="searchbar mainheadelements inputbar">
+				<div class="leftelements inputbar2">
+					<input autocomplete="off" placeholder="Search Groups" type="text" id="searchbar" name="search" class="leftelements">	
+				</div>
+	    		<button id="sbutn" class="but leftelements" onclick="search_event()">Go</button>
+			</div>
+			<div class="mainelement">
+				<div style="height: 72%;" id="mainmessage" class="mainmessage">
+					{% for num in nomessages %}
+					{% ifequal num.gmessagesender request.user %}
+						{% if num.gmessageseen is True %}
+						<div class="message leftelements fullwidth">
+							<div class="rightelements actualmessage2">
+							<div class="pdiv">
+								{% ifequal num.preevent.status 'Pending' %}
+								<p class="fullheight3 leftelements butspending">Pending</p>
+								{% endifequal %}
+								{% ifequal num.preevent.status 'Ongoing' %}
+								<p class="fullheight3 leftelements butsongoing">Ongoing</p>
+								{% endifequal %}
+								{% ifequal num.preevent.status 'Confirmed' %}
+								<p class="fullheight3 leftelements butsconfirmed">Confirmed</p>
+								{% endifequal %}
+							</div>
+							<div class="mdiv">
+								<h3>{{ num.preevent.description }}</h3>
+								<h5>for {{ num.preevent.target }}</h5>
+								<h4>{{ num.preevent.presenter }}, {{ num.preevent.presenterd }}</h4>
+								<div class="fullwidth">
+									<h5>{{ num.preevent.organizer }}, {{ num.preevent.department }}</h5>
+									{% if num.preevent.budget %}
+										<h5> Budget :{{ num.preevent.budget }}</h5>
+									{% endif %}
+								</div>
+								{% if num.preevent.regfrom %}
+									<h5> Registrations from {{ num.preevent.regfrom }} to {{ num.preevent.regto }}</h5>
+								{% endif %}
+							</div>
+							<div class="pdiv">
+								<p class="fullheight3 leftelements bbs">{{ num.preevent.date }}</p>
+								<p class="fullheight3 leftelements bbs">{{ num.preevent.tfrom }} - {{ num.preevent.tto }}</p>
+								<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-userdetails" method="POST">
+									{% csrf_token %}
+									<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
+									<p class="bbs leftelements">Published by : </p>
+									<button name="send" value="{{ event.by.username }}" class="butsud2 bbs leftelements">{{ num.preevent.by.username }}</button>
+									<p class="bbs leftelements">{{ num.preevent.pubdate }} </p>
+								</form>
+							</div>
+							<p style="display: none;" class="rightelements msgg date" id="rightmsgdata{{ num.id }}">{{ num.preevent.description }}</p>
+		        			<button class="rightelements opbut" id="rbut1{{ num.id }}" onclick="showro('butter','{{ num.id }}')">
+			        			<span class="mlright">
+				        			<i id="mleft" class="glyphicon glyphicon-menu-left mleft"></i>
+			        			</span>
+		        			</button>
+		        			<button style="display: none;" class="rightelements opbut" id="rbut2{{ num.id }}" onclick="showrc('butter','{{ num.id }}')" value="{{ num.id }}">
+			        			<span class="mlright">
+				        			<i id="mright" class="glyphicon glyphicon-menu-right mright"></i>
+			        			</span>
+		        			</button>
+							<p class="rightelements msgg">Sharing the event details of event no {{ num.gmessage }}</p>
+							<sub class="rightelements sub">{{ num.gtime }}</sub>
+							</div>
+						</div>
+						{% else %}
+						<div class="message leftelements fullwidth">
+							<div class="rightelements actualmessage2">
+								<p style="display: none;" class="rightelements msgg date" id="rightmsgdata{{ num.id }}">{{ num.gmessagedate }}</p>
+			        			<button class="rightelements opbut" id="rbut1{{ num.id }}" onclick="showro('butter','{{ num.id }}')">
+				        			<span class="mlright">
+					        			<i id="mleft" class="glyphicon glyphicon-menu-left mleft"></i>
+				        			</span>
+			        			</button>
+			        			<button style="display: none;" class="rightelements opbut" id="rbut2{{ num.id }}" onclick="showrc('butter','{{ num.id }}')" value="{{ num.id }}">
+				        			<span class="mlright">
+					        			<i id="mright" class="glyphicon glyphicon-menu-right mright"></i>
+				        			</span>
+			        			</button>
+								<p class="rightelements msgg">{{ num.gmessage }}</p>
+								<sub class="rightelements sub">{{ num.gtime }}</sub>
+							</div>
+						</div>
+						{% endif %}
+					{% else %}
+						{% if num.gmessageseen is True %}
+						<div class="message leftelements fullwidth">
+							<div class="leftelements actualmessage">
+							{% for det in details %}
+							{% ifequal num.gmessagesender.username det.urref.username %}
+							<p style="color: {{ det.color }}" class="leftelements fullwidth5" id="pp{{ num.gmessagesender.id }}">{{ num.gmessagesender }}</p>
+							{% endifequal %}
+							{% endfor %}
+							<div class="pdiv">
+								{% ifequal num.preevent.status 'Pending' %}
+								<p class="fullheight3 leftelements butspending">Pending</p>
+								{% endifequal %}
+								{% ifequal num.preevent.status 'Ongoing' %}
+								<p class="fullheight3 leftelements butsongoing">Ongoing</p>
+								{% endifequal %}
+								{% ifequal num.preevent.status 'Confirmed' %}
+								<p class="fullheight3 leftelements butsconfirmed">Confirmed</p>
+								{% endifequal %}
+							</div>
+							<div class="mdiv">
+								<h3>{{ num.preevent.description }}</h3>
+								<h5>for {{ num.preevent.target }}</h5>
+								<h4>{{ num.preevent.presenter }}, {{ num.preevent.presenterd }}</h4>
+								<div class="fullwidth">
+									<h5>{{ num.preevent.organizer }}, {{ num.preevent.department }}</h5>
+									{% if num.preevent.budget %}
+										<h5> Budget :{{ num.preevent.budget }}</h5>
+									{% endif %}
+								</div>
+								{% if num.preevent.regfrom %}
+									<h5> Registrations from {{ num.preevent.regfrom }} to {{ num.preevent.regto }}</h5>
+								{% endif %}
+							</div>
+							<div class="pdiv">
+								<p class="fullheight3 leftelements bbs">{{ num.preevent.date }}</p>
+								<p class="fullheight3 leftelements bbs">{{ num.preevent.tfrom }} - {{ num.preevent.tto }}</p>
+								<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-userdetails" method="POST">
+									{% csrf_token %}
+									<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
+									<p class="bbs leftelements">Published by : </p>
+									<button name="send" value="{{ event.by.username }}" class="butsud2 bbs leftelements">{{ num.preevent.by.username }}</button>
+									<p class="bbs leftelements">{{ num.preevent.pubdate }} </p>
+								</form>
+							</div>
+							<p style="display: none;" class="rightelements msgg date" id="rightmsgdata{{ num.id }}">{{ num.gmessagedate }}</p>
+		        			<button class="rightelements opbut" id="rbut1{{ num.id }}" onclick="showro('butter','{{ num.id }}')">
+			        			<span class="mlright">
+				        			<i id="mleft" class="glyphicon glyphicon-menu-left mleft"></i>
+			        			</span>
+		        			</button>
+		        			<button style="display: none;" class="rightelements opbut" id="rbut2{{ num.id }}" onclick="showrc('butter','{{ num.id }}')" value="{{ num.id }}">
+			        			<span class="mlright">
+				        			<i id="mright" class="glyphicon glyphicon-menu-right mright"></i>
+			        			</span>
+		        			</button>
+							<p class="rightelements msgg">Sharing the event details of event no {{ num.gmessage }}</p>
+							<sub class="rightelements sub">{{ num.gtime }}</sub>
+							</div>
+						</div>
+						{% else %}
+						<div class="message leftelements fullwidth">
+							<div class=" leftelements actualmessage">
+								<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-userdetails" method="POST">
+									{% csrf_token %}
+									<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
+									{% for det in details %}
+									{% ifequal num.gmessagesender det.urref %}
+									<button style="color: {{ det.color }}" name="send" value="{{ num.gmessagesender }}" class="butsud leftelements fullwidth5 pp1" id="pp{{ num.gmessagesender.id }}">{{ num.gmessagesender }}</button>
+									{% endifequal %}
+									{% endfor %}
+								</form>
+								<p class="leftelements msgg date" style="display: none;" id="leftmsgdata{{ num.id }}">{{ num.gmessagedate }}</p>
+			        			<button title="Expand" class="leftelements opbut" id="lbut1{{ num.id }}" onclick="showlo('butter','{{ num.id }}')" value="{{ num.id }}">
+				        			<span class="mlright">
+					        			<i id="mright" class="glyphicon glyphicon-menu-right mright"></i>
+				        			</span>
+			        			</button>
+			        			<button class="leftelements opbut" id="lbut2{{ num.id }}" style="display: none;" onclick="showlc('butter','{{ num.id }}')">
+				        			<span class="mlright">
+					        			<i id="mleft" class="glyphicon glyphicon-menu-left mleft"></i>
+				        			</span>
+			        			</button>
+								<p class="leftelements msgg">{{ num.gmessage }}</p>
+								<sub class="leftelements sub">{{ num.gtime }}</sub>
+							</div>
+						</div>
+						{% endif %}
+					{% endifequal %}
+					{% endfor %}
+					{% if latest %}
+						{% for mem in latest.seen.all %}
+						<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-userdetails" method="POST">
+							{% csrf_token %}
+							<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
+							<button name="send" value="{{ mem }}" class="butsud bbs rightelements">{{ mem }}</button>
+						</form>
+						{% endfor %}
+						<button class="rightelements butsud">
+							<p class="bbs">Seen By {{ latest.seen.all.count }}</p>
+						</button>
+					{% endif %}
+				</div>
+				<form class="mainelements2" action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-groupmessages" method="POST">
+					{% csrf_token %}
+					<input autocomplete="off" class="fullheight3 but" id="sbar" placeholder="Type something" type="text" name="message" autofocus required/>
+					<input style="display: none;" type="text" name="send" value="{{ num2.name }}">
+					<button title="Send" class="fullheight3 but under sendbut rightelements"><i class="glyphicon glyphicon-send"></i> Send</button>
+				</form>
+			</div>
+			
+		</div>
+		<div class="other">
+			{% for user in user_number %}
+				{% ifequal num2.name user.name %}
+					<div class="links current" >
+						<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-groupmessages" method="POST">
+							{% csrf_token %}
+							<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
+							<button name="send" value="{{ user.name }}" class="butsud3 current leftelements fullheight">{{ user.name }}</button>
+						</form>
+					</div>
+				{% else %}
+					<div class="links" >
+						<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-groupmessages" method="POST">
+							{% csrf_token %}
+							<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
+							<button name="send" value="{{ user.name }}" class="butsud3 leftelements fullheight">{{ user.name }}</button>
+							{% for gr2 in group_num %}
+							{% ifequal user.name gr2.groupref.name %}
+							<p class="leftelements msg"></p>
+							{% endifequal %}
+							{% endfor %}
+						</form>
+					</div>
+				{% endifequal %}
+			{% endfor %}
+		</div>
+		{% endfor %}
+		{% else %}
+		<div class="mainheadelements">
+			<h1>Please Login</h1>
+	    	<a href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login" id="lgin" class="but">
+	    		Login
+	    	</a>
+	    </div>
+		{% endif %}
+	</main>
+	<!-- ---------------------------------------------------------------------------------------------HEADER-------------------------------------------------------------------------- -->
+	<header style="opacity: 1" class="basicheader" id="mainhead">
+		<button onclick="menu()" class="but basicbutton">
+			<i class="glyphicon glyphicon-menu-hamburger"></i>
+		</button>
+		<h2 id="basictitle">
+			DA
+		</h2>
+		<h3 id="basicpage">
+			GROUPS
+		</h3>
+		<div id="basichelp">
+			<button onclick="help()" id="basichelpbut" class="but basicbutton">
+				<i class="glyphicon glyphicon-triangle-bottom"></i>
+			</button>
+		</div>
+		<div id="basicprofile">
+			<button onclick="profile()" id="basicprofilebut" class="but basicbutton">
+				<i class="glyphicon glyphicon-user"></i>
+			</button>
+		</div>
+		<h4 id="basicdt">
+			<span id="basicdate">
+			</span>
+			<span id="basictime">
+			</span>
+		</h4>
+		
+	</header>
+	<!-- ---------------------------------------------------------------------------------------------NAVBAR-------------------------------------------------------------------------- -->
+	<nav>
+		<div style="display: none;" id="profilediv">
+			<a class="profilelink" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-profile">
+				<div class="low profiletdp">
+					<i class="profiledp glyphicon glyphicon-th-list"></i>
+					<p class="profiletext">Details</p>
+				</div>
+			</a>
+			<a class="profilelink" target="_blank" href="/admin/kjsomaiyacollegeofengineering-teachers-department-admin">
+				<div class="mid profiletdp">
+					<i class="profiledp glyphicon glyphicon-asterisk"></i>
+					<p class="profiletext">Admin Page</p>
+				</div>
+			</a>
+    		{% if user.is_superuser == False %}
+    		<div id="forad2">
+				<button class="profilelink" onclick="adcode()" href="toadmin">
+					<div class="high profiletdp">
+						<i class="profiledp glyphicon glyphicon-repeat"></i>
+						<p class="profiletext">Convert to admin</p>
+					</div>
+				</button>
+    		</div>
+    		<div id="adspan" class="hugebut">
+    		</div>
+			{% else %}
+			<form id="forad3" action="tonormal" method="POST">
+				{% csrf_token %}
+				<button name="dell" class="profilelink" id="buttonn{{ user.id }}" value="{{ user.username }}"><i class="glyphicon glyphicon-ok"></i>Convert to normal</button>
+			</form>
+			{% endif %}
+		</div>
+		<!-- ------------------------------------------------------------------------------------NAVBARHELP------------------------------------------------------------------------------>
+		<div style="display: none;" id="basichelp2">
+			<button onclick="helpb()" id="basichelpbut2" class="but basicbutton">
+				<i class="glyphicon glyphicon-triangle-bottom"></i>
+			</button>
+		</div>
+		<div style="display: none;" id="basicprofile2">
+			<button onclick="profileb()" id="basicprofilebut2" class="but basicbutton">
+				<i class="glyphicon glyphicon-user"></i>
+			</button>
+		</div>
+		<div style="display: none;" id="profilediv2">
+			<a class="profilelink" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-help">
+				<div class="low profiletdp">
+					<i class="profiledp glyphicon glyphicon-question-sign"></i>
+					<p class="profiletext">Help</p>
+				</div>
+			</a>
+			<a class="profilelink" href="homelogout">
+				<div class="low profiletdp">
+					<i class="profiledp glyphicon glyphicon-off"></i>
+					<p class="profiletext">Logout</p>
+				</div>
+			</a>
+		</div>
+		<!------------------------------------------------------------------------------------------NAVBARMAIN-------------------------------------------------------------------------- -->
+		<div style="display: none;" id="profilediv3">
+			<h2 class="basicpro">
+				DA
+			</h2>
+			<button onclick="back()" class="but basicbutton">
+				<i class="glyphicon glyphicon-chevron-left"></i>
+			</button>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-home">
+				<div class="low2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-home"></i>
+					<p class="profiletext">Home</p>
+				</div>
+			</a>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents">
+				<div class="low2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-th-large"></i>
+					<p class="profiletext">Events</p>
+				</div>
+			</a>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-addevent">
+				<div class="mid2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-plus"></i>
+					<p class="profiletext">Add Event</p>
+				</div>
+			</a>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-preevent">
+				<div class="mid2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-star"></i>
+					<p class="profiletext">Pre-Event</p>
+				</div>
+			</a>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-messaging">
+				<div class="mid2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-envelope"></i>
+					<p class="profiletext">Message</p>
+				</div>
+			</a>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-groups">
+				<div class="mid2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-asterisk"></i>
+					<p class="profiletext">Groups</p>
+				</div>
+			</a>
+		</div>
+		<button style="display: none;" onclick="back()" id="hugebut">
+			
+		</button>
+	</nav>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		var today = new Date();
+		var d = today.getDate();
+		d2=d+1;
+		console.log(d2);
+		var mo = today.getMonth();
+		var y = today.getFullYear();
+		var listem =  'liss';
+		document.getElementById('basicdate').innerHTML=d+"/"+(mo+1)+"/"+y;
+		function startTime() {
+			var today = new Date();
+			var h = today.getHours();
+			var m = today.getMinutes();
+			var s = today.getSeconds();
+			m = checkTime(m);
+			s = checkTime(s);
+			document.getElementById('basictime').innerHTML =
+			h + ":" + m;
+			var t = setTimeout(startTime, 500);
+		}
+		function checkTime(i) {
+			if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+			return i;
+		}
+		function menu(){
+			document.getElementById('profilediv3').style.display = '';
+			document.getElementById('hugebut').style.display = '';
+			document.getElementById('mainhead').style.opacity = '0.8';
+			document.getElementById('basicmain').style.opacity = '0.8';
+			document.getElementById('profilediv3').style.height = '100vh';
+			if ($('#profilediv3').is(':visible')) {
+			    $('body').addClass("fixed-position");
+			} else {
+			    $('body').removeClass("fixed-position");
+			}
+		}
+		function back(){
+			document.getElementById('profilediv3').style.display = 'none';
+			document.getElementById('hugebut').style.display = 'none';
+			document.getElementById('mainhead').style.opacity = '1';
+			document.getElementById('basicmain').style.opacity = '1';
+			if ($('#profilediv3').is(':hidden')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+		function profile(){
+			document.getElementById('profilediv').style.display = '';
+			document.getElementById('profilediv2').style.display = 'none';
+			document.getElementById('basichelp2').style.display = 'none';
+			document.getElementById('basicprofile2').style.display = '';
+			document.getElementById('basicmain').style.opacity = '0.8';
+			if ($('#profilediv').is(':visible')) {
+			    $('body').addClass("fixed-position");
+			} else {
+			    $('body').removeClass("fixed-position");
+			}
+		}
+		function help(){
+			document.getElementById('profilediv2').style.display = '';
+			document.getElementById('profilediv').style.display = 'none';
+			document.getElementById('basicprofile2').style.display = 'none';
+			document.getElementById('basichelp2').style.display = '';
+			document.getElementById('basicmain').style.opacity = '0.8';
+			if ($('#profilediv2').is(':visible')) {
+			    $('body').addClass("fixed-position");
+			} else {
+			    $('body').removeClass("fixed-position");
+			}
+		}
+
+		function profileb(){
+			document.getElementById('profilediv').style.display = 'none';
+			document.getElementById('basicprofile2').style.display = 'none';
+			document.getElementById('basicmain').style.opacity = '1';
+			if ($('#profilediv').is(':hidden')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+		function helpb(){
+			document.getElementById('profilediv2').style.display = 'none';
+			document.getElementById('basichelp2').style.display = 'none';
+			document.getElementById('basicmain').style.opacity = '1';
+			if ($('#profilediv2').is(':hidden')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+
+		function copy(num) {
+		  /* Get the text field */
+		  gg='email'+num;
+			var copytext = document.getElementById(gg).value;
+			// copytext.select();
+			// copytext.setSelectionRange(0, 99999);
+			navigator.clipboard.writeText(copytext);
+			// document.execCommand("copy");
+			alert("Copied the text: " +copytext);
+			console.log(copytext)
+		}
+
+		function search_event() { 
+		    let input = document.getElementById('searchbar').value 
+		    input=input.toLowerCase(); 
+		    let x = document.getElementsByClassName('mainelements'); 
+		    console.log(x.length)
+		    for (i = 0; i < x.length; i++) {  
+		        if (!x[i].innerHTML.toLowerCase().includes(input)) { 
+		            x[i].style.display="none"; 
+		        } 
+		        else { 
+		            x[i].style.display="list-item";                  
+		        } 
+		    } 
+		} 
+		var inp = document.getElementById('searchbar');
+		if(inp){
+			inp.addEventListener("keyup", function(event) {
+				console.log(inp);
+		    	if (event.keyCode === 13) {
+		    	    // event.preventDefault();
+			        document.getElementById("sbutn").click();
+			    }
+			});
+		}
+
+		var objDiv = document.getElementById("mainmessage");
+		objDiv.scrollTop = objDiv.scrollHeight;
+
+		function showlo(butid,numb){
+			date='leftmsgdata'+numb
+			but1='lbut1'+numb
+			but2='lbut2'+numb
+			document.getElementById(date).style.display ='';
+			document.getElementById(but2).style.display ='';
+			document.getElementById(but1).style.display ='none';
+		}
+		function showlc(butid,numb){
+			date='leftmsgdata'+numb
+			but1='lbut1'+numb
+			but2='lbut2'+numb
+			document.getElementById(date).style.display ='none';
+			document.getElementById(but2).style.display ='none';
+			document.getElementById(but1).style.display ='';
+		}
+		function showro(butid,numb){
+			date='rightmsgdata'+numb
+			but1='rbut1'+numb
+			but2='rbut2'+numb
+			document.getElementById(date).style.display ='';
+			document.getElementById(but2).style.display ='';
+			document.getElementById(but1).style.display ='none';
+		}
+		function showrc(butid,numb){
+			date='rightmsgdata'+numb
+			but1='rbut1'+numb
+			but2='rbut2'+numb
+			document.getElementById(date).style.display ='none';
+			document.getElementById(but2).style.display ='none';
+			document.getElementById(but1).style.display ='';
+		}
+		function adcode(){
+			document.getElementById('forad').style.display = '';
+			document.getElementById('forbut').style.display = '';
+			document.getElementById('profilediv').style.display = 'none';
+			document.getElementById('basicprofile2').style.display = 'none';
+			document.getElementById('basicmain').style.opacity = '1';
+			if ($('#profilediv').is(':visible')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+		function forback(){
+			document.getElementById('forad').style.display = 'none';
+			document.getElementById('forbut').style.display = 'none';
+			document.getElementById('profilediv').style.display = 'none';
+			document.getElementById('basicprofile2').style.display = 'none';
+			document.getElementById('basicmain').style.opacity = '1';
+			if ($('#profilediv').is(':hidden')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+		function group(){
+			document.getElementById('forad2').style.display = '';
+			document.getElementById('forbut2').style.display = '';
+			document.getElementById('profilediv').style.display = 'none';
+			document.getElementById('basicprofile2').style.display = 'none';
+			document.getElementById('basicmain').style.opacity = '1';
+			if ($('#profilediv').is(':visible')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+		function forback2(){
+			document.getElementById('forad2').style.display = 'none';
+			document.getElementById('forbut2').style.display = 'none';
+			document.getElementById('profilediv').style.display = 'none';
+			document.getElementById('basicprofile2').style.display = 'none';
+			document.getElementById('basicmain').style.opacity = '1';
+			if ($('#profilediv').is(':hidden')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+
+		function messageopen(){
+			date='searchin'
+			but1='sbutn2'
+			but2='sbutn1'
+			document.getElementById(date).style.display ='';
+			document.getElementById(but2).style.display ='none';
+			document.getElementById(but1).style.display ='';
+			document.getElementById('searchbar').focus();
+			document.getElementById('mainmessage').style.height = '64%';
+		}
+		function messageclose(){
+			date='searchin'
+			but1='sbutn2'
+			but2='sbutn1'
+			document.getElementById(date).style.display ='none';
+			document.getElementById(but2).style.display ='';
+			document.getElementById(but1).style.display ='none';
+			document.getElementById('mainmessage').style.height = '72%';
+		}
+
+		function search_event() { 
+		    let input = document.getElementById('searchbar').value 
+		    input=input.toLowerCase(); 
+		    let x = document.getElementsByClassName('message'); 
+		    console.log(x.length)
+		    for (i = 0; i < x.length; i++) {  
+
+		        if (!x[i].innerHTML.toLowerCase().includes(input)) { 
+		            console.log('nope');
+		            x[i].style.border="none";
+		            x[i].id = "newp";
+		            // document.querySelector('div').removeAttribute('id');
+		            // document.querySelector('#newp').id="newd"
+		        } 
+		        else { 
+		            x[i].style.color="#2C2C2A";
+		            x[i].id = "found";
+		            var container = $('#mainmessage'); 
+			        var scrollTo = $('#found'); 
+					var position = scrollTo.offset().top  - container.offset().top  + container.scrollTop();
+					container.scrollTop(position,3000);
+		            x[i].style.border="1px solid #C2C2B1";      
+		        } 
+		    } 
+		    
+		} 
+	</script>
+</body>
+</html>

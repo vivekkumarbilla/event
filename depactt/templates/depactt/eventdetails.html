@@ -1,0 +1,1711 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Event Details DepAct
+	</title>
+	<link rel="icon" type="image/png" href="{% static 'kj.png' %}">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<style type="text/css">
+		body{
+			background-color: #000;
+			font-family: Calibri;
+			overflow-x: hidden;
+			overflow-y: hidden;
+		}
+		nav{
+			background-color: yellow;
+			width: 100vw;
+			overflow-x: hidden;
+		}
+		::-webkit-scrollbar {
+		    /*width: 0px;   Remove scrollbar space */
+		    /*background: white;*/  /* Optional: just make scrollbar invisible */
+		    background-color: #FFF;
+		    width: 10px;
+		}
+		::-webkit-scrollbar-thumb{
+			background-color: #17252A;
+			border-radius: 8px;
+		}
+		 .fixed-position {
+	    	position: fixed;
+		}
+		/*--------------------------------------------------------------------HEADER------------------------------------------------------------------------
+		----------------------------------------------------------------------HEADER------------------------------------------------------------------------
+		----------------------------------------------------------------------HEADER------------------------------------------------------------------------
+		----------------------------------------------------------------------HEADER------------------------------------------------------------------------*/
+		.basicheader{
+			float: left;
+			background-color: #FFFFFF;
+			width: 100vw;
+			position: fixed;
+			/*box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);*/
+			font-family: Calibri;
+			border-bottom: 1px solid #AAAABB;
+		}
+		.but{
+			outline: 0;
+			border: none;
+		}
+		.basicbutton{
+			padding: 2vw 2.5vw;
+			float: left;
+			color: black;
+			background-color: #FFFFFF;
+			font-size: 2.5vw;
+			height: 7.5vw;
+		}
+		.basicbutton:hover{
+			color: #FFF;
+			background-color: #000;
+		}
+		#basictitle, #basicpage{
+			margin-top: 0px;
+			margin-bottom: 0px;
+			color: #000;
+			float: left;
+			height: 7.5vw;
+			font-size: 2.5vw;
+			padding-top: 2.3vw;
+		}
+		#basictitle{
+			padding-left: 2vw;
+			padding-right: 2vw;
+		}
+		#basicpage{
+			margin-left: 29vw;
+		}
+		#basicdt{
+			margin-left: 8vw;
+			font-size: 2vw;
+			float: right;
+			margin-top: 0px;
+			margin-bottom: 0px;
+			height: 7.5vw;
+			width: 20vw;
+			padding-top: 2.5vw;
+			padding-left: 1vw;
+			color: #000;
+		}
+		#basicprofile, #basichelp{
+			float: right;
+			height: 7.5vw;
+			margin-right: 1vw;
+		}
+		#basicprofilebut{
+			font-size: 2.5vw;
+			border-radius: 8vw;
+		}
+		#basichelpbut{
+			font-size: 2vw;
+			padding: 1.5vw 0.5vw;
+		}
+		#basichelp{
+			width: 3vw;
+		}
+		#basictime{
+			margin-left: 3vw;
+		}
+		/*--------------------------------------------------------------------BASIC NAV BAR CONTENT STYLES------------------------------------------------------------------------
+		----------------------------------------------------------------------BASIC NAV BAR CONTENT STYLES------------------------------------------------------------------------
+		----------------------------------------------------------------------BASIC NAV BAR CONTENT STYLES------------------------------------------------------------------------
+		----------------------------------------------------------------------BASIC NAV BAR CONTENT STYLES------------------------------------------------------------------------*/
+		.profilelink{
+			background-color: #FFFFFF;
+			float: left;
+			margin-top: 0px;
+			margin-left: 0px;
+			height: 5vw;
+			width: 12vw;
+			font-size: 1vw;
+			padding-top: 1.7vw;
+			text-decoration: none;
+			color: #000;
+			box-sizing: border-box;
+			border-left: 1px solid #000;
+			border-right: 1px solid #000;
+			outline: 0;
+			border: none;
+		}
+		.profilelink:hover{
+			background-color: #000;
+			color: #FFF;
+			/*text-shadow: 0px 2px 10px #C770A4, 2px 0px 10px #C770A4, -2px 0px 10px #C770A4, 0px -2px 10px #C770A4;*/
+			border-bottom: 2px solid #CCCCCC;
+		}
+		.profiletdp{
+			width: 100%;
+			float: left;
+		}
+		.profiletext{
+			float: right;
+			margin-top: 0px;
+		}
+		.profiledp{
+			float: right;
+			height: 1.6vw;
+			font-size: 1.1vw;
+			padding-left: 0.5vw;
+			padding-right: 0.5vw;
+			padding-top: 0.2vw;
+		}
+		button .profiledp{
+			padding-top: 0vw;
+		}
+		.low{
+			padding-right: 3.6vw;
+		}
+		.mid{
+			padding-right: 2vw;
+		}
+		.high{
+			padding-right: 0.2vw;
+		}
+
+		/*--------------------------------------------------------------------NAVBAR_1------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_1------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_1------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_1------------------------------------------------------------------------*/
+		#profilediv3{
+			position: absolute;
+			top: 0vw;
+			bottom: 0;
+			background-color: #FFFFFF;
+			width: 15vw;
+			border-right: 1px solid #000;
+			box-sizing: content-box;
+		}
+		.basicpro{
+			background-color: #FFFFFF;
+			width: 7.5vw;
+			margin-top: 0px;
+			margin-bottom: 0px;
+			color: #000;
+			float: left;
+			height: 7.5vw;
+			font-size: 2.5vw;
+			padding-top: 2.6vw;
+			padding-left: 2vw;
+			border-bottom: 2px solid #770044;
+		}
+		.profilelink3{
+			background-color: #FFFFFF;
+			float: left;
+			margin-top: 0px;
+			margin-left: 0px;
+			height: 5vw;
+			width: 15vw;
+			font-size: 1.2vw;
+			padding-top: 1.7vw;
+			text-decoration: none;
+			color: #000;
+			box-sizing: border-box;
+			border-right: none;
+		}
+		.low2{
+			padding-right: 5vw;
+		}
+		.mid2{
+			padding-right: 4vw;
+		}
+		.high2{
+			padding-right: 2vw;
+		}
+		#hugebut{
+			background-color: red;
+			position: absolute;
+			top: 0;
+			width: 85vw;
+			bottom: 0;
+			left: 15vw;
+			outline: 0;
+			border: none;
+			opacity: 0;
+		}
+		/*--------------------------------------------------------------------NAVBAR_2------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_2------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_2------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_2------------------------------------------------------------------------*/
+		#profilediv{
+			position: absolute;
+			top: 7.5vw;
+			right: 3vw;
+			background-color: #FFFFFF;
+			float: right;
+			height: 15vw;
+			width: 12vw;
+			padding: 0px;
+			overflow: hidden;
+			border-bottom: 1px solid #000;
+		}
+		
+		#basicprofilebut2{
+			font-size: 2.5vw;
+			border-radius: 3.75vw;
+		}
+		#basichelpbut2{
+			font-size: 2vw;
+			padding: 1.5vw 0.5vw;
+		}
+		#basichelp2{
+			right: 1vw;
+			position: absolute;
+			top: 0vw;
+			height: 7.5vw;
+		}
+		#basicprofile2{
+			right: 5vw;
+			position: absolute;
+			top: 0vw;
+			height: 7.5vw;
+		}
+		/*--------------------------------------------------------------------NAVBAR_3------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_3------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_3------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_3------------------------------------------------------------------------*/
+		#profilediv2{
+			position: absolute;
+			top: 7.5vw;
+			right: 0vw;
+			background-color: #FFFFFF;
+			float: right;
+			height: 10vw;
+			width: 12vw;
+			padding: 0px;
+			overflow: hidden;
+			border-bottom: 1px solid #000;
+		}
+		#profilediv:hover{
+			
+		}
+		/*--------------------------------------------------------------------MAIN------------------------------------------------------------------------
+		----------------------------------------------------------------------MAIN------------------------------------------------------------------------
+		----------------------------------------------------------------------MAIN------------------------------------------------------------------------
+		----------------------------------------------------------------------MAIN------------------------------------------------------------------------*/
+		#basicmain{
+			float: left;
+			/*border-top: 10px solid black;
+			border-bottom: 10px solid black;*/
+			height: auto;
+			width: 100vw;
+			margin-top: 7.5vw;
+			padding: 0vw 0vw;
+			box-sizing: border-box;
+			background-color: #DDDDEE;
+			padding-bottom: 15vw;
+			overflow-y: hidden;
+		}
+		.mainelements{
+			float: left;
+			margin-left: 0vw;
+			margin-right: 0vw;
+			margin-top: 0vw;
+			height: 76vh;
+			background-color: #FFFFFF;
+			border: 0.5px solid darkgrey;
+			overflow: hidden;
+		}
+		.underelements2{
+			float: left;
+			margin-left: 0vw;
+			margin-right: 0vw;
+			margin-top: 0vw;
+			width: 25vw;
+			height: 76vh;
+			background-color: #FFFFFF;
+			border: 0.5px solid darkgrey;
+			overflow-y: hidden;
+		}
+
+		/*--------------------------------------------------------------------IMAGE------------------------------------------------------------------------
+		----------------------------------------------------------------------IMAGE------------------------------------------------------------------------
+		----------------------------------------------------------------------IMAGE------------------------------------------------------------------------
+		----------------------------------------------------------------------IMAGE------------------------------------------------------------------------*/
+
+		/* Modal Content (image) */
+		.modal {
+			display: none; /* Hidden by default */
+			position: fixed; /* Stay in place */
+			z-index: 1; /* Sit on top */
+			padding-top: 10px;
+			padding-bottom: 10px; /* Location of the box */
+			left: 0;
+			top: 0;/* Full width */
+			height: 100%; /* Full height */ /* Enable scroll if needed */
+			background-color: rgb(0,0,1); /* Fallback color */
+			background-color: rgba(0,0,1,1); /* Black w/ opacity */
+		}
+
+		.modal-content {
+			margin: auto;
+			display: block;
+			margin-left: 15%;
+			height: 100%;
+			width: 50%;
+		}
+
+		/* Caption of Modal Image */
+		#caption {
+			margin: auto;
+			display: block;
+			width: 80%;
+			max-width: 500px;
+			text-align: center;
+			color: #fff;
+			padding: 10px 0;
+			height: 150px;
+		}
+
+		/* The Close Button */
+		#close {
+			position: fixed;
+			top: 2%;
+			right: 15%;
+			color: white;
+			font-size: 60px;
+		}
+
+		#close:hover {
+			color: #fff;
+			text-decoration: none;
+		}
+
+		/*--------------------------------------------------------------------UNDER------------------------------------------------------------------------
+		----------------------------------------------------------------------UNDER------------------------------------------------------------------------
+		----------------------------------------------------------------------UNDER------------------------------------------------------------------------
+		----------------------------------------------------------------------UNDER------------------------------------------------------------------------*/
+		.leftelements{
+			float: left;
+		}
+		.rightelements{
+			float: right;
+		}
+		.fullheight2{
+			height: 10vh;
+			padding-top: 0.5vw;
+			font-size: 2vw;
+			padding-left: 1.5vw;
+			padding-right: 1.5vw;
+		}
+		.fullheight{
+			height: 100%;
+		}
+		.fullwidth{
+			width: 100%;
+		}
+
+		/*-----------------------------------------------------------------------------MAYN----------------------------------------------------------*/
+		/*-----------------------------------------------------------------------------MAYN----------------------------------------------------------*/
+		/*-----------------------------------------------------------------------------MAYN----------------------------------------------------------*/
+		/*-----------------------------------------------------------------------------MAYN----------------------------------------------------------*/
+		/*-----------------------------------------------------------------------------MAYN----------------------------------------------------------*/
+		/*-----------------------------------------------------------------------------MAYN----------------------------------------------------------*/
+		.butp{
+			outline: 0;
+			border: none;
+			background-color: transparent;
+			color: black;
+			padding: 7px 15px;
+			border-radius: 4px;
+		}
+		.butsud2{
+			outline: 0;
+			border: none;
+			background-color: transparent;
+			color: black;
+			padding: 7px 15px;
+			border-radius: 4px;
+			font-size: 1.5vw;
+		}
+		.butsud2:hover{
+			color: #AAAABB;
+		}
+		.butspending{
+			outline: 0;
+			border: none;
+			background-color: #F07373;
+			color: black;
+			padding: 7px 15px;
+			border: 0.5px solid #AAAABB;
+			border-radius: 4px;
+		}
+		.butsconfirmed{
+			outline: 0;
+			border: none;
+			background-color: #B0F365;
+			color: black;
+			padding: 7px 15px;
+			border: 0.5px solid #AAAABB;
+			border-radius: 4px;
+		}
+		.butsongoing{
+			outline: 0;
+			border: none;
+			background-color: #A4D8E3;
+			color: black;
+			padding: 7px 15px;
+			border: 0.5px solid #AAAABB;
+			border-radius: 4px;
+		}
+		.buts{
+			outline: 0;
+			border: none;
+			border: 0.5px solid #AAAABB;
+			background-color: white;
+			color: black;
+			padding: 7px 15px;
+			border-radius: 4px;
+		}
+		.buts:hover{
+			background-color: black;
+			color: white;
+		}
+		a{
+		}
+		a:hover{
+			text-decoration: none;
+			color: white;
+		}
+		#forad{
+			position: absolute;
+			top: 8vw;
+			left: 30vw;
+			width: 40vw;
+			height: 30vw;
+			background-color: white;
+			box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+		}
+		.foradb{
+			position: absolute;
+			top: 7.7vw;
+			right: 29vw;
+			margin-top: 0px;
+			height: 40px;
+			width: 40px;
+			padding-top: 3px;
+			border-radius: 40px;
+		}
+		.ssbar{
+			margin-left: 20%;
+			width: 60%;
+			padding: 10px 10px;
+			margin-top: 30px;
+			outline: 0;
+		}
+		.addm{
+			margin-left: 30%;
+			margin-top: 70px;
+		}
+		.righ{
+			margin-left: 45%;
+			margin-top: 50px;
+			padding: 10px 15px;
+		}
+		.butsud{
+			background-color: transparent;
+			padding-top: 0px;
+			outline: 0;
+			border: none;
+			color: black;
+			padding: 7px 15px;
+		}
+		.butsud:hover{
+			color: darkgrey;
+		}
+		.butsud3{
+			background-color: transparent;
+			padding-top: 0px;
+			outline: 0;
+			border: none;
+			color: black;
+		}
+		.butsud3:hover{
+			color: darkgrey;
+		}
+		.pdiv{
+			width: 100%;
+			margin-top: 0px;
+			float: left;
+			height: 8%;
+		}
+		.mdiv{
+			width: 100%;
+			margin-top: 0px;
+			float: left;
+			height: 82%;
+		}
+		.eimage, .ei, .emage{
+			background-color: lightgrey;
+			width: 100%;
+			height: 100%;
+		}
+		.onesecond2{
+			float: left;
+			height: 100%;
+			width: 30%;
+		}
+		.onesecond{
+			float: left;
+			height: 100%;
+			width: 70%;
+		}
+		.onediv{
+			float: left;
+			padding-right: 40px;
+		}
+		.onediv2{
+			float: left;
+			padding-right: 40px;
+		}
+		.onesecond3{
+			float: left;
+			height: 20%;
+			width: 100%;
+		}
+		.vbuts{
+			position: absolute;
+		}
+		.twodiv2{
+			height: 100%;
+			width: 100%;
+		}
+		.twodivmain{
+			height: 92%;
+		}
+		.twodivform{
+			height: 8%;
+		}
+		.twodivform2{
+			height: 8%;
+			padding: 5px 130px;
+			border: 0.5px solid #AAAABB;
+		}
+		.twodivform3{
+			width: 100%;
+			height: 92%;
+			background-color: white;
+			overflow-y: scroll;
+			overflow-x: hidden;
+		}
+		.actualcom, .actualcom2{
+			width: 60%;
+			max-width: 90%;
+			background-color: lightgrey;
+			border-radius: 8px;
+			margin-top: 5px;
+		}
+		.actualcom{
+			float: left;
+		}
+		.actualcom2{
+			float: right;
+		}
+		.comt{
+			background-color: grey;
+			width: 100%;
+		}
+		.comm, .commbut{
+			height: 100%;
+			outline: 0;
+			padding: 5px 9px;
+			margin-right: 0px;
+		}
+		.comm{
+			width: 88%;
+		}
+		.commbut{
+			border: none;
+			margin-left: 0px;
+			width: 10%;
+			background-color: black;
+			color: white;
+		}
+		.commbut:hover{
+			background-color: white;
+			color: black;
+		}
+		/*-----------------------------------------------------------------------------REPORT----------------------------------------------------------*/
+		/*-----------------------------------------------------------------------------REPORT----------------------------------------------------------*/
+		/*-----------------------------------------------------------------------------REPORT----------------------------------------------------------*/
+		/*-----------------------------------------------------------------------------REPORT----------------------------------------------------------*/
+		/*-----------------------------------------------------------------------------REPORT----------------------------------------------------------*/
+		/*-----------------------------------------------------------------------------REPORT----------------------------------------------------------*/
+		#repbut{
+			background-color: black;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100vw;
+			height: 100vh;
+			opacity: 0.5;
+		}
+		.addreport{
+			position: absolute;
+			top: 10vw;
+			left: 25vw;
+			width: 50vw;
+			height: 70vh;
+			background-color: white;
+			border: 1px solid black;
+			padding: 10px 30px;
+		}
+		.addreport p{
+			float: left;
+			margin-left: 45%;
+			margin-bottom: 0px;
+			font-size: 1.2vw;
+		}
+		.repin{
+			outline: 0;
+			padding: 10px 15px;
+			float: left;
+			resize: none;
+			margin-top: 10px;
+		}
+		.rebut{
+			/*margin-left: 45%;*/
+			float: right;
+			margin-top: 10px;
+			padding: 7px 10px;
+			outline: 0;
+			border: none;
+			border-radius: 4px;
+			background-color: black;
+			color: white;
+			box-sizing: border-box;
+		}
+		.rebut:hover{
+			background-color: white;
+			color: black;
+			border: 0.5px solid black;
+		}
+		.rebutc{
+			top: 10vw;
+			right: 21.5vw;
+			width: 30px;
+			height: 30px;
+			position: absolute;
+			margin-top: 10px;
+			border-radius: 10px;
+			padding: 7px 7px;
+			outline: 0;
+			border: none;
+			border-radius: 4px;
+			background-color: black;
+			color: white;
+			box-sizing: border-box;
+		}
+		.rebutc:hover{
+			background-color: white;
+			color: black;
+			border: none;
+		}
+
+		/*-----------------------------------------------------------------------------OTHER----------------------------------------------------------*/
+		/*-----------------------------------------------------------------------------OTHER----------------------------------------------------------*/
+		/*-----------------------------------------------------------------------------OTHER----------------------------------------------------------*/
+		/*-----------------------------------------------------------------------------OTHER----------------------------------------------------------*/
+		/*-----------------------------------------------------------------------------OTHER----------------------------------------------------------*/
+		/*-----------------------------------------------------------------------------OTHER----------------------------------------------------------*/
+		.butp a:hover{
+			text-decoration: none;
+			color: black;
+		}
+		.slmargin{
+			margin-left: 20px;
+		}
+		.blur{
+			filter: blur(8px);
+			-webkit-filter: blur(8px);
+		}
+	</style>
+</head>
+<body onload="startTime()">
+	<!-- ---------------------------------------------------------------------------------------------MAIN-------------------------------------------------------------------------- -->
+	<main id="basicmain">
+		<form id="forad" style="display: none;" action="toadmin" method="POST" class="onese">
+			{% csrf_token %}
+			<h2 class="addm">Enter Admin Code</h2>
+			<input placeholder="Admin" type="Password" name="dell2" class="ssbar">
+			<button name="dell" class="but buts righ" id="buttonn{{ user.id }}" value="{{ user.username }}">Submit</button>
+		</form>
+		<button style="display: none;" class="but buts foradb rightelements" id="forbut" onclick="forback()"><i class="glyphicon glyphicon-remove"></i></button>
+		{% if user.is_authenticated %}
+		{% block includes %}
+		{% if user_number %}
+		<div class="mainelements" >
+			<p>Select an event first</p>
+		</div>
+		{% endif %}
+		{% if user_number2 %}
+		{% for event in user_number2 %}
+		<div id="allevents" style="width: 100vw;" class="mainelements">
+			<div class="pdiv">
+				<a class="leftelements buts" href="{{ page }}">Go Back</a>
+				{% ifequal event.status 'Pending' %}
+				<div class="butspending leftelements">Pending</div>
+				{% endifequal %}
+				{% ifequal event.status 'Ongoing' %}
+				<div class="butsongoing leftelements">Ongoing</div>
+				{% endifequal %}
+				{% ifequal event.status 'Confirmed' %}
+				<div class="butsconfirmed leftelements">Confirmed</div>
+				{% endifequal %}
+				{% if event.link %}
+				<p class="buts leftelements"><a class="leftelements" target="_blank" href="{{ event.link }}">Registration Link</a></p>
+				{% endif %}
+				{% if event.whatsapp %}
+				<p class="buts leftelements"><a class="leftelements" target="_blank" href="{{ event.whatsapp }}">Whatsapp Group Link</a></p>
+				{% endif %}
+				<button class="buts rightelements" id="butc1" onclick="comopen()">Comments<i class="glyphicon glyphicon-menu-right"></i></button>
+				<button class="buts rightelements" id="butc2" onclick="comclose()" style="display: none"><i class="glyphicon glyphicon-menu-left"></i></button>
+				<button id="del" class="buts del rightelements" onclick="del('butter')" ><i class="glyphicon glyphicon-trash"></i></button>
+				<div>
+					<button id="button" class="buts rightelements" onclick="abrt()" style="display: none;" value="{{ event.id }}"> No<i class="glyphicon glyphicon-remove"></i></button>
+				</div>
+				<form action="alldel" method="POST" class="onese rightelements">
+					{% csrf_token %}
+					<button name="dell" class="buts rightelements" id="buttonn" style="display: none;" value="{{ event.id }}">Sure <i class="glyphicon glyphicon-ok"></i></button>
+				</form>
+				<button id="ex" class="buts del rightelements" onclick="expor('butter')" >Get Data</button>
+				<div>
+					<button id="button2" class="buts rightelements" onclick="noexpor()" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-remove"></i></button>
+				</div>
+				<form action="totxted" method="POST" class="onese rightelements">
+					{% csrf_token %}
+					<input style="display: none;" type="text" name="delltitle" value="{{ event.title }}">
+					<input style="display: none;" type="text" name="delldate" value="{{ event.date }}">
+					<input style="display: none;" type="text" name="delldesc" value="{{ event.description }}">
+					<input style="display: none;" type="text" name="delltype" value="{{ event.etype }}">
+					<input style="display: none;" type="text" name="dellfrom" value="{{ event.tfrom }}">
+					<input style="display: none;" type="text" name="dellto" value="{{ event.tto }}">
+					<input style="display: none;" type="text" name="dellregf" value="{{ event.regfrom }}">
+					<input style="display: none;" type="text" name="dellregt" value="{{ event.regto }}">
+					<input style="display: none;" type="text" name="dellorg" value="{{ event.organizer }}">
+					<input style="display: none;" type="text" name="dellpresenter" value="{{ event.presenter }}">
+					<input style="display: none;" type="text" name="dellpresenterd" value="{{ event.presenterd }}">
+					<input style="display: none;" type="text" name="delldep" value="{{ event.department }}">
+					<input style="display: none;" type="text" name="dellperks" value="{{ event.perks }}">
+					<input style="display: none;" type="text" name="dellcerti" value="{{ event.certi }}">
+					<input style="display: none;" type="text" name="dellfaccod1" value="{{ event.teacher1 }}">
+					<input style="display: none;" type="text" name="dellfaccod2" value="{{ event.teacher2 }}">
+					<input style="display: none;" type="text" name="dellfaccod3" value="{{ event.teacher3 }}">
+					<input style="display: none;" type="text" name="dellconv1" value="{{ event.convener1 }}">
+					<input style="display: none;" type="text" name="dellconv2" value="{{ event.convener2 }}">
+					<input style="display: none;" type="text" name="dellcont1" value="{{ event.contact1 }}">
+					<input style="display: none;" type="text" name="dellcont2" value="{{ event.contact2 }}">
+					<button name="dell" class="buts rightelements" id="txt" style="display: none;" value="{{ event.id }}">TXT</button>
+				</form>
+				<form action="topdfed" method="POST" class="onese rightelements">
+					{% csrf_token %}
+					<input style="display: none;" type="text" name="delltitle" value="{{ event.title }}">
+					<input style="display: none;" type="text" name="delldate" value="{{ event.date }}">
+					<input style="display: none;" type="text" name="delldesc" value="{{ event.description }}">
+					<input style="display: none;" type="text" name="delltype" value="{{ event.etype }}">
+					<input style="display: none;" type="text" name="dellfrom" value="{{ event.tfrom }}">
+					<input style="display: none;" type="text" name="dellto" value="{{ event.tto }}">
+					<input style="display: none;" type="text" name="dellregf" value="{{ event.regfrom }}">
+					<input style="display: none;" type="text" name="dellregt" value="{{ event.regto }}">
+					<input style="display: none;" type="text" name="dellorg" value="{{ event.organizer }}">
+					<input style="display: none;" type="text" name="dellpresenter" value="{{ event.presenter }}">
+					<input style="display: none;" type="text" name="dellpresenterd" value="{{ event.presenterd }}">
+					<input style="display: none;" type="text" name="delldep" value="{{ event.department }}">
+					<input style="display: none;" type="text" name="dellperks" value="{{ event.perks }}">
+					<input style="display: none;" type="text" name="dellcerti" value="{{ event.certi }}">
+					<input style="display: none;" type="text" name="dellfaccod1" value="{{ event.teacher1 }}">
+					<input style="display: none;" type="text" name="dellfaccod2" value="{{ event.teacher2 }}">
+					<input style="display: none;" type="text" name="dellfaccod3" value="{{ event.teacher3 }}">
+					<input style="display: none;" type="text" name="dellconv1" value="{{ event.convener1 }}">
+					<input style="display: none;" type="text" name="dellconv2" value="{{ event.convener2 }}">
+					<input style="display: none;" type="text" name="dellcont1" value="{{ event.contact1 }}">
+					<input style="display: none;" type="text" name="dellcont2" value="{{ event.contact2 }}">
+					<button name="dell" class="buts rightelements" id="pdf" style="display: none;" value="{{ event.id }}">PDF</button>
+				</form>
+				<form action="todoced" method="POST" class="rightelements">
+					{% csrf_token %}
+					<input style="display: none;" type="text" name="delltitle" value="{{ event.title }}">
+					<input style="display: none;" type="text" name="delldate" value="{{ event.date }}">
+					<input style="display: none;" type="text" name="delldesc" value="{{ event.description }}">
+					<input style="display: none;" type="text" name="delltype" value="{{ event.etype }}">
+					<input style="display: none;" type="text" name="dellfrom" value="{{ event.tfrom }}">
+					<input style="display: none;" type="text" name="dellto" value="{{ event.tto }}">
+					<input style="display: none;" type="text" name="dellregf" value="{{ event.regfrom }}">
+					<input style="display: none;" type="text" name="dellregt" value="{{ event.regto }}">
+					<input style="display: none;" type="text" name="dellorg" value="{{ event.organizer }}">
+					<input style="display: none;" type="text" name="dellpresenter" value="{{ event.presenter }}">
+					<input style="display: none;" type="text" name="dellpresenterd" value="{{ event.presenterd }}">
+					<input style="display: none;" type="text" name="delldep" value="{{ event.department }}">
+					<input style="display: none;" type="text" name="dellperks" value="{{ event.perks }}">
+					<input style="display: none;" type="text" name="dellcerti" value="{{ event.certi }}">
+					<input style="display: none;" type="text" name="dellfaccod1" value="{{ event.teacher1 }}">
+					<input style="display: none;" type="text" name="dellfaccod2" value="{{ event.teacher2 }}">
+					<input style="display: none;" type="text" name="dellfaccod3" value="{{ event.teacher3 }}">
+					<input style="display: none;" type="text" name="dellconv1" value="{{ event.convener1 }}">
+					<input style="display: none;" type="text" name="dellconv2" value="{{ event.convener2 }}">
+					<input style="display: none;" type="text" name="dellcont1" value="{{ event.contact1 }}">
+					<input style="display: none;" type="text" name="dellcont2" value="{{ event.contact2 }}">
+					<button name="dell" class="buts rightelements" id="xls" style="display: none;" value="{{ event.id }}">DOC</button>
+				</form>
+				<button id="shareo" class="buts del rightelements" onclick="shareo('butter')" >Share</button>
+				<div>
+					<button id="sharec" class="buts rightelements" onclick="sharec('butter')" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-remove"></i></button>
+				</div>
+				<button class="buts rightelements" id="shareg" style="display: none;" value="{{ event.id }}" onclick="sendmail('{{ event.title }}','{{ event.date |date }}','{{ event.description }}','{{ event.organizer }}','{{ event.perks }}','{{ event.link }}','{{ event.type }}','{{ event.tfrom }}','{{ event.tto }}','{{ event.regfrom }}','{{ event.regto }}','{{ event.presenter }}','{{ event.presenterd }}','{{ event.target }}','{{ event.department }}','{{ event.teacher1 }}','{{ event.teacher2 }}','{{ event.convener1 }}','{{ event.contact1 }}','{{ event.teacher3 }}','{{ event.convener2 }}','{{ event.contact2 }}')" title="Share to Gmail" class="rightelements buts"><i class="fa fa-envelope"></i></button>
+				<button class="buts rightelements" id="sharew" style="display: none;" value="{{ event.id }}" onclick="sendmsg('{{ event.title }}','{{ event.date |date }}','{{ event.description }}','{{ event.organizer }}','{{ event.perks }}','{{ event.link }}','{{ event.type }}','{{ event.tfrom }}','{{ event.tto }}','{{ event.regfrom }}','{{ event.regto }}','{{ event.presenter }}','{{ event.presenterd }}','{{ event.target }}','{{ event.department }}','{{ event.teacher1 }}','{{ event.teacher2 }}','{{ event.convener1 }}','{{ event.contact1 }}','{{ event.teacher3 }}','{{ event.convener2 }}','{{ event.contact2 }}')" title="Share to Gmail" class="rightelements buts"><i class="fa fa-whatsapp"></i></button>
+				{% if report_num %}
+					{% for rep in report_num %}
+					{% ifequal rep.erref.title event.title %}
+					{% if user.is_staff == True %}
+					<form action="torep" method="POST" class="rightelements">
+						{% csrf_token %}
+						<button name="dell" class="buts rightelements" id="finxls{{ event.id }}" value="{{ rep.id }}">Get Report</button>
+					</form>
+					{% endif %}
+					{% endifequal %}
+					{% endfor %}
+				{% else %}
+					{% if user.is_staff == True %}
+					<button class="buts rightelements" id="reop{{ event.id }}" onclick="repopen('butter','{{ event.id }}')">Add Report</button>
+					{% endif %}
+				{% endif %}
+				{% if user.is_staff == False %}
+					{% if regis_num %}
+						<p class="buts rightelements">Registered</p>
+						{% if event.certion == True %}
+						<form action="tocerti" method="POST" class="rightelements">
+							{% csrf_token %}
+							<input style="display: none;" type="text" name="delltype" value="{{ event.etype }}">
+							<input style="display: none;" type="text" name="delltitle" value="{{ event.title }}">
+							<input style="display: none;" type="text" name="delldate" value="{{ event.date }}">
+							<input style="display: none;" type="text" name="dellorg" value="{{ event.organizer }}">
+							<input style="display: none;" type="text" name="delldep" value="{{ event.department}}">
+							<input style="display: none;" type="text" name="dellconv1" value="{{ event.convener1 }}">
+							<input style="display: none;" type="text" name="dellconv2" value="{{ event.convener2 }}">
+							<button name="dell" class="buts rightelements" id="cer{{ event.id }}" value="{{ event.id }}">Certificate</button>
+						</form>
+						{% endif %}
+					{% else %}
+						<button class="buts rightelements" id="regop{{ event.id }}" onclick="regopen('butter','{{ event.id }}')">Register</button>
+					{% endif %}
+				{% else %}
+				<form action="toreg" method="POST" class="rightelements">
+					{% csrf_token %}
+					<button name="dell" class="buts rightelements" id="finxls{{ event.id }}" value="{{ event.id }}">Registrations ({{regs}})</button>
+				</form>
+				{% endif %}
+			</div>
+			<div class="mdiv">
+				<div class="onesecond2">
+					{% if event.poster %}
+					<div id="mimage" class="leftelements eimage">
+						<button class="leftelements vbuts buts" id="upview{{ event.id }}" onclick="pressed()"><i class="glyphicon glyphicon-eye-open"></i></button>
+						<span style="position: absolute;background-color: lightgrey" class="leftelements spaimage" id="spa{{ event.id }}"></span>
+						<img class="leftelements emage" style="margin-right: 0px;" width="183px" src="{{ event.poster.url }}">
+					</div>
+					{% else %}
+					<div class="leftelements ei">
+						<p> No Image </p>
+						<p> You cannot upload poster here </p>
+						<p> Please visit Admin page to upload </p>
+					</div>
+					{% endif %}
+					<div id="myModal" class="modal">
+				  		<span id="close" class="close">&times;</span>
+				 		<img class="modal-content" id="img01">
+				  		<div id="caption"></div>
+					</div>
+				</div>
+				<div class="onesecond">
+					<div class="onediv fullwidth">
+						<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-eventdetails" class="leftelements" method="POST">
+							{% csrf_token %}
+							<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
+							<button name="send" value="{{ event.id }}" class="butsud2 leftelements">{{ event.title }}</button>
+						</form>
+						<h4 class="leftelements divelements slmargin">({{ event.etype }})
+		    			</h4>
+	    				<div class="onedivunder">
+	    					<div class="leftelements slmargin fullwidth">
+		    					<h4 class="leftelements divelements"> {{ event.presenter }} ,</h4>
+			    				<h4 class="leftelements divelements"> {{ event.presenterd }} </h4>
+			    				<h4 class="rightelements divelements"> {{ event.tfrom }} - {{ event.tto }} </h4>
+		    					<h4 class="rightelements divelements"> {{ event.date }} ,</h4>
+	    					</div>
+	    					<div class="fullwidth slmargin leftelements">
+		    					{% if event.description %}
+				    			<p class="leftelements  divelements">{{ event.description }}</p>
+								{% else %}
+								<p class="leftelements  divelements">No Description</p>
+								{% endif %}
+								{% if event.perks %}
+				    			<p class="leftelements slmargin divelements">{{ event.perks }}</p>
+								{% else %}
+								<p class="leftelements slmargin divelements">No Perks Specified</p>
+								{% endif %}
+	    					</div>
+	    				</div>
+	    			</div>
+	    			<div class="onediv2">
+	    				<div class="onediv2under">
+							<h5 style="font-weight: bold;" class="leftelements slmargin">Organizer :</h5>
+							<h5 class="leftelements slmargin oned">
+								{{ event.organizer }}
+							</h5>
+							<h5 style="font-weight: bold;" class="leftelements slmargin oned">Department :</h5>
+							<h5 class="leftelements slmargin oned">
+								{{ event.department }}
+							</h5>
+							<h5 style="font-weight: bold;" class="leftelements slmargin twod">Conveners :</h5>
+							<h5 class="leftelements slmargin oned oned">
+								{{ event.convener1 }}
+							</h5>
+							<h5 class="leftelements slmargin oned">
+								{{ event.convener2 }}
+							</h5>
+							<h5 style="font-weight: bold;" class="leftelements slmargin">Faculty Co-ordinators :</h5>
+							<h5 class="leftelements slmargin oned">
+								{{ event.teacher1 }}
+							</h5>
+							<h5 class="leftelements slmargin oned">
+								{{ event.teacher2 }}
+							</h5>
+
+							<h5 class="leftelements slmargin oned">
+								{{ event.teacher3 }}
+							</h5>
+						</div>
+						{% if event.tags %}
+							<h5 class="leftelements slmargin oned">
+								Tags : 
+							</h5>
+							{% for mem in event.tags.all %}
+							<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-userdetails" method="POST">
+								{% csrf_token %}
+								<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
+								<button name="send" value="{{ mem }}" class="butsud bbs leftelements">{{ mem }}</button>
+							</form>
+							{% endfor %}
+						{% endif %}
+	    			</div>
+				</div>
+			</div>
+			<div class="leftelements pdiv" id="pubda">
+				<p class="butp leftelements">Published on : {{ event.pubdate }}</p>
+				<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-userdetails" method="POST">
+					{% csrf_token %}
+					<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
+					<p class="butp leftelements again oned">Published by : </p>
+					<button name="send" value="{{ event.by.username }}" class="butsud leftelements">{{ event.by.username }}</button>
+				</form>
+				<p class="butp leftelements">Contact : {{ event.contact1 }} {{ event.contact2 }}</p>
+				<p class="butp rightelements ids">{{ event.id }}</p>
+			</div>
+		</div>
+		<div id="commentsec" style="display: none;" class="underelements2">
+			<div class="twodiv2">
+				<div class="twodivmain">
+					<div class="twodivform2">
+						Comments
+					</div>
+					<div class="twodivform3">
+						{% for com in comment_num %}
+						{% ifequal com.ecref.title event.title %}
+						{% ifequal com.cby.username user.username %}
+						<div class="actualcom2 rightelements">
+							<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-userdetails" method="POST">
+								{% csrf_token %}
+								<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
+								<button name="send" value="{{com.cby.username}}" class="butsud3 comt leftelements fullheight">You</button>
+							</form>
+							<p class="combody">{{ com.body }}</p>
+						</div>
+						{% else %}
+						<div class="actualcom leftelements">
+							<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-userdetails" method="POST">
+								{% csrf_token %}
+								<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
+								<button name="send" value="{{ com.cby.username }}" class="butsud3 comt leftelements fullheight">{{ com.cby.username }}</button>
+							</form>
+							<p class="combody">{{ com.body }}</p>
+						</div>
+						{% endifequal %}
+						{% endifequal %}
+						{% endfor %}	
+					</div>
+				</div>
+				<form class="twodivform" method="POST" action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-eventdetails">
+				{% csrf_token %}
+					<input style="display: none;" class="comm2" type="text" name="eventname" value="{{ event.title }}">
+					<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
+					<input autocomplete="off" class="comm" type="text" name="comment">
+					<button class="commbut" name="send" value="{{ event.id }}"><i class="glyphicon glyphicon-send"></i></button>
+				</form>
+			</div>
+		</div>
+		<form style="display: none;" id="reform{{ event.id }}" class="rightelements addreport" name="reform{{ event.id }}" method="POST" action="addreport">
+			{% csrf_token %}
+			<div class="fullwidth leftelements">
+				<p>Add Report</p>
+			</div>
+			<input style="display: none;" type="text" name="eventname" value="{{ event.title }}">
+			<input autocomplete="off" id="rtitle{{ event.id }}" class="fullwidth repin" placeholder="Enter Title*" type="text" name="reporttitle">
+			<input autocomplete="off" type="text" id="rbody{{ event.id }}" placeholder="Objectives*" class="fullwidth repin" name="reportobj">
+			<input autocomplete="off" type="text" id="rkeyp{{ event.id }}" placeholder="Keyponits*" class="fullwidth repin" name="reportkep">
+			<input autocomplete="off" type="text" id="routc{{ event.id }}" placeholder="Outcomes*" class="fullwidth repin" name="reportout">
+			<input autocomplete="off" type="text" id="rfeed{{ event.id }}" placeholder="Feedback*" class="fullwidth repin" name="reportfed">
+			<select class="fullwidth repin" id="taggingrep" name="reportcert">
+				<option value="True">Distribute Certificates Auto</option>
+				<option value="False">No Certificates</option>
+			</select>
+			<button class="rebut">Submit</button>
+		</form>
+		<form style="display: none;" id="regform{{ event.id }}" class="rightelements addreport" name="regform{{ event.id }}" method="POST" action="register">
+			{% csrf_token %}
+			<div class="fullwidth leftelements">
+				<p>Register</p>
+			</div>
+			<input style="display: none;" type="text" name="eventname" value="{{ event.title }}">
+			<input autocomplete="off" placeholder="Enter Your Full Name" id="regtitle{{ event.id }}" class="fullwidth repin" type="text" name="reporttitle">
+			<input autocomplete="off" placeholder="Please Specify the reason you want to register" id="regbody{{ event.id }}" class="fullwidth repin" name="reportbody"></input>
+			<button class="rebut">Submit</button>
+		</form>
+		<button style="display: none;" class="rebutc rightelements" id="reclose{{ event.id }}" onclick="repclo('butter','{{ event.id }}')"><i class="glyphicon glyphicon-remove"></i></button>
+		<button style="display: none;" class="rebutc rightelements" id="regclose{{ event.id }}" onclick="regclo('butter','{{ event.id }}')"><i class="glyphicon glyphicon-remove"></i></button>
+		{% endfor %}
+		{% endif %}
+		{% endblock includes %}
+		{% else %}
+		<div class="mainheadelements">
+			<h1>Please Login</h1>
+	    	<a href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login" id="lgin" class="but">
+	    		Login
+	    	</a>
+	    </div>
+		{% endif %}
+	</main>
+	<!-- ---------------------------------------------------------------------------------------------HEADER-------------------------------------------------------------------------- -->
+	<header style="opacity: 1" class="basicheader" id="mainhead">
+		<button onclick="menu()" class="but basicbutton">
+			<i class="glyphicon glyphicon-menu-hamburger"></i>
+		</button>
+		<h2 id="basictitle">
+			DA
+		</h2>
+		<h3 id="basicpage">
+			EVENT DETAILS
+		</h3>
+		<div id="basichelp">
+			<button onclick="help()" id="basichelpbut" class="but basicbutton">
+				<i class="glyphicon glyphicon-triangle-bottom"></i>
+			</button>
+		</div>
+		<div id="basicprofile">
+			<button onclick="profile()" id="basicprofilebut" class="but basicbutton">
+				<i class="glyphicon glyphicon-user"></i>
+			</button>
+		</div>
+		<h4 id="basicdt">
+			<span id="basicdate">
+			</span>
+			<span id="basictime">
+			</span>
+		</h4>
+		
+	</header>
+	<!-- ---------------------------------------------------------------------------------------------NAVBAR-------------------------------------------------------------------------- -->
+	<nav>
+		<div style="display: none;" id="profilediv">
+			<a class="profilelink" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-profile">
+				<div class="low profiletdp">
+					<i class="profiledp glyphicon glyphicon-th-list"></i>
+					<p class="profiletext">Details</p>
+				</div>
+			</a>
+			<a class="profilelink" href="/admin/kjsomaiyacollegeofengineering-teachers-department-admin">
+				<div class="mid profiletdp">
+					<i class="profiledp glyphicon glyphicon-asterisk"></i>
+					<p class="profiletext">Admin Page</p>
+				</div>
+			</a>
+    		{% if user.is_superuser == False %}
+    		<div id="forad2">
+				<button class="profilelink" onclick="adcode()" href="toadmin">
+					<div class="high profiletdp">
+						<i class="profiledp glyphicon glyphicon-repeat"></i>
+						<p class="profiletext">Convert to admin</p>
+					</div>
+				</button>
+    		</div>
+    		<div id="adspan" class="hugebut">
+    		</div>
+			{% else %}
+			<form id="forad3" action="tonormal" method="POST">
+				{% csrf_token %}
+				<button name="dell" class="profilelink" id="buttonn{{ user.id }}" value="{{ user.username }}"><i class="glyphicon glyphicon-ok"></i>Convert to normal</button>
+			</form>
+			{% endif %}
+		</div>
+		<!-- ------------------------------------------------------------------------------------NAVBARHELP------------------------------------------------------------------------------>
+		<div style="display: none;" id="basichelp2">
+			<button onclick="helpb()" id="basichelpbut2" class="but basicbutton">
+				<i class="glyphicon glyphicon-triangle-bottom"></i>
+			</button>
+		</div>
+		<div style="display: none;" id="basicprofile2">
+			<button onclick="profileb()" id="basicprofilebut2" class="but basicbutton">
+				<i class="glyphicon glyphicon-user"></i>
+			</button>
+		</div>
+		<div style="display: none;" id="profilediv2">
+			<a class="profilelink" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-help">
+				<div class="low profiletdp">
+					<i class="profiledp glyphicon glyphicon-question-sign"></i>
+					<p class="profiletext">Help</p>
+				</div>
+			</a>
+			<a class="profilelink" href="homelogout">
+				<div class="low profiletdp">
+					<i class="profiledp glyphicon glyphicon-off"></i>
+					<p class="profiletext">Logout</p>
+				</div>
+			</a>
+		</div>
+		<!------------------------------------------------------------------------------------------NAVBARMAIN-------------------------------------------------------------------------- -->
+		<div style="display: none;" id="profilediv3">
+			<h2 class="basicpro">
+				DA
+			</h2>
+			<button onclick="back()" class="but basicbutton">
+				<i class="glyphicon glyphicon-chevron-left"></i>
+			</button>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-home">
+				<div class="low2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-home"></i>
+					<p class="profiletext">Home</p>
+				</div>
+			</a>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents">
+				<div class="low2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-th-large"></i>
+					<p class="profiletext">Events</p>
+				</div>
+			</a>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-addevent">
+				<div class="mid2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-plus"></i>
+					<p class="profiletext">Add Event</p>
+				</div>
+			</a>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-preevent">
+				<div class="mid2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-star"></i>
+					<p class="profiletext">Pre-Event</p>
+				</div>
+			</a>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-messaging">
+				<div class="mid2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-envelope"></i>
+					<p class="profiletext">Message</p>
+				</div>
+			</a>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-groups">
+				<div class="low2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-asterisk"></i>
+					<p class="profiletext">Groups</p>
+				</div>
+			</a>
+		</div>
+		<button style="display: none;" onclick="back()" id="hugebut">
+			
+		</button>
+	</nav>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		var today = new Date();
+		var d = today.getDate();
+		d2=d+1;
+		console.log(d2);
+		var mo = today.getMonth();
+		var y = today.getFullYear();
+		var listem =  'liss';
+		document.getElementById('basicdate').innerHTML=d+"/"+(mo+1)+"/"+y;
+		function startTime() {
+			var today = new Date();
+			var h = today.getHours();
+			var m = today.getMinutes();
+			var s = today.getSeconds();
+			m = checkTime(m);
+			s = checkTime(s);
+			document.getElementById('basictime').innerHTML =
+			h + ":" + m;
+			var t = setTimeout(startTime, 500);
+		}
+		function checkTime(i) {
+			if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+			return i;
+		}
+		function menu(){
+			document.getElementById('profilediv3').style.display = '';
+			document.getElementById('hugebut').style.display = '';
+			document.getElementById('mainhead').style.opacity = '0.8';
+			document.getElementById('basicmain').style.opacity = '0.8';
+			document.getElementById('profilediv3').style.height = '100vh';
+			if ($('#profilediv3').is(':visible')) {
+			    $('body').addClass("fixed-position");
+			} else {
+			    $('body').removeClass("fixed-position");
+			}
+		}
+		function back(){
+			document.getElementById('profilediv3').style.display = 'none';
+			document.getElementById('hugebut').style.display = 'none';
+			document.getElementById('mainhead').style.opacity = '1';
+			document.getElementById('basicmain').style.opacity = '1';
+			if ($('#profilediv3').is(':hidden')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+		function profile(){
+			document.getElementById('profilediv').style.display = '';
+			document.getElementById('profilediv2').style.display = 'none';
+			document.getElementById('basichelp2').style.display = 'none';
+			document.getElementById('basicprofile2').style.display = '';
+			document.getElementById('basicmain').style.opacity = '0.8';
+			if ($('#profilediv').is(':visible')) {
+			    $('body').addClass("fixed-position");
+			} else {
+			    $('body').removeClass("fixed-position");
+			}
+		}
+		function help(){
+			document.getElementById('profilediv2').style.display = '';
+			document.getElementById('profilediv').style.display = 'none';
+			document.getElementById('basicprofile2').style.display = 'none';
+			document.getElementById('basichelp2').style.display = '';
+			document.getElementById('basicmain').style.opacity = '0.8';
+			if ($('#profilediv2').is(':visible')) {
+			    $('body').addClass("fixed-position");
+			} else {
+			    $('body').removeClass("fixed-position");
+			}
+		}
+
+		function profileb(){
+			document.getElementById('profilediv').style.display = 'none';
+			document.getElementById('basicprofile2').style.display = 'none';
+			document.getElementById('basicmain').style.opacity = '1';
+			if ($('#profilediv').is(':hidden')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+		function helpb(){
+			document.getElementById('profilediv2').style.display = 'none';
+			document.getElementById('basichelp2').style.display = 'none';
+			document.getElementById('basicmain').style.opacity = '1';
+			if ($('#profilediv2').is(':hidden')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+
+		function copy(num) {
+			gg='email'+num;
+			var copytext = document.getElementById(gg).value;
+			navigator.clipboard.writeText(copytext);
+			alert("Copied the text: " +copytext);
+			console.log(copytext)
+		}
+
+		function search_event() { 
+		    let input = document.getElementById('searchbar').value 
+		    input=input.toLowerCase(); 
+		    let x = document.getElementsByClassName('mainelements'); 
+		    console.log(x.length)
+		    for (i = 0; i < x.length; i++) {  
+		        if (!x[i].innerHTML.toLowerCase().includes(input)) { 
+		            x[i].style.display="none"; 
+		        } 
+		        else { 
+		            x[i].style.display="list-item";                  
+		        } 
+		    } 
+		} 
+		var inp = document.getElementById('searchbar');
+		if(inp){
+			inp.addEventListener("keyup", function(event) {
+				console.log(inp);
+		    	if (event.keyCode === 13) {
+		    	    // event.preventDefault();
+			        document.getElementById("sbutn").click();
+			    }
+			});
+		}
+		function adcode(){
+			document.getElementById('forad').style.display = '';
+			document.getElementById('forbut').style.display = '';
+			document.getElementById('profilediv').style.display = 'none';
+			document.getElementById('basicprofile2').style.display = 'none';
+			document.getElementById('basicmain').style.opacity = '1';
+			if ($('#profilediv').is(':visible')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+		function forback(){
+			document.getElementById('forad').style.display = 'none';
+			document.getElementById('forbut').style.display = 'none';
+			document.getElementById('profilediv').style.display = 'none';
+			document.getElementById('basicprofile2').style.display = 'none';
+			document.getElementById('basicmain').style.opacity = '1';
+			if ($('#profilediv').is(':hidden')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+		function comopen(){
+			document.getElementById('commentsec').style.display = '';
+			document.getElementById('butc2').style.display = '';
+			document.getElementById('butc1').style.display = 'none';
+			document.getElementById('allevents').style.width = '75vw';
+		}
+		function comclose(){
+			document.getElementById('commentsec').style.display = 'none';
+			document.getElementById('butc2').style.display = 'none';
+			document.getElementById('butc1').style.display = '';
+			document.getElementById('allevents').style.width = '100vw';
+		}
+		function del() {
+			document.getElementById('button').style.display = ''; 
+			document.getElementById('buttonn').style.display = ''; 
+			document.getElementById('del').style.display = 'none';
+
+			document.getElementById('txt').style.display = 'none'; 
+			document.getElementById('pdf').style.display = 'none'; 
+			document.getElementById('xls').style.display = 'none';
+			document.getElementById('ex').style.display = '';
+			document.getElementById('button2').style.display = 'none';
+			document.getElementById('shareg').style.display = 'none'; 
+			document.getElementById('sharew').style.display = 'none'; 
+			document.getElementById('sharec').style.display = 'none';
+			document.getElementById('shareo').style.display = '';
+		}
+		function abrt(){
+			document.getElementById('button').style.display = 'none'; 
+			document.getElementById('buttonn').style.display = 'none'; 
+			document.getElementById('del').style.display = '';
+		}
+		function expor() {
+			document.getElementById('txt').style.display = ''; 
+			document.getElementById('pdf').style.display = ''; 
+			document.getElementById('xls').style.display = '';
+			document.getElementById('ex').style.display = 'none';
+			document.getElementById('button2').style.display = '';
+
+			document.getElementById('button').style.display = 'none'; 
+			document.getElementById('buttonn').style.display = 'none'; 
+			document.getElementById('ars').innerHTML = "" ;
+			document.getElementById('del').style.display = '';
+			document.getElementById('shareg').style.display = 'none'; 
+			document.getElementById('sharew').style.display = 'none'; 
+			document.getElementById('sharec').style.display = 'none';
+			document.getElementById('shareo').style.display = '';
+		}
+		function noexpor() {
+			document.getElementById('txt').style.display = 'none'; 
+			document.getElementById('pdf').style.display = 'none'; 
+			document.getElementById('xls').style.display = 'none';
+			document.getElementById('ex').style.display = '';
+			document.getElementById('button2').style.display = 'none';
+		}
+		function shareo() {
+			document.getElementById('shareg').style.display = ''; 
+			document.getElementById('sharew').style.display = ''; 
+			document.getElementById('shareo').style.display = 'none';
+			document.getElementById('sharec').style.display = '';
+
+			document.getElementById('txt').style.display = 'none'; 
+			document.getElementById('pdf').style.display = 'none'; 
+			document.getElementById('xls').style.display = 'none';
+			document.getElementById('ex').style.display = '';
+			document.getElementById('button2').style.display = 'none';
+			document.getElementById('button').style.display = 'none'; 
+			document.getElementById('buttonn').style.display = 'none'; 
+			document.getElementById('ars').innerHTML = "" ;
+			document.getElementById('del').style.display = '';
+		}
+		function sharec() {
+			document.getElementById('shareg').style.display = 'none'; 
+			document.getElementById('sharew').style.display = 'none'; 
+			document.getElementById('shareo').style.display = '';
+			document.getElementById('sharec').style.display = 'none';
+		}
+		function markpo(butId) {
+			if (butId == 'butter') {
+				show = 'markasconfirmp';
+				show2 = 'markasongoingp';
+				show4 = 'markp';
+				show5 = 'penbut';
+			}
+			document.getElementById(show).style.display = ''; 
+			document.getElementById(show2).style.display = ''; 
+			document.getElementById(show4).style.display = 'none';
+			document.getElementById(show5).style.display = '';
+		}
+		function markpc(butId) {
+			if (butId == 'butter') {
+				show = 'markasconfirmp';
+				show2 = 'markasongoingp';
+				show4 = 'markp';
+				show5 = 'penbut';
+			}
+			document.getElementById(show).style.display = 'none'; 
+			document.getElementById(show2).style.display = 'none'; 
+			document.getElementById(show4).style.display = '';
+			document.getElementById(show5).style.display = 'none';
+		}
+		function markoo(butId) {
+			if (butId == 'butter') {
+				show = 'markasconfirmo';
+				show2 = 'markaspendingo';
+				show4 = 'marko';
+				show5 = 'ongbut';
+			}
+			document.getElementById(show).style.display = ''; 
+			document.getElementById(show2).style.display = ''; 
+			document.getElementById(show4).style.display = 'none';
+			document.getElementById(show5).style.display = '';
+		}
+		function markoc(butId) {
+			if (butId == 'butter') {
+				show = 'markasconfirmo';
+				show2 = 'markaspendingo';
+				show4 = 'marko';
+				show5 = 'ongbut';
+			}
+			document.getElementById(show).style.display = 'none'; 
+			document.getElementById(show2).style.display = 'none'; 
+			document.getElementById(show4).style.display = '';
+			document.getElementById(show5).style.display = 'none';
+		}
+		function markco(butId) {
+			if (butId == 'butter') {
+				show = 'markaspendingc';
+				show2 = 'markasongoingc';
+				show4 = 'markc';
+				show5 = 'conbut';
+			}
+			document.getElementById(show).style.display = ''; 
+			document.getElementById(show2).style.display = ''; 
+			document.getElementById(show4).style.display = 'none';
+			document.getElementById(show5).style.display = '';
+		}
+		function markcc(butId) {
+			if (butId == 'butter') {
+				show = 'markaspendingc';
+				show2 = 'markasongoingc';
+				show4 = 'markc';
+				show5 = 'conbut';
+			}
+			document.getElementById(show).style.display = 'none'; 
+			document.getElementById(show2).style.display = 'none'; 
+			document.getElementById(show4).style.display = '';
+			document.getElementById(show5).style.display = 'none';
+		}
+		function sendmail(delltitle,delldate,delldesc,dellorg,dellperks,delllink,delltype,dellfro,dellto,dellregfro,dellregto,dellpres,dellpresd,delltarget,delldep,dellfaccod1,dellfaccod2,dellconv1,dellcont1,dellfaccod3,dellconv2,dellcont2){
+			msgbody1="K.J. somaiya Institute of Engineering and Information Technology (KJSIEIT) Sion, Mumbai"
+			msgbody2="KJSIEIT is accredited by NAAC with A grade."
+			msgbody22="Three programs accredited by National Board of Accreditation."
+			msgbody23=" Best College awarded by University of Mumbai, ISTE (MH) and CSI (Mumbai)"
+			cname="KJSIEIT-"
+			str="%0D%0A"
+			space=" "
+			org1="is organizing a"
+			org2=" on topic "
+			org3=""
+			st="'"
+			if (delltarget!=undefined) {
+				org3=" for "
+			}
+			org4=" in association with "
+			fustp="."
+			sp=", "
+			dep=" Department"
+			msgbody3=cname.concat(dellorg,space,org1,space,delltype,org2,st,delltitle,st,org3,delltarget,org4,delldep,dep,fustp)
+			dte="Date : "
+			tme="Time : "
+			to=" to "
+			descc="Description : "
+			speaker="Speaker : "
+			msgbody4=dte.concat(delldate,str,tme,dellfro,to,dellto,str,speaker,dellpres,sp,dellpresd,fustp)
+			msgbody5=str.concat(str,descc,delldesc)
+			if (dellperks!=undefined) {
+				msgbodyo=msgbody5.concat(str,dellperks);
+			}
+			subj=delltitle
+			reg="Registration Link : "
+			reg2="Registrations from "
+			msgbody5=reg.concat(space,delllink,str,reg2,dellregfro,to,dellregto)
+			dep="Department : "
+			faccod="Faculty Co-ordinators : "
+			conv="Conveners : "
+			cont="Contact : "
+			msgbody6=faccod.concat(dellfaccod1,sp,dellfaccod2,sp,dellfaccod3,str,conv,dellconv1,sp,dellconv2,str,cont,dellcont1,dellcont2)
+			msgbodyf=msgbody1.concat(str,str,msgbody2,str,msgbody22,str,msgbody23,str,str,msgbody3,str,str,msgbody4,str,str,msgbody5,str,str,msgbody6)
+
+			subj=delltitle
+			console.log(msgbodyf)
+			let url = 'https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=&su='+subj+'&body='+msgbodyf+'&ui=2&tf=1&pli=1';
+			window.open(url, 'sharer', 'toolbar=0,status=0,width=648,height=395,top=200,left=300');
+		}
+		function sendmsg(delltitle,delldate,delldesc,dellorg,dellperks,delllink,delltype,dellfro,dellto,dellregfro,dellregto,dellpres,dellpresd,delltarget,delldep,dellfaccod1,dellfaccod2,dellconv1,dellcont1,dellfaccod3,dellconv2,dellcont2){
+			msgbody1="K.J. somaiya Institute of Engineering and Information Technology (KJSIEIT) Sion, Mumbai"
+			msgbody2="KJSIEIT is accredited by NAAC with A grade Three programs accredited by National Board of Accreditation Best College awarded by University of Mumbai, ISTE (MH) and CSI (Mumbai)"
+			cname="KJSIEIT-"
+			str="%0D%0A"
+			space=" "
+			org1="is organizing a"
+			org2=" on topic "
+			org3=""
+			st="*"
+			if (delltarget!=undefined) {
+				org3=" for "
+			}
+			org4=" in association with "
+			fustp="."
+			sp=", "
+			dep=" Department"
+			msgbody3=cname.concat(dellorg,space,org1,space,delltype,org2,st,delltitle,st,org3,delltarget,org4,delldep,dep,fustp)
+			dte="Date : "
+			tme="Time : "
+			to=" to "
+			descc="Description : "
+			speaker="Speaker : "
+			msgbody4=dte.concat(delldate,str,tme,dellfro,to,dellto,str,speaker,dellpres,sp,dellpresd,fustp)
+			msgbody5=str.concat(str,descc,delldesc)
+			if (dellperks!=undefined) {
+				msgbodyo=msgbody5.concat(str,dellperks);
+			}
+			subj=delltitle
+			reg="Registration Link : "
+			msgbody5=reg.concat(space,delllink,str,dellregfro,to,dellregto)
+			dep="Department : "
+			faccod="Faculty Co-ordinators : "
+			conv="Conveners : "
+			cont="Contact : "
+			msgbody6=faccod.concat(dellfaccod1,sp,dellfaccod2,sp,dellfaccod3,str,conv,dellconv1,sp,dellconv2,str,cont,dellcont1,dellcont2)
+			msgbodyf=msgbody1.concat(str,str,msgbody2,str,str,msgbody3,str,str,msgbody4,str,str,msgbody5,str,str,msgbody6)
+			console.log(msgbodyf)
+			let url = 'whatsapp://send?text='+msgbodyf+'';
+			window.open(url, 'sharer', 'toolbar=0,status=0,width=648,height=395,top=200,left=300');
+		}
+
+		var modal = document.getElementById("myModal");
+
+		var modalImg
+		var captionText
+		imm = document.getElementById(mimage);
+		function pressed(){
+			modalImg = document.getElementById("img01");
+			captionText = document.getElementById("caption");
+			modal.style.display = "block";
+			modalImg.src = this.src;
+			captionText.innerHTML = this.alt;
+			$('body').addClass("fixed-position");
+		}
+		var span = document.getElementById("close");
+
+		span.onclick = function() { 
+		  console.log('allevent')
+		  modal.style.display = "none";
+		  $('body').removeClass("fixed-position");
+		}
+
+		function repopen(butId,numb) {
+			if (butId == 'butter') {
+				show = 'reform'+numb;
+				show2 = 'reclose'+numb;
+				show4 = 'reop'+numb;
+				show5 = 'repbut';
+			}
+			document.getElementById(show).style.display = '';
+			document.getElementById(show2).style.display = '';
+			document.getElementById(show4).style.display = 'none';
+			document.getElementById(show5).style.display = '';
+			if ($('#repbut').is(':hidden')) {
+			    $('body').removeClass("fixed-position");
+			    $('#repbut').removeClass("blur");
+			} else {
+			    $('body').addClass("fixed-position");
+			    $('#repbut').addClass("blur");
+			}
+		}
+		function repclo(butId,numb) {
+			if (butId == 'butter') {
+				show = 'reform'+numb;
+				show2 = 'reclose'+numb;
+				show4 = 'reop'+numb;
+				show5 = 'repbut';
+			}
+			document.getElementById(show).style.display = 'none';
+			document.getElementById(show2).style.display = 'none';
+			document.getElementById(show4).style.display = '';
+			document.getElementById(show5).style.display = 'none';
+			if ($('#repbut').is(':hidden')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+
+		function regopen(butId,numb) {
+			if (butId == 'butter') {
+				show = 'regform'+numb;
+				show2 = 'regclose'+numb;
+				show4 = 'regop'+numb;
+				show5 = 'regbut';
+			}
+			document.getElementById(show).style.display = '';
+			document.getElementById(show2).style.display = '';
+			document.getElementById(show4).style.display = 'none';
+			document.getElementById(show5).style.display = '';
+			if ($('#regbut').is(':hidden')) {
+			    $('body').removeClass("fixed-position");
+			    $('#regbut').removeClass("blur");
+			} else {
+			    $('body').addClass("fixed-position");
+			    $('#regbut').addClass("blur");
+			}
+		}
+		function regclo(butId,numb) {
+			if (butId == 'butter') {
+				show = 'regform'+numb;
+				show2 = 'regclose'+numb;
+				show4 = 'regop'+numb;
+				show5 = 'regbut';
+			}
+			document.getElementById(show).style.display = 'none';
+			document.getElementById(show2).style.display = 'none';
+			document.getElementById(show4).style.display = '';
+			document.getElementById(show5).style.display = 'none';
+			if ($('#regbut').is(':hidden')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+
+
+	</script>
+</body>
+</html>

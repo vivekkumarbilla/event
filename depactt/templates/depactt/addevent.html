@@ -1,0 +1,1079 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Add Event DepAct
+	</title>
+	<link rel="icon" type="image/png" href="{% static 'kj.png' %}">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<style type="text/css">
+		body{
+			background-color: #DDDDEE;
+			font-family: Calibri;
+			overflow: hidden;
+		}
+		nav{
+			background-color: yellow;
+			width: 100vw;
+			overflow-x: hidden;
+		}
+		 .fixed-position {
+	    	position: fixed;
+		}
+		::-webkit-scrollbar {
+		    /*width: 0px;   Remove scrollbar space */
+		    /*background: white;*/  /* Optional: just make scrollbar invisible */
+		    background-color: transparent;
+		    opacity: 0;
+		    width: 10px;
+		}
+		::-webkit-scrollbar-thumb{
+			background-color: #17252A;
+			border-radius: 8px;
+		}
+		.lock-scroll{
+			overflow: hidden;
+		}
+		/*--------------------------------------------------------------------HEADER------------------------------------------------------------------------
+		----------------------------------------------------------------------HEADER------------------------------------------------------------------------
+		----------------------------------------------------------------------HEADER------------------------------------------------------------------------
+		----------------------------------------------------------------------HEADER------------------------------------------------------------------------*/
+		.basicheader{
+			float: left;
+			background-color: #FFFFFF;
+			width: 100vw;
+			position: fixed;
+			/*box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);*/
+			font-family: Calibri;
+			border-bottom: 1px solid #AAAABB;
+		}
+		.but{
+			outline: 0;
+			border: none;
+		}
+		.basicbutton{
+			padding: 2vw 2.5vw;
+			float: left;
+			color: black;
+			background-color: #FFFFFF;
+			font-size: 2.5vw;
+			height: 7.5vw;
+		}
+		.basicbutton:hover{
+			color: #FFF;
+			background-color: #000;
+		}
+		#basictitle, #basicpage{
+			margin-top: 0px;
+			margin-bottom: 0px;
+			color: #000;
+			float: left;
+			height: 7.5vw;
+			font-size: 2.5vw;
+			padding-top: 2.3vw;
+		}
+		#basictitle{
+			padding-left: 2vw;
+			padding-right: 2vw;
+		}
+		#basicpage{
+			margin-left: 32vw;
+		}
+		#basicdt{
+			margin-left: 8vw;
+			font-size: 2vw;
+			float: right;
+			margin-top: 0px;
+			margin-bottom: 0px;
+			height: 7.5vw;
+			width: 20vw;
+			padding-top: 2.5vw;
+			padding-left: 1vw;
+			color: #000;
+		}
+		#basicprofile, #basichelp{
+			float: right;
+			height: 7.5vw;
+			margin-right: 1vw;
+		}
+		#basicprofilebut{
+			font-size: 2.5vw;
+			border-radius: 8vw;
+		}
+		#basichelpbut{
+			font-size: 2vw;
+			padding: 1.5vw 0.5vw;
+		}
+		#basichelp{
+			width: 3vw;
+		}
+		#basictime{
+			margin-left: 3vw;
+		}
+		/*--------------------------------------------------------------------BASIC NAV BAR CONTENT STYLES------------------------------------------------------------------------
+		----------------------------------------------------------------------BASIC NAV BAR CONTENT STYLES------------------------------------------------------------------------
+		----------------------------------------------------------------------BASIC NAV BAR CONTENT STYLES------------------------------------------------------------------------
+		----------------------------------------------------------------------BASIC NAV BAR CONTENT STYLES------------------------------------------------------------------------*/
+		.profilelink{
+			background-color: #FFFFFF;
+			float: left;
+			margin-top: 0px;
+			margin-left: 0px;
+			height: 5vw;
+			width: 12vw;
+			font-size: 1vw;
+			padding-top: 1.7vw;
+			text-decoration: none;
+			color: #000;
+			box-sizing: border-box;
+			border-left: 1px solid #000;
+			border-right: 1px solid #000;
+			outline: 0;
+			border: none;
+		}
+		.profilelink:hover{
+			background-color: #000;
+			color: #FFF;
+			/*text-shadow: 0px 2px 10px #C770A4, 2px 0px 10px #C770A4, -2px 0px 10px #C770A4, 0px -2px 10px #C770A4;*/
+			border-bottom: 2px solid #CCCCCC;
+		}
+		.profiletdp{
+			width: 100%;
+			float: left;
+		}
+		.profiletext{
+			float: right;
+			margin-top: 0px;
+		}
+		.profiledp{
+			float: right;
+			height: 1.6vw;
+			font-size: 1.1vw;
+			padding-left: 0.5vw;
+			padding-right: 0.5vw;
+			padding-top: 0.2vw;
+		}
+		button .profiledp{
+			padding-top: 0vw;
+		}
+		.low{
+			padding-right: 3.6vw;
+		}
+		.mid{
+			padding-right: 2vw;
+		}
+		.high{
+			padding-right: 0.2vw;
+		}
+
+		/*--------------------------------------------------------------------NAVBAR_1------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_1------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_1------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_1------------------------------------------------------------------------*/
+		#profilediv3{
+			position: absolute;
+			top: 0vw;
+			background-color: #FFFFFF;
+			width: 15vw;
+			border-right: 1px solid #000;
+			box-sizing: content-box;
+		}
+		.basicpro{
+			background-color: #FFFFFF;
+			width: 7.5vw;
+			margin-top: 0px;
+			margin-bottom: 0px;
+			color: #000;
+			float: left;
+			height: 7.5vw;
+			font-size: 2.5vw;
+			padding-top: 2.6vw;
+			padding-left: 2vw;
+			border-bottom: 2px solid #770044;
+		}
+		.profilelink3{
+			background-color: #FFFFFF;
+			float: left;
+			margin-top: 0px;
+			margin-left: 0px;
+			height: 5vw;
+			width: 15vw;
+			font-size: 1.2vw;
+			padding-top: 1.7vw;
+			text-decoration: none;
+			color: #000;
+			box-sizing: border-box;
+			border-right: none;
+		}
+		.low2{
+			padding-right: 5vw;
+		}
+		.mid2{
+			padding-right: 4vw;
+		}
+		.high2{
+			padding-right: 2vw;
+		}
+		#hugebut{
+			background-color: black;
+			position: absolute;
+			top: 0;
+			width: 85vw;
+			bottom: 0;
+			left: 15vw;
+			outline: 0;
+			border: none;
+			opacity: 0.5;
+		}
+		/*--------------------------------------------------------------------NAVBAR_2------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_2------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_2------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_2------------------------------------------------------------------------*/
+		#profilediv{
+			position: absolute;
+			top: 7.5vw;
+			right: 3vw;
+			background-color: #FFFFFF;
+			float: right;
+			height: 15vw;
+			width: 12vw;
+			padding: 0px;
+			overflow: hidden;
+			border-bottom: 1px solid #000;
+		}
+		
+		#basicprofilebut2{
+			font-size: 2.5vw;
+			border-radius: 3.75vw;
+		}
+		#basichelpbut2{
+			font-size: 2vw;
+			padding: 1.5vw 0.5vw;
+		}
+		#basichelp2{
+			right: 1vw;
+			position: absolute;
+			top: 0vw;
+			height: 7.5vw;
+		}
+		#basicprofile2{
+			right: 5vw;
+			position: absolute;
+			top: 0vw;
+			height: 7.5vw;
+		}
+		/*--------------------------------------------------------------------NAVBAR_3------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_3------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_3------------------------------------------------------------------------
+		----------------------------------------------------------------------NAVBAR_3------------------------------------------------------------------------*/
+		#profilediv2{
+			position: absolute;
+			top: 7.5vw;
+			right: 0vw;
+			background-color: #FFFFFF;
+			float: right;
+			height: 10vw;
+			width: 12vw;
+			padding: 0px;
+			overflow: hidden;
+			border-bottom: 1px solid #000;
+		}
+		#profilediv:hover{
+			
+		}
+
+
+		/*--------------------------------------------------------------------MAIN------------------------------------------------------------------------
+		----------------------------------------------------------------------MAIN------------------------------------------------------------------------
+		----------------------------------------------------------------------MAIN------------------------------------------------------------------------
+		----------------------------------------------------------------------MAIN------------------------------------------------------------------------*/
+		#basicmain{
+			float: left;
+			/*border-top: 10px solid black;
+			border-bottom: 10px solid black;*/
+			height: auto;
+			width: 100vw;
+			margin-top: 7.5vw;
+			padding: 0vw 0vw;
+			box-sizing: border-box;
+			background-color: #DDDDEE;
+			overflow: hidden;
+		}
+		.mainheadelements{
+			float: left;
+			/*margin-top: 1vw;*/
+			width: 100vw;
+		}
+		.mainheadelements2{
+			float: left;
+			margin-left: 4vw;
+			margin-top: 0.5vw;
+			font-size: 1.2vw;
+			width: 90vw;
+			height: 3.5vw;
+			background-color: #000;
+		}
+		.mainelements{
+			float: left;
+			margin-left: 4vw;
+			margin-right: 1vw;
+			margin-top: 1vw;
+			width: 90vw;
+			height: 32vw;
+			background-color: #FFFFFF;
+			border: 0.5px solid #AAAABB;
+			overflow: scroll;
+			border-radius: 4px;
+		}
+		.mainelements2{
+			float: left;
+			margin-left: 4vw;
+			margin-right: 1vw;
+			margin-top: 1vw;
+			margin-bottom: 1vw;
+			width: 90vw;
+			height: 50vw;
+			background-color: #FFFFFF;
+			border: 0.5px solid #AAAABB;
+			overflow : hidden;
+			border-radius: 4px;
+		}
+		.mainelements:hover{
+			/*transform: scale(1.01);*/
+			/*border: 0.5px solid #000;*/
+			height: 32vw;
+		}
+		.alert{
+			padding-left: 40vw;
+		}
+		/*14A098*/
+		/*-------------------------------------------PARTICULAR ALL EVENTS--------------------------------------------*/
+		/*-------------------------------------------PARTICULAR ALL EVENTS--------------------------------------------*/
+		/*-------------------------------------------PARTICULAR ALL EVENTS--------------------------------------------*/
+		/*-------------------------------------------PARTICULAR ALL EVENTS--------------------------------------------*/
+		/*-------------------------------------------PARTICULAR ALL EVENTS--------------------------------------------*/
+		/*-------------------------------------------PARTICULAR ALL EVENTS--------------------------------------------*/
+		/*-------------------------------------------PARTICULAR ALL EVENTS--------------------------------------------*/
+		.mdiv{
+			float: left;
+			width: 100%;
+		}
+		.mdiv h5{
+			margin-top: 7px;
+		}
+		.leftelements{
+			float: left;
+		}
+		.rightelements{
+			float: right;
+		}
+		.buts{
+			background-color: white;
+			color: black;
+			outline: 0;
+			border: none;
+			padding: 10px 20px;
+			width: 49.95%;
+		}
+		#butaddevent2{
+			margin-left: 0.1%;
+		}
+		.pbuts{
+			background-color: grey;
+			color: black;
+			outline: 0;
+			border: none;
+			padding: 5px 10px;
+			border-left: 1px solid white;
+			border-radius: 4px;
+		}
+		.buts:hover{
+			background-color: black;
+			color: white;
+		}
+		.current{
+			background-color: white;
+			border-bottom: 2px solid black;
+		}
+		.fullheight{
+			height: 100%;
+			margin-left: 0px;
+		}
+		.onesec{
+			float: left;
+			width: 100%;
+		}
+		.in{
+			outline: 0;
+			padding: 8px 15px;
+			border: 0.5px solid grey;
+		}
+		.ind,.inc{
+			outline: 0;
+			padding: 7px 15px;
+		}
+		.in:hover{
+			border: 0.5px solid #222222;
+		}
+		.two{
+			width: 45%;
+			margin-left: 2%;
+		}
+		.three{
+			width: 30%;
+			margin-left: 2%;
+		}
+		.full{
+			width: 96%;
+			margin-left: 2%;
+		}
+		.half{
+			margin-left: 2%;
+			width: 10%;
+		}
+		.four{
+			width: 22%;
+			margin-left: 2%;
+		}
+		.but2{
+			background-color: black;
+			color: white;
+			outline: 0;
+			border: 0.5px solid grey;
+			padding: 10px 20px;
+		}
+		.but2:hover{
+			background-color: lightgrey;
+			color: black;
+		}
+		.labs{
+			background-color: white;
+		}
+		.lab{
+			padding: 4px 0px;
+			margin-left: 45%;
+			margin-bottom: 0px;
+		}
+		.fullwidth{
+			width: 100%;
+		}
+		.date{
+			height: 6vw;
+			border-radius: 0px;
+			padding: 5px 10px;
+			margin-top: 0vw;
+			font-size: 1.5vw;
+			border-bottom: 0.5px solid #AAAABB;
+		}
+		.date:hover{
+			height: 6vw;
+			border-bottom: 0.5px solid black;
+		}
+		.date2{
+			height: 2vw;
+			border-radius: 0px;
+			padding: 5px 10px;
+			margin-top: 0vw;
+			font-size: 1vw;
+			border-bottom: 0.5px solid #AAAABB;
+			background-color: #F3F572;
+			color: black;
+			text-align: center;
+		}
+		.date2 p{
+			text-align: center;
+		}
+		.upcom{
+			border-left: 8px solid #F37373;
+		}
+		.fin{
+			border-left: 8px solid #88F058;
+		}
+		.titl{
+			margin-left: 20vw;
+		}
+		#forad{
+			position: absolute;
+			top: 8vw;
+			left: 30vw;
+			width: 40vw;
+			height: 30vw;
+			background-color: white;
+			box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+		}
+		.foradb{
+			position: absolute;
+			top: 7.7vw;
+			right: 29vw;
+			margin-top: 0px;
+			height: 40px;
+			width: 40px;
+			padding-top: 3px;
+			border-radius: 40px;
+		}
+		.ssbar{
+			margin-left: 20%;
+			width: 60%;
+			padding: 10px 10px;
+			margin-top: 30px;
+			outline: 0;
+		}
+		.addm{
+			margin-left: 30%;
+			margin-top: 70px;
+		}
+		.righ{
+			margin-left: 45%;
+			margin-top: 50px;
+			padding: 10px 15px;
+		}
+		.but3{
+			padding: 0px;
+		}
+		.butsud2{
+			background-color: transparent;
+			outline: 0;
+			border: none;
+			color: black;
+			margin-bottom: 0;
+		}
+		.butsud2:hover{
+			color: darkgrey;
+		}
+		.selects{
+			overflow-y: scroll;
+		}
+	</style>
+</head>
+<body style="overflow-y: scroll;" id="bod" onload="startTime()">
+	<!-- ---------------------------------------------------------------------------------------------MAIN-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------MAIN-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------MAIN-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------MAIN-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------MAIN-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------MAIN-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------MAIN-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------MAIN-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------MAIN-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------MAIN-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------MAIN-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------MAIN-------------------------------------------------------------------------- -->
+	<main id="basicmain">
+		<form id="forad" style="display: none;" action="toadmin" method="POST" class="onese">
+			{% csrf_token %}
+			<h2 class="addm">Enter Admin Code</h2>
+			<input placeholder="Admin" type="Password" name="dell2" class="ssbar">
+			<button name="dell" class="but2 righ" id="buttonn{{ user.id }}" value="{{ user.username }}">Submit</button>
+		</form>
+		<button style="display: none;" class="but2 foradb but3 rightelements" id="forbut" onclick="forback()"><i class="glyphicon glyphicon-remove"></i></button>
+	{% if user.is_authenticated %}
+		<div class="mainheadelements nomargin">
+			{% if messages %}
+		    	{% for message in messages %}
+		        	<div class="almsg alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">{{ message }}</div>
+		    	{% endfor %}
+		    {% else %}
+		    	<div style="height: 0; width: 0;"> </div>
+			{% endif %}
+		</div>
+		<div class="mainheadelements2">
+			<button onclick="display(1,2)" id="butaddevent1" class="leftelements fullheight buts" >Add Event</button>
+			<button onclick="display(2,1)" id="butaddevent2" class="leftelements fullheight buts" >Calender</button>
+		</div>
+		<form method="POST" enctype="multipart/for-data"  style="display: none;" id="addevent1" class="mainelements2">
+			{% csrf_token %}
+			<div class="onesec labs">
+				<label class="lab">Event Main Details</label>
+			</div>
+			<div class="onesec">
+				<input autocomplete="off" placeholder="Event Name*" type="text" id="evnain" name="eventname" class="in four" required/>
+				<input autocomplete="off" placeholder="Presenter" type="text" id="evpin" name="eventpresenter" class="in four">
+				<input autocomplete="off" placeholder="Designtion" type="text" id="evdin" name="eventdesignation" class="ind four">
+				<input autocomplete="off" placeholder="Organizing Committee/Department" type="text" id="orgcin" name="eventcommittee" class="in four" >
+			</div>
+			<div class="onesec labs">
+				<label class="lab">Event Date and Duration</label>
+			</div>
+			<div class="onesec">
+				<input autocomplete="off" placeholder="Event Type" type="text" id="typein" name="eventtype" class="in four">
+				<input autocomplete="off" placeholder="Event Date" type="date" id="evdain" name="eventdate" class="ind four" >
+				<input autocomplete="off" placeholder="From" type="time" id="evtofroin" name="eventtimefro" class="ind four" required/>
+				<input autocomplete="off" placeholder="From" type="time" id="evtotoin" name="eventtimeto" class="ind four" required/>
+			</div>
+			<div class="onesec labs">
+				<label class="lab">Registration Details</label>
+			</div>
+			<div class="onesec">
+				<input autocomplete="off" placeholder="Meeting Link" type="text" id="regin" name="regin" class="in four">
+				<input autocomplete="off" placeholder="Registration Date" type="date" id="regfroin" name="regfrom" class="ind four" required/>
+				<input autocomplete="off" placeholder="Registration Date" type="date" id="regtoin" name="regto" class="ind four" required/>
+				<input autocomplete="off" placeholder="Whatsapp Group Link" type="text" id="whatin" name="eventwhatsapp" class="in four">
+			</div>
+			<div class="onesec labs">
+				<label class="lab">Teachers/Contacts</label>
+			</div>
+			<div class="onesec">
+				<input autocomplete="off" placeholder="Convener*" type="text" id="con1in" name="eventconvener1" class="in four" required/>
+				<input autocomplete="off" placeholder="Convener" type="text" id="con2in" name="eventconvener2" class="in four">
+				<input autocomplete="off" placeholder="Query Contact*" type="text" id="evq1in" name="contact1" class="in four" required/>
+				<input autocomplete="off" placeholder="Query Contact" type="text" id="evq2in" name="contact2" class="ind four">
+			</div>
+			<div class="onesec labs">
+				<label class="lab"></label>
+			</div>
+			<div class="onesec">
+				<input autocomplete="off" placeholder="Faculty Co-ordinator*" type="text" id="org1in" name="eventorganizer1" class="in four" required/>
+				<input autocomplete="off" placeholder="Faculty Co-ordinator*" type="text" id="org2in" name="eventorganizer2" class="in four" required/>
+				<input autocomplete="off" placeholder="Faculty Co-ordinator" type="text" id="org3in" name="eventorganizer3" class="in four">
+				<input autocomplete="off" placeholder="Department" type="text" id="depin" name="eventdepartment" class="in four" >
+			</div>
+			<div class="onesec labs">
+				<label class="lab">Description and Perks</label>
+			</div>
+			<div class="onesec">
+			</div>
+			<div class="onesec">
+				<input autocomplete="off" placeholder="Event Description" type="text" id="evdein" name="eventdesc" class="in four" >
+				<input autocomplete="off" placeholder="Event Perks" type="text" id="evpein" name="eventperk" class="in four" >
+				<select class="inc four" id="carsin" name="eventcertificate">
+					<option value="True">Cerificate : Yes</option>
+					<option value="False">Cerificate : No</option>
+				</select>
+				<input autocomplete="off" placeholder="Reminders if any" id="comin" type="textarea" name="com" class="in four">
+			</div>
+			<div class="onesec labs">
+				<label class="lab">Person/User Tags</label>
+			</div>
+			<div class="onesec">
+				<select class="inc four selects" id="taggingn" name="nooftag">
+					<option value="">-- No. of Tags --</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+				</select>
+				<select class="inc four selects" id="tagging1" name="tag1">
+					<option value="">-- Person 1 --</option>
+					{% for people in user_num %}
+						<option value="{{ people.username }}">{{ people.username }}</option>
+					{% endfor %}
+				</select>
+				<select class="inc four selects" id="tagging2" name="tag2">
+					<option value="">-- Person 2 --</option>
+					{% for people in user_num %}
+						<option value="{{ people.username }}">{{ people.username }}</option>
+					{% endfor %}
+				</select>
+				<select class="inc four selects" id="tagging3" name="tag3">
+					<option value="">-- Person 3 --</option>
+					{% for people in user_num %}
+						<option value="{{ people.username }}">{{ people.username }}</option>
+					{% endfor %}
+				</select>
+			</div>
+			<div class="onesec labs">
+				<label class="lab"></label>
+			</div>
+			<div class="onesec">
+				<select class="inc four selects" id="tagging4" name="tag4">
+					<option value="">-- Person 4 --</option>
+					{% for people in user_num %}
+						<option value="{{ people.username }}">{{ people.username }}</option>
+					{% endfor %}
+				</select>
+				<select class="inc four selects" id="tagging5" name="tag5">
+					<option value="">-- Person 5 --</option>
+					{% for people in user_num %}
+						<option value="{{ people.username }}">{{ people.username }}</option>
+					{% endfor %}
+				</select>
+				<select class="inc four selects" id="tagging6" name="tag6">
+					<option value="">-- Person 6 --</option>
+					{% for people in user_num %}
+						<option value="{{ people.username }}">{{ people.username }}</option>
+					{% endfor %}
+				</select>
+				<select class="inc four selects" id="tagging7" name="tag7">
+					<option value="">-- Person 7 --</option>
+					{% for people in user_num %}
+						<option value="{{ people.username }}">{{ people.username }}</option>
+					{% endfor %}
+				</select>
+			</div>
+			<div class="onesec labs">
+				<label class="lab"></label>
+			</div>
+			<div class="onesec">
+				<select class="inc four selects" id="tagging8" name="tag8">
+					<option value="">-- Person 8 --</option>
+					{% for people in user_num %}
+						<option value="{{ people.username }}">{{ people.username }}</option>
+					{% endfor %}
+				</select>
+				<select class="inc four selects" id="tagging9" name="tag9">
+					<option value="">-- Person 9 --</option>
+					{% for people in user_num %}
+						<option value="{{ people.username }}">{{ people.username }}</option>
+					{% endfor %}
+				</select>
+				<select class="inc four selects" id="tagging10" name="tag10">
+					<option value="">-- Person 10 --</option>
+					{% for people in user_num %}
+						<option value="{{ people.username }}">{{ people.username }}</option>
+					{% endfor %}
+				</select>
+				<select class="inc four selects" id="tagging11" name="tag11">
+					<option value="">-- Person 11 --</option>
+					{% for people in user_num %}
+						<option value="{{ people.username }}">{{ people.username }}</option>
+					{% endfor %}
+				</select>
+			</div>
+			<button style="margin-top: 20px;" class="but2 rightelements">
+				Submit
+			</button>
+		</form>
+		<div style="display: none;" id="addevent2" class="mainelements">
+			{% for event in event_number %}
+			<div class="leftelements fullwidth date fin">
+				<p class="fullheight leftelements">{{ event.date }}</p>
+				<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-eventdetails" method="POST">
+					{% csrf_token %}
+					<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
+					<button name="send" value="{{ event.id }}" class="butsud2 leftelements fullheight titl">{{ event.title }}</button>
+				</form>
+				<p class="fullheight rightelements">{{ event.tfrom }}-{{ event.tto }}</p>
+			</div>
+			{% endfor %}
+			<div class="leftelements fullwidth date2 cur" id="currentdate">
+				<p class="fullheight leftelements">Current Date</p>
+			</div>
+			{% for event in event_number2 %}
+			<div class="leftelements fullwidth date upcom">
+				<p class="fullheight leftelements">{{ event.date }}</p>
+				<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-eventdetails" method="POST">
+					{% csrf_token %}
+					<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
+					<button name="send" value="{{ event.id }}" class="butsud2 leftelements fullheight titl">{{ event.title }}</button>
+				</form>
+				<p class="fullheight rightelements">{{ event.tfrom }}-{{ event.tto }}</p>
+			</div>
+			{% endfor %}
+		</div>
+	{% else %}
+	<div class="mainheadelements">
+		<h1>Please Login</h1>
+    	<a href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login" id="lgin" class="but">
+    		Login
+    	</a>
+    </div>
+	{% endif %}
+	</main>
+	<!-- ---------------------------------------------------------------------------------------------HEADER-------------------------------------------------------------------------- -->
+	<header style="opacity: 1" class="basicheader" id="mainhead">
+		<button onclick="menu()" class="but basicbutton">
+			<i class="glyphicon glyphicon-menu-hamburger"></i>
+		</button>
+		<h2 id="basictitle">
+			DA
+		</h2>
+		<h3 id="basicpage">
+			ADD EVENT
+		</h3>
+		<div id="basichelp">
+			<button onclick="help()" id="basichelpbut" class="but basicbutton">
+				<i class="glyphicon glyphicon-triangle-bottom"></i>
+			</button>
+		</div>
+		<div id="basicprofile">
+			<button onclick="profile()" id="basicprofilebut" class="but basicbutton">
+				<i class="glyphicon glyphicon-user"></i>
+			</button>
+		</div>
+		<h4 id="basicdt">
+			<span id="basicdate">
+			</span>
+			<span id="basictime">
+			</span>
+		</h4>
+		
+	</header>
+	<!-- ---------------------------------------------------------------------------------------------NAVBAR-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------NAVBAR-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------NAVBAR-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------NAVBAR-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------NAVBAR-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------NAVBAR-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------NAVBAR-------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------NAVBAR-------------------------------------------------------------------------- -->
+	<nav id="navs">
+		<div style="display: none;" id="profilediv">
+			<a class="profilelink" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-profile">
+				<div class="low profiletdp">
+					<i class="profiledp glyphicon glyphicon-th-list"></i>
+					<p class="profiletext">Details</p>
+				</div>
+			</a>
+			<a target="_blank" class="profilelink" href="/admin/kjsomaiyacollegeofengineering-teachers-department-admin">
+				<div class="mid profiletdp">
+					<i class="profiledp glyphicon glyphicon-asterisk"></i>
+					<p class="profiletext">Admin Page</p>
+				</div>
+			</a>
+    		{% if user.is_superuser == False %}
+    		<div id="forad2">
+				<button class="profilelink" onclick="adcode()" href="toadmin">
+					<div class="high profiletdp">
+						<i class="profiledp glyphicon glyphicon-repeat"></i>
+						<p class="profiletext">Convert to admin</p>
+					</div>
+				</button>
+    		</div>
+    		<div id="adspan" class="hugebut">
+    		</div>
+			{% else %}
+			<form id="forad3" action="tonormal" method="POST">
+				{% csrf_token %}
+				<button name="dell" class="profilelink" id="buttonn{{ user.id }}" value="{{ user.username }}"><i class="glyphicon glyphicon-ok"></i>Convert to normal</button>
+			</form>
+			{% endif %}
+		</div>
+		<!-- ------------------------------------------------------------------------------------NAVBARHELP------------------------------------------------------------------------------>
+		<div style="display: none;" id="basichelp2">
+			<button onclick="helpb()" id="basichelpbut2" class="but basicbutton">
+				<i class="glyphicon glyphicon-triangle-bottom"></i>
+			</button>
+		</div>
+		<div style="display: none;" id="basicprofile2">
+			<button onclick="profileb()" id="basicprofilebut2" class="but basicbutton">
+				<i class="glyphicon glyphicon-user"></i>
+			</button>
+		</div>
+		<div style="display: none;" id="profilediv2">
+			<a class="profilelink" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-help">
+				<div class="low profiletdp">
+					<i class="profiledp glyphicon glyphicon-question-sign"></i>
+					<p class="profiletext">Help</p>
+				</div>
+			</a>
+			<a class="profilelink" href="homelogout">
+				<div class="low profiletdp">
+					<i class="profiledp glyphicon glyphicon-off"></i>
+					<p class="profiletext">Logout</p>
+				</div>
+			</a>
+		</div>
+		<!------------------------------------------------------------------------------------------NAVBARMAIN-------------------------------------------------------------------------- -->
+		<div style="display: none;" id="profilediv3">
+			<h2 class="basicpro">
+				DA
+			</h2>
+			<button onclick="back()" class="but basicbutton">
+				<i class="glyphicon glyphicon-chevron-left"></i>
+			</button>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-home">
+				<div class="low2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-home"></i>
+					<p class="profiletext">Home</p>
+				</div>
+			</a>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents">
+				<div class="low2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-th-large"></i>
+					<p class="profiletext">Events</p>
+				</div>
+			</a>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-addevent">
+				<div class="mid2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-plus"></i>
+					<p class="profiletext">Add Event</p>
+				</div>
+			</a>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-preevent">
+				<div class="mid2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-star"></i>
+					<p class="profiletext">Pre-Event</p>
+				</div>
+			</a>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-messaging">
+				<div class="mid2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-envelope"></i>
+					<p class="profiletext">Message</p>
+				</div>
+			</a>
+			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-groups">
+				<div class="mid2 profiletdp">
+					<i class="profiledp glyphicon glyphicon-asterisk"></i>
+					<p class="profiletext">Groups</p>
+				</div>
+			</a>
+		</div>
+		<button style="display: none;" onclick="back()" id="hugebut">
+			
+		</button>
+	</nav>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		var today = new Date();
+		var d = today.getDate();
+		var mo = today.getMonth();
+		var y = today.getFullYear();
+		var listem =  'liss';
+		document.getElementById('basicdate').innerHTML=d+"/"+(mo+1)+"/"+y;
+		function startTime() {
+			var today = new Date();
+			var h = today.getHours();
+			var m = today.getMinutes();
+			var s = today.getSeconds();
+			m = checkTime(m);
+			s = checkTime(s);
+			document.getElementById('basictime').innerHTML =
+			h + ":" + m;
+			var t = setTimeout(startTime, 500);
+		}
+		function checkTime(i) {
+			if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+			return i;
+		}
+		function menu(){
+			document.getElementById('profilediv3').style.display = '';
+			document.getElementById('bod').style.overflowy='hidden'
+			document.getElementById('hugebut').style.display = '';
+			document.getElementById('mainhead').style.opacity = '0.8';
+			document.getElementById('basicmain').style.opacity = '0.8';
+			document.getElementById('profilediv3').style.height = '100vh';
+			if ($('#profilediv3').is(':visible')) {
+			    $('body').addClass("fixed-position");
+			} else {
+			    $('body').removeClass("fixed-position");
+			}
+		}
+		function back(){
+			document.getElementById('profilediv3').style.display = 'none';
+			document.getElementById('hugebut').style.display = 'none';
+			document.getElementById('mainhead').style.opacity = '1';
+			document.getElementById('basicmain').style.opacity = '1';
+			if ($('#profilediv3').is(':hidden')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+		function profile(){
+			document.getElementById('profilediv').style.display = '';
+			document.getElementById('profilediv2').style.display = 'none';
+			document.getElementById('basichelp2').style.display = 'none';
+			document.getElementById('basicprofile2').style.display = '';
+			document.getElementById('basicmain').style.opacity = '0.8';
+			if ($('#profilediv').is(':visible')) {
+			    $('body').addClass("fixed-position");
+			} else {
+			    $('body').removeClass("fixed-position");
+			}
+		}
+		function help(){
+			document.getElementById('profilediv2').style.display = '';
+			document.getElementById('profilediv').style.display = 'none';
+			document.getElementById('basicprofile2').style.display = 'none';
+			document.getElementById('basichelp2').style.display = '';
+			document.getElementById('basicmain').style.opacity = '0.8';
+			if ($('#profilediv2').is(':visible')) {
+			    $('body').addClass("fixed-position");
+			} else {
+			    $('body').removeClass("fixed-position");
+			}
+		}
+
+		function profileb(){
+			document.getElementById('profilediv').style.display = 'none';
+			document.getElementById('basicprofile2').style.display = 'none';
+			document.getElementById('basicmain').style.opacity = '1';
+			if ($('#profilediv').is(':hidden')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+		function helpb(){
+			document.getElementById('profilediv2').style.display = 'none';
+			document.getElementById('basichelp2').style.display = 'none';
+			document.getElementById('basicmain').style.opacity = '1';
+			if ($('#profilediv2').is(':hidden')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+		display(1,2);
+		function display(numb1,numb2){
+			dis1='addevent'+numb1;
+			dis2='addevent'+numb2;
+			cc1='#butaddevent'+numb1;
+			cc2='#butaddevent'+numb2;
+			document.getElementById(dis1).style.display='';
+			document.getElementById(dis2).style.display='none';
+			$(cc1).addClass("current");
+			$(cc2).removeClass("current");
+			if ($('#addevent2').is(':hidden')) {
+			    console.log('nice');
+			} 
+			else {
+				document.getElementById("currentdate").scrollIntoView();
+				document.getElementById('currentdate').innerHTML=d+"/"+(mo+1)+"/"+y;
+			}
+		}
+		function adcode(){
+			document.getElementById('forad').style.display = '';
+			document.getElementById('forbut').style.display = '';
+			document.getElementById('profilediv').style.display = 'none';
+			document.getElementById('basicprofile2').style.display = 'none';
+			document.getElementById('basicmain').style.opacity = '1';
+			if ($('#profilediv').is(':visible')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+		function forback(){
+			document.getElementById('forad').style.display = 'none';
+			document.getElementById('forbut').style.display = 'none';
+			document.getElementById('profilediv').style.display = 'none';
+			document.getElementById('basicprofile2').style.display = 'none';
+			document.getElementById('basicmain').style.opacity = '1';
+			if ($('#profilediv').is(':hidden')) {
+			    $('body').removeClass("fixed-position");
+			} else {
+			    $('body').addClass("fixed-position");
+			}
+		}
+		var objDiv = document.getElementById("addevent2");
+		objDiv.scrollTop = objDiv.scrollHeight;
+
+
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
