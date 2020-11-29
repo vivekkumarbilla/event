@@ -1647,7 +1647,7 @@ def topdfall(request):
 		pdf.cell(195,4,"Conveners :  "+conv1+",  "+conv2,0,1,'L')
 		pdf.ln()
 		pdf.cell(195,4,"Contact :  "+cont1+",  "+cont2,0,1,'L')
-		pdf.output(name='C:/Users/ac029tx/Desktop/filename.pdf',dest='F')
+		pdf.output(name='C:\\Users\\ac029tx\\Desktop\\filename.pdf',dest='F')
 		messages.add_message(request, messages.SUCCESS, "Downloaded data to Event_"+evid+"_data.pdf file in your desktop")
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
 	else:
@@ -1779,7 +1779,7 @@ def tocerti(request):
 			pdf.cell(259.4,5,' '+con1+'              '+con2+'               Dr. Sunitha Patil              Dr. Suresh Ukarande',0,1,'C')
 		pdf.set_font('Arial', '', 9)
 		pdf.cell(259.4,6,' ( Convener of Event )                           ( Head of the Department )                   ( Vice Principal,KJSIEIT )                   ( Principal, KJSIEIT )',0,1,'C')
-		pdf.output(name='C:/Users/ac029tx/Desktop/filename.pdf',dest='F')
+		pdf.output(name='C:\\Users\\ac029tx\\Desktop\\filename.pdf',dest='F')
 		messages.add_message(request, messages.SUCCESS, "Downloaded data to Certificate_"+evid+"_data.pdf file in your desktop")
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
 	else:
@@ -1906,7 +1906,7 @@ def torep(request):
 		pdf.cell(195,4,"Conveners :  "+rep.erref.convener1+",  "+rep.erref.convener2,0,1,'L')
 		pdf.ln()
 		pdf.cell(195,4,"Contact :  "+rep.erref.contact1+",  "+rep.erref.contact2,0,1,'L')
-		pdf.output(name='C:/Users/ac029tx/Desktop/filename.pdf',dest='F')
+		pdf.output(name='C:\\Users\\ac029tx\\Desktop\\filename.pdf',dest='F')
 		messages.add_message(request, messages.SUCCESS, "Downloaded Report to Report_"+rnum+".pdf file in your desktop")
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
 	else:
