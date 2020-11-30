@@ -235,6 +235,8 @@ def home(request):
 		dicevents["report_num"] = addreport
 		dicevents["group_num"] = groupm2
 	return render(request, 'depactt/home.html',dicevents)
+	if not request.user.is_authenticated:
+		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login')
 
 
 def profile(request): 
