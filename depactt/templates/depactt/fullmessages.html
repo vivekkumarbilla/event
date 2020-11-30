@@ -859,7 +859,7 @@
 			}
 			.fullheight3{
 				height: 100%;
-				width: 6%;
+				width: 15%;
 				padding-left: 0.5%;
 			}
 			.message{
@@ -917,6 +917,9 @@
 			.butsud{
 				margin-left: 0vw;
 			}
+			.alagbut{
+				font-size: 3vw;
+			}
 	</style>
 </head>
 <body onload="startTime()">
@@ -932,7 +935,7 @@
 		{% if user.is_authenticated %}
 		{% block includes %}
 		<div class="mainheadelements2">
-			<a title="Go Back" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-messaging" class="fullheight3 buts bacbut"><i class="glyphicon glyphicon-chevron-left"></i></a>
+			<a title="Go Back" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-messaging" class="fullheight3 buts alagbut bacbut"><i class="glyphicon glyphicon-chevron-left"></i></a>
 			<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-userdetails" method="POST">
 				{% csrf_token %}
 				<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
@@ -942,10 +945,10 @@
 				{% csrf_token %}
 				<input style="display: none;" type="text" name="usid" value="{{ user_num }}">
 				<input style="display: none;" type="text" name="send" value="{{ user_num2 }}">
-				<button title="Refresh" class="refbut"><i class="glyphicon glyphicon-refresh"></i></button>
+				<button title="Refresh" class="refbut alagbut"><i class="glyphicon glyphicon-refresh"></i></button>
 			</form>
-			<button title="Search Messages" id="sopen" class="fullheight3 buts searchbut" onclick="messageopen()"><i class="glyphicon glyphicon-search"></i></button>
-			<button id="sclose" style="display: none;" class="fullheight3 butsd searchbut" onclick="messageclose()"><i class="glyphicon glyphicon-search"></i></button>
+			<button title="Search Messages" id="sopen" class="fullheight3 buts alagbut searchbut" onclick="messageopen()"><i class="glyphicon glyphicon-search"></i></button>
+			<button id="sclose" style="display: none;" class="fullheight3 butsd alagbut searchbut" onclick="messageclose()"><i class="glyphicon glyphicon-search"></i></button>
 		</div>
 		<div id="searchm" style="display: none;" class="mainheadelements3">
 			<input placeholder="Search Messages" id="searchin" type="text" name="send">
