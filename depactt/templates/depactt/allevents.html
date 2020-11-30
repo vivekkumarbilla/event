@@ -1343,7 +1343,6 @@
 			}
 			.inputbarall2{
 				margin-left: 0%;
-				background-color: red;
 				height: 100%;
 				width: 80%;
 				font-size: 2.5vw;
@@ -1461,6 +1460,7 @@
 				height: 90%;
 				width: 100%;
 				float: left;
+				padding-top: 1.5vw;
 				background-color: cyan;
 			}
 			.twodivform{
@@ -1468,6 +1468,7 @@
 				width: 100%;
 				height: 15%;
 				font-size: 2.1vw;
+				border: 0.5px solid #AAAABB;
 			}
 			.twodivform2{
 				display: none;
@@ -1526,6 +1527,128 @@
 				outline: 0;
 				height: 100%;
 				width: 15%;
+			}
+			.mdiv{
+				float: left;
+				width: 100%;
+				height: 80%;
+			}
+			.pdiv{
+				float: left;
+				width: 100%;
+				height: 10%;
+				background-color: yellow;
+			}
+			.eimage, .ei, .emage{
+				background-color: lightgrey;
+				width: 100%;
+				height: 100%;
+			}
+			.onesecond2{
+				float: left;
+				width: 25%;
+				height: 100%;
+			}
+			.onesecond{
+				float: left;
+				width: 75%;
+				height: 50%;
+			}
+			.onesecond3{
+				float: left;
+				width: 75%;
+				height: 50%;
+			}
+			.onediv{
+				float: left;
+				width: 100%;
+				height: 100%;
+			}
+			.onediv h2{
+				width: 100%;
+			}
+			.onediv2{
+				float: left;
+				width: 40%;
+				height: 100%;
+			}
+			.onedivunder{
+				width: 100%;
+				float: left;
+				height: 50%;
+				padding: 0px 10px;
+			}
+			.onedivunder h4{
+				margin-left: 5px;
+			}
+			.twodiv{
+				float: left;
+				width: 100%;
+				height: 100%;
+			}
+			.twodivunder{
+				float: left;
+				width: 100%;
+			}
+			.threediv{
+				float: left;
+				width: 100%;
+			}
+			.threediv2{
+				float: left;
+				width: 100%;
+			}
+			.fullwidth{
+				width: 100%;
+				margin-bottom: 0px;
+				margin-top: 0px;
+			}
+			.fullwidth p{
+				margin-top: 0px;
+				margin-left: 0px;
+				margin-bottom: 0px;
+			}
+			.buts{
+				padding: 20px 30px;
+			}
+			.butsmob{
+				height: 100%;
+				font-size: 1.5vw;
+				padding: 0px 30px;
+			}
+			.butsmob2{
+				height: 100%;
+			}
+			.ars{
+				font-size: 1.8vw;
+				margin-top: 1.5vw;
+			}
+			.butspending{
+				padding: 12px 30px;
+			}
+			.butsongoing{
+				padding: 12px 30px;
+			}
+			.butsconfirmed{
+				padding: 12px 30px;
+			}
+			.butp{
+				padding: 20px 5px;
+				height: 100%;
+				font-size: 1.5vw;
+				border: 0.5px solid #000;
+			}
+			.topbut{
+				padding: 0px;
+			}
+			/*------------------------------------------ALAG LEVEL--------------------------------------------*/
+			/*------------------------------------------ALAG LEVEL--------------------------------------------*/
+			/*------------------------------------------ALAG LEVEL--------------------------------------------*/
+			/*------------------------------------------ALAG LEVEL--------------------------------------------*/
+			.current{
+				background-color: white;
+				border-bottom: 5px solid black;
+				color: black;
 			}
 	</style>
 </head>
@@ -1622,28 +1745,28 @@
 					<div class="underelements">
 					<div class="pdiv">
 						{% ifequal event.status 'Pending' %}
-						<div class="butspending">Pending</div>
+						<div class="butspending butsmob"><p>Pending</p></div>
 						{% endifequal %}
 						{% ifequal event.status 'Ongoing' %}
-						<div class="butsongoing">Ongoing</div>
+						<div class="butsongoing butsmob"><p>Ongoing</p></div>
 						{% endifequal %}
 						{% ifequal event.status 'Confirmed' %}
-						<div class="butsconfirmed">Confirmed</div>
+						<div class="butsconfirmed butsmob"><p>Confirmed</p></div>
 						{% endifequal %}
-						<button id="del{{ event.id }}" class="buts del rightelements" onclick="del('butter','{{ event.id }}')" ><i class="glyphicon glyphicon-trash"></i></button>
-						<div>
-							<button id="button{{ event.id }}" class="buts rightelements" onclick="abrt('{{ event.id }}')" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-remove"></i></button>
+						<button id="del{{ event.id }}" class="buts del rightelements butsmob" onclick="del('butter','{{ event.id }}')" ><i class="glyphicon glyphicon-trash"></i></button>
+						<div class="rightelements butsmob2">
+							<button id="button{{ event.id }}" class="buts rightelements butsmob" onclick="abrt('{{ event.id }}')" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-remove"></i></button>
 						</div>
-						<form action="alldel" method="POST" class="onese rightelements">
+						<form action="alldel" method="POST" class="onese rightelements butsmob2">
 							{% csrf_token %}
-							<button name="dell" class="buts rightelements" id="buttonn{{ event.id }}" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-ok"></i></button>
+							<button name="dell" class="buts rightelements butsmob" id="buttonn{{ event.id }}" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-ok"></i></button>
 							<span class="ars" id="ars{{ event.id }}"></span>
 						</form>
-						<button id="ex{{ event.id }}" class="buts del rightelements" onclick="expor('butter','{{ event.id }}')" >Get Data</button>
-						<div>
-							<button id="button2{{ event.id }}" class="buts rightelements" onclick="noexpor('{{ event.id }}')" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-remove"></i></button>
+						<button id="ex{{ event.id }}" class="buts del rightelements butsmob" onclick="expor('butter','{{ event.id }}')" >Get Data</button>
+						<div class="rightelements butsmob2">
+							<button id="button2{{ event.id }}" class="buts rightelements butsmob" onclick="noexpor('{{ event.id }}')" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-remove"></i></button>
 						</div>
-						<form action="totxtall" method="POST" class="onese rightelements">
+						<form action="totxtall" method="POST" class="onese rightelements butsmob2">
 							{% csrf_token %}
 							<input style="display: none;" type="text" name="delltitle" value="{{ event.title }}">
 							<input style="display: none;" type="text" name="delldate" value="{{ event.date }}">
@@ -1666,9 +1789,9 @@
 							<input style="display: none;" type="text" name="dellconv2" value="{{ event.convener2 }}">
 							<input style="display: none;" type="text" name="dellcont1" value="{{ event.contact1 }}">
 							<input style="display: none;" type="text" name="dellcont2" value="{{ event.contact2 }}">
-							<button name="dell" class="buts rightelements" id="txt{{ event.id }}" style="display: none;" value="{{ event.id }}">TXT</button>
+							<button name="dell" class="buts rightelements butsmob" id="txt{{ event.id }}" style="display: none;" value="{{ event.id }}">TXT</button>
 						</form>
-						<form action="topdfall" method="POST" class="onese rightelements">
+						<form action="topdfall" method="POST" class="onese rightelements butsmob2">
 							{% csrf_token %}
 							<input style="display: none;" type="text" name="delltitle" value="{{ event.title }}">
 							<input style="display: none;" type="text" name="delldate" value="{{ event.date }}">
@@ -1691,9 +1814,9 @@
 							<input style="display: none;" type="text" name="dellconv2" value="{{ event.convener2 }}">
 							<input style="display: none;" type="text" name="dellcont1" value="{{ event.contact1 }}">
 							<input style="display: none;" type="text" name="dellcont2" value="{{ event.contact2 }}">
-							<button name="dell" class="buts rightelements" id="pdf{{ event.id }}" style="display: none;" value="{{ event.id }}">PDF</button>
+							<button name="dell" class="buts rightelements butsmob" id="pdf{{ event.id }}" style="display: none;" value="{{ event.id }}">PDF</button>
 						</form>
-						<form action="todocall" method="POST" class="rightelements">
+						<form action="todocall" method="POST" class="rightelements butsmob2">
 							{% csrf_token %}
 							<input style="display: none;" type="text" name="delltitle" value="{{ event.title }}">
 							<input style="display: none;" type="text" name="delldate" value="{{ event.date }}">
@@ -1716,20 +1839,20 @@
 							<input style="display: none;" type="text" name="dellconv2" value="{{ event.convener2 }}">
 							<input style="display: none;" type="text" name="dellcont1" value="{{ event.contact1 }}">
 							<input style="display: none;" type="text" name="dellcont2" value="{{ event.contact2 }}">
-							<button name="dell" class="buts rightelements" id="xls{{ event.id }}" style="display: none;" value="{{ event.id }}">DOC</button>
+							<button name="dell" class="buts rightelements butsmob" id="xls{{ event.id }}" style="display: none;" value="{{ event.id }}">DOC</button>
 						</form>
-						<button id="shareo{{ event.id }}" class="buts del rightelements" onclick="shareo('butter','{{ event.id }}')" >Share</button>
-						<div>
-							<button id="sharec{{ event.id }}" class="buts rightelements" onclick="sharec('{{ event.id }}')" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-remove"></i></button>
+						<button id="shareo{{ event.id }}" class="buts del rightelements butsmob" onclick="shareo('butter','{{ event.id }}')" >Share</button>
+						<div class="rightelements butsmob2">
+							<button id="sharec{{ event.id }}" class="buts rightelements butsmob" onclick="sharec('{{ event.id }}')" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-remove"></i></button>
 						</div>
-						<button class="buts rightelements" id="shareg{{ event.id }}" style="display: none;" value="{{ event.id }}" onclick="sendmail('{{ event.title }}','{{ event.date |date }}','{{ event.description }}','{{ event.organizer }}','{{ event.perks }}','{{ event.link }}','{{ event.type }}','{{ event.tfrom }}','{{ event.tto }}','{{ event.regfrom }}','{{ event.regto }}','{{ event.presenter }}','{{ event.presenterd }}','{{ event.target }}','{{ event.department }}','{{ event.teacher1 }}','{{ event.teacher2 }}','{{ event.convener1 }}','{{ event.contact1 }}','{{ event.teacher3 }}','{{ event.convener2 }}','{{ event.contact2 }}')" title="Share to Gmail" class="rightelements buts"><i class="fa fa-envelope"></i></button>
-						<button class="buts rightelements" id="sharew{{ event.id }}" style="display: none;" value="{{ event.id }}" onclick="sendmsg('{{ event.title }}','{{ event.date |date }}','{{ event.description }}','{{ event.organizer }}','{{ event.perks }}','{{ event.link }}','{{ event.type }}','{{ event.tfrom }}','{{ event.tto }}','{{ event.regfrom }}','{{ event.regto }}','{{ event.presenter }}','{{ event.presenterd }}','{{ event.target }}','{{ event.department }}','{{ event.teacher1 }}','{{ event.teacher2 }}','{{ event.convener1 }}','{{ event.contact1 }}','{{ event.teacher3 }}','{{ event.convener2 }}','{{ event.contact2 }}')" title="Share to Gmail" class="rightelements buts"><i class="fa fa-whatsapp"></i></button>
+						<button class="buts rightelements butsmob" id="shareg{{ event.id }}" style="display: none;" value="{{ event.id }}" onclick="sendmail('{{ event.title }}','{{ event.date |date }}','{{ event.description }}','{{ event.organizer }}','{{ event.perks }}','{{ event.link }}','{{ event.type }}','{{ event.tfrom }}','{{ event.tto }}','{{ event.regfrom }}','{{ event.regto }}','{{ event.presenter }}','{{ event.presenterd }}','{{ event.target }}','{{ event.department }}','{{ event.teacher1 }}','{{ event.teacher2 }}','{{ event.convener1 }}','{{ event.contact1 }}','{{ event.teacher3 }}','{{ event.convener2 }}','{{ event.contact2 }}')" title="Share to Gmail" class="rightelements buts"><i class="fa fa-envelope"></i></button>
+						<button class="buts rightelements butsmob" id="sharew{{ event.id }}" style="display: none;" value="{{ event.id }}" onclick="sendmsg('{{ event.title }}','{{ event.date |date }}','{{ event.description }}','{{ event.organizer }}','{{ event.perks }}','{{ event.link }}','{{ event.type }}','{{ event.tfrom }}','{{ event.tto }}','{{ event.regfrom }}','{{ event.regto }}','{{ event.presenter }}','{{ event.presenterd }}','{{ event.target }}','{{ event.department }}','{{ event.teacher1 }}','{{ event.teacher2 }}','{{ event.convener1 }}','{{ event.contact1 }}','{{ event.teacher3 }}','{{ event.convener2 }}','{{ event.contact2 }}')" title="Share to Gmail" class="rightelements buts"><i class="fa fa-whatsapp"></i></button>
 						{% for rep in report_num %}
 						{% ifequal rep.erref.title event.title %}
 						{% if user.is_staff == True %}
-						<form action="torep" method="POST" class="rightelements">
+						<form action="torep" method="POST" class="rightelements butsmob2">
 							{% csrf_token %}
-							<button name="dell" class="buts rightelements" id="rep{{ event.id }}" value="{{ rep.id }}">Get Report</button>
+							<button name="dell" class="buts rightelements butsmob" id="rep{{ event.id }}" value="{{ rep.id }}">Get Report</button>
 						</form>
 						{% endif %}
 						{% endifequal %}
@@ -1737,56 +1860,56 @@
 						
 						{% ifequal event.status 'Pending' %}
 						{% if user.is_superuser == True %}
-						<button id="markp{{ event.id }}" class="buts del rightelements" onclick="markpo('butter','{{ event.id }}')" >Mark as</button>
+						<button id="markp{{ event.id }}" class="buts del rightelements butsmob" onclick="markpo('butter','{{ event.id }}')" >Mark as</button>
 						<div>
-							<button id="penbut{{ event.id }}" class="buts rightelements" onclick="markpc('{{ event.id }}')" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-remove"></i></button>
+							<button id="penbut{{ event.id }}" class="buts rightelements butsmob" onclick="markpc('{{ event.id }}')" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-remove"></i></button>
 						</div>
-						<form action="ongoing" method="POST" class="onese rightelements">
+						<form action="ongoing" method="POST" class="onese rightelements butsmob2">
 							{% csrf_token %}
-							<button name="dell" class="buts rightelements" id="markasongoingp{{ event.id }}" style="display: none;" value="{{ event.id }}">Ongoing</button>
+							<button name="dell" class="buts rightelements butsmob" id="markasongoingp{{ event.id }}" style="display: none;" value="{{ event.id }}">Ongoing</button>
 						</form>
-						<form action="confirmed" method="POST" class="onese rightelements">
+						<form action="confirmed" method="POST" class="onese rightelements butsmob2">
 							{% csrf_token %}
-							<button name="dell" class="buts rightelements" id="markasconfirmp{{ event.id }}" style="display: none;" value="{{ event.id }}">Confirmed</button>
+							<button name="dell" class="buts rightelements butsmob" id="markasconfirmp{{ event.id }}" style="display: none;" value="{{ event.id }}">Confirmed</button>
 						</form>
 						{% endif %}
 						{% endifequal %}
 						{% ifequal event.status 'Ongoing' %}
 						{% if user.is_superuser == True %}
-						<button id="marko{{ event.id }}" class="buts del rightelements" onclick="markoo('butter','{{ event.id }}')" >Mark as</button>
+						<button id="marko{{ event.id }}" class="buts del rightelements butsmob" onclick="markoo('butter','{{ event.id }}')" >Mark as</button>
 						<div>
-							<button id="ongbut{{ event.id }}" class="buts rightelements" onclick="markoc('{{ event.id }}')" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-remove"></i></button>
+							<button id="ongbut{{ event.id }}" class="buts rightelements butsmob" onclick="markoc('{{ event.id }}')" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-remove"></i></button>
 						</div>
-						<form action="pending" method="POST" class="onese rightelements">
+						<form action="pending" method="POST" class="onese rightelements butsmob2">
 							{% csrf_token %}
-							<button name="dell" class="buts rightelements" id="markaspendingo{{ event.id }}" style="display: none;" value="{{ event.id }}">Pending</button>
+							<button name="dell" class="buts rightelements butsmob" id="markaspendingo{{ event.id }}" style="display: none;" value="{{ event.id }}">Pending</button>
 						</form>
-						<form action="confirmed" method="POST" class="onese rightelements">
+						<form action="confirmed" method="POST" class="onese rightelements butsmob2">
 							{% csrf_token %}
-							<button name="dell" class="buts rightelements" id="markasconfirmo{{ event.id }}" style="display: none;" value="{{ event.id }}">Confirmed</button>
+							<button name="dell" class="buts rightelements butsmob" id="markasconfirmo{{ event.id }}" style="display: none;" value="{{ event.id }}">Confirmed</button>
 						</form>
 						{% endif %}
 						{% endifequal %}
 						{% ifequal event.status 'Confirmed' %}
 						{% if user.is_superuser == True %}
-						<button id="markc{{ event.id }}" class="buts del rightelements" onclick="markco('butter','{{ event.id }}')" >Mark as</button>
+						<button id="markc{{ event.id }}" class="buts del rightelements butsmob" onclick="markco('butter','{{ event.id }}')" >Mark as</button>
 						<div>
-							<button id="conbut{{ event.id }}" class="buts rightelements" onclick="markcc('{{ event.id }}')" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-remove"></i></button>
+							<button id="conbut{{ event.id }}" class="buts rightelements butsmob" onclick="markcc('{{ event.id }}')" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-remove"></i></button>
 						</div>
-						<form action="ongoing" method="POST" class="onese rightelements">
+						<form action="ongoing" method="POST" class="onese rightelements butsmob2">
 							{% csrf_token %}
-							<button name="dell" class="buts rightelements" id="markasongoingc{{ event.id }}" style="display: none;" value="{{ event.id }}">Ongoing</button>
+							<button name="dell" class="buts rightelements butsmob" id="markasongoingc{{ event.id }}" style="display: none;" value="{{ event.id }}">Ongoing</button>
 						</form>
-						<form action="pending" method="POST" class="onese rightelements">
+						<form action="pending" method="POST" class="onese rightelements butsmob2">
 							{% csrf_token %}
-							<button name="dell" class="buts rightelements" id="markaspendingc{{ event.id }}" style="display: none;" value="{{ event.id }}">Pending</button>
+							<button name="dell" class="buts rightelements butsmob" id="markaspendingc{{ event.id }}" style="display: none;" value="{{ event.id }}">Pending</button>
 						</form>
 						{% endif %}
 						{% endifequal %}
-						<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-eventdetails2" method="POST" class="onese rightelements">
+						<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-eventdetails2" method="POST" class="onese rightelements butsmob2">
 							{% csrf_token %}
 							<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
-							<button name="dell" class="buts rightelements" id="editevent{{ event.id }}" value="{{ event.id }}">Edit Event</button>
+							<button name="dell" class="buts rightelements butsmob" id="editevent{{ event.id }}" value="{{ event.id }}">Edit Event</button>
 						</form>
 					</div>
 					<div class="mdiv">
@@ -1917,7 +2040,7 @@
 							<button name="send" value="{{ event.by.username }}" class="butsud butp again oned leftelements">{{ event.by.username }}</button>
 						</form>
 						{% if event.link %}
-						<p class="butp leftelements"><a class="leftelements" target="_blank" href="{{ event.link }}">Registration Link</a></p>
+						<p class="butp leftelements"><a class="leftelements" target="_blank" href="{{ event.link }}">Meeting Link</a></p>
 						{% endif %}
 						{% if event.whatsapp %}
 						<p class="butp leftelements"><a class="leftelements" target="_blank" href="{{ event.whatsapp }}">Whatsapp Group Link</a></p>
@@ -1993,28 +2116,28 @@
 				<div class="underelements">
 				<div class="pdiv">
 					{% ifequal event.status 'Pending' %}
-					<div class="butspending">Pending</div>
+					<div class="butspending butsmob">Pending</div>
 					{% endifequal %}
 					{% ifequal event.status 'Ongoing' %}
-					<div class="butsongoing">Ongoing</div>
+					<div class="butsongoing butsmob">Ongoing</div>
 					{% endifequal %}
 					{% ifequal event.status 'Confirmed' %}
-					<div class="butsconfirmed">Confirmed</div>
+					<div class="butsconfirmed butsmob">Confirmed</div>
 					{% endifequal %}
-					<button id="updel{{ event.id }}" class="buts del rightelements" onclick="updel('butter','{{ event.id }}')" ><i class="glyphicon glyphicon-trash"></i></button>
-					<div>
-						<button id="upbutton{{ event.id }}" class="buts rightelements" onclick="upabrt('{{ event.id }}')" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-remove"></i></button>
+					<button id="updel{{ event.id }}" class="buts del rightelements butsmob2" onclick="updel('butter','{{ event.id }}')" ><i class="glyphicon glyphicon-trash"></i></button>
+					<div class="rightelements butsmob2">
+						<button id="upbutton{{ event.id }}" class="buts rightelements butsmob" onclick="upabrt('{{ event.id }}')" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-remove"></i></button>
 					</div>
-					<form action="alldel" method="POST" class="onese rightelements">
+					<form action="alldel" method="POST" class="onese rightelements butsmob2">
 						{% csrf_token %}
-						<button name="dell" class="buts rightelements" id="upbuttonn{{ event.id }}" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-ok"></i></button>
+						<button name="dell" class="buts rightelements butsmob" id="upbuttonn{{ event.id }}" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-ok"></i></button>
 						<span class="ars" id="upars{{ event.id }}"></span>
 					</form>
-					<button id="upex{{ event.id }}" class="buts del rightelements" onclick="upexpor('butter','{{ event.id }}')" >Get Data</button>
-					<div>
-						<button id="upbutton2{{ event.id }}" class="buts rightelements" onclick="upnoexpor('{{ event.id }}')" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-remove"></i></button>
+					<button id="upex{{ event.id }}" class="buts del rightelements butsmob" onclick="upexpor('butter','{{ event.id }}')" >Get Data</button>
+					<div class="rightelements butsmob2">
+						<button id="upbutton2{{ event.id }}" class="buts rightelements butsmob" onclick="upnoexpor('{{ event.id }}')" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-remove"></i></button>
 					</div>
-					<form action="totxtall" method="POST" class="onese rightelements">
+					<form action="totxtall" method="POST" class="onese rightelements butsmob2">
 						{% csrf_token %}
 						<input style="display: none;" type="text" name="delltitle" value="{{ event.title }}">
 						<input style="display: none;" type="text" name="delldate" value="{{ event.date }}">
@@ -2026,9 +2149,9 @@
 						<input style="display: none;" type="text" name="dellfaccod3" value="{{ event.teacher3 }}">
 						<input style="display: none;" type="text" name="dellconv1" value="{{ event.convener1 }}">
 						<input style="display: none;" type="text" name="dellconv2" value="{{ event.convener2 }}">
-						<button name="dell" class="buts rightelements" id="uptxt{{ event.id }}" style="display: none;" value="{{ event.id }}">TXT</button>
+						<button name="dell" class="buts rightelements butsmob" id="uptxt{{ event.id }}" style="display: none;" value="{{ event.id }}">TXT</button>
 					</form>
-					<form action="topdfall" method="POST" class="onese rightelements">
+					<form action="topdfall" method="POST" class="onese rightelements butsmob2">
 						{% csrf_token %}
 						<input style="display: none;" type="text" name="delltitle" value="{{ event.title }}">
 						<input style="display: none;" type="text" name="delldate" value="{{ event.date }}">
@@ -2051,9 +2174,9 @@
 						<input style="display: none;" type="text" name="dellconv2" value="{{ event.convener2 }}">
 						<input style="display: none;" type="text" name="dellcont1" value="{{ event.contact1 }}">
 						<input style="display: none;" type="text" name="dellcont2" value="{{ event.contact2 }}">
-						<button name="dell" class="buts rightelements" id="uppdf{{ event.id }}" style="display: none;" value="{{ event.id }}">PDF</button>
+						<button name="dell" class="buts rightelements butsmob" id="uppdf{{ event.id }}" style="display: none;" value="{{ event.id }}">PDF</button>
 					</form>
-					<form action="todocall" method="POST" class="rightelements">
+					<form action="todocall" method="POST" class="rightelements butsmob2">
 						{% csrf_token %}
 						<input style="display: none;" type="text" name="delltitle" value="{{ event.title }}">
 						<input style="display: none;" type="text" name="delldate" value="{{ event.date }}">
@@ -2065,9 +2188,9 @@
 						<input style="display: none;" type="text" name="dellfaccod3" value="{{ event.teacher3 }}">
 						<input style="display: none;" type="text" name="dellconv1" value="{{ event.convener1 }}">
 						<input style="display: none;" type="text" name="dellconv2" value="{{ event.convener2 }}">
-						<button name="dell" class="buts rightelements" id="upxls{{ event.id }}" style="display: none;" value="{{ event.id }}">DOC</button>
+						<button name="dell" class="buts rightelements butsmob" id="upxls{{ event.id }}" style="display: none;" value="{{ event.id }}">DOC</button>
 					</form>
-					<button onclick="sendmail('{{ event.title }}','{{ event.date |date }}','{{ event.organizer }}','{{ event.department }}','{{ event.teacher1 }}','{{ event.teacher2 }}','{{ event.teacher3 }}','{{ event.convener1 }}','{{ event.convener2 }}')" class="rightelements buts">Share to gmail</button>
+					<button onclick="sendmail('{{ event.title }}','{{ event.date |date }}','{{ event.organizer }}','{{ event.department }}','{{ event.teacher1 }}','{{ event.teacher2 }}','{{ event.teacher3 }}','{{ event.convener1 }}','{{ event.convener2 }}')" class="rightelements buts butsmob">Share to gmail</button>
 				</div>
 				<div class="mdiv">
 					<div class="onesecond2">
@@ -2194,7 +2317,7 @@
 					<p class="butp leftelements">Published on : {{ event.pubdate }}</p>
 					<p class="butp leftelements again oned">Published by : {{ event.by }} </p>
 					{% if event.link %}
-					<p class="butp leftelements"><a class="leftelements" target="_blank" href="{{ event.link }}">Registration Link</a></p>
+					<p class="butp leftelements"><a class="leftelements" target="_blank" href="{{ event.link }}">Meeting Link</a></p>
 					{% endif %}
 					{% if event.whatsapp %}
 					<p class="butp leftelements"><a class="leftelements" target="_blank" href="{{ event.whatsapp }}">Whatsapp Group Link</a></p>
@@ -2262,28 +2385,28 @@
 				<div class="underelements">
 				<div class="pdiv">
 					{% ifequal event.status 'Pending' %}
-					<div class="butspending">Pending</div>
+					<div class="butspending butsmob">Pending</div>
 					{% endifequal %}
 					{% ifequal event.status 'Ongoing' %}
-					<div class="butsongoing">Ongoing</div>
+					<div class="butsongoing butsmob">Ongoing</div>
 					{% endifequal %}
 					{% ifequal event.status 'Confirmed' %}
-					<div class="butsconfirmed">Confirmed</div>
+					<div class="butsconfirmed butsmob">Confirmed</div>
 					{% endifequal %}
-					<button id="findel{{ event.id }}" class="buts del rightelements" onclick="findel('butter','{{ event.id }}')" ><i class="glyphicon glyphicon-trash"></i></button>
-					<div>
-						<button id="finbutton{{ event.id }}" class="buts rightelements" onclick="finabrt('{{ event.id }}')" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-remove"></i></button>
+					<button id="findel{{ event.id }}" class="buts del rightelements butsmob" onclick="findel('butter','{{ event.id }}')" ><i class="glyphicon glyphicon-trash"></i></button>
+					<div class="rightelements butsmob2">
+						<button id="finbutton{{ event.id }}" class="buts rightelements butsmob" onclick="finabrt('{{ event.id }}')" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-remove"></i></button>
 					</div>
-					<form action="alldel" method="POST" class="onese rightelements">
+					<form action="alldel" method="POST" class="onese rightelements butsmob2">
 						{% csrf_token %}
-						<button name="dell" class="buts rightelements" id="finbuttonn{{ event.id }}" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-ok"></i></button>
+						<button name="dell" class="buts rightelements butsmob" id="finbuttonn{{ event.id }}" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-ok"></i></button>
 						<span class="ars" id="finars{{ event.id }}"></span>
 					</form>
-					<button id="finex{{ event.id }}" class="buts del rightelements" onclick="finexpor('butter','{{ event.id }}')" >Get Data</button>
-					<div>
-						<button id="finbutton2{{ event.id }}" class="buts rightelements" onclick="finnoexpor('{{ event.id }}')" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-remove"></i></button>
+					<button id="finex{{ event.id }}" class="buts del rightelements butsmob" onclick="finexpor('butter','{{ event.id }}')" >Get Data</button>
+					<div class="rightelements butsmob2">
+						<button id="finbutton2{{ event.id }}" class="buts rightelements butsmob" onclick="finnoexpor('{{ event.id }}')" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-remove"></i></button>
 					</div>
-					<form action="totxtall" method="POST" class="onese rightelements">
+					<form action="totxtall" method="POST" class="onese rightelements butsmob2">
 						{% csrf_token %}
 						<input style="display: none;" type="text" name="delltitle" value="{{ event.title }}">
 						<input style="display: none;" type="text" name="delldate" value="{{ event.date }}">
@@ -2295,9 +2418,9 @@
 						<input style="display: none;" type="text" name="dellfaccod3" value="{{ event.teacher3 }}">
 						<input style="display: none;" type="text" name="dellconv1" value="{{ event.convener1 }}">
 						<input style="display: none;" type="text" name="dellconv2" value="{{ event.convener2 }}">
-						<button name="dell" class="buts rightelements" id="fintxt{{ event.id }}" style="display: none;" value="{{ event.id }}">TXT</button>
+						<button name="dell" class="buts rightelements butsmob" id="fintxt{{ event.id }}" style="display: none;" value="{{ event.id }}">TXT</button>
 					</form>
-					<form action="topdfall" method="POST" class="onese rightelements">
+					<form action="topdfall" method="POST" class="onese rightelements butsmob2">
 						{% csrf_token %}
 						<input style="display: none;" type="text" name="delltitle" value="{{ event.title }}">
 						<input style="display: none;" type="text" name="delldate" value="{{ event.date }}">
@@ -2320,9 +2443,9 @@
 						<input style="display: none;" type="text" name="dellconv2" value="{{ event.convener2 }}">
 						<input style="display: none;" type="text" name="dellcont1" value="{{ event.contact1 }}">
 						<input style="display: none;" type="text" name="dellcont2" value="{{ event.contact2 }}">
-						<button name="dell" class="buts rightelements" id="finpdf{{ event.id }}" style="display: none;" value="{{ event.id }}">PDF</button>
+						<button name="dell" class="buts rightelements butsmob" id="finpdf{{ event.id }}" style="display: none;" value="{{ event.id }}">PDF</button>
 					</form>
-					<form action="todocall" method="POST" class="rightelements">
+					<form action="todocall" method="POST" class="rightelements butsmob2">
 						{% csrf_token %}
 						<input style="display: none;" type="text" name="delltitle" value="{{ event.title }}">
 						<input style="display: none;" type="text" name="delldate" value="{{ event.date }}">
@@ -2334,9 +2457,9 @@
 						<input style="display: none;" type="text" name="dellfaccod3" value="{{ event.teacher3 }}">
 						<input style="display: none;" type="text" name="dellconv1" value="{{ event.convener1 }}">
 						<input style="display: none;" type="text" name="dellconv2" value="{{ event.convener2 }}">
-						<button name="dell" class="buts rightelements" id="finxls{{ event.id }}" style="display: none;" value="{{ event.id }}">DOC</button>
+						<button name="dell" class="buts rightelements butsmob" id="finxls{{ event.id }}" style="display: none;" value="{{ event.id }}">DOC</button>
 					</form>
-					<button onclick="sendmail('{{ event.title }}','{{ event.date |date }}','{{ event.organizer }}','{{ event.department }}','{{ event.teacher1 }}','{{ event.teacher2 }}','{{ event.teacher3 }}','{{ event.convener1 }}','{{ event.convener2 }}')" class="rightelements buts">Share to gmail</button>
+					<button onclick="sendmail('{{ event.title }}','{{ event.date |date }}','{{ event.organizer }}','{{ event.department }}','{{ event.teacher1 }}','{{ event.teacher2 }}','{{ event.teacher3 }}','{{ event.convener1 }}','{{ event.convener2 }}')" class="rightelements buts butsmob">Share to gmail</button>
 					{% for rep in report_num %}
 					{% ifequal rep.erref.title event.title %}
 					<form action="torep" method="POST" class="rightelements">
@@ -2473,7 +2596,7 @@
 					<p class="butp leftelements">Published on : {{ event.pubdate }}</p>
 					<p class="butp leftelements again oned">Published by : {{ event.by }} </p>
 					{% if event.link %}
-					<p class="butp leftelements"><a class="leftelements" target="_blank" href="{{ event.link }}">Registration Link</a></p>
+					<p class="butp leftelements"><a class="leftelements" target="_blank" href="{{ event.link }}">Meeting Link</a></p>
 					{% endif %}
 					{% if event.whatsapp %}
 					<p class="butp leftelements"><a class="leftelements" target="_blank" href="{{ event.whatsapp }}">Whatsapp Group Link</a></p>
@@ -3011,7 +3134,7 @@
 				msgbodyo=msgbody5.concat(str,dellperks);
 			}
 			subj=delltitle
-			reg="Registration Link : "
+			reg="Meeting Link : "
 			msgbody5=reg.concat(space,delllink,str,dellregfro,to,dellregto)
 			dep="Department : "
 			faccod="Faculty Co-ordinators : "
@@ -3054,7 +3177,7 @@
 				msgbodyo=msgbody5.concat(str,dellperks);
 			}
 			subj=delltitle
-			reg="Registration Link : "
+			reg="Meeting Link : "
 			msgbody5=reg.concat(space,delllink,str,dellregfro,to,dellregto)
 			dep="Department : "
 			faccod="Faculty Co-ordinators : "
