@@ -662,26 +662,6 @@
 			.basicbutton{
 				font-size: 4vw;
 			}
-			/*--------------------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------
-			----------------------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------
-			----------------------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------
-			----------------------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------*/
-			/*--------------------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------
-			----------------------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------
-			----------------------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------
-			----------------------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------*/
-			/*--------------------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------
-			----------------------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------
-			----------------------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------
-			----------------------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------*/
-			#basicmain{
-				float: left;
-				height: 100vh;
-				width: 100vw;
-				margin-top: 12vw;
-				padding: 0vw 0vw;
-				padding-bottom: 0vw;
-			}
 			/*--------------------------------------------------------------------admincode------------------------------------------------------------------------
 			----------------------------------------------------------------------admincode------------------------------------------------------------------------
 			----------------------------------------------------------------------admincode------------------------------------------------------------------------
@@ -721,6 +701,130 @@
 				margin-top: 50px;
 				padding: 30px 45px;
 			}
+			/*--------------------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------
+			----------------------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------
+			----------------------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------
+			----------------------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------*/
+			/*--------------------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------
+			----------------------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------
+			----------------------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------
+			----------------------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------*/
+			/*--------------------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------
+			----------------------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------
+			----------------------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------
+			----------------------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------*/
+			#basicmain{
+				float: left;
+				height: 100vh;
+				width: 100vw;
+				margin-top: 12vw;
+				padding: 0vw 0vw;
+				padding-bottom: 0vw;
+			}
+			.mainheadelements{
+				float: left;
+				margin-top: 0vw;
+				width: 100vw;
+				padding-left: 0vw;
+			}
+			.mainheadelements2{
+				float: left;
+				width: 100vw;
+				padding-left: 43.5vw;
+				padding-top: 0.5vw;
+				background-color: #FFFFFF;
+			}
+			.mainheadelements h1,a{
+				float: left;
+				margin-top: 0px;
+			}
+			.mainheadelements2 h1{
+				float: left;
+				margin-top: 0px;
+			}
+			.mainelements{
+				float: left;
+				margin-left: 0vw;
+				margin-right: 0vw;
+				margin-top: 0vw;
+				width: 100vw;
+				height: 90px;
+			}
+			.inputbar{
+				height: 6vw;
+				width: 100vw;
+				margin-left: 0vw;
+				padding-left: 0vw;
+				margin-top: 0vw;
+				margin-bottom: 0px;
+			}
+			.inputbar2{
+				margin-left: 0%;
+				height: 100%;
+				width: 90%;
+				padding-left: 0vw;
+			}
+			#searchbar{
+				width: 100%;
+				height: 100%;
+				outline: 0;
+				border: none;
+				padding-left: 10px;
+				font-size: 2vw;
+			}
+			.inputbar button{
+				height: 100%;
+				width: 10%;
+				background-color: black;
+				color: white;
+			}
+			.inputbar button:hover{
+				background-color: white;
+				color: black;
+			}
+			.leftelements{
+				float: left;
+			}
+			.rightelements{
+				float: right;
+			}
+			.fullheight{
+				height: 90px;
+				width: 90px;
+				padding-top: 0.5vw;
+				font-size: 2vw;
+				padding-left: 1.5vw;
+				padding-right: 1.5vw;
+			}
+			.fullheight2{
+				height: 90px;
+				padding-top: 1vw;
+				font-size: 1.4vw;
+				padding-left: 1.5vw;
+				padding-right: 1.5vw;
+			}
+			.fullwidth{
+				width: 100%;
+				height: 90px;
+			}
+			.buts{
+				outline: 0;
+				border: none;
+				background-color: black;
+				color: white;
+			}
+			.buts:hover{
+				background-color: lightgrey;
+				color: black;
+			}
+			.messagepop{
+				background-color: red;
+				color: white;
+				border-radius: 45px;
+				width: 90px;
+				height: 100%;
+				padding-left: 35px;
+			}
 	</style>
 </head>
 <body onload="startTime()">
@@ -734,14 +838,14 @@
 		</form>
 		<button style="display: none;" class="but buts foradb rightelements" id="forbut" onclick="forback()"><i class="glyphicon glyphicon-remove"></i></button>
 		{% if user.is_authenticated %}
-		<div class="mainheadelements2">
-			<h1>All Users</h1>
-		</div>
 		<div class="searchbar mainheadelements inputbar">
 			<div class="leftelements inputbar2">
 				<input autocomplete="off" placeholder="Search Users" type="text" id="searchbar" name="search" class="leftelements">	
 			</div>
     		<button id="sbutn" class="but leftelements" onclick="search_event()"><i class="glyphicon glyphicon-search"></i></button>	
+		</div>
+		<div class="mainheadelements2">
+			<h1>All Users</h1>
 		</div>
 		{% for user in user_number %}
 		<div class="mainelements" >
