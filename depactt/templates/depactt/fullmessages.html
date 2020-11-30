@@ -954,7 +954,7 @@
 			<input placeholder="Search Messages" id="searchin" type="text" name="send">
 			<button class="fullheight3 buts searchbut" id="smbut" onclick="search_event()">Go</button>
 		</div>
-		<div id="mainelement" style="height: 66vh;" class="mainelements">
+		<div id="mainelement" style="height: 70vh;" class="mainelements">
 		{% for mesg in msg %}
 			{% if mesg.messagesender == user_num %}
 			<div class="message leftelements fullwidth">
@@ -1308,7 +1308,7 @@
 			document.getElementById(date).style.display ='';
 			document.getElementById(but2).style.display ='none';
 			document.getElementById(but1).style.display ='';
-			document.getElementById('mainelement').style.height = '60vh';
+			document.getElementById('mainelement').style.height = '68vh';
 			document.getElementById('searchin').focus();
 		}
 		function messageclose(){
@@ -1318,7 +1318,7 @@
 			document.getElementById(date).style.display ='none';
 			document.getElementById(but2).style.display ='';
 			document.getElementById(but1).style.display ='none';
-			document.getElementById('mainelement').style.height = '66vh';
+			document.getElementById('mainelement').style.height = '70vh';
 		}
 
 		function search_event() { 
