@@ -941,6 +941,45 @@
 				padding: 0vw 0vw;
 				padding-bottom: 0vw;
 			}
+			/*--------------------------------------------------------------------admincode------------------------------------------------------------------------
+			----------------------------------------------------------------------admincode------------------------------------------------------------------------
+			----------------------------------------------------------------------admincode------------------------------------------------------------------------
+			----------------------------------------------------------------------admincode------------------------------------------------------------------------*/
+			#forad{
+				position: absolute;
+				top: 16vw;
+				left: 5vw;
+				width: 90vw;
+				height: 40vw;
+			}
+			.foradb{
+				position: absolute;
+				top: 12vw;
+				right: 0vw;
+				height: 8vw;
+				width: 8vw;
+				padding-top: 3px;
+				border-radius: 4vw;
+				font-size: 2.5vw;
+			}
+			.ssbar{
+				margin-left: 15%;
+				width: 70%;
+				padding: 20px 20px;
+				margin-top: 50px;
+				outline: 0;
+			}
+			.addm{
+				margin-left: 32%;
+				margin-top: 70px;
+				font-size: 4vw;
+			}
+			.righ{
+				font-size: 3vw;
+				margin-left: 42%;
+				margin-top: 50px;
+				padding: 30px 45px;
+			}
 	</style>
 </head>
 <body onload="startTime()">
@@ -1340,13 +1379,13 @@
 		<div style="display: none;" id="profilediv">
 			<a class="profilelink" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-profile">
 				<div class="low profiletdp">
-					<i class="profiledp glyphicon glyphicon-th-list"></i>
+					<i class="profiledp profiledp2 glyphicon glyphicon-th-list"></i>
 					<p class="profiletext">Details</p>
 				</div>
 			</a>
 			<a class="profilelink" href="/admin/kjsomaiyacollegeofengineering-teachers-department-admin">
 				<div class="mid profiletdp">
-					<i class="profiledp glyphicon glyphicon-asterisk"></i>
+					<i class="profiledp profiledp2 glyphicon glyphicon-asterisk"></i>
 					<p class="profiletext">Admin Page</p>
 				</div>
 			</a>
@@ -1354,8 +1393,8 @@
     		<div id="forad2">
 				<button class="profilelink" onclick="adcode()" href="toadmin">
 					<div class="high profiletdp">
-						<i class="profiledp glyphicon glyphicon-repeat"></i>
-						<p class="profiletext">Convert to admin</p>
+						<i class="profiledp profiledp2 glyphicon glyphicon-repeat"></i>
+						<p class="profiletext">Convert</p>
 					</div>
 				</button>
     		</div>
@@ -1364,7 +1403,7 @@
 			{% else %}
 			<form id="forad3" action="tonormal" method="POST">
 				{% csrf_token %}
-				<button name="dell" class="profilelink" id="buttonn{{ user.id }}" value="{{ user.username }}"><i class="glyphicon glyphicon-ok"></i>Convert to normal</button>
+				<button name="dell" class="profilelink" id="buttonn{{ user.id }}" value="{{ user.username }}"><i class="glyphicon glyphicon-ok profiledp2"></i>Convert</button>
 			</form>
 			{% endif %}
 		</div>
@@ -1382,13 +1421,13 @@
 		<div style="display: none;" id="profilediv2">
 			<a class="profilelink" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-help">
 				<div class="low profiletdp">
-					<i class="profiledp glyphicon glyphicon-question-sign"></i>
+					<i class="profiledp profiledp2 glyphicon glyphicon-question-sign"></i>
 					<p class="profiletext">Help</p>
 				</div>
 			</a>
 			<a class="profilelink" href="homelogout">
 				<div class="low profiletdp">
-					<i class="profiledp glyphicon glyphicon-off"></i>
+					<i class="profiledp profiledp2 glyphicon glyphicon-off"></i>
 					<p class="profiletext">Logout</p>
 				</div>
 			</a>
@@ -1398,7 +1437,7 @@
 			<h2 class="basicpro">
 				DA
 			</h2>
-			<button onclick="back()" class="but basicbutton">
+			<button onclick="back()" class="but basicbutton basicbuttonclose">
 				<i class="glyphicon glyphicon-chevron-left"></i>
 			</button>
 			<a class="profilelink profilelink3" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-home">

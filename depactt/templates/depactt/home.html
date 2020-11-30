@@ -585,11 +585,6 @@
 		----------------------------------------------------------------------MOBILE MEDIA QUERY------------------------------------------------------------------------*/
 		/* 100% Image Width on Smaller Screens */
 		@media only screen and (max-width: 1200px){
-			.mainelements{
-				float: left;
-				margin-top: 0px;
-				margin-left: 0px;
-			}
 			.basicbutton{
 				padding: 2vw 2.5vw;
 				float: left;
@@ -789,6 +784,167 @@
 				margin-top: 12vw;
 				padding: 0vw 0vw;
 				padding-bottom: 0vw;
+			}
+			.mainheadelements{
+				float: left;
+				margin-top: 1vw;
+				width: 100vw;
+			}
+			.mainheadelements2{
+				padding-left: 41.5vw;
+			}
+			.mainheadelements h1{
+				margin-left: 2vw;
+				font-size: 4vw;
+			}
+			.mainelements{
+				float: left;
+				margin-left: 5vw;
+				margin-right: 5vw;
+				margin-top: 5vw;
+				width: 90vw;
+				height: 40vw;
+				background-color: #FFFFFF;
+				border: 0.5px solid #AAAABB;
+			}
+			.mainelements:hover{
+				transform: scale(1.01);
+				border: 0.5px solid #AAAABB;
+			}
+			.noti100, .noti2, .noti, .noti4, .noti5, .noti6, .noti7, .noti13, .noti14, .noti3{
+				padding: 30px 15px;
+				font-size: 3vw;
+			}
+			.noti4, .noti5, .noti3, .noti13, .noti14{
+				height: 30%;
+			}
+			.notiunder{
+				font-size: 3vw;
+				height: 85%;
+				overflow-y: scroll;
+			}
+			.action{
+				width: 27%;
+				background-color: #98D8D8;
+				padding: 10px 15px;
+				font-size: 2.8vw;
+				height: 15%;
+				text-decoration: none;
+				color: black;
+			}
+			.action:hover{
+				background-color: #186868;
+				text-decoration: none;
+				color: white;
+			}
+
+			/*-----------------------------------------------------------login other and admincode--------------------------------------------------------------------
+			-------------------------------------------------------------login other and admincode--------------------------------------------------------------------
+			-------------------------------------------------------------login other and admincode--------------------------------------------------------------------
+			-------------------------------------------------------------login other and admincode--------------------------------------------------------------------*/
+			/*-----------------------------------------------------------login other and admincode--------------------------------------------------------------------
+			-------------------------------------------------------------login other and admincode--------------------------------------------------------------------
+			-------------------------------------------------------------login other and admincode--------------------------------------------------------------------
+			-------------------------------------------------------------login other and admincode--------------------------------------------------------------------*/
+			.logp{
+				padding-bottom: 41vh;
+			}
+			.butunder{
+				float: left;
+				width: 100vw;
+			}
+			.buts{
+				outline: 0;
+				border: none;
+				background-color: black;
+				color: white;
+			}
+			.buts:hover{
+				background-color: lightgrey;
+				color: black;
+			}
+			/*--------------------------------------------------------------------admincode------------------------------------------------------------------------
+			----------------------------------------------------------------------admincode------------------------------------------------------------------------
+			----------------------------------------------------------------------admincode------------------------------------------------------------------------
+			----------------------------------------------------------------------admincode------------------------------------------------------------------------*/
+			#forad{
+				position: absolute;
+				top: 16vw;
+				left: 5vw;
+				width: 90vw;
+				height: 40vw;
+			}
+			.foradb{
+				position: absolute;
+				top: 12vw;
+				right: 0vw;
+				height: 8vw;
+				width: 8vw;
+				padding-top: 3px;
+				border-radius: 4vw;
+				font-size: 2.5vw;
+			}
+			.ssbar{
+				margin-left: 15%;
+				width: 70%;
+				padding: 20px 20px;
+				margin-top: 50px;
+				outline: 0;
+			}
+			.addm{
+				margin-left: 32%;
+				margin-top: 70px;
+				font-size: 4vw;
+			}
+			.righ{
+				font-size: 3vw;
+				margin-left: 42%;
+				margin-top: 50px;
+				padding: 30px 45px;
+			}
+			.but3{
+				outline: 0;
+				border: none;
+			}
+			.mbutton{
+				outline: 0;
+				border: none;
+				background-color: transparent;
+				color: white;
+				margin-left: 0px;
+				width: 100%;
+				height: 100%;
+				margin-top: 0px;
+				padding: 5px 15px;
+
+			}
+			.glyphicon2{
+				font-size: 12px;
+				margin-left: 0px;
+				margin-top: 6px;
+			}
+			.para2{
+				float: left;
+				margin: 0;
+				width: 20%;
+			}
+			.para{
+				float: left;
+				margin: 0;
+				width: auto;
+				max-width: 80%;
+			    overflow: hidden;
+			    text-overflow: ellipsis;
+			    white-space: nowrap;
+			}
+			.para2{
+				float: left;
+				margin: 0;
+				width: auto;
+				max-width: 80%;
+			    overflow: hidden;
+			    text-overflow: ellipsis;
+			    white-space: nowrap;
 			}
 		}
 	</style>
@@ -1078,7 +1234,7 @@
 				<button class="profilelink" onclick="adcode()" href="toadmin">
 					<div class="high profiletdp">
 						<i class="profiledp profiledp2 glyphicon glyphicon-repeat"></i>
-						<p class="profiletext">Convert to admin</p>
+						<p class="profiletext">Convert</p>
 					</div>
 				</button>
     		</div>
@@ -1087,7 +1243,7 @@
 			{% else %}
 			<form id="forad3" action="tonormal" method="POST">
 				{% csrf_token %}
-				<button name="dell" class="profilelink" id="buttonn{{ user.id }}" value="{{ user.username }}"><i class="profiledp2 glyphicon glyphicon-ok"></i>Convert to normal</button>
+				<button name="dell" class="profilelink" id="buttonn{{ user.id }}" value="{{ user.username }}"><i class="profiledp2 glyphicon glyphicon-ok"></i>Convert</button>
 			</form>
 			{% endif %}
 		</div>
