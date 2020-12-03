@@ -84,6 +84,7 @@ def login(request):
 		passwordrr1=request.POST['pssword']
 
 		if (len(uname)==0) or (len(passwordrr1)==0):
+			messages.warning(request,'Please Enter Password Correctly')
 			return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login')
 		else:
 			user = auth.authenticate(username=uname, password=passwordrr1)
@@ -93,7 +94,7 @@ def login(request):
 				# return user
 				return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-home')
 			else:
-				messages.warning(request,'User doesnt exists or password wrong')
+				messages.warning(request,'User doesnt exists or Password wrong')
 				return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login')
 	else:
 		return render(request, 'depactt/login.html')
@@ -117,12 +118,16 @@ def signup(request):
 					return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login')
 				else:
 					if stat=='staff':
-						user= User.objects.create_user(username=uname, first_name=fname, last_name=lname, email=ename, password=passwordrr1, is_staff=True)
-						user.save()
-						user2=Details(urref=User.objects.get(username=uname))
-						user2.save()
-						print('it worked');
-						messages.success(request,'User Created Successfully, Please Login to continue')
+						passwordrr3=request.POST['password3']
+						if passwordrr3=='kjsieitcompsteachers':
+							user= User.objects.create_user(username=uname, first_name=fname, last_name=lname, email=ename, password=passwordrr1, is_staff=True)
+							user.save()
+							user2=Details(urref=User.objects.get(username=uname))
+							user2.save()
+							print('it worked');
+							messages.success(request,'User Created Successfully, Please Login to continue')
+						else:
+							messages.warning(request,'Wrong Code')
 					if stat=='student':
 						user= User.objects.create_user(username=uname, first_name=fname, last_name=lname, email=ename, password=passwordrr1, is_staff=False)
 						user.save()

@@ -79,10 +79,10 @@ WSGI_APPLICATION = 'event.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd30f3fmnuvnttv',
-        'USER': 'dqwqeukaajgmqx',
-        'PASSWORD': 'a44d79823314c3c66781382a7d04c6369def3551bc90a565a92e7bf393be14f1',
-        'HOST' : 'ec2-50-16-198-4.compute-1.amazonaws.com'
+        'NAME': 'Depact',
+        'USER': 'postgres',
+        'PASSWORD': 'EngineeringHR',
+        'HOST' : 'localhost'
     }
 }
 
@@ -141,10 +141,6 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
 
 ACCOUNT_USER_MODEL_USERNAME_FIELD = 'username'
 ACCOUNT_EMAIL_REQUIRED = True
