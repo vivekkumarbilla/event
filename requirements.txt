@@ -22,11 +22,9 @@ py-vapid==1.7.1
 pycparser==2.20
 PyGoogleVoice==0.5.2
 PyJWT==1.7.1
-pypiwin32==223
 python-docx==0.8.10
 pytz==2020.1
 pywebpush==1.9.4
-pywin32==228
 reportlab==3.5.56
 requests==2.24.0
 six==1.15.0
