@@ -31,6 +31,11 @@ from .models import Registration
 import io
 from django.http import FileResponse
 from reportlab.pdfgen import canvas
+from reportlab.lib.units import inch, cm
+from reportlab.lib.pagesizes import A4
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
+
 
 from datetime import timedelta
 from datetime import datetime,timedelta
@@ -1379,7 +1384,7 @@ def toxl(request):
 	response = HttpResponse(
 		content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
 	)
-	response['Content-Disposition'] = 'attachment; filename={date}-events.xlsx'.format(
+	response['Content-Disposition'] = 'attachment; filename=Events.xlsx'.format(
 		date=datetime.now().strftime('%Y-%m-%d'),
 	)
 	wb=Workbook()
@@ -1408,23 +1413,24 @@ def toxl(request):
 				column_widths += [len(str(cell_value))]
 	for i, column_width in enumerate(column_widths):
 		ws.column_dimensions[get_column_letter(i+1)].width = column_width
-	if path.isfile('Desktop\\Events.xlsx')==True:
+	if path.isfile('Downloads\\Events.xlsx')==True:
 		messages.add_message(request, messages.WARNING, "Events.xlsx already exists in your desktop")
 	else:
-		wb.save('Desktop\\Events.xlsx')
+		wb.save(response)
 		messages.add_message(request, messages.SUCCESS, "Downloaded data to Events.xlsx file in your desktop")
-	return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
+	return response
 
 
 
 def toreg(request):
 	if request.method == "POST":
 		evid=request.POST.get("dell", "")
+		evid2=str(evid)
 		response = HttpResponse(
 			content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
 		)
-		response['Content-Disposition'] = 'attachment; filename={date}-events.xlsx'.format(
-			date=datetime.now().strftime('%Y-%m-%d'),
+		response['Content-Disposition'] = 'attachment; filename=Registrations-{time}.xlsx'.format(
+			time = datetime.now().strftime("%H:%M:%S"),
 		)
 		wb=Workbook()
 		ws=wb.active
@@ -1453,12 +1459,12 @@ def toreg(request):
 					column_widths += [len(str(cell_value))]
 		for i, column_width in enumerate(column_widths):
 			ws.column_dimensions[get_column_letter(i+1)].width = column_width
-		if path.isfile('Desktop\\Registrations'+evid2+'.xlsx')==True:
+		if path.isfile('Registrations'+evid2+'.xlsx')==True:
 			messages.add_message(request, messages.WARNING, "Registrations"+evid2+".xlsx already exists in your desktop")
 		else:
-			wb.save('Desktop\\Registrations'+evid2+'.xlsx')
+			wb.save(response)
 			messages.add_message(request, messages.SUCCESS, "Downloaded data to Registrations"+evid2+".xlsx file in your desktop")
-		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
+		return response
 	else:
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
 
@@ -1543,130 +1549,124 @@ def topdfall(request):
 		conv2=request.POST.get("dellconv2", "")
 		cont1=request.POST.get("dellcont1", "")
 		cont2=request.POST.get("dellcont2", "")
-		# pdf = fpdf.FPDF(format='letter')
-		# pdf.add_page()
-		# pdf.set_font('Arial', '', 20)
-		# pdf.set_text_color(167, 36, 41)
-		# pdf.cell(195,8,'K.J. Somaiya Insititute of Engineering and',0,1,'C')
-		# pdf.set_font('Arial', '', 20)
-		# pdf.set_fill_color(0, 0, 250)
-		# pdf.cell(195,8,'Information Technology Sion, Mumbai',0,1,'C')
-		# pdf.cell(195,2,'',0,1,'C')
-		# pdf.set_font('Times', '', 10)
-		# pdf.set_text_color(3, 90, 171)
-		# pdf.cell(195,4,'KJSIEIT is accredited by NAAC with "A" grade',0,1,'C')
-		# pdf.cell(195,4,'Three programs accredited by National Board of Accreditation',0,1,'C')
-		# pdf.cell(195,4,'Best College awarded by University of Mumbai, ISTE (MH) and CSI (Mumbai)',0,1,'C')
-		# pdf.ln()
-		# pdf.line(10, 45, 205, 45)
-		# pdf.ln()
-		# pdf.ln()
-		# pdf.set_font('Arial', '', 14)
-		# pdf.set_text_color(0,0,0)
-		# if org:
-		# 	pdf.cell(195,4,org,0,1,'C')
-		# 	pdf.ln()
-		# 	pdf.set_font('Arial', '', 11)
-		# 	pdf.set_text_color(100,100,100)
-		# 	pdf.cell(195,4,'is organizing a '+etype+' on topic',0,1,'C')
-		# 	pdf.ln()
-		# pdf.set_font("Arial", size=22)
-		# pdf.set_text_color(0,0,0)
-		# pdf.cell(195,11,title,0,1,'C')
-		# pdf.set_font('Arial', '', 11)
-		# pdf.set_text_color(100,100,100)
-		# if dep:
-		# 	pdf.cell(195,4,'in association with',0,1,'C')
-		# 	pdf.ln()
-		# 	pdf.set_font('Arial', '', 14)
-		# 	pdf.set_text_color(0,0,0)
-		# 	pdf.cell(195,4,dep,0,1,'C')
-		# pdf.set_font("Arial", size=12)
-		# pdf.set_text_color(30,30,30)
-		# pdf.cell(195,6,'Date : '+date+' ',0,1,'R')
-		# pdf.cell(195,6,'Time : '+timef+' - '+timet,0,1,'R')
-		# pdf.set_font('Arial', '', 11)
-		# pdf.set_text_color(100,100,100)
-		# if regf:
-		# 	pdf.cell(195,4,'Registrations from '+regf+' to '+regt,0,1,'L')
-		# pdf.ln()
-		# pdf.set_font('Arial', 'B', 11)
-		# pdf.set_text_color(0,0,0)
-		# if desc:
-		# 	pdf.cell(195,4,'A short Description : ',0,1,'L')
-		# 	pdf.ln()
-		# 	pdf.set_font('Arial', '', 11)
-		# 	pdf.cell(195,4,desc,0,1,'L')
-		# else:
-		# 	pdf.ln()
-		# 	pdf.ln()
-		# 	pdf.ln()
-		# pdf.ln()
-		# pdf.set_font('Arial', 'B', 11)
-		# pdf.set_text_color(0,0,0)
-		# if pre:
-		# 	pdf.cell(195,4,'Description about Presenter',0,1,'R')
-		# 	pdf.ln()
-		# 	pdf.set_font('Arial', '', 11)
-		# 	pdf.cell(195,4,pre,0,1,'R')
-		# 	pdf.ln()
-		# 	pdf.cell(195,4,pred,0,1,'R')
-		# 	pdf.ln()
-		# if per:
-		# 	pdf.set_font('Arial', 'B', 11)
-		# 	pdf.set_text_color(0,0,0)
-		# 	pdf.cell(195,4,'Perks/Benefits  : ',0,1,'L')
-		# 	pdf.ln()
-		# 	pdf.set_font('Arial', '', 11)
-		# 	pdf.cell(195,4,per,0,1,'L')
-		# 	pdf.ln()
-		# else:
-		# 	pdf.ln()
-		# 	pdf.ln()
-		# 	pdf.ln()
-		# 	pdf.ln()
-		# if cer=='True':
-		# 	pdf.cell(195,4,'Certificates will be given ',0,1,'L')
-		# 	pdf.ln()
-		# else:
-		# 	pdf.ln()
-		# 	pdf.ln()
-		# pdf.line(10, 230, 205, 230)
-		# pdf.ln()
-		# pdf.ln()
-		# pdf.ln()
-		# pdf.ln()
-		# pdf.ln()
-		# pdf.ln()
-		# pdf.ln()
-		# pdf.ln()
-		# pdf.ln()
-		# pdf.ln()
-		# pdf.ln()
-		# pdf.ln()
-		# pdf.ln()
-		# pdf.ln()
-		# pdf.ln()
-		# pdf.ln()
-		# pdf.set_font('Arial', '', 11)
-		# pdf.set_text_color(0,0,0)
-		# pdf.cell(195,4,"Faculty Co-ordinators :  "+faccod1+",  "+faccod2+",  "+faccod3,0,1,'L')
-		# pdf.ln()
-		# pdf.cell(195,4,"Conveners :  "+conv1+",  "+conv2,0,1,'L')
-		# pdf.ln()
-		# pdf.cell(195,4,"Contact :  "+cont1+",  "+cont2,0,1,'L')
-		# pdf.output(name='filename.pdf',dest='I')
-		buffer = io.BytesIO()
-		p = canvas.Canvas(buffer)
-		p.drawString(100, 100, title)
-		p.showPage()
-		p.save()
-		buffer.seek(0)
-		return FileResponse(buffer, as_attachment=True, filename='hello.pdf')
-	# 	messages.add_message(request, messages.SUCCESS, "Downloaded data to Event_"+evid+"_data.pdf file in your desktop")
-	# 	return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
-	# else:
-	# 	return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
+		pdf = fpdf.FPDF(format='letter')
+		pdf.add_page()
+		pdf.set_font('Arial', '', 20)
+		pdf.set_text_color(167, 36, 41)
+		pdf.cell(195,8,'K.J. Somaiya Insititute of Engineering and',0,1,'C')
+		pdf.set_font('Arial', '', 20)
+		pdf.set_fill_color(0, 0, 250)
+		pdf.cell(195,8,'Information Technology Sion, Mumbai',0,1,'C')
+		pdf.cell(195,2,'',0,1,'C')
+		pdf.set_font('Times', '', 10)
+		pdf.set_text_color(3, 90, 171)
+		pdf.cell(195,4,'KJSIEIT is accredited by NAAC with "A" grade',0,1,'C')
+		pdf.cell(195,4,'Three programs accredited by National Board of Accreditation',0,1,'C')
+		pdf.cell(195,4,'Best College awarded by University of Mumbai, ISTE (MH) and CSI (Mumbai)',0,1,'C')
+		pdf.ln()
+		pdf.line(10, 45, 205, 45)
+		pdf.ln()
+		pdf.ln()
+		pdf.set_font('Arial', '', 14)
+		pdf.set_text_color(0,0,0)
+		if org:
+			pdf.cell(195,4,org,0,1,'C')
+			pdf.ln()
+			pdf.set_font('Arial', '', 11)
+			pdf.set_text_color(100,100,100)
+			pdf.cell(195,4,'is organizing a '+etype+' on topic',0,1,'C')
+			pdf.ln()
+		pdf.set_font("Arial", size=22)
+		pdf.set_text_color(0,0,0)
+		pdf.cell(195,11,title,0,1,'C')
+		pdf.set_font('Arial', '', 11)
+		pdf.set_text_color(100,100,100)
+		if dep:
+			pdf.cell(195,4,'in association with',0,1,'C')
+			pdf.ln()
+			pdf.set_font('Arial', '', 14)
+			pdf.set_text_color(0,0,0)
+			pdf.cell(195,4,dep,0,1,'C')
+		pdf.set_font("Arial", size=12)
+		pdf.set_text_color(30,30,30)
+		pdf.cell(195,6,'Date : '+date+' ',0,1,'R')
+		pdf.cell(195,6,'Time : '+timef+' - '+timet,0,1,'R')
+		pdf.set_font('Arial', '', 11)
+		pdf.set_text_color(100,100,100)
+		if regf:
+			pdf.cell(195,4,'Registrations from '+regf+' to '+regt,0,1,'L')
+		pdf.ln()
+		pdf.set_font('Arial', 'B', 11)
+		pdf.set_text_color(0,0,0)
+		if desc:
+			pdf.cell(195,4,'A short Description : ',0,1,'L')
+			pdf.ln()
+			pdf.set_font('Arial', '', 11)
+			pdf.cell(195,4,desc,0,1,'L')
+		else:
+			pdf.ln()
+			pdf.ln()
+			pdf.ln()
+		pdf.ln()
+		pdf.set_font('Arial', 'B', 11)
+		pdf.set_text_color(0,0,0)
+		if pre:
+			pdf.cell(195,4,'Description about Presenter',0,1,'R')
+			pdf.ln()
+			pdf.set_font('Arial', '', 11)
+			pdf.cell(195,4,pre,0,1,'R')
+			pdf.ln()
+			pdf.cell(195,4,pred,0,1,'R')
+			pdf.ln()
+		if per:
+			pdf.set_font('Arial', 'B', 11)
+			pdf.set_text_color(0,0,0)
+			pdf.cell(195,4,'Perks/Benefits  : ',0,1,'L')
+			pdf.ln()
+			pdf.set_font('Arial', '', 11)
+			pdf.cell(195,4,per,0,1,'L')
+			pdf.ln()
+		else:
+			pdf.ln()
+			pdf.ln()
+			pdf.ln()
+			pdf.ln()
+		if cer=='True':
+			pdf.cell(195,4,'Certificates will be given ',0,1,'L')
+			pdf.ln()
+		else:
+			pdf.ln()
+			pdf.ln()
+		pdf.line(10, 230, 205, 230)
+		pdf.ln()
+		pdf.ln()
+		pdf.ln()
+		pdf.ln()
+		pdf.ln()
+		pdf.ln()
+		pdf.ln()
+		pdf.ln()
+		pdf.ln()
+		pdf.ln()
+		pdf.ln()
+		pdf.ln()
+		pdf.ln()
+		pdf.ln()
+		pdf.ln()
+		pdf.ln()
+		pdf.set_font('Arial', '', 11)
+		pdf.set_text_color(0,0,0)
+		pdf.cell(195,4,"Faculty Co-ordinators :  "+faccod1+",  "+faccod2+",  "+faccod3,0,1,'L')
+		pdf.ln()
+		pdf.cell(195,4,"Conveners :  "+conv1+",  "+conv2,0,1,'L')
+		pdf.ln()
+		pdf.cell(195,4,"Contact :  "+cont1+",  "+cont2,0,1,'L')
+		file='Event'+evid+'_data.pdf'
+		response = HttpResponse(pdf.output(name='Event'+evid+'_data.pdf',dest='S').encode('latin-1'), content_type='application/pdf')
+		content = "attachment; filename=%s " %(file)
+		response['Content-Disposition'] = content
+		messages.add_message(request, messages.SUCCESS, "Downloaded Report to Event"+evid+"_data.pdf file in your desktop")
+		return response
 
 
 
@@ -1794,9 +1794,12 @@ def tocerti(request):
 			pdf.cell(259.4,5,' '+con1+'              '+con2+'               Dr. Sunitha Patil              Dr. Suresh Ukarande',0,1,'C')
 		pdf.set_font('Arial', '', 9)
 		pdf.cell(259.4,6,' ( Convener of Event )                           ( Head of the Department )                   ( Vice Principal,KJSIEIT )                   ( Principal, KJSIEIT )',0,1,'C')
-		pdf.output(name='filename.pdf',dest='I')
-		messages.add_message(request, messages.SUCCESS, "Downloaded data to Certificate_"+evid+"_data.pdf file in your desktop")
-		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
+		file='Certificate_'+evid+'.pdf'
+		response = HttpResponse(pdf.output(name='Certificate_'+evid+'.pdf',dest='S').encode('latin-1'), content_type='application/pdf')
+		content = "attachment; filename=%s " %(file)
+		response['Content-Disposition'] = content
+		messages.add_message(request, messages.SUCCESS, "Downloaded Report to Certificate_"+evid+".pdf file in your desktop")
+		return response
 	else:
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
 
@@ -1921,9 +1924,12 @@ def torep(request):
 		pdf.cell(195,4,"Conveners :  "+rep.erref.convener1+",  "+rep.erref.convener2,0,1,'L')
 		pdf.ln()
 		pdf.cell(195,4,"Contact :  "+rep.erref.contact1+",  "+rep.erref.contact2,0,1,'L')
-		pdf.output(name='filename.pdf',dest='I')
+		file='Report_'+rnum+'.pdf'
+		response = HttpResponse(pdf.output(name='Report_'+rnum+'.pdf',dest='S').encode('latin-1'), content_type='application/pdf')
+		content = "attachment; filename=%s " %(file)
+		response['Content-Disposition'] = content
 		messages.add_message(request, messages.SUCCESS, "Downloaded Report to Report_"+rnum+".pdf file in your desktop")
-		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
+		return response
 	else:
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
 
@@ -1969,9 +1975,13 @@ def todocall(request):
 		if path.isfile('Event'+evid+'.docx')==True:
 			messages.add_message(request, messages.WARNING, "File Event"+evid+".doc already exists in your desktop")
 		else:
-			edoc.save('Event'+evid+'.docx')
 			messages.add_message(request, messages.SUCCESS, "Downloaded data to Event"+evid+".doc file in your desktop")
-		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
+			file='Event'+evid+'.docx'
+			response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document')
+			content = "attachment; filename=%s " %(file)
+			response['Content-Disposition'] = content
+			edoc.save(response)
+		return response
 	else:
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
 
