@@ -38,7 +38,8 @@ from django.core.files import File
 from twilio.rest import TwilioRestClient
 from twilio.rest import Client
 
-
+from webpush import send_group_notification
+from webpush import send_user_notification
 # Dataexports
 import time
 from pathlib import Path
@@ -64,7 +65,6 @@ from docx.shared import RGBColor
 def index(request): 
     # create data dictionary 
     # dump data 
-
     return render(request, 'depactt/index.html')
 
 
@@ -153,6 +153,8 @@ def home(request):
 	if request.user.is_authenticated:
 		currentuser = request.user.username
 		currentuserid = request.user.id
+	if not request.user.is_authenticated:
+		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login')
 	users=User.objects.all()
 	dicevents = {
 		"user_number": users
@@ -173,6 +175,9 @@ def home(request):
 	curstat=User.objects.get(username=currentuser)
 	comments=Comment.objects.filter(id=0)
 	addreport=Addreport.objects.filter(id=0)
+	payload = {"head": "Welcome!", "body": "You are now in the home page"}
+	user=User.objects.get(id=currentuserid)
+	send_user_notification(user=user, payload=payload, ttl=1000)
 	for i in range(len(noofevents)):
 		print(i)
 		cur=noofevents[i].title
@@ -235,8 +240,6 @@ def home(request):
 		dicevents["report_num"] = addreport
 		dicevents["group_num"] = groupm2
 	return render(request, 'depactt/home.html',dicevents)
-	if not request.user.is_authenticated:
-		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login')
 
 
 def profile(request): 

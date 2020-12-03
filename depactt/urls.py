@@ -1,6 +1,6 @@
 from django.urls import path
 from django.conf.urls import url
-
+from django.conf.urls import include
 from . import views
 
 urlpatterns = [
@@ -55,6 +55,8 @@ urlpatterns = [
     path('tonormal',views.tonormal, name='tonormal'),
     path('tocerti',views.tocerti, name='tocerti'),
     path('toevent',views.toevent, name='toevent'),
+    path('webpush/', include('webpush.urls')),
+    url(r'^webpush/', include('webpush.urls')),
 ]
 
 

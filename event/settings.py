@@ -76,7 +76,6 @@ WSGI_APPLICATION = 'event.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -110,8 +109,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 WEBPUSH_SETTINGS = {
-   "VAPID_PUBLIC_KEY": "depact",
-   "VAPID_PRIVATE_KEY": "engineering",
+   "VAPID_PUBLIC_KEY": "BDNOEev4loRMSVhSIvdpqMzOckdZWuEE5qaJF3U-L695MIiy2T4X7jmDl8Z9TPD3O4nR0tzb32SH3Ry398WyS1w",
+   "VAPID_PRIVATE_KEY": "sEOLScV39hbfnqqUS4oqYNmzh6fLdJnr3MlV_N7zTxw",
    "VAPID_ADMIN_EMAIL": "vivekananda.b@somaiya.edu"
 }
 
