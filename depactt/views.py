@@ -189,7 +189,6 @@ def home(request):
 	addreport=Addreport.objects.filter(id=0)
 	payload = {"head": "Welcome!", "body": "You are now in the home page"}
 	user=User.objects.get(id=currentuserid)
-	send_user_notification(user=user, payload=payload, ttl=1000)
 	for i in range(len(noofevents)):
 		print(i)
 		cur=noofevents[i].title
