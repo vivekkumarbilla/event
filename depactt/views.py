@@ -1695,8 +1695,8 @@ def tocerti(request):
 		name2="static/kj2.png"
 		font1="static/Algerian Regular.ttf"
 		font2="static/Calibri Bold.ttf"
-		pdf.add_font('Calibri Bold', '', font2, uni=True)
-		pdf.set_font('Calibri Bold', '', 18)
+		pdf.add_font('Calibri_Bold', '', font2, uni=True)
+		pdf.set_font('Calibri_Bold', '', 18)
 		pdf.cell(279.4,22,'',0,1,'C')
 		pdf.cell(259.4,5.5,'K.J. Somaiya Insititute of Engineering and',0,1,'C')
 		pdf.image(name1, x = 50, y = 30, w = 24, h = 24, type = 'png', link = 'static')
