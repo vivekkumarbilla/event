@@ -1556,6 +1556,7 @@ def topdfall(request):
 		pdf.add_page()
 		pdf.set_text_color(167, 36, 41)
 		pdf.set_fill_color(0, 250, 250)
+		pdf.set_font('Arial', '', 8)
 		name1=static('kj.png')
 		name2=static('kj2.png')
 		pdf.cell(194,2,' ',0,1,'C')
