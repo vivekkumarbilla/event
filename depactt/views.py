@@ -47,8 +47,6 @@ from django.core.files import File
 from twilio.rest import TwilioRestClient
 from twilio.rest import Client
 
-from webpush import send_group_notification
-from webpush import send_user_notification
 # Dataexports
 import time
 from pathlib import Path
@@ -1561,10 +1559,10 @@ def topdfall(request):
 		pdf.set_fill_color(0, 250, 250)
 		name1=static('kj.png')
 		name2=static('kj2.png')
-		font1=static('algerianr.ttf')
-		font2=static('calibb.ttf')
-		pdf.add_font('Calibri Bold', '', font2, uni=True)
-		pdf.set_font('Calibri Bold', '', 18)
+		font1=static('Algerian Regular.ttf')
+		font2=static('Calibri Bold.ttf')
+		pdf.add_font('Calibri_Bold', '', font2, uni=True)
+		pdf.set_font('Calibri_Bold', '', 18)
 		pdf.cell(194,2,'',0,1,'C')
 		pdf.cell(194,5.5,'K.J. Somaiya Insititute of Engineering and',0,1,'C')
 		pdf.image(name1, x = 20, y = 10, w = 24, h = 24, type = 'png', link = 'static')
@@ -1702,8 +1700,8 @@ def tocerti(request):
 		pdf.set_fill_color(0, 250, 250)
 		name1=static('kj.png')
 		name2=static('kj2.png')
-		font1=static('algerianr.ttf')
-		font2=static('calibb.ttf')
+		font1=static('Algerian Regular.ttf')
+		font2=static('Calibri Bold.ttf')
 		pdf.add_font('Calibri_Bold', '', font2, uni=True)
 		pdf.set_font('Calibri_Bold', '', 18)
 		pdf.cell(279.4,22,'',0,1,'C')
@@ -1833,10 +1831,10 @@ def torep(request):
 		pdf.set_fill_color(0, 250, 250)
 		name1=static('kj.png')
 		name2=static('kj2.png')
-		font1=static('algerianr.ttf')
-		font2=static('calibb.ttf')
-		pdf.add_font('Calibri Bold', '', font2, uni=True)
-		pdf.set_font('Calibri Bold', '', 18)
+		font1=static('Algerian Regular.ttf')
+		font2=static('Calibri Bold.ttf')
+		pdf.add_font('Calibri_Bold', '', font2, uni=True)
+		pdf.set_font('Calibri_Bold', '', 18)
 		pdf.cell(194,2,'',0,1,'C')
 		pdf.cell(194,5.5,'K.J. Somaiya Insititute of Engineering and',0,1,'C')
 		pdf.image(name1, x = 20, y = 10, w = 24, h = 24, type = 'png', link = 'static')
