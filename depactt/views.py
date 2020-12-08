@@ -27,7 +27,7 @@ from .models import Details
 from .models import Addreport
 from .models import Registration
 from django.contrib.staticfiles import finders
-from django.contrib.staticfiles.templatetags.staticfiles import static
+from django.templatetags.static import static
 # Date related and others
 import io
 from django.http import FileResponse
