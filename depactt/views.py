@@ -1556,18 +1556,26 @@ def topdfall(request):
 		cont2=request.POST.get("dellcont2", "")
 		pdf = fpdf.FPDF(format='letter')
 		pdf.add_page()
-		pdf.set_font('Arial', '', 20)
 		pdf.set_text_color(167, 36, 41)
-		pdf.cell(195,8,'K.J. Somaiya Insititute of Engineering and',0,1,'C')
-		pdf.set_font('Arial', '', 20)
+		pdf.set_fill_color(0, 250, 250)
+		name1="static/kj.png"
+		name2="static/kj2.png"
+		font1="static/algerianr.ttf"
+		font2="static/calibb.ttf"
+		pdf.add_font('Calibri Bold', '', font2, uni=True)
+		pdf.set_font('Calibri Bold', '', 18)
+		pdf.cell(194,2,'',0,1,'C')
+		pdf.cell(194,5.5,'K.J. Somaiya Insititute of Engineering and',0,1,'C')
+		pdf.image(name1, x = 20, y = 10, w = 24, h = 24, type = 'png', link = 'static')
 		pdf.set_fill_color(0, 0, 250)
-		pdf.cell(195,8,'Information Technology Sion, Mumbai',0,1,'C')
-		pdf.cell(195,2,'',0,1,'C')
-		pdf.set_font('Times', '', 10)
+		pdf.cell(194,5.5,'Information Technology Sion, Mumbai',0,1,'C')
+		pdf.cell(194,1,'',0,1,'C')
+		pdf.set_font('Times', 'B', 8)
 		pdf.set_text_color(3, 90, 171)
-		pdf.cell(195,4,'KJSIEIT is accredited by NAAC with "A" grade',0,1,'C')
-		pdf.cell(195,4,'Three programs accredited by National Board of Accreditation',0,1,'C')
-		pdf.cell(195,4,'Best College awarded by University of Mumbai, ISTE (MH) and CSI (Mumbai)',0,1,'C')
+		pdf.cell(194,3,'KJSIEIT IS ACCREDITED BY NAAC WITH "A" GRADE',0,1,'C')
+		pdf.cell(194,3,'THREE PROGRAMS ACCREDITED BY NATIONAL BOARD OF ACCREDITATION',0,1,'C')
+		pdf.cell(194,3,'BEST COLLEGE AWARDED BY UNIVERSITY OF MUMBAI, ISTE (MH) AND CSI (MUMBAI)',0,1,'C')
+		pdf.image(name2, x = 175, y = 13, w = 24, h = 18, type = 'png', link = 'static')
 		pdf.ln()
 		pdf.line(10, 45, 205, 45)
 		pdf.ln()
@@ -1693,8 +1701,8 @@ def tocerti(request):
 		pdf.set_fill_color(0, 250, 250)
 		name1="static/kj.png"
 		name2="static/kj2.png"
-		font1="static/Algerian Regular.ttf"
-		font2="static/Calibri Bold.ttf"
+		font1="static/algerianr.ttf"
+		font2="static/calibb.ttf"
 		pdf.add_font('Calibri_Bold', '', font2, uni=True)
 		pdf.set_font('Calibri_Bold', '', 18)
 		pdf.cell(279.4,22,'',0,1,'C')
@@ -1824,8 +1832,8 @@ def torep(request):
 		pdf.set_fill_color(0, 250, 250)
 		name1="static/kj.png"
 		name2="static/kj2.png"
-		font1="static/Algerian Regular.ttf"
-		font2="static/Calibri Bold.ttf"
+		font1="static/algerianr.ttf"
+		font2="static/calibb.ttf"
 		pdf.add_font('Calibri Bold', '', font2, uni=True)
 		pdf.set_font('Calibri Bold', '', 18)
 		pdf.cell(194,2,'',0,1,'C')
