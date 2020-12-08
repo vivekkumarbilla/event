@@ -26,6 +26,7 @@ from .models import Groupmembers
 from .models import Details
 from .models import Addreport
 from .models import Registration
+from django.contrib.staticfiles import finders
 
 # Date related and others
 import io
@@ -1558,10 +1559,10 @@ def topdfall(request):
 		pdf.add_page()
 		pdf.set_text_color(167, 36, 41)
 		pdf.set_fill_color(0, 250, 250)
-		name1="static/kj.png"
-		name2="static/kj2.png"
-		font1="static/algerianr.ttf"
-		font2="static/calibb.ttf"
+		name1=finders.find('kj.png')
+		name2=finders.find('kj2.png')
+		font1=finders.find('algerianr.ttf')
+		font2=finders.find('calibb.ttf')
 		pdf.add_font('Calibri Bold', '', font2, uni=True)
 		pdf.set_font('Calibri Bold', '', 18)
 		pdf.cell(194,2,'',0,1,'C')
@@ -1699,10 +1700,10 @@ def tocerti(request):
 		pdf.set_font('Arial', '', 13)
 		pdf.set_text_color(167, 36, 41)
 		pdf.set_fill_color(0, 250, 250)
-		name1="static/kj.png"
-		name2="static/kj2.png"
-		font1="static/algerianr.ttf"
-		font2="static/calibb.ttf"
+		name1=finders.find('kj.png')
+		name2=finders.find('kj2.png')
+		font1=finders.find('algerianr.ttf')
+		font2=finders.find('calibb.ttf')
 		pdf.add_font('Calibri_Bold', '', font2, uni=True)
 		pdf.set_font('Calibri_Bold', '', 18)
 		pdf.cell(279.4,22,'',0,1,'C')
@@ -1830,10 +1831,10 @@ def torep(request):
 		pdf.add_page()
 		pdf.set_text_color(167, 36, 41)
 		pdf.set_fill_color(0, 250, 250)
-		name1="static/kj.png"
-		name2="static/kj2.png"
-		font1="static/algerianr.ttf"
-		font2="static/calibb.ttf"
+		name1=finders.find('kj.png')
+		name2=finders.find('kj2.png')
+		font1=finders.find('algerianr.ttf')
+		font2=finders.find('calibb.ttf')
 		pdf.add_font('Calibri Bold', '', font2, uni=True)
 		pdf.set_font('Calibri Bold', '', 18)
 		pdf.cell(194,2,'',0,1,'C')
