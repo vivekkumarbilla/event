@@ -28,6 +28,7 @@ from .models import Addreport
 from .models import Registration
 from django.contrib.staticfiles import finders
 from django.templatetags.static import static
+from django.contrib.staticfiles.storage import staticfiles_storage
 # Date related and others
 import io
 from django.http import FileResponse
@@ -1557,8 +1558,8 @@ def topdfall(request):
 		pdf.set_text_color(167, 36, 41)
 		pdf.set_fill_color(0, 250, 250)
 		pdf.set_font('Arial', '', 8)
-		name1='kj.png'
-		name2='kj2.png'
+		name1=staticfiles_storage.url('kj.png')
+		name2=staticfiles_storage.url('kj2.png')
 		pdf.cell(194,2,' ',0,1,'C')
 		pdf.cell(194,5.5,'K.J. Somaiya Insititute of Engineering and',0,1,'C')
 		pdf.image(name1, x = 20, y = 10, w = 24, h = 24, type = 'png', link = 'static')
