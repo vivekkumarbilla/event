@@ -1560,8 +1560,8 @@ def topdfall(request):
 		pdf.set_font('Arial', '', 8)
 		name1='https://departmentalactivity.herokuapp.com/static/kj.png'
 		name2='https://departmentalactivity.herokuapp.com/static/kj2.png'
-		font1='https://departmentalactivity.herokuapp.com/static/algerianr.ttf'
-		font2='https://departmentalactivity.herokuapp.com/static/calibb.ttf'
+		font1='https://departmentalactivity.herokuapp.com/static/algerianr.pkl'
+		font2='https://departmentalactivity.herokuapp.com/static/calibb.pkl'
 		pdf.add_font('Calibri_Bold', '', font2, uni=True)
 		pdf.set_font('Calibri_Bold', '', 18)
 		pdf.cell(194,2,' ',0,1,'C')
@@ -1701,8 +1701,8 @@ def tocerti(request):
 		pdf.set_fill_color(0, 250, 250)
 		name1='https://departmentalactivity.herokuapp.com/static/kj.png'
 		name2='https://departmentalactivity.herokuapp.com/static/kj2.png'
-		font1='https://departmentalactivity.herokuapp.com/static/algerianr.ttf'
-		font2='https://departmentalactivity.herokuapp.com/static/calibb.ttf'
+		font1='https://departmentalactivity.herokuapp.com/static/algerianr.pkl'
+		font2='https://departmentalactivity.herokuapp.com/static/calibb.pkl'
 		pdf.add_font('Calibri_Bold', '', font2, uni=True)
 		pdf.set_font('Calibri_Bold', '', 18)
 		pdf.cell(194,2,' ',0,1,'C')
@@ -1832,8 +1832,8 @@ def torep(request):
 		pdf.set_fill_color(0, 250, 250)
 		name1='https://departmentalactivity.herokuapp.com/static/kj.png'
 		name2='https://departmentalactivity.herokuapp.com/static/kj2.png'
-		font1='https://departmentalactivity.herokuapp.com/static/algerianr.ttf'
-		font2='https://departmentalactivity.herokuapp.com/static/calibb.ttf'
+		font1='https://departmentalactivity.herokuapp.com/static/algerianr.pkl'
+		font2='https://departmentalactivity.herokuapp.com/static/calibb.pkl'
 		pdf.add_font('Calibri_Bold', '', font2, uni=True)
 		pdf.set_font('Calibri_Bold', '', 18)
 		pdf.cell(194,2,' ',0,1,'C')
