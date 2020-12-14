@@ -1499,7 +1499,7 @@ def totxtall(request):
 		cont1=request.POST.get("dellcont1", "")
 		cont2=request.POST.get("dellcont2", "")
 		desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
-		f= open("Desktop\\Event"+evid+"data.txt","w+")
+		f= open("Event"+evid+"data.txt","w+")
 		f.write(""+title+"\n")
 		f.write("Date : "+date+"\t")
 		f.write("From "+timef+"\t")
@@ -1522,8 +1522,12 @@ def totxtall(request):
 		f.write("Contacts : "+cont1+" ")
 		f.write(""+cont2+"\n")
 		f.close()
+		file='Event'+evid+'data.txt'
+		response = HttpResponse(content_type='text/txt')
+		content = "attachment; filename=%s " %(file)
+		response['Content-Disposition'] = content
 		messages.add_message(request, messages.SUCCESS, "Downloaded data to Event"+evid+"data.txt file in your desktop")
-		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
+		return response
 	else:
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
 
@@ -1560,8 +1564,8 @@ def topdfall(request):
 		pdf.set_font('Arial', '', 8)
 		name1='https://departmentalactivity.herokuapp.com/static/kj.png'
 		name2='https://departmentalactivity.herokuapp.com/static/kj2.png'
-		font1='https://departmentalactivity.herokuapp.com/static/algerianr.pkl'
-		font2='https://departmentalactivity.herokuapp.com/static/calibb.pkl'
+		font1='https://departmentalactivity.herokuapp.com/static/algerianr.ttf'
+		font2='https://departmentalactivity.herokuapp.com/static/calibb.ttf'
 		pdf.add_font('Calibri_Bold', '', font2, uni=True)
 		pdf.set_font('Calibri_Bold', '', 18)
 		pdf.cell(194,2,' ',0,1,'C')
@@ -1701,8 +1705,8 @@ def tocerti(request):
 		pdf.set_fill_color(0, 250, 250)
 		name1='https://departmentalactivity.herokuapp.com/static/kj.png'
 		name2='https://departmentalactivity.herokuapp.com/static/kj2.png'
-		font1='https://departmentalactivity.herokuapp.com/static/algerianr.pkl'
-		font2='https://departmentalactivity.herokuapp.com/static/calibb.pkl'
+		font1='https://departmentalactivity.herokuapp.com/static/algerianr.ttf'
+		font2='https://departmentalactivity.herokuapp.com/static/calibb.ttf'
 		pdf.add_font('Calibri_Bold', '', font2, uni=True)
 		pdf.set_font('Calibri_Bold', '', 18)
 		pdf.cell(194,2,' ',0,1,'C')
@@ -1832,8 +1836,8 @@ def torep(request):
 		pdf.set_fill_color(0, 250, 250)
 		name1='https://departmentalactivity.herokuapp.com/static/kj.png'
 		name2='https://departmentalactivity.herokuapp.com/static/kj2.png'
-		font1='https://departmentalactivity.herokuapp.com/static/algerianr.pkl'
-		font2='https://departmentalactivity.herokuapp.com/static/calibb.pkl'
+		font1='https://departmentalactivity.herokuapp.com/static/algerianr.ttf'
+		font2='https://departmentalactivity.herokuapp.com/static/calibb.ttf'
 		pdf.add_font('Calibri_Bold', '', font2, uni=True)
 		pdf.set_font('Calibri_Bold', '', 18)
 		pdf.cell(194,2,' ',0,1,'C')
