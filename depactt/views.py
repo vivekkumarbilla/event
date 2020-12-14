@@ -631,7 +631,7 @@ def addreport(request):
 					currentuser=User.objects.get(username=current)
 					recipient_list.append(currentuser.email)
 				subject = 'Certificate'
-				st="\r\n"
+				st="\r\t"
 				message = 'Certificate distribution for '+eventname+' is open,'+st+'Go and get your certificates on the website on event details on the Events panel,'+st+'Thank you.'+st+st+st+st+st+st+'If it was not you then Please contact the admin'
 				email_from = settings.EMAIL_HOST_USER
 				send_mail( subject, message, email_from, recipient_list )
@@ -661,7 +661,7 @@ def register(request):
 			print('event doesnt exists or password wrong')
 			cvv=str(ee.id)
 			subject = 'Registration Successful ('+cvv+')'
-			st="\r\n"
+			st="\r\t"
 			message = publisher.first_name+','+st+'Your registration for '+eventname+' was successful,'+st+'Please be updated on event details on the Events panel,'+st+'Thank you.'+st+st+st+st+st+st+'If it was not you then Please contact the admin'
 			email_from = settings.EMAIL_HOST_USER
 			recipient_list = [publisher.email,]
@@ -1502,28 +1502,28 @@ def totxtall(request):
 		response = HttpResponse(content_type='text/txt')
 		content = "attachment; filename=%s " %(file)
 		response['Content-Disposition'] = content
-		response.write(""+title+"\n")
+		response.write(""+title+"\t")
 		response.write("Date : "+date+"\t")
 		response.write("From "+timef+"\t")
-		response.write("To "+timet+"\n")
-		response.write(" ""\n")
-		response.write("Description : "+desc+"\n")
+		response.write("To "+timet+"\t")
+		response.write(" ""\t")
+		response.write("Description : "+desc+"\t")
 		response.write("Presenter : "+pre+"\t")
-		response.write(", "+pred+"\n")
-		response.write(" ""\n")
-		response.write("Organizer : "+org+"\n")
-		response.write("Department : "+dep+"\n")
-		response.write(" ""\n")
-		response.write("Registrations from "+regf+" "+regt+"\n")
-		response.write(" ""\n")
+		response.write(", "+pred+"\t")
+		response.write(" ""\t")
+		response.write("Organizer : "+org+"\t")
+		response.write("Department : "+dep+"\t")
+		response.write(" ""\t")
+		response.write("Registrations from "+regf+" "+regt+"\t")
+		response.write(" ""\t")
 		response.write("Faculty Co-ordinators : "+faccod1+" ")
 		response.write(" "+faccod2+" ")
-		response.write(" "+faccod3+"\n")
+		response.write(" "+faccod3+"\t")
 		response.write("Conveners : "+conv1+" ")
-		response.write(""+conv2+"\n")
+		response.write(""+conv2+"\t")
 		response.write("Contacts : "+cont1+" ")
-		response.write(""+cont2+"\n")
-		response = Replace(response, "\n", vbCrLf)
+		response.write(""+cont2+"\t")
+		response = Replace(response, "\t", vbCrLf)
 		messages.add_message(request, messages.SUCCESS, "Downloaded data to Event"+evid+"data.txt file in your desktop")
 		return response
 	else:
