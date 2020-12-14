@@ -1498,7 +1498,6 @@ def totxtall(request):
 		conv2=request.POST.get("dellconv2", "")
 		cont1=request.POST.get("dellcont1", "")
 		cont2=request.POST.get("dellcont2", "")
-		desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
 		f= open("Event"+evid+"data.txt","w+")
 		f.write(""+title+"\n")
 		f.write("Date : "+date+"\t")
