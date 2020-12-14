@@ -1525,6 +1525,7 @@ def totxtall(request):
 		response = HttpResponse(content_type='text/txt')
 		content = "attachment; filename=%s " %(file)
 		response['Content-Disposition'] = content
+		response.write(""+title+"\n")
 		messages.add_message(request, messages.SUCCESS, "Downloaded data to Event"+evid+"data.txt file in your desktop")
 		return response
 	else:
