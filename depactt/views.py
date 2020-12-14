@@ -1523,7 +1523,6 @@ def totxtall(request):
 		response.write(""+conv2+"\t")
 		response.write("Contacts : "+cont1+" ")
 		response.write(""+cont2+"\t")
-		response = Replace(response, "\t", vbCrLf)
 		messages.add_message(request, messages.SUCCESS, "Downloaded data to Event"+evid+"data.txt file in your desktop")
 		return response
 	else:
