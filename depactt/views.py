@@ -3,7 +3,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 # Create your views here.
 # Prerequisites
-import notify2
+from win10toast import ToastNotifier
 
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
@@ -167,13 +167,8 @@ def home(request):
 	if request.user.is_authenticated:
 		currentuser = request.user.username
 		currentuserid = request.user.id
-		notify2.init("Department Activity")
-		n = notify2.Notification(None, icon = "https://departmentalactivity.herokuapp.com/static/kj.png")
-		n.set_urgency(notify2.URGENCY_NORMAL) 
-		n.set_timeout(10000)
-		n.update("Departmental Activity", "Hello!"+currentuser+" , Long time no see")
-		n.show()
-		time.sleep(15)
+		toast = ToastNotifier()
+		toast.show_toast("Departmental Activity","Hello!"+currentuser+", Long Time No See",duration=20,icon_path="https://departmentalactivity.herokuapp.com/static/kj.png")
 	if not request.user.is_authenticated:
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login')
 	users=User.objects.all()
