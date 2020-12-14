@@ -1558,13 +1558,11 @@ def topdfall(request):
 		pdf.add_page()
 		pdf.set_text_color(167, 36, 41)
 		pdf.set_fill_color(0, 250, 250)
-		pdf.set_font('Arial', '', 8)
+		pdf.set_font('Arial', '', 14)
 		name1='https://departmentalactivity.herokuapp.com/static/kj.png'
 		name2='https://departmentalactivity.herokuapp.com/static/kj2.png'
 		font1='https://departmentalactivity.herokuapp.com/static/algerianr.ttf'
 		font2='https://departmentalactivity.herokuapp.com/static/calibb.ttf'
-		pdf.add_font('Calibri_Bold', '', font2, uni=True)
-		pdf.set_font('Calibri_Bold', '', 18)
 		pdf.cell(194,2,' ',0,1,'C')
 		pdf.cell(194,5.5,'K.J. Somaiya Insititute of Engineering and',0,1,'C')
 		pdf.image(name1, x = 20, y = 10, w = 24, h = 24, type = 'png', link = 'static')
