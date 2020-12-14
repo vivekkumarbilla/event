@@ -1562,7 +1562,9 @@ def topdfall(request):
 		name1='https://departmentalactivity.herokuapp.com/static/kj.png'
 		name2='https://departmentalactivity.herokuapp.com/static/kj2.png'
 		font1='https://departmentalactivity.herokuapp.com/static/algerianr.ttf'
-		font2='https://departmentalactivity.herokuapp.com/static/calibb.ttf'
+		font2='https://www.download-free-fonts.com/download/88906/1d26ed789524cc1d4c2c0de35121ef47'
+		pdf.add_font('calibb', '', font2, uni=True)
+		pdf.set_font('calibb', '', 18)
 		pdf.cell(194,2,' ',0,1,'C')
 		pdf.cell(194,5.5,'K.J. Somaiya Insititute of Engineering and',0,1,'C')
 		pdf.image(name1, x = 20, y = 10, w = 24, h = 24, type = 'png', link = 'static')
@@ -1704,18 +1706,18 @@ def tocerti(request):
 		name2='https://departmentalactivity.herokuapp.com/static/kj2.png'
 		font1='https://departmentalactivity.herokuapp.com/static/algerianr.ttf'
 		font2='https://departmentalactivity.herokuapp.com/static/calibb.ttf'
-		pdf.cell(194,2,' ',0,1,'C')
-		pdf.cell(194,5.5,'K.J. Somaiya Insititute of Engineering and',0,1,'C')
-		pdf.image(name1, x = 20, y = 10, w = 24, h = 24, type = 'png', link = 'static')
+		pdf.cell(279.4,22,'',0,1,'C')
+		pdf.cell(259.4,5.5,'K.J. Somaiya Insititute of Engineering and',0,1,'C')
+		pdf.image(name1, x = 50, y = 30, w = 24, h = 24, type = 'png', link = 'static')
 		pdf.set_fill_color(0, 0, 250)
-		pdf.cell(194,5.5,'Information Technology Sion, Mumbai',0,1,'C')
-		pdf.cell(194,1,' ',0,1,'C')
+		pdf.cell(259.4,5.5,'Information Technology Sion, Mumbai',0,1,'C')
+		pdf.cell(259.4,1,'',0,1,'C')
 		pdf.set_font('Times', 'B', 8)
 		pdf.set_text_color(3, 90, 171)
-		pdf.cell(194,3,'KJSIEIT IS ACCREDITED BY NAAC WITH "A" GRADE',0,1,'C')
-		pdf.cell(194,3,'THREE PROGRAMS ACCREDITED BY NATIONAL BOARD OF ACCREDITATION',0,1,'C')
-		pdf.cell(194,3,'BEST COLLEGE AWARDED BY UNIVERSITY OF MUMBAI, ISTE (MH) AND CSI (MUMBAI)',0,1,'C')
-		pdf.image(name2, x = 175, y = 13, w = 24, h = 18, type = 'png', link = 'static')
+		pdf.cell(259.4,3,'KJSIEIT IS ACCREDITED BY NAAC WITH "A" GRADE',0,1,'C')
+		pdf.cell(259.4,3,'THREE PROGRAMS ACCREDITED BY NATIONAL BOARD OF ACCREDITATION',0,1,'C')
+		pdf.cell(259.4,3,'BEST COLLEGE AWARDED BY UNIVERSITY OF MUMBAI, ISTE (MH) AND CSI (MUMBAI)',0,1,'C')
+		pdf.image(name2, x = 210, y = 32, w = 24, h = 18, type = 'png', link = 'static')
 		pdf.ln()
 		# first
 		pdf.line(25.4, 22, 254, 22)
