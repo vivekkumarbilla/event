@@ -317,7 +317,7 @@ def addevent(request):
 	dicevents["event_number2"] = eventscal2
 	dicevents["user_num"] = users
 	if request.method=='POST':
-		eventpos=request.POST['eventpos']
+		eventpos=request.FILES['eventpos']
 		eventname=request.POST['eventname']
 		eventpresenter=request.POST['eventpresenter']
 		eventdesignation=request.POST['eventdesignation']
