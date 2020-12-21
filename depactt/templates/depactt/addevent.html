@@ -966,7 +966,7 @@
 			<button onclick="display(1,2)" id="butaddevent1" class="leftelements fullheight buts" >Add Event</button>
 			<button onclick="display(2,1)" id="butaddevent2" class="leftelements fullheight buts" >Calender</button>
 		</div>
-		<form method="POST" enctype="multipart/for-data"  style="display: none;" id="addevent1" class="mainelements2">
+		<form method="POST" enctype="multipart/form-data" style="display: none;" id="addevent1" class="mainelements2">
 			{% csrf_token %}
 			<div class="onesec labs">
 				<label class="lab">Event Main Details</label>
