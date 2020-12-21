@@ -1562,7 +1562,7 @@ def topdfall(request):
 		name1='https://departmentalactivity.herokuapp.com/static/kj.png'
 		name2='https://departmentalactivity.herokuapp.com/static/kj2.png'
 		font1='https://departmentalactivity.herokuapp.com/static/algerianr.ttf'
-		font2='https://best-font.com/download/20306.html'
+		font2='//db.onlinewebfonts.com/c/527c5ab608cab860a6aae8ce02e14b0e?family=Calibri'
 		pdf.add_font('calibb', '', font2, uni=True)
 		pdf.set_font('calibb', '', 18)
 		pdf.cell(194,2,' ',0,1,'C')
