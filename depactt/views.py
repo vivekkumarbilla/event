@@ -317,6 +317,7 @@ def addevent(request):
 	dicevents["event_number2"] = eventscal2
 	dicevents["user_num"] = users
 	if request.method=='POST':
+		eventpos=request.POST['eventpos']
 		eventname=request.POST['eventname']
 		eventpresenter=request.POST['eventpresenter']
 		eventdesignation=request.POST['eventdesignation']
@@ -353,7 +354,7 @@ def addevent(request):
 				return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-addevent')
 			uss=User.objects.get(username=currentuser)
 			if uss.is_staff==True:
-				eventt= Event(title=eventname,description=eventdescription,perks=eventperks,link=link,whatsapp=whatsapp, date=eventda,tfrom=eventfrotime,tto=eventtotime,regfrom=fromreg,regto=toreg,etype=eventtype,presenter=eventpresenter,presenterd=eventdesignation, organizer=eventorgc, teacher1=eventorg1, teacher2=eventorg2, teacher3=eventorg3, convener1=eventcon1, convener2=eventcon2, contact1=eventcontact1, contact2=eventcontact2, certi=eventfin, department=eventdep, by=publisher, reminders=ecom)
+				eventt= Event(poster=eventpos,title=eventname,description=eventdescription,perks=eventperks,link=link,whatsapp=whatsapp, date=eventda,tfrom=eventfrotime,tto=eventtotime,regfrom=fromreg,regto=toreg,etype=eventtype,presenter=eventpresenter,presenterd=eventdesignation, organizer=eventorgc, teacher1=eventorg1, teacher2=eventorg2, teacher3=eventorg3, convener1=eventcon1, convener2=eventcon2, contact1=eventcontact1, contact2=eventcontact2, certi=eventfin, department=eventdep, by=publisher, reminders=ecom)
 				eventt.save()
 				gmem2=int(gmem)
 				for gm in range(1,gmem2):
