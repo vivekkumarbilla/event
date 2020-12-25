@@ -983,19 +983,19 @@
 			</div>
 			<div class="onesec">
 				<input autocomplete="off" placeholder="Event Type" type="text" id="typein" name="eventtype" class="in four">
-				<input autocomplete="off" placeholder="Event Date" type="date" id="evdain" name="eventdate" class="ind four" >
+				<input autocomplete="off" placeholder="Event Date" type="date" id="evdain" name="eventdate" class="ind four" title="Date of Event" >
 				<div class="space lab"></div>
-				<input autocomplete="off" placeholder="From" type="time" id="evtofroin" name="eventtimefro" class="ind four" required/>
-				<input autocomplete="off" placeholder="From" type="time" id="evtotoin" name="eventtimeto" class="ind four" required/>
+				<input autocomplete="off" placeholder="From" type="time" id="evtofroin" name="eventtimefro" class="ind four" title="Starts at" required/>
+				<input autocomplete="off" placeholder="From" type="time" id="evtotoin" name="eventtimeto" class="ind four" title="Ends at" required/>
 			</div>
 			<div class="onesec labs">
 				<label class="lab">Registration Details</label>
 			</div>
 			<div class="onesec">
 				<input autocomplete="off" placeholder="Meeting Link" type="text" id="regin" name="regin" class="in four">
-				<input autocomplete="off" placeholder="Registration Date" type="date" id="regfroin" name="regfrom" class="ind four" required/>
+				<input autocomplete="off" placeholder="Registration Date" type="date" id="regfroin" name="regfrom" title="Registration Starts" class="ind four" required/>
 				<div class="space lab"></div>
-				<input autocomplete="off" placeholder="Registration Date" type="date" id="regtoin" name="regto" class="ind four" required/>
+				<input autocomplete="off" placeholder="Registration Date" type="date" id="regtoin" name="regto" title="Registration Ends" class="ind four" required/>
 				<input autocomplete="off" placeholder="Whatsapp Group Link" type="text" id="whatin" name="eventwhatsapp" class="in four">
 			</div>
 			<div class="onesec labs">
@@ -1037,7 +1037,7 @@
 				<label class="lab">Person/User Tags</label>
 			</div>
 			<div class="onesec">
-				<select class="inc four selects" id="taggingn" name="nooftag">
+				<select class="inc four selects" id="taggingn" name="nooftag" title="No of Tags">
 					<option value="">-- No. of Tags --</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
@@ -1050,20 +1050,20 @@
 					<option value="10">10</option>
 					<option value="11">11</option>
 				</select>
-				<select class="inc four selects" id="tagging1" name="tag1">
+				<select class="inc four selects" id="tagging1" name="tag1" title="Person 1 Tag">
 					<option value="">-- Person 1 --</option>
 					{% for people in user_num %}
 						<option value="{{ people.username }}">{{ people.username }}</option>
 					{% endfor %}
 				</select>
 				<div class="space lab"></div>
-				<select class="inc four selects" id="tagging2" name="tag2">
+				<select class="inc four selects" id="tagging2" name="tag2" title="Person 2 Tag">
 					<option value="">-- Person 2 --</option>
 					{% for people in user_num %}
 						<option value="{{ people.username }}">{{ people.username }}</option>
 					{% endfor %}
 				</select>
-				<select class="inc four selects" id="tagging3" name="tag3">
+				<select class="inc four selects" id="tagging3" name="tag3" title="Person 3 Tag">
 					<option value="">-- Person 3 --</option>
 					{% for people in user_num %}
 						<option value="{{ people.username }}">{{ people.username }}</option>
@@ -1074,26 +1074,26 @@
 				<label class="lab"></label>
 			</div>
 			<div class="onesec">
-				<select class="inc four selects" id="tagging4" name="tag4">
+				<select class="inc four selects" id="tagging4" name="tag4" title="Person 4 Tag">
 					<option value="">-- Person 4 --</option>
 					{% for people in user_num %}
 						<option value="{{ people.username }}">{{ people.username }}</option>
 					{% endfor %}
 				</select>
-				<select class="inc four selects" id="tagging5" name="tag5">
+				<select class="inc four selects" id="tagging5" name="tag5" title="Person 5 Tag">
 					<option value="">-- Person 5 --</option>
 					{% for people in user_num %}
 						<option value="{{ people.username }}">{{ people.username }}</option>
 					{% endfor %}
 				</select>
 				<div class="space lab"></div>
-				<select class="inc four selects" id="tagging6" name="tag6">
+				<select class="inc four selects" id="tagging6" name="tag6" title="Person 6 Tag">
 					<option value="">-- Person 6 --</option>
 					{% for people in user_num %}
 						<option value="{{ people.username }}">{{ people.username }}</option>
 					{% endfor %}
 				</select>
-				<select class="inc four selects" id="tagging7" name="tag7">
+				<select class="inc four selects" id="tagging7" name="tag7" title="Person 7 Tag">
 					<option value="">-- Person 7 --</option>
 					{% for people in user_num %}
 						<option value="{{ people.username }}">{{ people.username }}</option>
@@ -1104,34 +1104,37 @@
 				<label class="lab"></label>
 			</div>
 			<div class="onesec">
-				<select class="inc four selects" id="tagging8" name="tag8">
+				<select class="inc four selects" id="tagging8" name="tag8" title="Person 8 Tag">
 					<option value="">-- Person 8 --</option>
 					{% for people in user_num %}
 						<option value="{{ people.username }}">{{ people.username }}</option>
 					{% endfor %}
 				</select>
-				<select class="inc four selects" id="tagging9" name="tag9">
+				<select class="inc four selects" id="tagging9" name="tag9" title="Person 9 Tag">
 					<option value="">-- Person 9 --</option>
 					{% for people in user_num %}
 						<option value="{{ people.username }}">{{ people.username }}</option>
 					{% endfor %}
 				</select>
 				<div class="space lab"></div>
-				<select class="inc four selects" id="tagging10" name="tag10">
+				<select class="inc four selects" id="tagging10" name="tag10" title="Person 10 Tag">
 					<option value="">-- Person 10 --</option>
 					{% for people in user_num %}
 						<option value="{{ people.username }}">{{ people.username }}</option>
 					{% endfor %}
 				</select>
-				<select class="inc four selects" id="tagging11" name="tag11">
+				<select class="inc four selects" id="tagging11" name="tag11" title="Person 11 Tag">
 					<option value="">-- Person 11 --</option>
 					{% for people in user_num %}
 						<option value="{{ people.username }}">{{ people.username }}</option>
 					{% endfor %}
 				</select>
 			</div>
-			<div>
-				<input type="file" name="eventpos" accept="image/*">
+			<div class="onesec labs">
+				<label class="lab"></label>
+			</div>
+			<div class="onesec">
+				<input type="file" name="eventpos" accept="image/*" class="inc four">
 			</div>
 			<button style="margin-top: 20px;" class="but2 rightelements">
 				Submit
