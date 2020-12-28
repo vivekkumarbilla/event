@@ -1020,12 +1020,20 @@
 			}
 			.buts{
 				outline: 0;
-				border: none;
 				background-color: black;
 				color: white;
 			}
 			.buts:hover{
 				background-color: lightgrey;
+				color: black;
+			}
+			.butsn{
+				outline: 0;
+				background-color: white;
+				color: black;
+			}
+			.butsn:hover{
+				background-color: white;
 				color: black;
 			}
 			/*--------------------------------------------------------------------admincode------------------------------------------------------------------------
@@ -1129,6 +1137,28 @@
 				overflow : hidden;
 				border-radius: 4px;
 			}
+			.mainelements5{
+				margin-left: 0vw;
+				margin-right: 0vw;
+				margin-top: 1vw;
+				margin-bottom: 0vw;
+				width: 70vw;
+				height: 40vw;
+			}
+			.main2{
+				margin-right: 0vw;
+				margin-top: 1vw;
+				width: 30vw;
+				height: 40vw;
+				border-radius: 4px;
+			}
+			.underelements2{
+				width: 30vw;
+				position: absolute;
+				height: 40vw;
+				background-color: orange;
+				border-radius: 4px;
+			}
 			.in{
 				outline: 0;
 				padding: 10px 15px;
@@ -1186,6 +1216,73 @@
 			.titl{
 				margin-left: 3vw;
 			}
+			.inputbarall{
+				height: 6vw;
+				width: 100vw;
+				margin-left: 0vw;
+				margin-top: 0.5vw;
+			}
+			.inputbarall button{
+				height: 100%;
+				width: 10%;
+				border-left: 1px solid #AAAABB;
+				background-color: black;
+				color: white;
+			}
+			.inputbarall button:hover{
+				background-color: white;
+				color: black;
+			}
+			.inputbarall > button{
+				width: 10%;
+			}
+			#searchbarall{
+				width: 90%;
+				height: 100%;
+				outline: 0;
+				border: none;
+				padding-left: 10px;
+				font-size: 2.2vw;
+			}
+			.inputbarall2{
+				margin-left: 0%;
+				width: 90%;
+				padding-left: 0.5vw;
+				border: 1px solid #AAAABB;
+				box-shadow: 0 1px 6px rgba(32,33,36,.28);
+				border-right: none;
+			}
+			.six{
+				width: 27.8%;
+				margin-left: 2%;
+			}
+			h3{
+				font-size: 3vw;
+				margin-top: 10px;
+			}
+			h4{
+				font-size: 2.2vw;
+			}
+			.butns, .butsud2, h5{
+				font-size: 1.9vw;
+			}
+			.alaghipara{
+				font-size: 1.9vw;
+			}
+			.butns{
+				padding: 17px 25px;
+			}
+			.alert{
+				position: absolute;
+				top: 12.5vw;
+				right: 1vw;
+				font-size: 2.2vw;
+				padding: 30px 40px;
+				background-color: #6F7070;
+				border: none;
+				color: white;
+				border-radius: 15px;
+			}
 	</style>
 </head>
 <body style="overflow-y: scroll;" id="bod" onload="startTime()">
@@ -1220,9 +1317,9 @@
 			{% endif %}
 		</div>
 		<div class="mainheadelements2">
-			<button onclick="display(3,2,1)" id="butaddevent3" class="leftelements fullheight buts" >All Pre-Events</button>
-			<button onclick="display(1,2,3)" id="butaddevent1" class="leftelements fullheight buts" >Add Pre-Event</button>
-			<button onclick="display(2,1,3)" id="butaddevent2" class="leftelements fullheight buts" >Calender</button>
+			<button onclick="display(3,2,1)" id="butaddevent3" class="leftelements fullheight buts butsn" >All Pre-Events</button>
+			<button onclick="display(1,2,3)" id="butaddevent1" class="leftelements fullheight buts butsn" >Add Pre-Event</button>
+			<button onclick="display(2,1,3)" id="butaddevent2" class="leftelements fullheight buts butsn" >Calender</button>
 		</div>
 		<form method="POST" enctype="multipart/for-data"  style="display: none;" id="addevent1" class="mainelements2">
 			{% csrf_token %}
@@ -1388,13 +1485,13 @@
 			<div  class="mainelements5 leftelements">
 				<div class="pdiv">
 					{% ifequal event.status 'Pending' %}
-					<p class="fullheight leftelements butspending">Pending</p>
+					<p class="fullheight leftelements butspending alaghipara">Pending</p>
 					{% endifequal %}
 					{% ifequal event.status 'Ongoing' %}
-					<p class="fullheight leftelements butsongoing">Ongoing</p>
+					<p class="fullheight leftelements butsongoing alaghipara">Ongoing</p>
 					{% endifequal %}
 					{% ifequal event.status 'Confirmed' %}
-					<p class="fullheight leftelements butsconfirmed">Confirmed</p>
+					<p class="fullheight leftelements butsconfirmed alaghipara">Confirmed</p>
 					{% endifequal %}
 					<button class="butns rightelements" id="but1{{ event.id }}" onclick="comopen('{{ event.id }}')"><i class="glyphicon glyphicon-menu-right"></i></button>
 					<button class="butns rightelements" id="but2{{ event.id }}" onclick="comclose('{{ event.id }}')" style="display: none"><i class="glyphicon glyphicon-menu-left"></i></button>
@@ -1492,7 +1589,7 @@
 						<h5> Registrations from {{ event.regfrom }} to {{ event.regto }}</h5>
 					{% endif %}
 					{% if event.tags %}
-						<p class="leftelements slmargin oned">
+						<p class="leftelements slmargin oned alaghipara">
 							Tags : 
 						</p>
 						{% for mem in event.tags.all %}
@@ -1505,14 +1602,14 @@
 					{% endif %}
 				</div>
 				<div class="pdiv">
-					<p class="fullheight leftelements bbs">{{ event.date }}</p>
-					<p class="fullheight leftelements bbs">{{ event.tfrom }} - {{ event.tto }}</p>
+					<p class="fullheight leftelements bbs alaghipara">{{ event.date }}</p>
+					<p class="fullheight leftelements bbs alaghipara">{{ event.tfrom }} - {{ event.tto }}</p>
 					<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-userdetails" method="POST">
 						{% csrf_token %}
 						<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
-						<p class="bbs leftelements">Published by : </p>
+						<p class="bbs leftelements alaghipara">Published by : </p>
 						<button name="send" value="{{ event.by.username }}" class="butsud2 bbs leftelements">{{ event.by.username }}</button>
-						<p class="bbs leftelements">{{ event.pubdate }} </p>
+						<p class="bbs leftelements alaghipara">{{ event.pubdate }} </p>
 					</form>
 				</div>
 			</div>
@@ -1533,7 +1630,7 @@
 									<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
 									<button name="send" value="{{com.cby.username}}" class="butsud2 comt leftelements fullheight">You</button>
 								</form>
-								<p class="combody">{{ com.body }}</p>
+								<p class="combody alaghipara">{{ com.body }}</p>
 							</div>
 							{% else %}
 							<div class="actualcom leftelements">
@@ -1542,7 +1639,7 @@
 									<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
 									<button name="send" value="{{ com.cby.username }}" class="butsud2 comt leftelements fullheight">{{ com.cby.username }}</button>
 								</form>
-								<p class="combody">{{ com.body }}</p>
+								<p class="combody alaghipara">{{ com.body }}</p>
 							</div>
 							{% endifequal %}
 							{% endifequal %}

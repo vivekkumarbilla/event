@@ -19,7 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-	path('depactt/', include('depactt.urls')),
+	path('', include('depactt.urls')),
     path('admin/kjsomaiyacollegeofengineering-teachers-department-admin', admin.site.urls),
 ]
 

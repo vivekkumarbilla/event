@@ -483,7 +483,7 @@
 				display: none;
 			}
 			#basicpage{
-				margin-left: 32vw;
+				margin-left: 27vw;
 				font-size: 4vw;
 				padding-top: 3.5vw;
 			}
@@ -730,6 +730,37 @@
 				padding: 0vw 0vw;
 				padding-bottom: 0vw;
 			}
+			.backbut{
+				position: absolute;
+				top: 12vw;
+				left: 0vw;
+				padding: 15px 28px;
+				font-size: 2.1vw;
+			}
+			.fname{
+				font-size: 3.5vw;
+				margin-left: 40%;
+			}
+			.mainelements11{
+				width: 100vw;
+				height: 90vh;
+			}
+			.fullheight2{
+				font-size: 2.1vw;
+				height: 5vh;
+			}
+			.fullheight11{
+				height: 3vh;
+			}
+			.first{
+				margin-left: 20%;
+			}
+			.last{
+				margin-right: 60%;
+			}
+			.last2{
+				margin-right: 50%;
+			}
 	</style>
 </head>
 <body onload="startTime()">
@@ -786,10 +817,10 @@
 		{% endif %}
 		{% if user_number2 %}
 		{% for user in user_number2 %}
-		<a class="leftelements padding buts" href="{{ page }}">Go Back</a>
+		<a class="leftelements padding buts backbut" href="{{ page }}">Go Back</a>
 		<div class="mainelements11" >
 			<div class="leftelements fullwidth">
-				<p class="leftelements fullheight">{{ user.username }}</p>
+				<p class="leftelements fullheight fname">{{ user.username }}</p>
 				{% ifnotequal request.user.username user.username %}
 					<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-fullmessages" method="POST">
 						{% csrf_token %}
@@ -801,26 +832,26 @@
 			<div class="leftelements fullwidth">
 				{% if details %}
 				{% for userd in details %}
-				<p class="fullheight2 leftelements">{{ userd.salutation }}</p>
+				<p class="fullheight2 leftelements first">{{ userd.salutation }}</p>
 				<p class="fullheight2 leftelements">{{ user.first_name }}</p>
-		    	<p class="fullheight2 leftelements">{{ user.last_name }}</p>
-				<p class="fullheight2 leftelements">{{ userd.designation }}</p>
-				<p class="fullheight2 leftelements">{{ userd.department }}</p>
+		    	<p class="fullheight2 leftelements last">{{ user.last_name }}</p>
+				<p class="fullheight2 leftelements first">{{ userd.designation }}</p>
+				<p class="fullheight2 leftelements last">{{ userd.department }}</p>
 		    	<input type="text" name="gmail" id="email{{ user.id }}" class="{{ user.email }}" value="{{ user.email }}" style="display: none;">
-		    	<p class="fullheight2 leftelements">{{ user.email }}</p>
-		    	<button class="leftelements fullheight2 copbut" onclick="copy('{{ user.id }}')"><i class="glyphicon glyphicon-duplicate"></i></button>
-		    	<p class="fullheight2 leftelements">Last Seen : {{ user.last_login|time }}</p>
+		    	<p class="fullheight2 leftelements first">{{ user.email }}</p>
+		    	<button class="leftelements fullheight2 fullheight11 copbut" onclick="copy('{{ user.id }}')"><i class="glyphicon glyphicon-duplicate"></i></button>
+		    	<p class="fullheight2 leftelements first last2">Last Seen : {{ user.last_login|time }}</p>
 				{% if user.is_superuser == False %}
-		    	<p class="fullheight2 leftelements">Admin : No</p>
+		    	<p class="fullheight2 leftelements first">Admin : No</p>
 				{% else %}
-		    	<p class="fullheight2 leftelements">Admin : Yes</p>
+		    	<p class="fullheight2 leftelements first">Admin : Yes</p>
 				{% endif %}
 				{% if user.is_staff == False %}
-		    	<p class="fullheight2 leftelements">Staff : No</p>
+		    	<p class="fullheight2 leftelements last2">Staff : No</p>
 				{% else %}
-		    	<p class="fullheight2 leftelements">Staff : Yes</p>
+		    	<p class="fullheight2 leftelements last2">Staff : Yes</p>
 				{% endif %}
-		    	<p class="fullheight2 leftelements">{{ userd.contactinfo1 }}</p>
+		    	<p class="fullheight2 leftelements first">{{ userd.contactinfo1 }}</p>
 				<p class="fullheight2 leftelements">{{ userd.contactinfo2 }}</p>
 				{% endfor %}
 				{% endif %}

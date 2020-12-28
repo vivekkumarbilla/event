@@ -1325,7 +1325,7 @@
 				margin-left: 0vw;
 				margin-top: 2vw;
 				width: 100vw;
-				height: 50vw;
+				height: 75vw;
 				overflow: hidden;
 				border-radius: 12px;
 				margin-bottom: 0px;
@@ -1421,6 +1421,15 @@
 			/*------------------------------------------COMMENT SECTIONN COMMENT SECTION--------------------------------------------*/
 			/*------------------------------------------COMMENT SECTIONN COMMENT SECTION--------------------------------------------*/
 			/*------------------------------------------COMMENT SECTIONN COMMENT SECTION--------------------------------------------*/
+			.mdiv{
+				float: left;
+				width: 100%;
+				height: 82%;			}
+			.pdiv{
+				float: left;
+				width: 100%;
+				height: 8%;
+			}
 			.main2{
 				float: left;
 				padding-left: 0px;
@@ -1428,7 +1437,6 @@
 				margin-right: 0vw;
 				margin-bottom: 2vw;
 				width: 99vw;
-				height: 40vw;
 				border-radius: 12px;
 				margin-top: 0px;
 				margin-bottom: 30px;
@@ -1552,16 +1560,6 @@
 				height: 100%;
 				width: 15%;
 			}
-			.mdiv{
-				float: left;
-				width: 100%;
-				height: 80%;
-			}
-			.pdiv{
-				float: left;
-				width: 100%;
-				height: 10%;
-			}
 			.eimage, .ei, .emage{
 				background-color: lightgrey;
 				width: 100%;
@@ -1569,31 +1567,45 @@
 			}
 			.onesecond2{
 				float: left;
-				width: 25%;
-				height: 100%;
+				width: 33%;
+				height: 50%;
 			}
 			.onesecond{
 				float: left;
-				width: 75%;
+				width: 67%;
 				height: 50%;
 			}
 			.onesecond3{
 				float: left;
-				width: 75%;
-				height: 50%;
+				width: 100%;
+				height: 40%;
+				padding-top: 30px;
 			}
 			.onediv{
 				float: left;
 				width: 100%;
 				height: 100%;
 			}
-			.onediv h2{
-				width: 100%;
+			.butsud2{
+				background-color: transparent;
+				outline: 0;
+				border: none;
+				color: black;
+				margin-bottom: 0;
+				font-size: 3vw;
+				margin-top: 10px;
+				margin-left: 10px;
+			}
+			.butsud2:hover{
+				color: darkgrey;
 			}
 			.onediv2{
 				float: left;
 				width: 40%;
 				height: 100%;
+			}
+			h4{
+				font-size: 2.5vw;
 			}
 			.onedivunder{
 				width: 100%;
@@ -1601,8 +1613,29 @@
 				height: 50%;
 				padding: 0px 10px;
 			}
-			.onedivunder h4{
+			.onedivunder p{
 				margin-left: 5px;
+				font-size: 2.2vw;
+			}
+			.onesecond3 h5{
+				margin-left: 5px;
+				font-size: 2.2vw;
+			}
+			.alagparaha{
+				margin-left: 5px;
+				font-size: 2.2vw;
+			}
+			.butsud{
+				background-color: transparent;
+				outline: 0;
+				border: none;
+				color: black;
+				margin-bottom: 0;
+				font-size: 2.2vw;
+				margin-left: 10px;
+			}
+			.butsud2:hover{
+				color: darkgrey;
 			}
 			.twodiv{
 				float: left;
@@ -1672,6 +1705,17 @@
 				background-color: white;
 				border-bottom: 5px solid black;
 				color: black;
+			}
+			.alert{
+				position: absolute;
+				top: 12.5vw;
+				right: 1vw;
+				font-size: 2.2vw;
+				padding: 30px 40px;
+				background-color: #6F7070;
+				border: none;
+				color: white;
+				border-radius: 15px;
 			}
 	</style>
 </head>
@@ -1768,13 +1812,13 @@
 					<div class="underelements">
 					<div class="pdiv">
 						{% ifequal event.status 'Pending' %}
-						<div class="butspending butsmob"><p>Pending</p></div>
+						<div class="butspending butsmob "><p class="alagparaha">Pending</p></div>
 						{% endifequal %}
 						{% ifequal event.status 'Ongoing' %}
-						<div class="butsongoing butsmob"><p>Ongoing</p></div>
+						<div class="butsongoing butsmob "><p class="alagparaha">Ongoing</p></div>
 						{% endifequal %}
 						{% ifequal event.status 'Confirmed' %}
-						<div class="butsconfirmed butsmob"><p>Confirmed</p></div>
+						<div class="butsconfirmed butsmob "><p class="alagparaha">Confirmed</p></div>
 						{% endifequal %}
 						<button id="del{{ event.id }}" class="buts del rightelements butsmob" onclick="del('butter','{{ event.id }}')" ><i class="glyphicon glyphicon-trash"></i></button>
 						<div class="rightelements butsmob2">
@@ -2020,26 +2064,26 @@
 								<div class="twodivunder" >
 									{% if event.certi is True %}
 					    			<div class="desc">
-					    				<p class="leftelements slmargin divelements">Certificates will be given</p>
+					    				<p class="leftelements slmargin divelements alagparaha">Certificates will be given</p>
 					    			</div>
 									{% else %}
 									<div class="desc">
-										<p class="leftelements slmargin divelements">Certificates will not be given</p>
+										<p class="leftelements slmargin divelements alagparaha">Certificates will not be given</p>
 									</div>
 									{% endif %}
 									{% if event.reminders %}
 					    			<div class="desc">
-					    				<p class="leftelements slmargin divelements">{{ event.reminders }}</p>
+					    				<p class="leftelements slmargin divelements alagparaha">{{ event.reminders }}</p>
 					    			</div>
 									{% else %}
 									<div class="desc">
-										<p class="leftelements slmargin divelements">No Reminders</p>
+										<p class="leftelements slmargin divelements alagparaha">No Reminders</p>
 									</div>
 									{% endif %}
 								</div>
 								<div class="twodivunder">
 									{% if event.tags %}
-										<p style="margin-top: 5px;" class="leftelements slmargin oned">
+										<p style="margin-top: 5px;" class="leftelements slmargin oned alagparaha">
 											Tags : 
 										</p>
 										{% for mem in event.tags.all %}
@@ -2073,7 +2117,7 @@
 					</div>
 					</div>
 				</div>
-				<div class="main2" >
+				<div class="main2" id="main2" style="height: 0vw;" >
 				<div  style="display: none" id="commentsec{{ event.id }}" class="underelements2">
 					<div class="twodiv2">
 						<div class="twodivmain">

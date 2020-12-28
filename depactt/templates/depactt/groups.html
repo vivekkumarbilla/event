@@ -828,6 +828,212 @@
 				padding: 0vw 0vw;
 				padding-bottom: 0vw;
 			}
+			.mainheadelements{
+				float: left;
+				margin-top: 0vw;
+				width: 100vw;
+				padding-left: 0vw;
+			}
+			.mainheadelements2{
+				float: left;
+				width: 100vw;
+				height: 8vw;
+				padding-left: 2vw;
+				padding-top: 2vw;
+				background-color: #FFFFFF;
+			}
+			.mainheadelements h1,a{
+				float: left;
+				margin-top: 0px;
+			}
+			.mainheadelements2 h1{
+				float: left;
+				margin-top: 0px;
+			}
+			.mainelements{
+				float: left;
+				margin-left: 0vw;
+				margin-right: 0vw;
+				margin-top: 0vw;
+				width: 100vw;
+				height: 12vw;
+			}
+			.mainelements:hover{
+				height: 12vw;
+			}
+			.inputbar{
+				height: 10vw;
+				width: 100vw;
+			}
+			.inputbar2{
+				margin-left: 0%;
+				background-color: transparent;
+				height: 100%;
+				width: 70%;
+			}
+			#searchbar{
+				width: 100%;
+				height: 100%;
+				outline: 0;
+				border: none;
+				padding-left: 10px;
+				font-size: 2.5vw;
+				/*border-left: 1px solid black;
+				border-top: 1px solid black;
+				border-bottom: 1px solid black;*/
+			}
+			.inputbar button{
+				height: 100%;
+				width: 15%;
+				background-color: black;
+				color: white;
+				font-size: 2.5vw;
+			}
+			.inputbar button:hover{
+				background-color: white;
+				color: black;
+			}
+			#sbutn3{
+				width: 15%;
+				height: 100%;
+				float: right;
+				margin-right: 0%;
+				font-size: 2.5vw;
+			}
+			#sbutn3:hover{
+				background-color: white;
+				color: black;
+			}
+			.fullheight{
+				height: 10vw;
+				padding-top: 0vw;
+				font-size: 4vw;
+				padding-left: 1.5vw;
+				padding-right: 1.5vw;
+				background-color: pink;
+			}
+			.fullheight2{
+				height: 10vw;
+				padding-top: 0vw;
+				font-size: 1.4vw;
+				padding-left: 1.5vw;
+				padding-right: 1.5vw;
+				background-color: pink;
+			}
+			.fullheight3{
+				height: 100%;
+			}
+			.fullwidth{
+				width: 100%;
+				height: 10vw;
+			}
+			.dusraform{
+				display: none;
+			}
+			.buts{
+				outline: 0;
+				border: none;
+				background-color: black;
+				color: white;
+			}
+			.buts:hover{
+				background-color: lightgrey;
+				color: black;
+			}
+			.copbut{
+				background-color: transparent;
+				padding-top: 0.4vw;
+				padding-left: 0vw;
+				color: black;
+				outline: 0;
+				border: none;
+			}
+			.copbut:hover{
+				color: grey;
+			}
+			.messagepop{
+				background-color: red;
+				color: white;
+				border-radius: 10vw;
+				width: 10vw;
+				padding-left: 1.6vw;
+			}
+			#forad2{
+				position: absolute;
+				top: 12vw;
+				left: 0vw;
+				width: 100vw;
+				height: 120vw;
+			}
+			.ssbar2{
+				margin-left: 7%;
+				width: 40%;
+				padding: 20px 20px;
+				margin-top: 40px;
+				outline: 0;
+				font-size: 2.1vw;
+			}
+			.addm2{
+				margin-left: 40%;
+				margin-top: 10px;
+				font-size: 4vw;
+			}
+			.righ2{
+				margin-left: 45%;
+				margin-top: 15px;
+				padding: 20px 30px;
+				font-size: 2.1vw;
+			}
+			.par{
+				font-size: 2.1vw;
+			}
+			.butsud{
+				background-color: transparent;
+				padding-top: 0px;
+				outline: 0;
+				border: none;
+				color: black;
+			}
+			.butsud:hover{
+				color: darkgrey;
+			}
+			.butns{
+				font-size: 2.1vw;
+			}
+			.ars{
+				height: 100%;
+				margin-top: 10px;
+				font-size: 2.1vw;
+			}
+			.first{
+			}
+			.second{
+				float: left;
+				font-size: 1.2vw;
+				padding-left: 1.4vw;
+			}
+			.second2{
+				font-size: 2.1vw;
+			}
+			.msg{
+				height: 30px;
+				width: 30px;
+				background-color: red;
+				border-radius: 15px;
+				margin-top: 40px;
+				margin-right: 5px;
+			}
+			.alert{
+				position: absolute;
+				top: 12.5vw;
+				right: 1vw;
+				font-size: 2.2vw;
+				padding: 30px 40px;
+				background-color: #6F7070;
+				border: none;
+				color: white;
+				border-radius: 15px;
+			}
 	</style>
 </head>
 <body onload="startTime()">
@@ -841,6 +1047,69 @@
 		</form>
 		<button style="display: none;" class="but buts foradb rightelements" id="forbut" onclick="forback()"><i class="glyphicon glyphicon-remove"></i></button>
 		{% if user.is_authenticated %}
+		<div class="mainheadelements nomargin">
+			{% if messages %}
+		    	{% for message in messages %}
+		        	<div class="almsg alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">{{ message }}</div>
+		    	{% endfor %}
+		    {% else %}
+		    	<div style="height: 0; width: 0;"> </div>
+			{% endif %}
+		</div>
+		<div class="mainheadelements2">
+			<h1>All Groups</h1>
+		</div>
+		<div class="searchbar mainheadelements inputbar">
+			<div class="leftelements inputbar2">
+				<input autocomplete="off" placeholder="Search Groups" type="text" id="searchbar" name="search" class="leftelements">	
+			</div>
+    		<button id="sbutn" class="but leftelements" onclick="search_event()"><i class="glyphicon glyphicon-search"></i></button>
+    		<button id="sbutn3" class="but leftelements" onclick="group()"><i class="glyphicon glyphicon-plus"></i></button>
+		</div>
+		{% for gr in user_number %}
+		<div class="mainelements" >
+			<div class="leftelements fullwidth">
+				<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-groupmessages" class="leftelements" method="POST">
+					{% csrf_token %}
+					<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
+					<button name="send" value="{{ gr.name }}" class="butsud leftelements fullheight">{{ gr.name }} [{{ gr.noofmembers }}]</button>
+				</form>
+				{% for gr2 in group_num %}
+				{% ifequal gr.name gr2.groupref.name %}
+				<p class="leftelements msg"></p>
+				{% endifequal %}
+				{% endfor %}
+				{% ifequal gr.gby.username user.username %}
+					<button id="del{{ gr.id }}" class="butns del rightelements" onclick="del('butter','{{ gr.id }}')" ><i class="glyphicon glyphicon-trash"></i></button>
+					<div>
+						<button id="button{{ gr.id }}" class="butns rightelements" onclick="abrt('{{ gr.id }}')" style="display: none;" value="{{ gr.id }}"><i class="glyphicon glyphicon-remove"></i></button>
+					</div>
+					<form action="grdel" method="POST" class="onese rightelements">
+						{% csrf_token %}
+						<button name="dell" class="butns rightelements" id="buttonnx{{ gr.id }}" style="display: none;" value="{{ gr.id }}"><i class="glyphicon glyphicon-ok"></i></button>
+						<span class="ars" id="ars{{ gr.id }}"></span>
+					</form>
+				{% endifequal %}
+				{% ifnotequal gr.gby.username user.username %}
+					<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-userdetails" method="POST">
+						{% csrf_token %}
+						<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
+						<button name="send" value="{{ gr.gby }}" class="second2 butsud bbs rightelements">{{ gr.gby }}</button>
+						<p class="second2 rightelements"> Created by : </p>
+					</form>
+				{% endifnotequal %}
+			</div>
+			<div class="fullwidth second">
+				{% for mem in gr.members.all %}
+				<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-userdetails" class="dusraform" method="POST">
+					{% csrf_token %}
+					<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
+					<button name="send" value="{{ mem }}" class="butsud bbs leftelements">{{ mem }}</button>
+				</form>
+				{% endfor %}
+			</div>
+		</div>
+		{% endfor %}
 		<form style="display: none;" id="forad2" class="onese" method="POST" action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-addgroup">
 			{% csrf_token %}
 			<h2 class="addm2">Enter Details</h2>
@@ -918,69 +1187,6 @@
 			<button id="sbutn2" class="but buts righ2" id="buttonn{{ user.id }}" >Go</button>
 		</form>
 		<button style="display: none;" class="but buts foradb rightelements" id="forbut2" onclick="forback2()"><i class="glyphicon glyphicon-remove"></i></button>
-		<div class="mainheadelements nomargin">
-			{% if messages %}
-		    	{% for message in messages %}
-		        	<div class="almsg alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">{{ message }}</div>
-		    	{% endfor %}
-		    {% else %}
-		    	<div style="height: 0; width: 0;"> </div>
-			{% endif %}
-		</div>
-		<div class="mainheadelements2">
-			<h1>All Groups</h1>
-		</div>
-		<div class="searchbar mainheadelements inputbar">
-			<div class="leftelements inputbar2">
-				<input autocomplete="off" placeholder="Search Groups" type="text" id="searchbar" name="search" class="leftelements">	
-			</div>
-    		<button id="sbutn" class="but leftelements" onclick="search_event()"><i class="glyphicon glyphicon-search"></i></button>
-    		<button id="sbutn3" class="but leftelements" onclick="group()"><i class="glyphicon glyphicon-plus"></i></button>
-		</div>
-		{% for gr in user_number %}
-		<div class="mainelements" >
-			<div class="leftelements fullwidth">
-				<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-groupmessages" method="POST">
-					{% csrf_token %}
-					<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
-					<button name="send" value="{{ gr.name }}" class="butsud leftelements fullheight">{{ gr.name }} [{{ gr.noofmembers }}]</button>
-				</form>
-				{% for gr2 in group_num %}
-				{% ifequal gr.name gr2.groupref.name %}
-				<p class="leftelements msg"></p>
-				{% endifequal %}
-				{% endfor %}
-				{% ifequal gr.gby.username user.username %}
-					<button id="del{{ gr.id }}" class="butns del rightelements" onclick="del('butter','{{ gr.id }}')" ><i class="glyphicon glyphicon-trash"></i></button>
-					<div>
-						<button id="button{{ gr.id }}" class="butns rightelements" onclick="abrt('{{ gr.id }}')" style="display: none;" value="{{ gr.id }}"><i class="glyphicon glyphicon-remove"></i></button>
-					</div>
-					<form action="grdel" method="POST" class="onese rightelements">
-						{% csrf_token %}
-						<button name="dell" class="butns rightelements" id="buttonnx{{ gr.id }}" style="display: none;" value="{{ gr.id }}"><i class="glyphicon glyphicon-ok"></i></button>
-						<span class="ars" id="ars{{ gr.id }}"></span>
-					</form>
-				{% endifequal %}
-				{% ifnotequal gr.gby.username user.username %}
-					<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-userdetails" method="POST">
-						{% csrf_token %}
-						<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
-						<button name="send" value="{{ gr.gby }}" class="second2 butsud bbs rightelements">{{ gr.gby }}</button>
-						<p class="second2 rightelements"> Created by : </p>
-					</form>
-				{% endifnotequal %}
-			</div>
-			<div class="fullwidth second">
-				{% for mem in gr.members.all %}
-				<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-userdetails" method="POST">
-					{% csrf_token %}
-					<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
-					<button name="send" value="{{ mem }}" class="butsud bbs leftelements">{{ mem }}</button>
-				</form>
-				{% endfor %}
-			</div>
-		</div>
-		{% endfor %}
 		{% else %}
 		<div class="mainheadelements">
 			<h1>Please Login</h1>

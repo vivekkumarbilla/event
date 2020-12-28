@@ -440,10 +440,12 @@ def messaging(request):
 	if request.user.is_authenticated:
 		currentuser = request.user.username
 		currentuserid = request.user.id
-	users=User.objects.exclude(id=currentuserid)
+	users=User.objects.filter(is_staff=True).exclude(id=currentuserid)
+	users2=User.objects.filter(is_staff=False).exclude(id=currentuserid)
 	dicuser = {
 		"user_number": users
 	}
+	dicuser["user_number2"]=users2
 	if request.user.is_authenticated:
 		currentuser = request.user.username
 		currentuserid = request.user.id
