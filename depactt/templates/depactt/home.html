@@ -1336,25 +1336,27 @@
 			noti()
 		}
 		function noti() {
-			if (Notification.permission === 'granted'){
-				console.log('niceah')
-				console.log(Notification.permission)
-				numb=document.getElementById('mms').value
-				console.log(numb)
-				for (i=0;i<numb;i++){
-					mensg=document.getElementsByClassName('mnoti')[i].value
-					const noti = new Notification("New Messages ",{
-						body: mensg,
-						icon:'https://departmentalactivity.herokuapp.com/static/kj.png'
-					});
-					noti.onclick = (e) => {
-						window.location.href = "kjsomaiyacollegeofengineeringandinformationtechnologyteachers-messaging"
+			if ( window.innerWidth >= 1200 ){
+				if (Notification.permission === 'granted'){
+					console.log('niceah')
+					console.log(Notification.permission)
+					numb=document.getElementById('mms').value
+					console.log(numb)
+					for (i=0;i<numb;i++){
+						mensg=document.getElementsByClassName('mnoti')[i].value
+						const noti = new Notification("New Messages ",{
+							body: mensg,
+							icon:'https://departmentalactivity.herokuapp.com/static/kj.png'
+						});
+						noti.onclick = (e) => {
+							window.location.href = "kjsomaiyacollegeofengineeringandinformationtechnologyteachers-messaging"
+						}
 					}
 				}
-			}
-			else if (Notification.permission !== 'denied'){
-				Notification.requestPermission()
-				noti()
+				else if (Notification.permission !== 'denied'){
+					Notification.requestPermission()
+					noti()
+				}
 			}
 		}
 		function checkTime(i) {
