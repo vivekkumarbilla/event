@@ -346,7 +346,7 @@ def addevent(request):
 		publisher=request.user
 		print(publisher.is_staff)
 		if Event.objects.filter(title=eventname).exists():
-			messages.add_message(request, messages.WARNING, 'Event already exists.')
+			messages.warning(request,'Event already exists.')
 			return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-addevent')
 		else:
 			if (len(eventname)==0) or(len(eventda)==0) or(len(eventfrotime)==0) or(len(eventtotime)==0) or(len(fromreg)==0) or(len(toreg)==0):
@@ -365,9 +365,9 @@ def addevent(request):
 					currentt=User.objects.get(username=naming)
 					print(currentt)
 					eventt.tags.add(currentt)
-				messages.add_message(request, messages.SUCCESS, 'Event Successfully added')
+				messages.success(request,'Event Successfully added')
 			else:
-				messages.add_message(request, messages.WARNING, 'You are not permitted to add event')
+				messages.warning(request,'You are not permitted to add event')
 			return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-addevent')
 
 	else:
@@ -426,9 +426,9 @@ def preevent(request):
 				currentt=User.objects.get(username=naming)
 				print(currentt)
 				eventt.tags.add(currentt)
-			messages.add_message(request, messages.SUCCESS, 'Pre-Event Successfully added')
+			messages.success(request,'Pre-Event Successfully added')
 		else:
-			messages.add_message(request, messages.WARNING, 'You are not permitted to add a pre-event')
+			messages.warning(request,'You are not permitted to add a pre-event')
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-preevent')
 
 	else:
@@ -559,18 +559,18 @@ def comment(request):
 		publisher=request.user
 		print(publisher)
 		if len(comment)==0:
-			messages.add_message(request, messages.WARNING, 'Please, type something first')
+			messages.warning(request,'Please, type something first')
 			return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
 		else:
 			if not Event.objects.filter(title=eventname).exists():
 				print('event exists')
-				messages.add_message(request, messages.WARNING, 'Event doesnt exists.')
+				messages.warning(request,'Event doesnt exists.')
 				return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
 			else:
 				com= Comment(ecref=Event.objects.get(title = eventname), body=comment, cby=publisher)
 				com.save()
 				print('event doesnt exists or password wrong');
-				messages.add_message(request, messages.SUCCESS, 'Commented Successfully, Check the Post')
+				messages.success(request,'Commented Successfully, Check the Post')
 				return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
 
 	else:
@@ -585,18 +585,18 @@ def precomment(request):
 		publisher=request.user
 		print(publisher)
 		if len(comment)==0:
-			messages.add_message(request, messages.WARNING, 'Please, type something first')
+			messages.warning(request,'Please, type something first')
 			return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-preevent')
 		else:
 			if not Preevent.objects.filter(id=eventname).exists():
 				print('event exists')
-				messages.add_message(request, messages.WARNING, 'Event doesnt exists.')
+				messages.warning(request,'Event doesnt exists.')
 				return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-preevent')
 			else:
 				com= Precomment(ecref=Preevent.objects.get(id = eventname), body=comment, cby=publisher)
 				com.save()
 				print('event doesnt exists or password wrong');
-				messages.add_message(request, messages.SUCCESS, 'Commented Successfully, Check the Post')
+				messages.success(request,'Commented Successfully, Check the Post')
 				return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-preevent')
 
 	else:
@@ -616,7 +616,7 @@ def addreport(request):
 		print(publisher)
 		if not Event.objects.filter(title=eventname).exists():
 			print('event exists')
-			messages.add_message(request, messages.WARNING, 'Event doesnt exists.')
+			messages.warning(request,'Event doesnt exists.')
 			return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
 		else:
 			rep= Addreport(erref=Event.objects.get(title = eventname),rtitle=reptitle, objectives=repobj, keypoints=repkep, outcomes=repout, feedback=repfed, rby=publisher)
@@ -637,7 +637,7 @@ def addreport(request):
 				email_from = settings.EMAIL_HOST_USER
 				send_mail( subject, message, email_from, recipient_list )
 			print('event doesnt exists or password wrong');
-			messages.add_message(request, messages.SUCCESS, 'Report Added Successfully')
+			messages.success(request,'Report Added Successfully')
 			return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
 	else:
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
@@ -653,7 +653,7 @@ def register(request):
 		print(publisher)
 		if not Event.objects.filter(title=eventname).exists():
 			print('event exists')
-			messages.add_message(request, messages.WARNING, 'Event doesnt exists.')
+			messages.warning(request,'Event doesnt exists.')
 			return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
 		else:
 			rep= Registration(erref=Event.objects.get(title = eventname),name=reptitle, reason=repbody, rby=publisher)
@@ -667,7 +667,7 @@ def register(request):
 			email_from = settings.EMAIL_HOST_USER
 			recipient_list = [publisher.email,]
 			send_mail( subject, message, email_from, recipient_list )
-			messages.add_message(request, messages.SUCCESS, 'Registered Successfully')
+			messages.success(request,'Registered Successfully')
 			return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
 	else:
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
@@ -834,9 +834,9 @@ def grdel(request):
 		print(p)
 		if p==True:
 			Groupmembers.objects.filter(id=evid).delete()
-			messages.add_message(request, messages.SUCCESS, 'Group Successfully deleted')
+			messages.success(request,'Group Successfully deleted')
 		else:
-			messages.add_message(request, messages.WARNING, 'You cannot delete a group since you are not an admin')
+			messages.warning(request,'You cannot delete a group since you are not an admin')
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-groups')
 	else:
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-groups')
@@ -851,9 +851,9 @@ def alldel(request):
 		print(p)
 		if p==True:
 			Event.objects.filter(id=evid).delete()
-			messages.add_message(request, messages.SUCCESS, 'Event Successfully deleted')
+			messages.success(request,'Event Successfully deleted')
 		else:
-			messages.add_message(request, messages.WARNING, 'You cannot delete an event since you are not an admin')
+			messages.warning(request,'You cannot delete an event since you are not an admin')
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
 	else:
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
@@ -869,9 +869,9 @@ def predel(request):
 		print(p)
 		if p==True:
 			Preevent.objects.filter(id=evid).delete()
-			messages.add_message(request, messages.SUCCESS, 'Event Successfully deleted')
+			messages.success(request,'Event Successfully deleted')
 		else:
-			messages.add_message(request, messages.WARNING, 'You cannot delete an event since you are not an admin')
+			messages.warning(request,'You cannot delete an event since you are not an admin')
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-preevent')
 	else:
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-preevent')
@@ -889,11 +889,11 @@ def toadmin(request):
 			uss.is_superuser=True
 			uss.save()
 			if request.user.is_superuser==True:
-				messages.add_message(request, messages.SUCCESS, 'You are now an admin')
+				messages.success(request,'You are now an admin')
 			else:
-				messages.add_message(request, messages.WARNING, 'Couldnt turn into admin')
+				messages.warning(request,'Couldnt turn into admin')
 		else:
-			messages.add_message(request, messages.WARNING, 'Wrong Code')
+			messages.warning(request,'Wrong Code')
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-profile')
 	else:
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-profile')
@@ -907,9 +907,9 @@ def tonormal(request):
 		uss.is_superuser=False
 		uss.save()
 		if request.user.is_superuser==False:
-			messages.add_message(request, messages.WARNING, 'You are not an admin now')
+			messages.warning(request,'You are not an admin now')
 		else:
-			messages.add_message(request, messages.WARNING, 'Couldnt turn into normal')
+			messages.warning(request,'Couldnt turn into normal')
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-profile')
 	else:
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-profile')
@@ -960,7 +960,7 @@ def toevent(request):
 		event=Preevent.objects.get(id=evid)
 		mm=Event(title=evid2,description=event.description,target=event.target,date=event.date,tfrom=event.tfrom,tto=event.tto,regfrom=event.regfrom,regto=event.regto,presenter=event.presenter,presenterd=event.presenterd,organizer=event.organizer,department=event.department,by=request.user)
 		mm.save()
-		messages.add_message(request, messages.SUCCESS, 'Converted to Event Successfully')
+		messages.success(request,'Converted to Event Successfully')
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
 	else:
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
@@ -1152,7 +1152,7 @@ def forgotpassword(request):
 				print(curuser.email)
 				print(curuser.first_name)
 				dicuser["ver_code"] = randnum2
-				messages.add_message(request, messages.SUCCESS, 'A Mail Sent to your registered email')
+				messages.success(request,'A Mail Sent to your registered email')
 				return render(request, 'depactt/forgotpassword1.html',dicuser)
 			else:
 				messages.warning(request,'Please Enter a correct username')
@@ -1209,11 +1209,11 @@ def forgotpassword2(request):
 						email_from = settings.EMAIL_HOST_USER
 						recipient_list = ['projectdepactmanagement@gmail.com',curuser.email,]
 						send_mail( subject, message, email_from, recipient_list )
-						messages.add_message(request, messages.SUCCESS, 'Password successfully reset')
+						messages.success(request,'Password successfully reset')
 					else:
-						messages.add_message(request, messages.SUCCESS, 'Wrong Verification Code')
+						messages.success(request,'Wrong Verification Code')
 				else:
-					messages.add_message(request, messages.SUCCESS, 'Passwords are not the same')
+					messages.success(request,'Passwords are not the same')
 				return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login')
 			else:
 				messages.warning(request,'Please Enter a password first')
@@ -1333,7 +1333,7 @@ def editevent(request):
 			curevent.description=eventdescription
 			curevent.perks=eventperks
 			curevent.save()
-			messages.add_message(request, messages.SUCCESS, 'Event successfully edited')
+			messages.success(request,'Event successfully edited')
 			return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
 		else:
 			if (len(eventname)==0) or(len(eventda)==0) or(len(eventfrotime)==0) or(len(eventtotime)==0) or(len(fromreg)==0) or(len(toreg)==0):
@@ -1343,9 +1343,9 @@ def editevent(request):
 			if uss.is_staff==True:
 				eventt= Event(title=eventname,description=eventdescription,perks=eventperks,link=link,whatsapp=whatsapp, date=eventda,tfrom=eventfrotime,tto=eventtotime,regfrom=fromreg,regto=toreg,etype=eventtype,presenter=eventpresenter,presenterd=eventdesignation, organizer=eventorgc, teacher1=eventorg1, teacher2=eventorg2, teacher3=eventorg3, convener1=eventcon1, convener2=eventcon2, contact1=eventcontact1, contact2=eventcontact2, certi=eventfin, department=eventdep, by=publisher, reminders=ecom)
 				eventt.save()
-				messages.add_message(request, messages.SUCCESS, 'Event Successfully added')
+				messages.success(request,'Event Successfully added')
 			else:
-				messages.add_message(request, messages.WARNING, 'You are not permitted to add event')
+				messages.warning(request,'You are not permitted to add event')
 			return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
 
 	else:
@@ -1419,10 +1419,10 @@ def toxl(request):
 	for i, column_width in enumerate(column_widths):
 		ws.column_dimensions[get_column_letter(i+1)].width = column_width
 	if path.isfile('Downloads\\Events.xlsx')==True:
-		messages.add_message(request, messages.WARNING, "Events.xlsx already exists in your desktop")
+		messages.warning(request,"Events.xlsx already exists in your desktop")
 	else:
 		wb.save(response)
-		messages.add_message(request, messages.SUCCESS, "Downloaded data to Events.xlsx file in your desktop")
+		messages.success(request,"Downloaded data to Events.xlsx file in your desktop")
 	return response
 
 
@@ -1465,10 +1465,10 @@ def toreg(request):
 		for i, column_width in enumerate(column_widths):
 			ws.column_dimensions[get_column_letter(i+1)].width = column_width
 		if path.isfile('Registrations'+evid2+'.xlsx')==True:
-			messages.add_message(request, messages.WARNING, "Registrations"+evid2+".xlsx already exists in your desktop")
+			messages.warning(request,"Registrations"+evid2+".xlsx already exists in your desktop")
 		else:
 			wb.save(response)
-			messages.add_message(request, messages.SUCCESS, "Downloaded data to Registrations"+evid2+".xlsx file in your desktop")
+			messages.success(request,"Downloaded data to Registrations"+evid2+".xlsx file in your desktop")
 		return response
 	else:
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
@@ -1524,7 +1524,7 @@ def totxtall(request):
 		response.write(""+conv2+"\t")
 		response.write("Contacts : "+cont1+" ")
 		response.write(""+cont2+"\t")
-		messages.add_message(request, messages.SUCCESS, "Downloaded data to Event"+evid+"data.txt file in your desktop")
+		messages.success(request,"Downloaded data to Event"+evid+"data.txt file in your desktop")
 		return response
 	else:
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
@@ -1681,7 +1681,7 @@ def topdfall(request):
 		response = HttpResponse(pdf.output(name='Event'+evid+'_data.pdf',dest='S').encode('latin-1'), content_type='application/pdf')
 		content = "attachment; filename=%s " %(file)
 		response['Content-Disposition'] = content
-		messages.add_message(request, messages.SUCCESS, "Downloaded Report to Event"+evid+"_data.pdf file in your desktop")
+		messages.success(request,"Downloaded Report to Event"+evid+"_data.pdf file in your desktop")
 		return response
 
 
@@ -1810,7 +1810,7 @@ def tocerti(request):
 		response = HttpResponse(pdf.output(name='Certificate_'+evid+'.pdf',dest='S').encode('latin-1'), content_type='application/pdf')
 		content = "attachment; filename=%s " %(file)
 		response['Content-Disposition'] = content
-		messages.add_message(request, messages.SUCCESS, "Downloaded Report to Certificate_"+evid+".pdf file in your desktop")
+		messages.success(request,"Downloaded Report to Certificate_"+evid+".pdf file in your desktop")
 		return response
 	else:
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
@@ -1941,8 +1941,9 @@ def torep(request):
 		response = HttpResponse(pdf.output(name='Report_'+rnum+'.pdf',dest='S').encode('latin-1'), content_type='application/pdf')
 		content = "attachment; filename=%s " %(file)
 		response['Content-Disposition'] = content
-		messages.add_message(request, messages.SUCCESS, "Downloaded Report to Report_"+rnum+".pdf file in your desktop")
+		messages.success(request,"Downloaded Report to Report_"+rnum+".pdf file in your desktop")
 		return response
+		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
 	else:
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
 
@@ -1986,9 +1987,9 @@ def todocall(request):
 		p = edoc.add_paragraph('Conveners : '+conv1+', '+conv2)
 		p = edoc.add_paragraph('Contacts : '+cont1+', '+cont2)
 		if path.isfile('Event'+evid+'.docx')==True:
-			messages.add_message(request, messages.WARNING, "File Event"+evid+".doc already exists in your desktop")
+			messages.warning(request,"File Event"+evid+".doc already exists in your desktop")
 		else:
-			messages.add_message(request, messages.SUCCESS, "Downloaded data to Event"+evid+".doc file in your desktop")
+			messages.success(request,"Downloaded data to Event"+evid+".doc file in your desktop")
 			file='Event'+evid+'.docx'
 			response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document')
 			content = "attachment; filename=%s " %(file)
@@ -2046,5 +2047,5 @@ def email(request):
 	email_from = settings.EMAIL_HOST_USER
 	recipient_list = ['vivekananda.b@somaiya.edu',user.email]
 	send_mail( subject, message, email_from, recipient_list )
-	messages.add_message(request, messages.SUCCESS, 'Mail Sent Successfully')
+	messages.success(request,'Mail Sent Successfully')
 	return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')

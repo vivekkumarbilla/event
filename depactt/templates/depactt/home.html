@@ -971,12 +971,14 @@
 		<div class="mainelements" >
 			{% if nomessages2 %}
 			<div class="leftelements notiunder">
-				<div class="leftelements noti3">
+				<div class="leftelements noti3" id="messagenoti">
+					<button id="mms" style="display: none;" value="{{ nomessages2.count }}">{{ nomessages2.count }}</button>
 					<button style="float: left;" id="ombutton" class="mbutton" onclick="mesgo()"><i style="float: right;" class="glyphicon glyphicon-triangle-right glyphicon2"></i><p style="float: left;">You have a total {{ nomessages2.count }} messages</p></button>
 					<button style="display: none;float: left;" id="cmbutton" class="mbutton" onclick="mesgc()"><i style="float: right;" class="glyphicon glyphicon-triangle-bottom glyphicon2"></i><p style="float: left;">You have a total {{ nomessages2.count }} messages</p></button>
 				</div>
 				<div style="display: none;" id="msgs">
 					{% for nom in nomessages2 %}
+						<button class="mnoti" value="{{ nom.messagesender }} : {{ nom.message }} [{{ nom.timee }}]" style="display: none;"></button>
 						<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-fullmessages" method="POST">
 							{% csrf_token %}
 							<input style="display: none;" value="{{ nom.messagesenderid }}" type="text" name="send">
@@ -1331,15 +1333,29 @@
 		var listem =  'liss';
 		document.getElementById('basicdate').innerHTML=d+"/"+(mo+1)+"/"+y;
 		function startTime() {
-			var today = new Date();
-			var h = today.getHours();
-			var m = today.getMinutes();
-			var s = today.getSeconds();
-			m = checkTime(m);
-			s = checkTime(s);
-			document.getElementById('basictime').innerHTML =
-			h + ":" + m;
-			var t = setTimeout(startTime, 500);
+			noti()
+		}
+		function noti() {
+			if (Notification.permission === 'granted'){
+				console.log('niceah')
+				console.log(Notification.permission)
+				numb=document.getElementById('mms').value
+				console.log(numb)
+				for (i=0;i<numb;i++){
+					mensg=document.getElementsByClassName('mnoti')[i].value
+					const noti = new Notification("New Messages ",{
+						body: mensg,
+						icon:'https://departmentalactivity.herokuapp.com/static/kj.png'
+					});
+					noti.onclick = (e) => {
+						window.location.href = "kjsomaiyacollegeofengineeringandinformationtechnologyteachers-messaging"
+					}
+				}
+			}
+			else if (Notification.permission !== 'denied'){
+				Notification.requestPermission()
+				noti()
+			}
 		}
 		function checkTime(i) {
 			if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10

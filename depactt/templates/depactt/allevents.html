@@ -1869,7 +1869,7 @@
 							<button id="sharec{{ event.id }}" class="buts rightelements butsmob" onclick="sharec('{{ event.id }}')" style="display: none;" value="{{ event.id }}"><i class="glyphicon glyphicon-remove"></i></button>
 						</div>
 						<button class="buts rightelements butsmob" id="shareg{{ event.id }}" style="display: none;" value="{{ event.id }}" onclick="sendmail('{{ event.title }}','{{ event.date |date }}','{{ event.description }}','{{ event.organizer }}','{{ event.perks }}','{{ event.link }}','{{ event.type }}','{{ event.tfrom }}','{{ event.tto }}','{{ event.regfrom }}','{{ event.regto }}','{{ event.presenter }}','{{ event.presenterd }}','{{ event.target }}','{{ event.department }}','{{ event.teacher1 }}','{{ event.teacher2 }}','{{ event.convener1 }}','{{ event.contact1 }}','{{ event.teacher3 }}','{{ event.convener2 }}','{{ event.contact2 }}')" title="Share to Gmail" class="rightelements buts"><i class="fa fa-envelope"></i></button>
-						<button class="buts rightelements butsmob" id="sharew{{ event.id }}" style="display: none;" value="{{ event.id }}" onclick="sendmsg('{{ event.title }}','{{ event.date |date }}','{{ event.description }}','{{ event.organizer }}','{{ event.perks }}','{{ event.link }}','{{ event.type }}','{{ event.tfrom }}','{{ event.tto }}','{{ event.regfrom }}','{{ event.regto }}','{{ event.presenter }}','{{ event.presenterd }}','{{ event.target }}','{{ event.department }}','{{ event.teacher1 }}','{{ event.teacher2 }}','{{ event.convener1 }}','{{ event.contact1 }}','{{ event.teacher3 }}','{{ event.convener2 }}','{{ event.contact2 }}')" title="Share to Gmail" class="rightelements buts"><i class="fa fa-whatsapp"></i></button>
+						<button class="buts rightelements butsmob" id="sharew{{ event.id }}" style="display: none;" value="{{ event.id }}" onclick="sendmsg('{{ event.id }}','{{ event.title }}','{{ event.date |date }}','{{ event.description }}','{{ event.organizer }}','{{ event.perks }}','{{ event.link }}','{{ event.type }}','{{ event.tfrom }}','{{ event.tto }}','{{ event.regfrom }}','{{ event.regto }}','{{ event.presenter }}','{{ event.presenterd }}','{{ event.target }}','{{ event.department }}','{{ event.teacher1 }}','{{ event.teacher2 }}','{{ event.convener1 }}','{{ event.contact1 }}','{{ event.teacher3 }}','{{ event.convener2 }}','{{ event.contact2 }}')" title="Share to Gmail" class="rightelements buts"><i class="fa fa-whatsapp"></i></button>
 						{% for rep in report_num %}
 						{% ifequal rep.erref.title event.title %}
 						{% if user.is_staff == True %}
@@ -1941,7 +1941,7 @@
 							<div class="leftelements eimage">
 								<button class="leftelements vbuts buts" id="view{{ event.id }}" onclick="pressed('{{ event.id }}')"><i class="glyphicon glyphicon-eye-open"></i></button>
 								<span style="position: absolute;background-color: lightgrey" class="leftelements spaimage" id="spa{{ event.id }}"></span>
-								<img class="leftelements emage" id="{{event.id}}" style="margin-right: 0px;" width="183px" src="{{ event.poster.url }}">
+								<img class="leftelements emage" id="pos{{event.id}}" style="margin-right: 0px;" width="183px" src="{{ event.poster.url }}">
 							</div>
 							{% else %}
 							<div class="leftelements ei"><p> No Image </p></div>
@@ -2866,9 +2866,10 @@
 		function pressed(numm){
 			spanname ='spa'+numm;
 			butname = 'view'+numm;
+			numm5 = 'pos'+numm;
 			document.getElementById(spanname).innerHTML = "Click on the image" ;
 			document.getElementById(butname).style.display = 'none';
-			imm = document.getElementById(numm);
+			imm = document.getElementById(numm5);
 			imm.onclick = function(){
 				modalImg = document.getElementById("img01");
 				captionText = document.getElementById("caption");
@@ -3175,7 +3176,7 @@
 			let url = 'https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=&su='+subj+'&body='+msgbodyf+'&ui=2&tf=1&pli=1';
 			window.open(url, 'sharer', 'toolbar=0,status=0,width=648,height=395,top=200,left=300');
 		}
-		function sendmsg(delltitle,delldate,delldesc,dellorg,dellperks,delllink,delltype,dellfro,dellto,dellregfro,dellregto,dellpres,dellpresd,delltarget,delldep,dellfaccod1,dellfaccod2,dellconv1,dellcont1,dellfaccod3,dellconv2,dellcont2){
+		function sendmsg(numb,delltitle,delldate,delldesc,dellorg,dellperks,delllink,delltype,dellfro,dellto,dellregfro,dellregto,dellpres,dellpresd,delltarget,delldep,dellfaccod1,dellfaccod2,dellconv1,dellcont1,dellfaccod3,dellconv2,dellcont2){
 			msgbody1="K.J. somaiya Institute of Engineering and Information Technology (KJSIEIT) Sion, Mumbai"
 			msgbody2="KJSIEIT is accredited by NAAC with A grade Three programs accredited by National Board of Accreditation Best College awarded by University of Mumbai, ISTE (MH) and CSI (Mumbai)"
 			cname="KJSIEIT-"
@@ -3212,8 +3213,8 @@
 			cont="Contact : "
 			msgbody6=faccod.concat(dellfaccod1,sp,dellfaccod2,sp,dellfaccod3,str,conv,dellconv1,sp,dellconv2,str,cont,dellcont1,dellcont2)
 			msgbodyf=msgbody1.concat(str,str,msgbody2,str,str,msgbody3,str,str,msgbody4,str,str,msgbody5,str,str,msgbody6)
-			console.log(msgbodyf)
-			let url = 'whatsapp://send?text='+msgbodyf+'';
+			console.log(numb)
+			let url = 'whatsapp://send?text='+msgbodyf;
 			window.open(url, 'sharer', 'toolbar=0,status=0,width=648,height=395,top=200,left=300');
 		}
 
