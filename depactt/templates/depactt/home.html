@@ -658,14 +658,18 @@
 				padding-right: 0.2vw;
 			}
 			#profilediv3{
-				display: block;
 				position: absolute;
 				top: 0vw;
 				bottom: 0;
 				width: 80vw;
-				right: 40vw;
+				left: 0vw;
 			    transform: translateX(-100%);
 			    -webkit-transform: translateX(-100%);
+			}
+			.profilelink:hover{
+				background-color: #FFF;
+				color: #000;
+				border-bottom: 2px solid #CCCCCC;
 			}
 			.slide-in {
 			    animation: slide-in 0.5s forwards;
@@ -1430,9 +1434,6 @@
 			document.getElementById('hugebut').style.display = 'none';
 			document.getElementById('mainhead').style.opacity = '1';
 			document.getElementById('basicmain').style.opacity = '1';
-			var isOpen = $slider.classList.contains('slide-out');
-
-		    $slider.setAttribute('class', isOpen ? 'slide-in' : 'slide-out');
 		    // $('#profilediv3').animate({
 		    //   left : '-500px'
 		    // }, 500);

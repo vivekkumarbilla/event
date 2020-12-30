@@ -642,6 +642,40 @@
 				top: 0vw;
 				bottom: 0;
 				width: 80vw;
+			    transform: translateX(-100%);
+			    -webkit-transform: translateX(-100%);
+			}
+			.profilelink:hover{
+				background-color: #FFF;
+				color: #000;
+				border-bottom: 2px solid #CCCCCC;
+			}
+			.slide-in {
+			    animation: slide-in 0.5s forwards;
+			    -webkit-animation: slide-in 0.5s forwards;
+			}
+
+			.slide-out {
+			    animation: slide-out 0.5s forwards;
+			    -webkit-animation: slide-out 0.5s forwards;
+			}
+			    
+			@keyframes slide-in {
+			    100% { transform: translateX(0%); }
+			}
+
+			@-webkit-keyframes slide-in {
+			    100% { -webkit-transform: translateX(0%); }
+			}
+			    
+			@keyframes slide-out {
+			    0% { transform: translateX(0%); }
+			    100% { transform: translateX(-100%); }
+			}
+
+			@-webkit-keyframes slide-out {
+			    0% { -webkit-transform: translateX(0%); }
+			    100% { -webkit-transform: translateX(-100%); }
 			}
 			.basicpro{
 				display: none;
@@ -1353,6 +1387,7 @@
 			if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
 			return i;
 		}
+		var $slider = document.getElementById('profilediv3');
 		function menu(){
 			document.getElementById('profilediv3').style.display = '';
 			document.getElementById('bod').style.overflowy='hidden'
@@ -1360,6 +1395,9 @@
 			document.getElementById('mainhead').style.opacity = '0.8';
 			document.getElementById('basicmain').style.opacity = '0.8';
 			document.getElementById('profilediv3').style.height = '100vh';
+		    var isOpen = $slider.classList.contains('slide-in');
+
+		    $slider.setAttribute('class', isOpen ? 'slide-out' : 'slide-in');
 			if ($('#profilediv3').is(':visible')) {
 			    $('body').addClass("fixed-position");
 			} else {
