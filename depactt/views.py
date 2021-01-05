@@ -787,7 +787,7 @@ def fullmessages(request):
 					cur.save()
 		else :
 			if User.objects.filter(username=receiver).exists():
-				messagedone= Messaging(messagesender=User.objects.get(username=currentuser), receiver=User.objects.get(username=receiver), message=message, messagesenderid=User.objects.get(id=senderno))
+				messagedone= Messaging(sender=User.objects.get(username=currentuser), receiver=User.objects.get(username=receiver), message=message, messagesenderid=User.objects.get(id=senderno))
 				messagedone.save()
 			dicmessages["user_num"]=evid
 			dicmessages["user_num2"]=sender
