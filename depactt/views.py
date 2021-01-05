@@ -229,7 +229,7 @@ def home(request):
 	if request.user.is_authenticated:
 		currentuser = request.user.username
 		currentuserid = request.user.id
-		messagesm=Messaging.objects.filter(messagereceiver=currentuser,messageseen=False)
+		messagesm=Messaging.objects.filter(receiver=request.user,messageseen=False)
 		noofmessages=0
 		inbox=[]
 		inbox2=[]
@@ -449,7 +449,7 @@ def messaging(request):
 	if request.user.is_authenticated:
 		currentuser = request.user.username
 		currentuserid = request.user.id
-		messagesm=Messaging.objects.filter(messagereceiver=request.user)
+		messagesm=Messaging.objects.filter(receiver=request.user)
 		noofmessages=0
 		inbox=[]
 		print(len(messagesm))
@@ -774,24 +774,24 @@ def fullmessages(request):
 		if (len(receiver)==0) or(len(message)==0) or(len(senderno)==0) or(len(msgsender)==0):
 			dicmessages["user_num"]=evid
 			dicmessages["user_num2"]=sender
-			messagesm=Messaging.objects.filter(Q(messagereceiver=User.objects.get(username=currentuser),messagesenderid=User.objects.get(username=sender),messageseen=True) | Q(messagereceiver=User.objects.get(username=evid),messagesenderid=User.objects.get(id=currentuserid))).order_by('messagedate','timee')
+			messagesm=Messaging.objects.filter(Q(receiver=User.objects.get(username=currentuser),messagesenderid=User.objects.get(username=sender),messageseen=True) | Q(receiver=User.objects.get(username=evid),messagesenderid=User.objects.get(id=currentuserid))).order_by('messagedate','timee')
 			dicmessages["msg"]=messagesm
-			messagesms=Messaging.objects.filter(messagereceiver=User.objects.get(username=currentuser),messagesenderid=User.objects.get(id=sender),messageseen=False)
+			messagesms=Messaging.objects.filter(receiver=User.objects.get(username=currentuser),messagesenderid=User.objects.get(id=sender),messageseen=False)
 			dicmessages["msg2"]=messagesms
-			messagesm2=Messaging.objects.filter(messagereceiver=User.objects.get(username=currentuser),messagesenderid=User.objects.get(id=sender))
+			messagesm2=Messaging.objects.filter(receiver=User.objects.get(username=currentuser),messagesenderid=User.objects.get(id=sender))
 			for i in range(0,len(messagesm2)):
 				cur=messagesm2[i]
 				print(messagesm2[i].messageseen)
-				if cur.messagereceiver==User.objects.get(username=currentuser):
+				if cur.receiver==User.objects.get(username=currentuser):
 					cur.messageseen=True
 					cur.save()
 		else :
 			if User.objects.filter(username=receiver).exists():
-				messagedone= Messaging(messagesender=User.objects.get(username=currentuser), messagereceiver=User.objects.get(username=receiver), message=message, messagesenderid=User.objects.get(id=senderno))
+				messagedone= Messaging(messagesender=User.objects.get(username=currentuser), receiver=User.objects.get(username=receiver), message=message, messagesenderid=User.objects.get(id=senderno))
 				messagedone.save()
 			dicmessages["user_num"]=evid
 			dicmessages["user_num2"]=sender
-			messagesm=Messaging.objects.filter(Q(messagereceiver=User.objects.get(username=currentuser),messagesenderid=User.objects.get(id=sender)) | Q(messagereceiver=User.objects.get(username=evid),messagesenderid=User.objects.get(id=currentuserid))).order_by('messagedate','timee')
+			messagesm=Messaging.objects.filter(Q(receiver=User.objects.get(username=currentuser),messagesenderid=User.objects.get(id=sender)) | Q(receiver=User.objects.get(username=evid),messagesenderid=User.objects.get(id=currentuserid))).order_by('messagedate','timee')
 			dicmessages["msg"]=messagesm
 		return render(request, 'depactt/fullmessages.html',dicmessages)
 	else:
