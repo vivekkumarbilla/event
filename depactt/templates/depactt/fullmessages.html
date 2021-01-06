@@ -1201,11 +1201,11 @@
 			</div>
 			{% endifequal %}
 		{% endfor %}
-		<div class="message leftelements fullwidth" style="height: 5vh;font-size: 20px;background-color: #C2C2B1;">Unread Messages<i class="glyphicon glyphicon-chevron-down"></i></div>
+		<div class="message leftelements fullwidth" style="height: 5vh;font-size: 20px;background-color: transparent;">Unread </div>
 		{% for mesg in msg2 %}
 			{% ifequal mesg.sender.username user_num %}
-			<div class="message leftelements fullwidth">
-				<div class=" leftelements actualmessage" style="background-color: #C2C2B1;">
+			<div class="message leftelements fullwidth" style="background-color: #C2C2B1;">
+				<div class=" leftelements actualmessage">
 					{% if mesg.image %}
 					<img src="{{ mesg.image.url }}" style="width: auto;height: 400px;">
 					<br>
@@ -1230,8 +1230,8 @@
 				</div>
 			</div>
 			{% else %}
-			<div class="message leftelements fullwidth">
-				<div class="rightelements actualmessage2" style="background-color: #C2C2B1;">
+			<div class="message leftelements fullwidth" style="background-color: #C2C2B1;">
+				<div class="rightelements actualmessage2">
 					{% if mesg.image %}
 					<img src="{{ mesg.image.url }}" style="width: auto;height: 400px;">
 					<br>
@@ -1757,7 +1757,7 @@
 		       var scrollTo = $('#nonew'); 
 			   var position = scrollTo.offset().top  - container.offset().top  + container.scrollTop();
 			   noshowfile();
-			}, 7000)
+			}, 2000)
 		});
 		$(document).ready(function () {
 		  $("#subbut").click(function (event) {
