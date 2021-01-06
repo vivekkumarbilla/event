@@ -1155,6 +1155,14 @@
 			{% ifequal mesg.sender.username user_num %}
 			<div class="message leftelements fullwidth">
 				<div class=" leftelements actualmessage">
+					{% if mesg.image %}
+					<img src="{{ mesg.image.url }}" style="width: auto;height: 400px;">
+					<br>
+					{% endif %}
+					{% if mesg.file %}
+					<a href="filedownload" style="width: 100px;height: 50px;">{{ mesg.file }}</a>
+					<br>
+					{% endif %}
 					<p class="leftelements msgg date" style="display: none;" id="leftmsgdata{{ mesg.id }}">{{ mesg.messagedate }}</p>
         			<button title="Expand" class="leftelements opbut" id="lbut1{{ mesg.id }}" onclick="showlo('butter','{{ mesg.id }}')" value="{{ mesg.id }}">
 	        			<span class="mlright">
