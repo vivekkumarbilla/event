@@ -259,15 +259,22 @@ def profile(request):
 	dicevents = {
 		"user_number": users
 	}
+	if not request.user.is_authenticated:
+		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login')
 
 	return render(request, 'depactt/profile.html',dicevents)
 
 
 def help(request): 
 
+	if not request.user.is_authenticated:
+		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login')
+		
 	return render(request, 'depactt/help.html')
 
 def allevents(request): 
+	if not request.user.is_authenticated:
+		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login')
 	events=Event.objects.all().order_by('-pubdate')
 	dicevents = {
 		"event_number": events
@@ -285,6 +292,8 @@ def allevents(request):
 	return render(request, 'depactt/allevents.html',dicevents)
 
 def finishedevents(request): 
+	if not request.user.is_authenticated:
+		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login')
 	ist = pytz.timezone('Asia/Calcutta')
 	c=datetime.now(ist)
 	events=Event.objects.filter(date__lt=c)
@@ -294,6 +303,8 @@ def finishedevents(request):
 	return render(request, 'depactt/finishedevents.html',dicevents)
 
 def upcomingevents(request): 
+	if not request.user.is_authenticated:
+		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login')
 	ist = pytz.timezone('Asia/Calcutta')
 	c=datetime.now(ist)
 	events=Event.objects.filter(date__gte=c)
@@ -303,6 +314,8 @@ def upcomingevents(request):
 	return render(request, 'depactt/upcomingevents.html',dicevents)
 
 def addevent(request):
+	if not request.user.is_authenticated:
+		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login')
 	if request.user.is_authenticated:
 		currentuser = request.user.username
 		currentuserid = request.user.id
@@ -375,6 +388,8 @@ def addevent(request):
 
 
 def preevent(request):
+	if not request.user.is_authenticated:
+		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login')
 	if request.user.is_authenticated:
 		currentuser = request.user.username
 		currentuserid = request.user.id
@@ -437,6 +452,8 @@ def preevent(request):
 
 
 def messaging(request): 
+	if not request.user.is_authenticated:
+		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login')
 	if request.user.is_authenticated:
 		currentuser = request.user.username
 		currentuserid = request.user.id
@@ -466,6 +483,8 @@ def messaging(request):
 
 
 def groups(request): 
+	if not request.user.is_authenticated:
+		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login')
 	if request.user.is_authenticated:
 		currentuser = request.user.username
 		currentuserid = request.user.id
@@ -507,6 +526,8 @@ def groups(request):
 
 
 def addgroup(request):
+	if not request.user.is_authenticated:
+		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login')
 	if request.user.is_authenticated:
 		currentuser = request.user.username
 		currentuserid = request.user.id
@@ -555,6 +576,8 @@ def addgroup(request):
 
 
 def comment(request):
+	if not request.user.is_authenticated:
+		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login')
 	if request.method=='POST':
 		eventname=request.POST['eventname']
 		comment=request.POST['comment']
@@ -581,6 +604,8 @@ def comment(request):
 
 
 def precomment(request):
+	if not request.user.is_authenticated:
+		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login')
 	if request.method=='POST':
 		eventname=request.POST['eventname']
 		comment=request.POST['comment']
@@ -606,6 +631,8 @@ def precomment(request):
 
 
 def addreport(request):
+	if not request.user.is_authenticated:
+		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login')
 	if request.method=='POST':
 		eventname=request.POST['eventname']
 		reptitle=request.POST['reporttitle']
@@ -647,6 +674,8 @@ def addreport(request):
 
 
 def register(request):
+	if not request.user.is_authenticated:
+		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login')
 	if request.method=='POST':
 		eventname=request.POST['eventname']
 		reptitle=request.POST['reporttitle']
@@ -675,6 +704,8 @@ def register(request):
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
 
 def groupmessages(request): 
+	if not request.user.is_authenticated:
+		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login')
 	if request.user.is_authenticated:
 		currentuser = request.user.username
 		currentuserid = request.user.id
@@ -742,6 +773,8 @@ def groupmessages(request):
 
 
 def fullmessages(request,name): 
+	if not request.user.is_authenticated:
+		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login')
 	if request.user.is_authenticated:
 		currentuser = request.user.username
 		currentuserid = request.user.id
@@ -786,6 +819,8 @@ def fullmessages(request,name):
 
 
 def fullmessaging(request,name): 
+	if not request.user.is_authenticated:
+		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login')
 	if request.user.is_authenticated:
 		currentuser = request.user.username
 		currentuserid = request.user.id
@@ -797,6 +832,8 @@ def fullmessaging(request,name):
 	return render(request, 'depactt/xamp.html',dicevents)
 
 def addmessage(request,name): 
+	if not request.user.is_authenticated:
+		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login')
 	if request.user.is_authenticated:
 		currentuser = request.user.username
 		currentuserid = request.user.id
@@ -843,6 +880,8 @@ def addmessage(request,name):
 		return render(request, 'depactt/xamp.html',dicmessages)
 
 def addposter(request):
+	if not request.user.is_authenticated:
+		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login')
 	if request.method=='POST':
 		evid=request.POST.get("send","")
 		posterurl=request.POST.get("poster","")
