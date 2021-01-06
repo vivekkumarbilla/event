@@ -851,12 +851,12 @@
 			.buts{
 				outline: 0;
 				border: none;
-				background-color: black;
-				color: white;
+				background-color: white;
+				color: black;
 			}
 			.buts:hover{
-				background-color: lightgrey;
-				color: black;
+				background-color: black;
+				color: white;
 			}
 			/*--------------------------------------------------------------------admincode------------------------------------------------------------------------
 			----------------------------------------------------------------------admincode------------------------------------------------------------------------
@@ -919,12 +919,14 @@
 				padding-bottom: 0vw;
 				overflow: scroll;
 			}
+			#mainelement{
+				height: 80vh;
+			}
 			.mainheadelements2{
 				height: 10vw;
 				margin-top: 0vw;
 				width: 100vw;
 				background-color: #FFF;
-				border: 0.5px solid #000;
 			}
 			.mainheadelements3{
 				float: left;
@@ -950,7 +952,7 @@
 			}
 			.mainelements2{
 				float: left;
-				width: 100vw;
+				width: 87vw;
 				height: 12vw;
 				background-color: #EFFADA;
 				margin-top: 0px;
@@ -959,15 +961,15 @@
 				font-size: 3.3vw;
 			}
 			.under{
-				height: 100%;
-				margin-top: 0px;
+				height: 90%;
+				margin-top: 5px;
 				margin-left: 0px;
 			}
 			.mesgtype{
-				width: 80%;
-				height: 100%;
+				width: 85%;
+				height: 90%;
 				font-size: 4vw;
-				padding: 0px 10px;
+				padding: 0px 20px;
 			}
 			.fullheight{
 				height: 100%;
@@ -1022,9 +1024,12 @@
 			}
 			.sendbut{
 				margin-top: 0px;
-				width: 20%;
+				width: 13.5%;
 				height: 100%;
 				border: 1px solid black;
+				font-size: 20px;
+				background-color: transparent;
+				border-radius: 6vw;
 			}
 			.bacbut{
 				padding-left: 2.5vw;
@@ -1042,6 +1047,73 @@
 			}
 			.alagbut{
 				font-size: 3vw;
+			}
+			.sendbut2{
+				margin-top: 0px;
+				width: 12vw;
+				height: 12vw;
+				font-size: 30px;
+				background-color: #D6DBCD;
+				border-radius: 12vw;
+			}
+			.files{
+				position: absolute;
+				bottom: 12vw;
+				left: 0vw;
+				width: 12vw;
+				height: 12vw;
+				font-size: 30px;
+				background-color: red;
+				border-radius: 12vw;
+			}
+			.files2{
+				position: absolute;
+				bottom: 24vw;
+				left: 0vw;
+				width: 12vw;
+				height: 12vw;
+				font-size: 30px;
+				background-color: cyan;
+				border-radius: 12vw;
+			}
+			.donefiles{
+				position: absolute;
+				bottom: 12vw;
+				left: 0vw;
+				width: 50vw;
+				height: 12vw;
+				background-color: red;
+			}
+			.donefiles2{
+				position: absolute;
+				bottom: 12vw;
+				left: 0vw;
+				width: 50vw;
+				height: 12vw;
+				background-color: cyan;
+			}
+			.customfile{
+				padding: 0px;
+				background-color: yellow;
+			}
+			.sharing{
+				font-size: 30px;
+				padding: 45px 50px;
+				border-radius: 12vw;
+				background-color: #D6DBCD;
+			}
+			.sharing2{
+				font-size: 30px;
+				padding: 45px 50px;
+				border-radius: 0px;
+				border-top-left-radius: 4vw;
+				border-top-right-radius: 4vw;
+				background-color: #D6DBCD;
+				text-overflow: ellipsis;
+			}
+			.selected{
+				position: absolute;
+				left: -124px;
 			}
 		}
 	</style>
@@ -1102,7 +1174,7 @@
 			<div class="message leftelements fullwidth">
 				<div class="rightelements actualmessage2">
 					{% if mesg.image %}
-					<img src="{{ mesg.image.url }}" style="width: 200px;height: 200px;">
+					<img src="{{ mesg.image.url }}" style="width: auto;height: 400px;">
 					<br>
 					{% endif %}
 					{% if mesg.file %}
@@ -1613,6 +1685,11 @@
 				document.getElementById('file').classList.add("sharing2");
 				document.getElementById('what').value="file";
 		    });
+		});
+		$(document).ready(function(){
+			if (screen.width < 1200) {
+			    document.getElementById('mainelement').removeAttribute('style');
+			}
 		});
 		$(document).ready(function () {
 		  $("#subbut").click(function (event) {
