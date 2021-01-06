@@ -800,11 +800,11 @@ def fullmessages(request,name):
 			cur=messagesm2[i]
 			print(messagesm2[i].messageseen)
 			if cur.receiver==User.objects.get(username=currentuser):
-				if cur.messageseen=='first':
-					cur.messageseen='second'
-					cur.save()
 				if cur.messageseen=='second':
 					cur.messageseen='third'
+					cur.save()
+				if cur.messageseen=='first':
+					cur.messageseen='second'
 					cur.save()
 		return render(request, 'depactt/fullmessages.html',dicmessages)
 	else:
@@ -818,11 +818,11 @@ def fullmessages(request,name):
 			cur=messagesm2[i]
 			print(messagesm2[i].messageseen)
 			if cur.receiver==User.objects.get(username=currentuser):
-				if cur.messageseen=='first':
-					cur.messageseen='second'
-					cur.save()
 				if cur.messageseen=='second':
 					cur.messageseen='third'
+					cur.save()
+				if cur.messageseen=='first':
+					cur.messageseen='second'
 					cur.save()
 		return render(request, 'depactt/fullmessages.html',dicmessages)
 
@@ -856,11 +856,11 @@ def addmessage(request,name):
 		cur=messagesm2[i]
 		print(messagesm2[i].messageseen)
 		if cur.receiver==User.objects.get(username=currentuser):
-			if cur.messageseen=='first':
-				cur.messageseen='second'
-				cur.save()
 			if cur.messageseen=='second':
 				cur.messageseen='third'
+				cur.save()
+			if cur.messageseen=='first':
+				cur.messageseen='second'
 				cur.save()
 	if request.method == "POST":
 		rname=request.POST.get("rece", "")
