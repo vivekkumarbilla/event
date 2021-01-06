@@ -1152,7 +1152,7 @@
 		</div>
 		<div id="mainelement" style="height: 68vh;" class="mainelements">
 		{% for mesg in msg %}
-			{% if mesg.sender == user_num %}
+			{% ifequal mesg.sender.username user_num %}
 			<div class="message leftelements fullwidth">
 				<div class=" leftelements actualmessage">
 					<p class="leftelements msgg date" style="display: none;" id="leftmsgdata{{ mesg.id }}">{{ mesg.messagedate }}</p>
@@ -1196,7 +1196,7 @@
 					<sub class="rightelements sub">{{ mesg.timee }}</sub>
 				</div>
 			</div>
-			{% endif %}
+			{% endifequal %}
 		{% endfor %}
 		<p id="gg"></p>
 		</div>
