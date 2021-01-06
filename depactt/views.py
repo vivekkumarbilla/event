@@ -456,10 +456,10 @@ def messaging(request):
 		for i in range(0,len(messagesm)):
 			cur=messagesm[i]
 			if cur.messageseen==False:
-				if cur.messagesender in inbox:
+				if cur.sender in inbox:
 					print('it exists')
 				else:
-					inbox.append(cur.messagesender)
+					inbox.append(cur.sender)
 		print(inbox)
 		dicuser["nomessages"]=inbox
 	return render(request, 'depactt/messages.html',dicuser)
