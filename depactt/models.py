@@ -56,7 +56,7 @@ class Messaging(models.Model):
 	messagedate = models.DateField(auto_now_add=True, blank=True)
 	timee = models.TimeField(auto_now_add=True, blank=True)
 	messagesenderid = models.ForeignKey(User,null=True, on_delete=models.CASCADE, related_name='just_an_id_of_the_sender')
-	messagetag = models.ForeignKey('self',null=True, on_delete=models.CASCADE)
+	messagetag = models.ForeignKey('self',null=True, blank=True, on_delete=models.CASCADE)
 	image = models.ImageField(upload_to='Images', blank=True)
 	file = models.FileField(upload_to='Files', blank=True)
 	messageseen = models.CharField(max_length=200,default="first")

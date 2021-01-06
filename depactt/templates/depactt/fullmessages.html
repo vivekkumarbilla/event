@@ -4,7 +4,7 @@
 <html>
 <head>
 	<title>
-		Messages DepAct
+		{{ user_num3 }}
 	</title>
 	<link rel="icon" type="image/png" href="{% static 'kj.png' %}">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -1204,7 +1204,7 @@
 		<div class="message leftelements fullwidth" style="height: 5vh;font-size: 20px;background-color: transparent;">Unread <i style="font-size: 15px;margin-top: 5px;" class="glyphicon glyphicon-triangle-bottom"></i></div>
 		{% for mesg in msg2 %}
 			{% ifequal mesg.sender.username user_num %}
-			<div class="message leftelements fullwidth" style="background-color: #C2C2B1;">
+			<div class="message leftelements fullwidth unread" style="background-color: #C2C2B1;">
 				<div class=" leftelements actualmessage">
 					{% if mesg.image %}
 					<img src="{{ mesg.image.url }}" style="width: auto;height: 400px;">
@@ -1228,9 +1228,10 @@
 					<p class="leftelements msgg">{{ mesg.message }}</p>
 					<sub class="leftelements sub">{{ mesg.timee }}</sub>
 				</div>
+				<input style="display: none;" type="text" name="" id="tag" value="{{ mesg.messageseen }}">
 			</div>
 			{% else %}
-			<div class="message leftelements fullwidth" style="background-color: #C2C2B1;">
+			<div class="message leftelements fullwidth unread" style="background-color: #C2C2B1;">
 				<div class="rightelements actualmessage2">
 					{% if mesg.image %}
 					<img src="{{ mesg.image.url }}" style="width: auto;height: 400px;">
@@ -1258,6 +1259,10 @@
 			{% endifequal %}
 		{% endfor %}
 		<div class="message leftelements fullwidth" id="nonew" style="background-color: transparent;height: 10vh;font-size: 20px;"></div>
+		<div style="display: none;">
+			{% load static %}
+			<audio src="{% static 'sound.ogg' %}" autostart="false" width="0" height="0" id="sound" enablejavascript="true"></audio>
+		</div>
 		</div>
 		<button title="Attach Files" id="showfile" class="buts sendbut2 leftelements" onclick="showfile()"><i class="glyphicon glyphicon-paperclip"></i></button>
 		<button style="display: none;" title="Attach Files" id="noshowfile" class="buts sendbut2 leftelements" onclick="noshowfile()"><i class="glyphicon glyphicon-paperclip"></i></button>
@@ -1751,13 +1756,27 @@
 			}
 			setInterval(function(){
 			   $('#mainelement').load(" #mainelement > *");
-			   console.log('yesd');
+			   unreadele=document.getElementsByClassName('unread')
+			   console.log(unreadele.length);
+			   if (unreadele.length > 0){
+			   	  console.log('nounread')
+			   	  v=document.getElementById('tag').value;
+			   	  if (v==='second'){
+			   	  	 console.log('haha unread')
+			   	  	 PlaySound("sound");
+			   	  }
+			   }
 	  		   var scrollAmount=150;
 		  	   var myDiv = jQuery('#mainelement');
     		   myDiv.scrollTop(myDiv[0].scrollHeight - myDiv[0].clientHeight + scrollAmount);
 			   noshowfile();
-			}, 2000)
+			}, 4000)
 		});
+		function PlaySound(soundObj) {
+		  var sound = document.getElementById(soundObj);
+		  sound.play();
+		  console.log('done you didnt hear it?')
+		}
 		$(document).ready(function () {
 		  $("#subbut").click(function (event) {
 		  	console.log('entered')

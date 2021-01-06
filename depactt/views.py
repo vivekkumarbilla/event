@@ -791,6 +791,8 @@ def fullmessages(request,name):
 	}
 	if request.method == "POST":
 		dicmessages["user_num"]=name
+		name2=User.objects.get(username=name)
+		dicmessages["user_num3"]=name2.first_name
 		messagesm=Messaging.objects.filter(Q(receiver=request.user,messagesenderid=User.objects.get(username=name),messageseen='third') | Q(receiver=User.objects.get(username=name),messagesenderid=User.objects.get(id=currentuserid))).order_by('messagedate','timee')
 		dicmessages["msg"]=messagesm
 		messagesms=Messaging.objects.filter(receiver=request.user,messagesenderid=User.objects.get(username=name)).exclude(messageseen='third')
@@ -827,6 +829,8 @@ def fullmessages(request,name):
 		return render(request, 'depactt/fullmessages.html',dicmessages)
 	else:
 		dicmessages["user_num"]=name
+		name2=User.objects.get(username=name)
+		dicmessages["user_num3"]=name2.first_name
 		messagesm=Messaging.objects.filter(Q(receiver=request.user,messagesenderid=User.objects.get(username=name),messageseen='third') | Q(receiver=User.objects.get(username=name),messagesenderid=User.objects.get(id=currentuserid))).order_by('messagedate','timee')
 		dicmessages["msg"]=messagesm
 		messagesms=Messaging.objects.filter(receiver=request.user,messagesenderid=User.objects.get(username=name)).exclude(messageseen='third')
