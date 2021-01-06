@@ -269,7 +269,7 @@ def help(request):
 
 	if not request.user.is_authenticated:
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login')
-		
+
 	return render(request, 'depactt/help.html')
 
 def allevents(request): 
@@ -791,30 +791,39 @@ def fullmessages(request,name):
 	}
 	if request.method == "POST":
 		dicmessages["user_num"]=name
-		messagesm=Messaging.objects.filter(Q(receiver=request.user,messagesenderid=User.objects.get(username=name),messageseen=True) | Q(receiver=User.objects.get(username=name),messagesenderid=User.objects.get(id=currentuserid))).order_by('messagedate','timee')
+		messagesm=Messaging.objects.filter(Q(receiver=request.user,messagesenderid=User.objects.get(username=name),messageseen='third') | Q(receiver=User.objects.get(username=name),messagesenderid=User.objects.get(id=currentuserid))).order_by('messagedate','timee')
 		dicmessages["msg"]=messagesm
-		messagesms=Messaging.objects.filter(receiver=request.user,messagesenderid=User.objects.get(username=name),messageseen=False)
+		messagesms=Messaging.objects.filter(Q(receiver=request.user,messagesenderid=User.objects.get(username=name),messageseen='second') | Q(receiver=request.user,messagesenderid=User.objects.get(username=name),messageseen='first'))
 		dicmessages["msg2"]=messagesms
 		messagesm2=Messaging.objects.filter(receiver=request.user,messagesenderid=User.objects.get(username=name))
 		for i in range(0,len(messagesm2)):
 			cur=messagesm2[i]
 			print(messagesm2[i].messageseen)
 			if cur.receiver==User.objects.get(username=currentuser):
-				cur.messageseen=True
-				cur.save()
+				if cur.messageseen=='first':
+					cur.messageseen='second'
+					cur.save()
+				if cur.messageseen=='second':
+					cur.messageseen='third'
+					cur.save()
 		return render(request, 'depactt/fullmessages.html',dicmessages)
 	else:
 		dicmessages["user_num"]=name
-		messagesm=Messaging.objects.filter(Q(receiver=request.user,messagesenderid=User.objects.get(username=name),messageseen=True) | Q(receiver=User.objects.get(username=name),messagesenderid=User.objects.get(id=currentuserid))).order_by('messagedate','timee')
+		messagesm=Messaging.objects.filter(Q(receiver=request.user,messagesenderid=User.objects.get(username=name),messageseen='third') | Q(receiver=User.objects.get(username=name),messagesenderid=User.objects.get(id=currentuserid))).order_by('messagedate','timee')
 		dicmessages["msg"]=messagesm
-		messagesms=Messaging.objects.filter(receiver=request.user,messagesenderid=User.objects.get(username=name),messageseen=False)
+		messagesms=Messaging.objects.filter(Q(receiver=request.user,messagesenderid=User.objects.get(username=name),messageseen='second') | Q(receiver=request.user,messagesenderid=User.objects.get(username=name),messageseen='first'))
 		dicmessages["msg2"]=messagesms
 		messagesm2=Messaging.objects.filter(receiver=request.user,messagesenderid=User.objects.get(username=name))
 		for i in range(0,len(messagesm2)):
 			cur=messagesm2[i]
+			print(messagesm2[i].messageseen)
 			if cur.receiver==User.objects.get(username=currentuser):
-				cur.messageseen=True
-				cur.save()
+				if cur.messageseen=='first':
+					cur.messageseen='second'
+					cur.save()
+				if cur.messageseen=='second':
+					cur.messageseen='third'
+					cur.save()
 		return render(request, 'depactt/fullmessages.html',dicmessages)
 
 
@@ -842,18 +851,17 @@ def addmessage(request,name):
 	dicmessages = {
 		"user_number": name2
 	}
-	dicmessages["user_num"]=name
-	messagesm=Messaging.objects.filter(Q(receiver=request.user,messagesenderid=User.objects.get(username=name),messageseen=True) | Q(receiver=User.objects.get(username=name),messagesenderid=User.objects.get(id=currentuserid))).order_by('messagedate','timee')
-	dicmessages["msg"]=messagesm
-	messagesms=Messaging.objects.filter(receiver=request.user,messagesenderid=User.objects.get(username=name),messageseen=False)
-	dicmessages["msg2"]=messagesms
 	messagesm2=Messaging.objects.filter(receiver=request.user,messagesenderid=User.objects.get(username=name))
 	for i in range(0,len(messagesm2)):
 		cur=messagesm2[i]
 		print(messagesm2[i].messageseen)
 		if cur.receiver==User.objects.get(username=currentuser):
-			cur.messageseen=True
-			cur.save()
+			if cur.messageseen=='first':
+				cur.messageseen='second'
+				cur.save()
+			if cur.messageseen=='second':
+				cur.messageseen='third'
+				cur.save()
 	if request.method == "POST":
 		rname=request.POST.get("rece", "")
 		message=request.POST.get("message", "")
