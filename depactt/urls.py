@@ -30,6 +30,7 @@ urlpatterns = [
     path('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-forgotpassword2', views.forgotpassword2, name='kjsomaiyacollegeofengineeringandinformationtechnologyteachers-forgotpassword2'),
 
     path('email',views.email, name='email'),
+    path('complaints',views.complaints, name='complaints'),
 
     path('homelogout',views.homelogout, name='homelogout'),
     path('adddetails',views.adddetails, name='adddetails'),

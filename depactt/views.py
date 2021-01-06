@@ -2199,3 +2199,20 @@ def email(request):
 	send_mail( subject, message, email_from, recipient_list )
 	messages.success(request,'Mail Sent Successfully')
 	return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
+
+
+
+def complaints(request):
+	if request.method=='POST':
+		evid=request.POST.get("dell", "")
+		user=request.user
+		user2=str(user.id)
+		subject = 'User Complaint ('+user2+')'
+		message = user.first_name+' '+user.last_name+' says "'+evid+'"'
+		email_from = settings.EMAIL_HOST_USER
+		recipient_list = ['vivekananda.b@somaiya.edu','ashish.bhushan@somaiya.edu','vighnesh.chavan@somaiya.edu','vivekbilla345@gmail.com','martinchip03@gmail.com','vighneshchavan26@gmail.com']
+		send_mail( subject, message, email_from, recipient_list )
+		messages.success(request,'Complaint sent Successfully, Thank you for your patience')
+		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-help')
+	else:
+		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-home')

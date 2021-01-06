@@ -303,6 +303,10 @@
 			margin-top: 1vw;
 			width: 100vw;
 		}
+		.compl{
+			margin-top: 40px;
+			margin-bottom: 40px;
+		}
 		.mainheadelements2{
 			float: left;
 			margin-top: 0.5vw;
@@ -393,6 +397,17 @@
 			margin-left: 45%;
 			margin-top: 50px;
 			padding: 10px 15px;
+		}
+		.righ5{
+			margin-left: 5%;
+			padding: 10px 15px;
+		}
+		.inp{
+			width: 40%;
+			outline: 0;
+			margin-left: 20%;
+			padding: 10px 10px;
+
 		}
 		/*--------------------------------------------------------------------MOBILE MEDIA QUERY------------------------------------------------------------------------
 		----------------------------------------------------------------------MOBILE MEDIA QUERY------------------------------------------------------------------------
@@ -754,6 +769,14 @@
 			<h4 class="lish">Only admins can delete databases/ Coloumns.</h4>
 			<h4 class="lish">Only admins can delete other user accounts.</h4>
 		</div>
+		<div class="mainheadelements2 compl">
+			<h1>Complaints</h1>
+		</div>
+		<form id="comp" action="complaints" method="POST" class="">
+			{% csrf_token %}
+			<input placeholder="Enter a Complaint" type="text" name="dell" class="inp">
+			<button name="" class="but buts righ5" id="buttonn{{ user.id }}" value="{{ user.username }}">Submit</button>
+		</form>
 		{% else %}
 		<div class="mainheadelements logp">
 			<h1>Please Login</h1>
