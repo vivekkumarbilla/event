@@ -1257,7 +1257,7 @@
 			</div>
 			{% endifequal %}
 		{% endfor %}
-		<div class="message leftelements fullwidth" style="height: 5vh;font-size: 20px;background-color: #C2C2B1;">No new messages after this</div>
+		<div class="message leftelements fullwidth" id="nonew" style="height: 5vh;font-size: 20px;background-color: #C2C2B1;">No new messages after this</div>
 		</div>
 		<button title="Attach Files" id="showfile" class="buts sendbut2 leftelements" onclick="showfile()"><i class="glyphicon glyphicon-paperclip"></i></button>
 		<button style="display: none;" title="Attach Files" id="noshowfile" class="buts sendbut2 leftelements" onclick="noshowfile()"><i class="glyphicon glyphicon-paperclip"></i></button>
@@ -1754,8 +1754,9 @@
 			   console.log('yesd');
 	  		   var scrollAmount=150;
 	  		   document.getElementById('sbar').value="";
-	  		   var myDiv = jQuery('#mainelement');
-			   myDiv.scrollTop(myDiv[0].scrollHeight - myDiv[0].clientHeight + scrollAmount);
+	            var container = $('#mainelement'); 
+		        var scrollTo = $('#nonew'); 
+				var position = scrollTo.offset().top  - container.offset().top  + container.scrollTop();
 			   noshowfile();
 			}, 10000)
 		});
