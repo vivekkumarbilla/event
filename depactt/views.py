@@ -800,8 +800,26 @@ def fullmessages(request,name):
 			cur=messagesm2[i]
 			print(messagesm2[i].messageseen)
 			if cur.receiver==User.objects.get(username=currentuser):
-				if cur.messageseen=='second':
+				if cur.messageseen=='second6':
 					cur.messageseen='third'
+					cur.save()
+				if cur.messageseen=='second5':
+					cur.messageseen='second6'
+					cur.save()
+				if cur.messageseen=='second4':
+					cur.messageseen='second5'
+					cur.save()
+				if cur.messageseen=='second3':
+					cur.messageseen='second4'
+					cur.save()
+				if cur.messageseen=='second2':
+					cur.messageseen='second3'
+					cur.save()
+				if cur.messageseen=='second1':
+					cur.messageseen='second2'
+					cur.save()
+				if cur.messageseen=='second':
+					cur.messageseen='second1'
 					cur.save()
 				if cur.messageseen=='first':
 					cur.messageseen='second'
@@ -818,8 +836,26 @@ def fullmessages(request,name):
 			cur=messagesm2[i]
 			print(messagesm2[i].messageseen)
 			if cur.receiver==User.objects.get(username=currentuser):
-				if cur.messageseen=='second':
+				if cur.messageseen=='second6':
 					cur.messageseen='third'
+					cur.save()
+				if cur.messageseen=='second5':
+					cur.messageseen='second6'
+					cur.save()
+				if cur.messageseen=='second4':
+					cur.messageseen='second5'
+					cur.save()
+				if cur.messageseen=='second3':
+					cur.messageseen='second4'
+					cur.save()
+				if cur.messageseen=='second2':
+					cur.messageseen='second3'
+					cur.save()
+				if cur.messageseen=='second1':
+					cur.messageseen='second2'
+					cur.save()
+				if cur.messageseen=='second':
+					cur.messageseen='second1'
 					cur.save()
 				if cur.messageseen=='first':
 					cur.messageseen='second'
@@ -856,8 +892,26 @@ def addmessage(request,name):
 		cur=messagesm2[i]
 		print(messagesm2[i].messageseen)
 		if cur.receiver==User.objects.get(username=currentuser):
-			if cur.messageseen=='second':
+			if cur.messageseen=='second6':
 				cur.messageseen='third'
+				cur.save()
+			if cur.messageseen=='second5':
+				cur.messageseen='second6'
+				cur.save()
+			if cur.messageseen=='second4':
+				cur.messageseen='second5'
+				cur.save()
+			if cur.messageseen=='second3':
+				cur.messageseen='second4'
+				cur.save()
+			if cur.messageseen=='second2':
+				cur.messageseen='second3'
+				cur.save()
+			if cur.messageseen=='second1':
+				cur.messageseen='second2'
+				cur.save()
+			if cur.messageseen=='second':
+				cur.messageseen='second1'
 				cur.save()
 			if cur.messageseen=='first':
 				cur.messageseen='second'
