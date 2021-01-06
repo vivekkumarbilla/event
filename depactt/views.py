@@ -793,7 +793,7 @@ def fullmessages(request,name):
 		dicmessages["user_num"]=name
 		messagesm=Messaging.objects.filter(Q(receiver=request.user,messagesenderid=User.objects.get(username=name),messageseen='third') | Q(receiver=User.objects.get(username=name),messagesenderid=User.objects.get(id=currentuserid))).order_by('messagedate','timee')
 		dicmessages["msg"]=messagesm
-		messagesms=Messaging.objects.filter(Q(receiver=request.user,messagesenderid=User.objects.get(username=name),messageseen='second') | Q(receiver=request.user,messagesenderid=User.objects.get(username=name),messageseen='first'))
+		messagesms=Messaging.objects.filter(receiver=request.user,messagesenderid=User.objects.get(username=name)).exclude(messageseen='third')
 		dicmessages["msg2"]=messagesms
 		messagesm2=Messaging.objects.filter(receiver=request.user,messagesenderid=User.objects.get(username=name))
 		for i in range(0,len(messagesm2)):
