@@ -1753,9 +1753,8 @@
 			   $('#mainelement').load(" #mainelement > *");
 			   console.log('yesd');
 	  		   var scrollAmount=150;
-	           var container = $('#mainelement'); 
-		       var scrollTo = $('#nonew'); 
-			   var position = scrollTo.offset().top  - container.offset().top  + container.scrollTop();
+		  	   var myDiv = jQuery('#mainelement');
+    		   myDiv.scrollTop(myDiv[0].scrollHeight - myDiv[0].clientHeight + scrollAmount);
 			   noshowfile();
 			}, 2000)
 		});
