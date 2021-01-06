@@ -237,10 +237,10 @@ def home(request):
 		for i in range(0,len(messagesm)):
 			cur=messagesm[i]
 			if cur.messageseen==False:
-				if cur.messagesender in inbox:
+				if cur.sender in inbox:
 					print('it exists')
 				else:
-					inbox.append(cur.messagesender)
+					inbox.append(cur.sender)
 		print(inbox)
 		dicevents["nomessages"] = inbox
 		dicevents["nomessages2"] = messagesm
@@ -741,7 +741,7 @@ def groupmessages(request):
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-groups')
 
 
-def fullmessages(request): 
+def fullmessages(request,name): 
 	if request.user.is_authenticated:
 		currentuser = request.user.username
 		currentuserid = request.user.id
@@ -757,45 +757,91 @@ def fullmessages(request):
 
 	}
 	if request.method == "POST":
-		print('entered post')
-		sender=request.POST.get("send", "")
-		evid=request.POST.get("usid", "")
-		msgsender=request.POST.get("sender", "")
-		receiver=request.POST.get("rece", "")
-		message=request.POST.get("message", "")
-		senderno=request.POST.get("sendno", "")
-		print(evid)
-		print(sender)
-		print(currentuser)
-		print(receiver)
-		print(message)
-		print(senderno)
-		print(msgsender)
-		if (len(receiver)==0) or(len(message)==0) or(len(senderno)==0) or(len(msgsender)==0):
-			dicmessages["user_num"]=evid
-			dicmessages["user_num2"]=sender
-			messagesm=Messaging.objects.filter(Q(receiver=request.user,messagesenderid=User.objects.get(id=sender),messageseen=True) | Q(receiver=User.objects.get(username=evid),messagesenderid=User.objects.get(id=currentuserid))).order_by('messagedate','timee')
-			dicmessages["msg"]=messagesm
-			messagesms=Messaging.objects.filter(receiver=request.user,messagesenderid=User.objects.get(id=sender),messageseen=False)
-			dicmessages["msg2"]=messagesms
-			messagesm2=Messaging.objects.filter(receiver=request.user,messagesenderid=User.objects.get(id=sender))
-			for i in range(0,len(messagesm2)):
-				cur=messagesm2[i]
-				print(messagesm2[i].messageseen)
-				if cur.receiver==User.objects.get(username=currentuser):
-					cur.messageseen=True
-					cur.save()
-		else :
-			if User.objects.filter(username=receiver).exists():
-				messagedone= Messaging(sender=User.objects.get(username=currentuser), receiver=User.objects.get(username=receiver), message=message, messagesenderid=User.objects.get(id=senderno))
-				messagedone.save()
-			dicmessages["user_num"]=evid
-			dicmessages["user_num2"]=sender
-			messagesm=Messaging.objects.filter(Q(receiver=User.objects.get(username=currentuser),messagesenderid=User.objects.get(id=sender)) | Q(receiver=User.objects.get(username=evid),messagesenderid=User.objects.get(id=currentuserid))).order_by('messagedate','timee')
-			dicmessages["msg"]=messagesm
+		dicmessages["user_num"]=name
+		messagesm=Messaging.objects.filter(Q(receiver=request.user,messagesenderid=User.objects.get(username=name),messageseen=True) | Q(receiver=User.objects.get(username=name),messagesenderid=User.objects.get(id=currentuserid))).order_by('messagedate','timee')
+		dicmessages["msg"]=messagesm
+		messagesms=Messaging.objects.filter(receiver=request.user,messagesenderid=User.objects.get(username=name),messageseen=False)
+		dicmessages["msg2"]=messagesms
+		messagesm2=Messaging.objects.filter(receiver=request.user,messagesenderid=User.objects.get(username=name))
+		for i in range(0,len(messagesm2)):
+			cur=messagesm2[i]
+			print(messagesm2[i].messageseen)
+			if cur.receiver==User.objects.get(username=currentuser):
+				cur.messageseen=True
+				cur.save()
 		return render(request, 'depactt/fullmessages.html',dicmessages)
 	else:
-		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-messaging')
+		dicmessages["user_num"]=name
+		messagesm=Messaging.objects.filter(Q(receiver=request.user,messagesenderid=User.objects.get(username=name),messageseen=True) | Q(receiver=User.objects.get(username=name),messagesenderid=User.objects.get(id=currentuserid))).order_by('messagedate','timee')
+		dicmessages["msg"]=messagesm
+		messagesms=Messaging.objects.filter(receiver=request.user,messagesenderid=User.objects.get(username=name),messageseen=False)
+		dicmessages["msg2"]=messagesms
+		messagesm2=Messaging.objects.filter(receiver=request.user,messagesenderid=User.objects.get(username=name))
+		for i in range(0,len(messagesm2)):
+			cur=messagesm2[i]
+			print(messagesm2[i].messageseen)
+			if cur.receiver==User.objects.get(username=currentuser):
+				cur.messageseen=True
+				cur.save()
+		return render(request, 'depactt/fullmessages.html',dicmessages)
+
+
+def fullmessaging(request,name): 
+	if request.user.is_authenticated:
+		currentuser = request.user.username
+		currentuserid = request.user.id
+	print(name)
+	name2=User.objects.filter(username=name)
+	dicevents = {
+		"user_number": name2
+	}
+	return render(request, 'depactt/xamp.html',dicevents)
+
+def addmessage(request,name): 
+	if request.user.is_authenticated:
+		currentuser = request.user.username
+		currentuserid = request.user.id
+	print(name)
+	name2=User.objects.filter(username=name)
+	dicmessages = {
+		"user_number": name2
+	}
+	dicmessages["user_num"]=name
+	messagesm=Messaging.objects.filter(Q(receiver=request.user,messagesenderid=User.objects.get(username=name),messageseen=True) | Q(receiver=User.objects.get(username=name),messagesenderid=User.objects.get(id=currentuserid))).order_by('messagedate','timee')
+	dicmessages["msg"]=messagesm
+	messagesms=Messaging.objects.filter(receiver=request.user,messagesenderid=User.objects.get(username=name),messageseen=False)
+	dicmessages["msg2"]=messagesms
+	messagesm2=Messaging.objects.filter(receiver=request.user,messagesenderid=User.objects.get(username=name))
+	for i in range(0,len(messagesm2)):
+		cur=messagesm2[i]
+		print(messagesm2[i].messageseen)
+		if cur.receiver==User.objects.get(username=currentuser):
+			cur.messageseen=True
+			cur.save()
+	if request.method == "POST":
+		rname=request.POST.get("rece", "")
+		message=request.POST.get("message", "")
+		process=request.POST.get("what", "")
+		print(process)
+		print(rname)
+		print(message)
+		if process=='image':
+			print('image ha ha')
+			image=request.FILES['share2']
+			mmess= Messaging(image=image,sender=request.user,receiver=User.objects.get(username=rname),message=message,messagesenderid=request.user)
+			mmess.save()
+		elif process=='file':
+			print('file ha ha')
+			file=request.FILES['file']
+			mmess= Messaging(file=file,sender=request.user,receiver=User.objects.get(username=rname),message=message,messagesenderid=request.user)
+			mmess.save()
+		else:
+			print('nonononono')
+			mmess= Messaging(sender=request.user,receiver=User.objects.get(username=rname),message=message,messagesenderid=request.user)
+			mmess.save()
+		return render(request, 'depactt/fullmessages.html',dicmessages)
+	else:
+		return render(request, 'depactt/xamp.html',dicmessages)
 
 def addposter(request):
 	if request.method=='POST':

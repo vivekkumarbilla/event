@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		{{ name }}
+	</title>
+</head>
+<body>
+	{% block includes %}
+		<p>
+			user : 
+		{% for user in user_number %}
+		{{ user.first_name }}
+		{{ user.username }}
+		{{ user.last_name }}
+		{{ user.email }}
+		{% endfor %}
+		</p>
+	{% endblock includes %}
+</body>
+</html>

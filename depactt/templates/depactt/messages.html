@@ -929,23 +929,14 @@
 		{% for user in user_number %}
 		<div class="mainelements" >
 			<div class="leftelements fullwidth">
-				<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-userdetails" method="POST">
-					{% csrf_token %}
-					<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
-					<button name="send" value="{{ user.username }}" class="butsud leftelements fullheight">{{ user.username }}</button>
-				</form>
-					{% for nom in nomessages %}
-					{% if nom %}
-					{% ifequal nom user.username %}
-						<div class="leftelements fullheight messagepop">1</div>
-					{% endifequal %}
-					{% endif %}
-					{% endfor %}
-				<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-fullmessages" method="POST">
-					{% csrf_token %}
-					<input style="display: none;" value="{{ user.id }}" type="text" name="send">
-					<button name="usid" value="{{ user.username }}" class="buts rightelements fullheight chatbut"><i class="glyphicon glyphicon-comment"></i></button>
-				</form>
+				<a href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-fullmessages/chat/username={{ user.username }}" class="butsud leftelements fullheight">{{ user.username }}</a>
+				{% for nom in nomessages %}
+				{% if nom %}
+				{% ifequal nom user.username %}
+					<div class="leftelements fullheight messagepop">1</div>
+				{% endifequal %}
+				{% endif %}
+				{% endfor %}
 			</div>
 		</div>
 		{% endfor %}
@@ -955,23 +946,14 @@
 		{% for user in user_number2 %}
 		<div class="mainelements" >
 			<div class="leftelements fullwidth">
-				<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-userdetails" method="POST">
-					{% csrf_token %}
-					<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
-					<button name="send" value="{{ user.username }}" class="butsud leftelements fullheight">{{ user.username }}</button>
-				</form>
-					{% for nom in nomessages %}
-					{% if nom %}
-					{% ifequal nom user.username %}
-						<div class="leftelements fullheight messagepop">1</div>
-					{% endifequal %}
-					{% endif %}
-					{% endfor %}
-				<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-fullmessages" method="POST">
-					{% csrf_token %}
-					<input style="display: none;" value="{{ user.id }}" type="text" name="send">
-					<button name="usid" value="{{ user.username }}" class="buts rightelements fullheight chatbut"><i class="glyphicon glyphicon-comment"></i></button>
-				</form>
+				<a href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-fullmessages/chat/username={{ user.username }}" class="butsud leftelements fullheight">{{ user.username }}</a>
+				{% for nom in nomessages %}
+				{% if nom %}
+				{% ifequal nom user.username %}
+					<div class="leftelements fullheight messagepop">1</div>
+				{% endifequal %}
+				{% endif %}
+				{% endfor %}
 			</div>
 		</div>
 		{% endfor %}

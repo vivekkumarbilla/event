@@ -289,7 +289,7 @@
 			height: auto;
 			width: 100vw;
 			margin-top: 7.5vw;
-			padding: 0vw 0vw;
+			padding: 0px 0px;
 			box-sizing: border-box;
 			background-color: #DDDDEE;
 			padding-bottom: 15vw;
@@ -349,19 +349,21 @@
 		}
 		.mainelements2{
 			float: left;
-			width: 100vw;
+			width: 96vw;
 			height: 4vw;
-			background-color: #EFFADA;
+			background-color: #D6DBCD;
 		}
 		.under{
-			height: 100%;
-			margin-top: 0px;
+			height: 80%;
+			margin-top: 5px;
 		}
 		.mesgtype{
-			width: 90%;
+			width: 88%;
+			margin-left: 1%;
 			border: 0.5px solid grey;
 			outline: 0;
 			padding-left: 2vw;
+			border-radius: 25px;
 		}		
 		.leftelements{
 			float: left;
@@ -413,6 +415,69 @@
 			height: auto;
 			margin-top: 0.5vw;
 			width: 100%;
+		}
+		.sendbut2{
+			margin-top: 0px;
+			width: 4vw;
+			height: 4vw;
+			font-size: 20px;
+			background-color: #D6DBCD;
+			border-radius: 4vw;
+		}
+		.files{
+			position: absolute;
+			bottom: 4vw;
+			left: 0vw;
+			width: 4vw;
+			height: 4vw;
+			background-color: red;
+		}
+		.files2{
+			position: absolute;
+			bottom: 8vw;
+			left: 0vw;
+			width: 4vw;
+			height: 4vw;
+			background-color: cyan;
+		}
+		.donefiles{
+			position: absolute;
+			bottom: 4vw;
+			left: 0vw;
+			width: 20vw;
+			height: 4vw;
+			background-color: red;
+		}
+		.donefiles2{
+			position: absolute;
+			bottom: 4vw;
+			left: 0vw;
+			width: 20vw;
+			height: 4vw;
+			background-color: cyan;
+		}
+		.customfile{
+			padding: 0px;
+			background-color: yellow;
+		}
+		.sharing{
+			font-size: 20px;
+			padding: 20px 20px;
+			border-radius: 4vw;
+			background-color: #D6DBCD;
+		}
+		.sharing2{
+			font-size: 20px;
+			padding: 20px 20px;
+			border-radius: 0vw;
+			border-top-left-radius: 20px;
+			border-top-right-radius: 20px;
+			background-color: #D6DBCD;
+			text-overflow: ellipsis;
+		}
+		.selected{
+			position: absolute;
+			left: -124px;
 		}
 		.actualmessage{
 			height: 100%;
@@ -468,8 +533,9 @@
 		}
 		.sendbut{
 			margin-top: 0px;
-			width: 10%;
-			border: 1px solid black;
+			width: 5%;
+			font-size: 20px;
+			background-color: transparent;
 		}
 		.bacbut{
 			padding-left: 2.5vw;
@@ -977,6 +1043,7 @@
 			.alagbut{
 				font-size: 3vw;
 			}
+		}
 	</style>
 </head>
 <body onload="startTime()">
@@ -1011,7 +1078,7 @@
 			<input placeholder="Search Messages" id="searchin" type="text" name="send">
 			<button class="fullheight3 buts searchbut" id="smbut" onclick="search_event()">Go</button>
 		</div>
-		<div id="mainelement" style="height: 70vh;" class="mainelements">
+		<div id="mainelement" style="height: 68vh;" class="mainelements">
 		{% for mesg in msg %}
 			{% if mesg.messagesender == user_num %}
 			<div class="message leftelements fullwidth">
@@ -1034,6 +1101,14 @@
 			{% else %}
 			<div class="message leftelements fullwidth">
 				<div class="rightelements actualmessage2">
+					{% if mesg.image %}
+					<img src="{{ mesg.image.url }}" style="width: 200px;height: 200px;">
+					<br>
+					{% endif %}
+					{% if mesg.file %}
+					<a href="filedownload" style="width: 100px;height: 50px;">{{ mesg.file }}</a>
+					<br>
+					{% endif %}
 					<p style="display: none;" class="rightelements msgg date" id="rightmsgdata{{ mesg.id }}">{{ mesg.messagedate }}</p>
         			<button class="rightelements opbut" id="rbut1{{ mesg.id }}" onclick="showro('butter','{{ mesg.id }}')">
 	        			<span class="mlright">
@@ -1051,16 +1126,18 @@
 			</div>
 			{% endif %}
 		{% endfor %}
+		<p id="gg"></p>
 		</div>
-		<form class="ssbar mainelements2" action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-fullmessages" method="POST">
+		<button title="Attach Files" id="showfile" class="buts sendbut2 leftelements" onclick="showfile()"><i class="glyphicon glyphicon-paperclip"></i></button>
+		<button style="display: none;" title="Attach Files" id="noshowfile" class="buts sendbut2 leftelements" onclick="noshowfile()"><i class="glyphicon glyphicon-paperclip"></i></button>
+		<form enctype="multipart/form-data" class="mainelements2" method="POST">
 			{% csrf_token %}
 			<input autocomplete="off" class="under mesgtype" id="sbar" placeholder="Type something" type="text" name="message" autofocus required/>
-			<input style="display: none;" type="text" name="rece" value="{{ user_num }}">
-			<input style="display: none;" type="text" name="usid" value="{{ user_num }}">
-			<input style="display: none;" type="text" name="send" value="{{ user_num2 }}">
-			<input style="display: none;" type="text" name="sender" value="{{ user.username }}">
-			<input style="display: none;" type="text" name="sendno" value="{{ user.id }}">
-			<button title="Send" class="buts under sendbut rightelements"><i class="glyphicon glyphicon-send"></i> Send</button>
+			<label style="display: none;" class="customfile files buts sharing" id="file"><i class="glyphicon glyphicon-file" id="alagpic1"></i><input style="display: none;" id="thefile" class="selected" type="file" name="share" value="File"></label>
+			<label style="display: none;" class="files2 buts sharing" id="image"><i class="glyphicon glyphicon-picture" id="alagpic2"></i><input style="display: none;" id="theimage" class="selected" type="file" name="share2" accept="image/*" value="File"></label>
+			<input style="display: none;" type="text" name="sender" id="sender" value="{{ user_num }}">
+			<input style="display: none;" type="text" name="what" id="what" value="none">
+			<button title="Send" class="buts sendbut rightelements" id="subbut"><i class="glyphicon glyphicon-send"></i></button>
 		</form>
 	    {% endblock includes %}
 		{% else %}
@@ -1104,13 +1181,13 @@
 	<!-- ---------------------------------------------------------------------------------------------NAVBAR-------------------------------------------------------------------------- -->
 	<nav>
 		<div style="display: none;" id="profilediv">
-			<a class="profilelink" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-profile">
+			<a target="_blank" class="profilelink" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-profile">
 				<div class="low profiletdp">
 					<i class="profiledp profiledp2 glyphicon glyphicon-th-list"></i>
 					<p class="profiletext">Details</p>
 				</div>
 			</a>
-			<a class="profilelink" href="/admin/kjsomaiyacollegeofengineering-teachers-department-admin">
+			<a target="_blank" class="profilelink" href="/admin/kjsomaiyacollegeofengineering-teachers-department-admin">
 				<div class="mid profiletdp">
 					<i class="profiledp profiledp2 glyphicon glyphicon-asterisk"></i>
 					<p class="profiletext">Admin Page</p>
@@ -1414,6 +1491,21 @@
 			document.getElementById(but2).style.display ='none';
 			document.getElementById(but1).style.display ='';
 		}
+		function showfile(){
+			document.getElementById('file').style.display ='';
+			document.getElementById('image').style.display ='';
+			document.getElementById('noshowfile').style.display ='';
+			document.getElementById('showfile').style.display ='none';
+			document.getElementById('alagpic1').style.display ='';
+			document.getElementById('alagpic2').style.display ='';
+			document.getElementById('image').classList.remove("donefiles2");
+		}
+		function noshowfile(){
+			document.getElementById('file').style.display ='none';
+			document.getElementById('image').style.display ='none';
+			document.getElementById('noshowfile').style.display ='none';
+			document.getElementById('showfile').style.display ='';
+		}
 		function adcode(){
 			document.getElementById('forad').style.display = '';
 			document.getElementById('forbut').style.display = '';
@@ -1500,6 +1592,118 @@
 			    }
 			});
 		}
+		$(document).ready(function(){
+		    $("#theimage").on('change',function(){
+				document.getElementById('alagpic1').style.display ='none';
+				document.getElementById('alagpic2').style.display ='none';
+				document.getElementById('file').style.display ='none';
+				document.getElementById('theimage').style.display ='';
+				document.getElementById('image').classList.add("donefiles2");
+				document.getElementById('image').classList.add("sharing2");
+				document.getElementById('what').value="image";
+		    });
+		});
+		$(document).ready(function(){
+		    $("#thefile").on('change',function(){
+				document.getElementById('alagpic1').style.display ='none';
+				document.getElementById('alagpic2').style.display ='none';
+				document.getElementById('image').style.display ='none';
+				document.getElementById('thefile').style.display ='';
+				document.getElementById('file').classList.add("donefiles");
+				document.getElementById('file').classList.add("sharing2");
+				document.getElementById('what').value="file";
+		    });
+		});
+		$(document).ready(function () {
+		  $("#subbut").click(function (event) {
+		  	console.log('entered')
+		  	var token =  $('input[name="csrfmiddlewaretoken"]').attr('value')
+		  	var pro = document.getElementById('what').value;
+		  	if (pro==='file'){
+		  		jQuery.noConflict();
+		  		formdata = new FormData();
+		  		console.log('entered in file')
+		  		var file = document.getElementById('thefile').files[0];
+		  		formdata.append("file", file);
+		  		formdata.append("message", document.getElementById('sbar').value);
+		  		formdata.append("rece", document.getElementById('sender').value);
+		  		formdata.append("what", document.getElementById('what').value);
+		  		jQuery.ajax({
+			      type: "POST",
+			      url: "/kjsomaiyacollegeofengineeringandinformationtechnologyteachers-fullmessages/addmessage/chat/username="+ document.getElementById('sender').value,
+			      headers: {
+			      	'X-CSRFToken': token
+			      },
+			      data: formdata,
+			      processData: false,
+			      contentType: false,
+			      success: function (response) {
+			  		console.log('success')
+			  		jQuery("#mainelement").load(" #mainelement > *");
+			  		var scrollAmount=150;
+			  		document.getElementById('sbar').value="";
+			  		var myDiv = jQuery('#mainelement');
+	    			myDiv.scrollTop(myDiv[0].scrollHeight - myDiv[0].clientHeight + scrollAmount);
+	    			document.getElementById('thefile').value = '';
+			      }
+			    });
+		  	}
+		  	else if (pro==='image'){
+		  		jQuery.noConflict();
+		  		formdata = new FormData();
+		  		console.log('entered in file')
+		  		var file = document.getElementById('theimage').files[0];
+		  		formdata.append("share2", file);
+		  		formdata.append("message", document.getElementById('sbar').value);
+		  		formdata.append("rece", document.getElementById('sender').value);
+		  		formdata.append("what", document.getElementById('what').value);
+		  		jQuery.ajax({
+			      type: "POST",
+			      url: "/kjsomaiyacollegeofengineeringandinformationtechnologyteachers-fullmessages/addmessage/chat/username="+ document.getElementById('sender').value,
+			      headers: {
+			      	'X-CSRFToken': token
+			      },
+			      data: formdata,
+			      processData: false,
+			      contentType: false,
+			      success: function (response) {
+			  		console.log('success')
+			  		jQuery("#mainelement").load(" #mainelement > *");
+			  		var scrollAmount=150;
+			  		document.getElementById('sbar').value="";
+			  		var myDiv = jQuery('#mainelement');
+	    			myDiv.scrollTop(myDiv[0].scrollHeight - myDiv[0].clientHeight + scrollAmount);
+	    			document.getElementById('theimage').value = '';
+			      }
+			    });
+		  	}
+		  	else {
+		  		$.ajax({
+			      type: "POST",
+			      url: "/kjsomaiyacollegeofengineeringandinformationtechnologyteachers-fullmessages/addmessage/chat/username="+ document.getElementById('sender').value,
+			      headers: {
+			      	'X-CSRFToken': token
+			      },
+			      data: {
+			        'message': document.getElementById('sbar').value,
+			        'rece': document.getElementById('sender').value,
+			        'what': document.getElementById('what').value 
+			      },
+			      success: function (response) {
+			  		console.log('success')
+			  		$("#mainelement").load(" #mainelement > *");
+			  		var scrollAmount=150;
+			  		document.getElementById('sbar').value="";
+			  		var myDiv = $('#mainelement');
+	    			myDiv.scrollTop(myDiv[0].scrollHeight - myDiv[0].clientHeight + scrollAmount);
+			      }
+			    });
+		  	}
+		    
+		    return false;
+		  });
+
+		});
 	</script>
 </body>
 </html>

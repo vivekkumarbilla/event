@@ -57,7 +57,8 @@ class Messaging(models.Model):
 	timee = models.TimeField(auto_now_add=True, blank=True)
 	messagesenderid = models.ForeignKey(User,null=True, on_delete=models.CASCADE, related_name='just_an_id_of_the_sender')
 	messagetag = models.ForeignKey('self',null=True, on_delete=models.CASCADE)
-	poster = models.ImageField(upload_to='sharing', blank=True)
+	image = models.ImageField(upload_to='Images', blank=True)
+	file = models.FileField(upload_to='Files', blank=True)
 	messageseen = models.BooleanField(default=False)
 
 
