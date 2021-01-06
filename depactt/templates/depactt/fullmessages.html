@@ -1137,12 +1137,7 @@
 				<input style="display: none;" value="{{ request.path }}" type="text" name="evid">
 				<button name="send" value="{{ user_num }}" class="butsud leftelements fullheight">{{ user_num }}</button>
 			</form>
-			<form class="fullheight3 buts searchbut" action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-fullmessages" method="POST">
-				{% csrf_token %}
-				<input style="display: none;" type="text" name="usid" value="{{ user_num }}">
-				<input style="display: none;" type="text" name="send" value="{{ user_num2 }}">
-				<button title="Refresh" class="refbut alagbut"><i class="glyphicon glyphicon-refresh"></i></button>
-			</form>
+			<a href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-username={{ user_num }}" style="font-size: 15px;padding-top: 20px;" class="butsud leftelements fullheight"><i class="glyphicon glyphicon-refresh"></i></a>
 			<button title="Search Messages" id="sopen" class="fullheight3 buts alagbut searchbut" onclick="messageopen()"><i class="glyphicon glyphicon-search"></i></button>
 			<button id="sclose" style="display: none;" class="fullheight3 butsd alagbut searchbut" onclick="messageclose()"><i class="glyphicon glyphicon-search"></i></button>
 		</div>
@@ -1698,6 +1693,10 @@
 			if (screen.width < 1200) {
 			    document.getElementById('mainelement').removeAttribute('style');
 			}
+			setInterval(function(){
+			   $('#mainelement').load(" #mainelement > *");
+			   console.log('yesd')
+			}, 2000)
 		});
 		$(document).ready(function () {
 		  $("#subbut").click(function (event) {

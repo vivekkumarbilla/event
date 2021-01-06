@@ -779,7 +779,6 @@ def fullmessages(request,name):
 		messagesm2=Messaging.objects.filter(receiver=request.user,messagesenderid=User.objects.get(username=name))
 		for i in range(0,len(messagesm2)):
 			cur=messagesm2[i]
-			print(messagesm2[i].messageseen)
 			if cur.receiver==User.objects.get(username=currentuser):
 				cur.messageseen=True
 				cur.save()

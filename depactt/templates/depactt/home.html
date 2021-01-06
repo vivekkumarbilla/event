@@ -1025,11 +1025,7 @@
 				<div style="display: none;" id="msgs">
 					{% for nom in nomessages2 %}
 						<button class="mnoti" value="{{ nom.messagesender }} : {{ nom.message }} [{{ nom.timee }}]" style="display: none;"></button>
-						<form action="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-fullmessages" method="POST">
-							{% csrf_token %}
-							<input style="display: none;" value="{{ nom.messagesenderid }}" type="text" name="send">
-							<button class="leftelements noti2 but3 fullheight" name="usid" value="{{ nom.messagesender }}"><p class="leftelements para2"><b>{{ nom.messagesender }}</b></p><p style="margin-left: 5px;" class="leftelements para">{{ nom.message }}  </p><p style="margin-left: 5px;" class="rightelements para"> [{{ nom.timee }}]</p></button>
-						</form>
+						<a href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-username={{ nom.sender }}" class="leftelements noti2 but3 fullheight" ><p class="leftelements para2"><b>{{ nom.messagesender }}</b></p><p style="margin-left: 5px;" class="leftelements para">{{ nom.message }}  </p><p style="margin-left: 5px;" class="rightelements para"> [{{ nom.timee }}]</p></a>
 					{% endfor %}
 				</div>
 			</div>
