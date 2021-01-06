@@ -1205,7 +1205,7 @@
 		{% for mesg in msg2 %}
 			{% ifequal mesg.sender.username user_num %}
 			<div class="message leftelements fullwidth">
-				<div class=" leftelements actualmessage">
+				<div class=" leftelements actualmessage" style="background-color: #C2C2B1;">
 					{% if mesg.image %}
 					<img src="{{ mesg.image.url }}" style="width: auto;height: 400px;">
 					<br>
@@ -1231,7 +1231,7 @@
 			</div>
 			{% else %}
 			<div class="message leftelements fullwidth">
-				<div class="rightelements actualmessage2">
+				<div class="rightelements actualmessage2" style="background-color: #C2C2B1;">
 					{% if mesg.image %}
 					<img src="{{ mesg.image.url }}" style="width: auto;height: 400px;">
 					<br>
@@ -1257,7 +1257,7 @@
 			</div>
 			{% endifequal %}
 		{% endfor %}
-		<div class="message leftelements fullwidth" id="nonew" style="height: 10vh;font-size: 20px;background-color: transparent;"></div>
+		<div class="message leftelements fullwidth" id="nonew" style="background-color: transparent;height: 10vh;font-size: 20px;"></div>
 		</div>
 		<button title="Attach Files" id="showfile" class="buts sendbut2 leftelements" onclick="showfile()"><i class="glyphicon glyphicon-paperclip"></i></button>
 		<button style="display: none;" title="Attach Files" id="noshowfile" class="buts sendbut2 leftelements" onclick="noshowfile()"><i class="glyphicon glyphicon-paperclip"></i></button>
