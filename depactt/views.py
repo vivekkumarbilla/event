@@ -920,7 +920,7 @@ def addmessage(request,name):
 		rname=request.POST.get("rece", "")
 		message=request.POST.get("message", "")
 		process=request.POST.get("what", "")
-		if len(message==0):
+		if len(message)==0:
 			message=message+'..'
 		print(process)
 		print(rname)
