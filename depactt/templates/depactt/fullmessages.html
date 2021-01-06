@@ -1201,7 +1201,7 @@
 			</div>
 			{% endifequal %}
 		{% endfor %}
-		<div class="message leftelements fullwidth" style="height: 5vh;font-size: 20px;background-color: #C2C2B1;">Unread Messages</div>
+		<div class="message leftelements fullwidth" style="height: 5vh;font-size: 20px;background-color: #C2C2B1;">Unread Messages<i class="glyphicon glyphicon-chevron-down"></i></div>
 		{% for mesg in msg2 %}
 			{% ifequal mesg.sender.username user_num %}
 			<div class="message leftelements fullwidth">
@@ -1257,7 +1257,7 @@
 			</div>
 			{% endifequal %}
 		{% endfor %}
-		<div class="message leftelements fullwidth" style="height: 5vh;font-size: 20px;background-color: #C2C2B1;">No Messages</div>
+		<!-- <div class="message leftelements fullwidth" style="height: 5vh;font-size: 20px;background-color: #C2C2B1;">No Messages</div> -->
 		<p id="gg"></p>
 		</div>
 		<button title="Attach Files" id="showfile" class="buts sendbut2 leftelements" onclick="showfile()"><i class="glyphicon glyphicon-paperclip"></i></button>
@@ -1752,8 +1752,13 @@
 			}
 			setInterval(function(){
 			   $('#mainelement').load(" #mainelement > *");
-			   console.log('yesd')
-			}, 40000)
+			   console.log('yesd');
+	  		   var scrollAmount=150;
+	  		   document.getElementById('sbar').value="";
+	  		   var myDiv = jQuery('#mainelement');
+			   myDiv.scrollTop(myDiv[0].scrollHeight - myDiv[0].clientHeight + scrollAmount);
+			   noshowfile();
+			}, 10000)
 		});
 		$(document).ready(function () {
 		  $("#subbut").click(function (event) {
@@ -1786,6 +1791,7 @@
 			  		var myDiv = jQuery('#mainelement');
 	    			myDiv.scrollTop(myDiv[0].scrollHeight - myDiv[0].clientHeight + scrollAmount);
 	    			document.getElementById('thefile').value = '';
+				    noshowfile()
 			      }
 			    });
 		  	}
@@ -1815,6 +1821,7 @@
 			  		var myDiv = jQuery('#mainelement');
 	    			myDiv.scrollTop(myDiv[0].scrollHeight - myDiv[0].clientHeight + scrollAmount);
 	    			document.getElementById('theimage').value = '';
+				    noshowfile()
 			      }
 			    });
 		  	}
