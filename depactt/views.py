@@ -891,35 +891,6 @@ def addmessage(request,name):
 	dicmessages = {
 		"user_number": name2
 	}
-	messagesm2=Messaging.objects.filter(receiver=request.user,messagesenderid=User.objects.get(username=name))
-	for i in range(0,len(messagesm2)):
-		cur=messagesm2[i]
-		print(messagesm2[i].messageseen)
-		if cur.receiver==User.objects.get(username=currentuser):
-			if cur.messageseen=='second6':
-				cur.messageseen='third'
-				cur.save()
-			if cur.messageseen=='second5':
-				cur.messageseen='second6'
-				cur.save()
-			if cur.messageseen=='second4':
-				cur.messageseen='second5'
-				cur.save()
-			if cur.messageseen=='second3':
-				cur.messageseen='second4'
-				cur.save()
-			if cur.messageseen=='second2':
-				cur.messageseen='second3'
-				cur.save()
-			if cur.messageseen=='second1':
-				cur.messageseen='second2'
-				cur.save()
-			if cur.messageseen=='second':
-				cur.messageseen='second1'
-				cur.save()
-			if cur.messageseen=='first':
-				cur.messageseen='second'
-				cur.save()
 	if request.method == "POST":
 		rname=request.POST.get("rece", "")
 		message=request.POST.get("message", "")
@@ -943,6 +914,35 @@ def addmessage(request,name):
 			print('nonononono')
 			mmess= Messaging(sender=request.user,receiver=User.objects.get(username=rname),message=message,messagesenderid=request.user)
 			mmess.save()
+		messagesm2=Messaging.objects.filter(receiver=request.user,messagesenderid=User.objects.get(username=rname))
+		for i in range(0,len(messagesm2)):
+			cur=messagesm2[i]
+			print(messagesm2[i].messageseen)
+			if cur.receiver==User.objects.get(username=currentuser):
+				if cur.messageseen=='first':
+					cur.messageseen='second'
+					cur.save()
+				if cur.messageseen=='second':
+					cur.messageseen='second1'
+					cur.save()
+				if cur.messageseen=='second1':
+					cur.messageseen='second2'
+					cur.save()
+				if cur.messageseen=='second2':
+					cur.messageseen='second3'
+					cur.save()
+				if cur.messageseen=='second3':
+					cur.messageseen='second4'
+					cur.save()
+				if cur.messageseen=='second4':
+					cur.messageseen='second5'
+					cur.save()
+				if cur.messageseen=='second5':
+					cur.messageseen='second6'
+					cur.save()
+				if cur.messageseen=='second6':
+					cur.messageseen='third'
+					cur.save()
 		return render(request, 'depactt/fullmessages.html',dicmessages)
 	else:
 		return render(request, 'depactt/xamp.html',dicmessages)

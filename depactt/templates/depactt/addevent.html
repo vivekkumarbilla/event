@@ -1387,17 +1387,17 @@
 			if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
 			return i;
 		}
-		var $slider = document.getElementById('profilediv3');
 		function menu(){
 			document.getElementById('profilediv3').style.display = '';
-			document.getElementById('bod').style.overflowy='hidden'
 			document.getElementById('hugebut').style.display = '';
 			document.getElementById('mainhead').style.opacity = '0.8';
 			document.getElementById('basicmain').style.opacity = '0.8';
 			document.getElementById('profilediv3').style.height = '100vh';
-		    var isOpen = $slider.classList.contains('slide-in');
+			
+		    $('#profilediv3').animate({
+		      right : '-=80vw'
+		    }, 500);
 
-		    $slider.setAttribute('class', isOpen ? 'slide-out' : 'slide-in');
 			if ($('#profilediv3').is(':visible')) {
 			    $('body').addClass("fixed-position");
 			} else {
@@ -1405,6 +1405,9 @@
 			}
 		}
 		function back(){
+		    $('#profilediv3').animate({
+		      right : '+=80vw'
+		    }, 500);
 			document.getElementById('profilediv3').style.display = 'none';
 			document.getElementById('hugebut').style.display = 'none';
 			document.getElementById('mainhead').style.opacity = '1';
