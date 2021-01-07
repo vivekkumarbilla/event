@@ -1070,9 +1070,11 @@
 			document.getElementById('basicmain').style.opacity = '0.8';
 			document.getElementById('profilediv3').style.height = '100vh';
 			
-		    $('#profilediv3').animate({
-		      right : '-=80vw'
-		    }, 500);
+			if ( window.innerWidth <= 1200 ){
+			    $('#profilediv3').animate({
+			      right : '-=80vw'
+			    }, 500);
+			}
 
 			if ($('#profilediv3').is(':visible')) {
 			    $('body').addClass("fixed-position");
@@ -1081,9 +1083,11 @@
 			}
 		}
 		function back(){
-		    $('#profilediv3').animate({
-		      right : '+=80vw'
-		    }, 500);
+			if ( window.innerWidth <= 1200 ){
+			    $('#profilediv3').animate({
+			      right : '+=80vw'
+			    }, 500);
+			}
 			document.getElementById('profilediv3').style.display = 'none';
 			document.getElementById('hugebut').style.display = 'none';
 			document.getElementById('mainhead').style.opacity = '1';
