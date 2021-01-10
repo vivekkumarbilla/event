@@ -71,9 +71,10 @@ from docx.shared import RGBColor
 # ----------------------------------------------------------------------prerequisites-------------------------------------------------------------------------------
 
 def index(request): 
-    # create data dictionary 
-    # dump data 
-    return render(request, 'depactt/index.html')
+	if request.user.is_authenticated:
+		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-home')
+	if not request.user.is_authenticated:
+		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login')
 
 
 def login(request): 
@@ -229,14 +230,14 @@ def home(request):
 	if request.user.is_authenticated:
 		currentuser = request.user.username
 		currentuserid = request.user.id
-		messagesm=Messaging.objects.filter(receiver=request.user,messageseen=False)
+		messagesm=Messaging.objects.filter(receiver=request.user).exclude(messageseen='third')
 		noofmessages=0
 		inbox=[]
 		inbox2=[]
 		msender=[]
 		for i in range(0,len(messagesm)):
 			cur=messagesm[i]
-			if cur.messageseen==False:
+			if cur.messageseen!='third':
 				if cur.sender in inbox:
 					print('it exists')
 				else:
@@ -466,19 +467,44 @@ def messaging(request):
 	if request.user.is_authenticated:
 		currentuser = request.user.username
 		currentuserid = request.user.id
-		messagesm=Messaging.objects.filter(receiver=request.user)
+		messagesm=Messaging.objects.filter(receiver=request.user).exclude(messageseen='third')
 		noofmessages=0
 		inbox=[]
 		print(len(messagesm))
 		for i in range(0,len(messagesm)):
 			cur=messagesm[i]
-			if cur.messageseen==False:
+			if cur.messageseen=='third':
+				pass
+			else:
 				if cur.sender in inbox:
 					print('it exists')
 				else:
 					inbox.append(cur.sender)
 		print(inbox)
-		dicuser["nomessages"]=inbox
+		dicuser["nomessages"]=messagesm
+		inbox2=[]
+		activities=[]
+		inbox3=[]
+		messagesmsm=Messaging.objects.filter(Q(sender=request.user) | Q(receiver=request.user)).order_by('-messagedate','-timee')
+		for i in range(0,len(messagesmsm)):
+			cur=messagesmsm[i]
+			if cur.receiver==request.user:
+				if cur.sender in activities:
+					pass
+				else:
+					mm2=Messaging.objects.filter(Q(receiver=request.user,sender=cur.sender) | Q(sender=request.user,receiver=cur.sender)).latest('messagedate','timee')
+					activities.append(cur.sender)
+					inbox2.append(mm2)
+			if cur.sender==request.user:
+				if cur.receiver in activities:
+					pass
+				else:
+					mm2=Messaging.objects.filter(Q(receiver=request.user,sender=cur.receiver) | Q(sender=request.user,receiver=cur.receiver)).latest('messagedate','timee')
+					activities.append(cur.receiver)
+					inbox2.append(mm2)
+		print(activities)
+		dicuser["recent"]=inbox2
+		dicuser["musers"]=activities
 	return render(request, 'depactt/messages.html',dicuser)
 
 

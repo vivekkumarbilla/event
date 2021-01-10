@@ -288,7 +288,7 @@
 			float: left;
 			/*border-top: 10px solid black;
 			border-bottom: 10px solid black;*/
-			height: auto;
+			height: 100vh;
 			width: 100vw;
 			margin-top: 7.5vw;
 			padding: 0vw 0vw;
@@ -320,14 +320,19 @@
 		}
 		.mainelements{
 			float: left;
-			margin-left: 5vw;
-			margin-right: 5vw;
-			margin-top: 3vw;
+			margin-left: 0vw;
+			margin-right: 0vw;
+			margin-top: 0vw;
 			width: 90vw;
-			height: 10vh;
+			height: 13vh;
 			background-color: #FFFFFF;
 			border: 0.5px solid darkgrey;
 			overflow: hidden;
+			color: #636363;
+		}
+		.mainelements:hover{
+			background-color: #FFFFFF;
+			text-decoration: none;
 		}
 		.inputbar{
 			height: 4vw;
@@ -373,9 +378,7 @@
 			float: right;
 		}
 		.fullheight{
-			height: 10vh;
-			padding-top: 0.5vw;
-			font-size: 2vw;
+			text-decoration: none;
 			padding-left: 1.5vw;
 			padding-right: 1.5vw;
 		}
@@ -918,45 +921,87 @@
 		<button style="display: none;" class="but buts foradb rightelements" id="forbut" onclick="forback()"><i class="glyphicon glyphicon-remove"></i></button>
 		{% if user.is_authenticated %}
 		<div class="searchbar mainheadelements inputbar">
+    		<button id="nbutn" class="but leftelements" onclick="newmessage()"><i class="glyphicon glyphicon-plus"></i></button>
 			<div class="leftelements inputbar2">
 				<input autocomplete="off" placeholder="Search Users" type="text" id="searchbar" name="search" class="leftelements">	
 			</div>
     		<button id="sbutn" class="but leftelements" onclick="search_event()"><i class="glyphicon glyphicon-search"></i></button>	
 		</div>
-		<div class="mainheadelements2">
-			<h1>Faculty</h1>
-		</div>
-		{% for user in user_number %}
-		<div class="mainelements" >
-			<div class="leftelements fullwidth">
-				<a href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-username={{ user.username }}" class="butsud leftelements fullheight">{{ user.username }}</a>
-				{% for nom in nomessages %}
-				{% if nom %}
-				{% ifequal nom user.username %}
-					<div class="leftelements fullheight messagepop">1</div>
-				{% endifequal %}
-				{% endif %}
-				{% endfor %}
+		<div class="recent" id="recent">
+			{% for user in musers %}
+				<a href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-username={{ user.username }}" class="mainelements leftelements fullheight">
+					{% for nom in recent %}
+					{% ifequal nom.messageseen 'third' %}
+						<h2>
+							{{ user.username }}
+						</h2>
+						{% ifequal nom.sender.username user.username %}
+						<p>
+							{{ nom.message }}    [{{ nom.timee }}]
+						</p>
+						{% endifequal %}
+						{% ifequal nom.receiver.username user.username %}
+						<p>
+							You : {{ nom.message }}     [{{ nom.timee }}]
+						</p>
+						{% endifequal %}
+					{% else %}
+						<div class="leftelements fullheight messagepop">1</div>
+						<h2>
+							{{ user.username }}
+						</h2>
+						{% ifequal nom.sender.username user.username %}
+						<p><b>
+							{{ nom.message }}    [{{ nom.timee }}]
+						</b></p>
+						{% endifequal %}
+						{% ifequal nom.receiver.username user.username %}
+						<p><b>
+							You : {{ nom.message }}     [{{ nom.timee }}]
+						</b></p>
+						{% endifequal %}
+					{% endifequal %}
+					{% endfor %}
+				</a>
 			</div>
+			{% endfor %}
 		</div>
-		{% endfor %}
-		<div class="mainheadelements2">
-			<h1>Students</h1>
-		</div>
-		{% for user in user_number2 %}
-		<div class="mainelements" >
-			<div class="leftelements fullwidth">
-				<a href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-username={{ user.username }}" class="butsud leftelements fullheight">{{ user.username }}</a>
-				{% for nom in nomessages %}
-				{% if nom %}
-				{% ifequal nom user.username %}
-					<div class="leftelements fullheight messagepop">1</div>
-				{% endifequal %}
-				{% endif %}
-				{% endfor %}
+		<div class="tab" id="newm" style="display: none;">
+			<div class="mainheadelements2">
+				<h1>Faculty</h1>
 			</div>
+			{% for user in user_number %}
+			<div class="mainelements" >
+				<div class="leftelements fullwidth">
+					<a href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-username={{ user.username }}" class="butsud leftelements fullheight">{{ user.username }}</a>
+					{% for nom in nomessages %}
+					{% if nom %}
+					{% ifequal nom user.username %}
+						<div class="leftelements fullheight messagepop">1</div>
+					{% endifequal %}
+					{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+			{% endfor %}
+			<div class="mainheadelements2">
+				<h1>Students</h1>
+			</div>
+			{% for user in user_number2 %}
+			<div class="mainelements" >
+				<div class="leftelements fullwidth">
+					<a href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-username={{ user.username }}" class="butsud leftelements fullheight">{{ user.username }}</a>
+					{% for nom in nomessages %}
+					{% if nom %}
+					{% ifequal nom user.username %}
+						<div class="leftelements fullheight messagepop">1</div>
+					{% endifequal %}
+					{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+			{% endfor %}
 		</div>
-		{% endfor %}
 		{% else %}
 		<div class="mainheadelements">
 			<h1>Please Login</h1>
@@ -1004,7 +1049,7 @@
 					<p class="profiletext">Details</p>
 				</div>
 			</a>
-			<a class="profilelink" href="/admin/kjsomaiyacollegeofengineering-teachers-department-admin">
+			<a class="profilelink" href="/admin/kjsomaiyacollegeofengineering-teachers-department-admin" target="_blank">
 				<div class="mid profiletdp">
 					<i class="profiledp profiledp2 glyphicon glyphicon-asterisk"></i>
 					<p class="profiletext">Admin Page</p>

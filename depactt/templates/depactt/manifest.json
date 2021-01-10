@@ -1,0 +1,7 @@
+{ "name": "Departmental Activity",
+"short_name": "Depact",
+"description": "This is an organisational web app. This web app is for Creating/Managing Events organised by the Faculty",
+"start_url": "https://departmentalactivity.herokuapp.com",
+"display": "standalone",
+"orientation": "any",
+"lang": "English"  }
