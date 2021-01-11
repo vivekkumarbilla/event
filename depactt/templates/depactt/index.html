@@ -5,33 +5,34 @@
 	<title>
 		Departmental Activity
 	</title>
-
+	<script type="text/javascript">
+		if ( window.innerWidth <= 1200 ){
+			window.location.assign("kjsomaiyacollegeofengineeringandinformationtechnologyteachers-home")
+		}
+	</script>
 	<link rel="icon" type="image/png" href="{% static 'kj.png' %}">
-	<link rel='manifest' href='/manifest.json'>
+	<link rel="manifest" crossorigin="use-credentials" href='{% static "manifest.json" %}'>
 	<style type="text/css">
 		body{
 			margin: 0px;
 			background-color: #FFF;
+			overflow-y: hidden;
 		}
 		.headd{
 			margin-top: 0;
-			height: 20%;
-			padding-top: 30px;
-			padding-bottom: 30px;
+			height: 50%;
+			padding-top: 25px;
+			padding-bottom: 25px;
 			padding-left: 30px;
 			background-color: #FFF ;
-			/*border-bottom: 2px solid #2B7A78;*/
 			border-bottom: 1px solid #AAAABB;
-		}
-		#daa{
-			width: 10%;
 		}
 		a{
 			text-decoration-style: none;
 			text-decoration: none;
 		}
 		.linkk{
-			font-size: 3vw;
+			font-size: 1.7vw;
 			color: #17252A;
 			margin-top: 0px;
 			font-family: Calibri;
@@ -39,55 +40,125 @@
 		.linkk:hover{
 			opacity: 0.8;
 		}
-		.mainelements{
-			margin-top: 5vw;
-			width: 30vw;
-			height: 20vw;
-			background-color: #DDDDEE;
-			border: 0.5px solid #AAAABB;
+		.leftside{
+			height: 100%;
+			width: 20%;
+			position: fixed;
+			left: 0;
+			border-right: 1px solid #AAAABB;
 		}
-		.mainelements:hover{
-			transform: scale(1.03);
-			border: 0.5px solid #AAAABB;
-		}
-		
-		.log{
-			font-size: 1.2vw;
-			width: 100%;
-			padding: 10px 0px;
-			margin-top: 0;
-			margin-bottom: 13px;
-			background-color: #9292A4;
-			color: white;
-		}
-		.lab{
-			margin-top: 10px;
-			width: 100%;
-			padding: 5px 0px;
-		}
-		.in{
-			outline: 0;
-			margin-top: 30px;
-			padding: 10px 10px;
+		.center{
+			height: 100%;
 			width: 60%;
-			border: none;
+			position: fixed;
+			left: 20%;
+			overflow-y: scroll;
+			box-sizing: border-box;
+			background-color: #DDDDEE;
 		}
-		.but{
-			background-color: black;
-			color: white;
-			padding: 10px 15px;
+		.center::-webkit-scrollbar{
+		    background-color: transparent;
+		    opacity: 0;
+		    width: 15px;
+		}
+		.center::-webkit-scrollbar-thumb{
+			background-color: #17252A;
+			border-radius: 8px;
+		}
+		.rightside{
+			height: 100%;
+			width: 20%;
+			position: fixed;
+			right: 0;
+			overflow-y: scroll;
+		}
+		.rightside::-webkit-scrollbar{
+		    background-color: transparent;
+		    opacity: 0;
+		    width: 7px;
+		}
+		.rightside::-webkit-scrollbar-thumb{
+			background-color: #17252A;
+			border-radius: 8px;
+		}
+		.centerg{
+			margin-top: 20%;
+			margin-left: 25%;
+		}
+		.rightg{
+			width: 200px;
+			margin-top: 85%;
+			margin-left: 20%;
+		}
+		.links{
+			text-decoration: none;
+		}
+		.links:hover{
+			text-decoration: none;
+			border-bottom: 1px dotted black;
+		}
+		.leftlinks{
+			float: left;
+			width: 100%;
+			padding: 5px 10px;
+			color: black;
+		}
+		.normbut{
 			outline: 0;
 			border: none;
-			text-decoration: none;
-			margin-top: 30px;
+			padding: 7px 10px;
+			border-top: 1px solid #AAAABB;
+			border-bottom: 1px solid #AAAABB;
 		}
-		.but:hover{
+		.overlay{
+			position: absolute;
+			left: 20%;
+			width: 60%;
+			height: 100%;
+		}
+		.overlay2{
+			position: absolute;
+			height: 100%;
+			width: 20%;
+			right: 0;
+		}
+		.mediumfont{
+			font-size: 15px;
+		}
+			/*-----------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------
+			-------------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------
+			-------------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------
+			-------------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------*/
+			/*-----------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------
+			-------------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------
+			-------------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------
+			-------------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------*/
+			/*-----------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------
+			-------------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------
+			-------------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------
+			-------------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------*/
+		.mainelements{
 			background-color: white;
-			color: black;
-			border: 1px solid black;
+			height: 40%;
+			width: 90%;
+			margin-left: 5%;
+			margin-top: 20px;
+		}
+		.firstelement{
+			background-color: white;
+			height: 10%;
+			width: 90%;
+			margin-left: 5%;
+			margin-top: 20px;
+		}
+		.secelement{
+			background-color: white;
+			height: 80%;
+			width: 90%;
+			margin-left: 5%;
+			margin-top: 20px;
 		}
 	</style>
-	<!-- <img id="daa" src="{% static 'das.jpg' %}"> -->
 </head>
 <body>
 	<header class="headd">
@@ -96,53 +167,86 @@
 		</div>
 		
 	</header>
-	<center>
-	<div id="main" class="login mainelements">
-		<p class="log">
-			Log In 
-		</p>
-		<div class="lab">
-			<input placeholder="Enter Teacher Code" class="in" id="in" type="password">
-		</div>
-		<button id="butn" onclick="teachercode()" class="but">
-			Enter
-		</button>
+	<div class="leftside">
+		<a href="" class="leftlinks links">Profile</a>
+		<a href="" class="leftlinks links">Edit Profile</a>
+		<a href="" class="leftlinks links">Help</a>
+		<a href="" class="leftlinks links">Admin Page</a>
+		<a href="" class="leftlinks links">Convert to Staff</a>
+		<a href="" class="leftlinks links">Convert to Admin</a>
+		<a href="" class="leftlinks links">Logout</a>
+		<button class="leftlinks normbut">Notifications</button>
 	</div>
-	</center>
+	<div class="main center elements" id="main">
+		<button class="firstelement"><p class="mediumfont">Add Event</p></button>
+		<form class="secelement">
+		</form>
+		{% for event in event_number %}
+		<div id="event{{ event.id }}" class="mainelements">
+		</div>
+		{% endfor %}
+	</div>
+	<div class="overlay" id="overlay">
+		<img class="centerg" src="{% static 'load.gif' %}" title="Loading....">
+	</div>
+	<aside class="rightside messaging">
+		<a href="" class="leftlinks links">Profile</a>
+		<a href="" class="leftlinks links">Edit Profile</a>
+		<a href="" class="leftlinks links">Help</a>
+		<a href="" class="leftlinks links">Admin Page</a>
+		<a href="" class="leftlinks links">Convert to Staff</a>
+		<a href="" class="leftlinks links">Convert to Admin</a>
+		<a href="" class="leftlinks links">Logout</a>
+		<button class="leftlinks normbut">Notifications</button>
+		<a href="" class="leftlinks links">Profile</a>
+		<a href="" class="leftlinks links">Edit Profile</a>
+		<a href="" class="leftlinks links">Help</a>
+		<a href="" class="leftlinks links">Admin Page</a>
+		<a href="" class="leftlinks links">Convert to Staff</a>
+		<a href="" class="leftlinks links">Convert to Admin</a>
+		<a href="" class="leftlinks links">Logout</a>
+		<button class="leftlinks normbut">Notifications</button>
+		<a href="" class="leftlinks links">Profile</a>
+		<a href="" class="leftlinks links">Edit Profile</a>
+		<a href="" class="leftlinks links">Help</a>
+		<a href="" class="leftlinks links">Admin Page</a>
+		<a href="" class="leftlinks links">Convert to Staff</a>
+		<a href="" class="leftlinks links">Convert to Admin</a>
+		<a href="" class="leftlinks links">Logout</a>
+		<button class="leftlinks normbut">Notifications</button>
+		<a href="" class="leftlinks links">Profile</a>
+		<a href="" class="leftlinks links">Edit Profile</a>
+		<a href="" class="leftlinks links">Help</a>
+		<a href="" class="leftlinks links">Admin Page</a>
+		<a href="" class="leftlinks links">Convert to Staff</a>
+		<a href="" class="leftlinks links">Convert to Admin</a>
+		<a href="" class="leftlinks links">Logout</a>
+		<button class="leftlinks normbut">Notifications</button>
+	</aside>
+	<div class="overlay2" id="overlay2">
+		<img class="rightg" src="{% static 'load.gif' %}" title="Loading....">
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script type="text/javascript">
-
-		var tc = document.getElementsByClassName('inn').value;
-		// var loginpass = document.getElementById('inn').value;
-		var input = document.getElementById("in");
-
-		function teachercode(){
-			tc = document.getElementById('in').value;
-			//console.log(tc);
-			if (tc.length==0) {
-				window.alert('Please Enter Credentials');
-			}
-			else{
-				if (tc=='kjsieitteachers') {
-					window.location.assign("kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login");
-				}
-				else{
-					window.alert('Wrong code');
+		$(document).ready(function () {
+			console.log('Requesting JSON');
+			$.getJSON('{% url "getevents" %}'), function(events){
+				console.log('JSON, got events');
+				$('#main').empty();
+				for (var i=0;i<events.length;i++){
+					current=events[i];
+					// $('main').append()
+					console.log(current[0]);
+					console.log(current[1]);
+					console.log(current[2]);
+					console.log(current[3]);
 				}
 			}
-			
-		}
-
-		console.log(input);
-		if(input){
-			input.addEventListener("keyup", function(event) {
-				console.log(input);
-		    	if (event.keyCode === 13) {
-		    	    // event.preventDefault();
-			        document.getElementById("butn").click();
-			    }
-			});
-		}
-
+		});
+		$(window).load(function(){
+			$('#overlay').fadeOut(2000);
+			$('#overlay2').fadeOut(2000);
+		});
 	</script>
 </body>
 </html>

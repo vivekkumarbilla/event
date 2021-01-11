@@ -7,6 +7,7 @@ from django.conf import settings
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
+from django.http import JsonResponse
 from django.template import loader
 import requests
 import random
@@ -71,11 +72,53 @@ from docx.shared import RGBColor
 # ----------------------------------------------------------------------prerequisites-------------------------------------------------------------------------------
 
 def index(request): 
-	if request.user.is_authenticated:
-		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-home')
 	if not request.user.is_authenticated:
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login')
+	currentuser=request.user
+	currentuserid = request.user.id
+	eves=Event.objects.all().order_by('-pubdate')
+	dic = {
+		"event_number": eves
+	}
+	users=User.objects.filter(is_staff=True).exclude(id=currentuserid)
+	users2=User.objects.filter(is_staff=False).exclude(id=currentuserid)
+	dic["users"] = users
+	dic["users"] = users2
+	return render(request, 'depactt/index.html',dic)
 
+
+def getevents(request): 
+	if not request.user.is_authenticated:
+		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login')
+	eves=Event.objects.all().order_by('-pubdate')
+	dicevents = {
+		"event_number": eves
+	}
+	return JsonResponse({"events": list(dicevents)},safe=False)
+
+
+def getmessages(request): 
+	if not request.user.is_authenticated:
+		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login')
+	eves=Messagings.objects.all().order_by('messagedate','timee')
+	dicevents = {
+		"message_number": eves
+	}
+	messages=[]
+	messages.append(dicevents)
+	return JsonResponse(messages,safe=False)
+
+
+def getgroups(request): 
+	if not request.user.is_authenticated:
+		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login')
+	eves=Messagings.objects.all().order_by('messagedate','timee')
+	dicevents = {
+		"message_number": eves
+	}
+	messages=[]
+	messages.append(dicevents)
+	return JsonResponse(messages,safe=False)
 
 def login(request): 
 	# create data dictionary 

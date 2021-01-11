@@ -58,6 +58,9 @@ urlpatterns = [
     path('tonormal',views.tonormal, name='tonormal'),
     path('tocerti',views.tocerti, name='tocerti'),
     path('toevent',views.toevent, name='toevent'),
+    path('getevents',views.getevents, name='getevents'),
+    path('getmessages',views.getmessages, name='getmessages'),
+    path('getgroups',views.getgroups, name='getgroups'),
     path('webpush/', include('webpush.urls')),
     url(r'^webpush/', include('webpush.urls')),
 ]
