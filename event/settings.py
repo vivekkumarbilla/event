@@ -77,14 +77,13 @@ WSGI_APPLICATION = 'event.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Depact',
-        'USER': 'postgres',
-        'PASSWORD': 'EngineeringHR',
-        'HOST' : 'localhost'
+        'NAME': 'd30f3fmnuvnttv',
+        'USER': 'dqwqeukaajgmqx',
+        'PASSWORD': 'a44d79823314c3c66781382a7d04c6369def3551bc90a565a92e7bf393be14f1',
+        'HOST' : 'ec2-50-16-198-4.compute-1.amazonaws.com'
     }
 }
 
