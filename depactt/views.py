@@ -135,7 +135,6 @@ def index(request):
 		print(ggr.gmessage)
 	dic["groups"]=groups
 	dic["groupr"]=inbox3
-	print(ggr)
 	comments=Comment.objects.all().order_by('cdate')
 	report=Addreport.objects.all()
 	regis=Registration.objects.all()
