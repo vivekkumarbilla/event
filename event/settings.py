@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'webpush',
 ]
 
@@ -80,10 +81,10 @@ WSGI_APPLICATION = 'event.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd30f3fmnuvnttv',
-        'USER': 'dqwqeukaajgmqx',
-        'PASSWORD': 'a44d79823314c3c66781382a7d04c6369def3551bc90a565a92e7bf393be14f1',
-        'HOST' : 'ec2-50-16-198-4.compute-1.amazonaws.com'
+        'NAME': 'Depact',
+        'USER': 'postgres',
+        'PASSWORD': 'EngineeringHR',
+        'HOST' : 'localhost'
     }
 }
 

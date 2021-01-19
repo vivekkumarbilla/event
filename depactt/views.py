@@ -74,16 +74,74 @@ from docx.shared import RGBColor
 def index(request): 
 	if not request.user.is_authenticated:
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login')
+	ist = pytz.timezone('Asia/Calcutta')
+	c=datetime.now(ist)
 	currentuser=request.user
 	currentuserid = request.user.id
 	eves=Event.objects.all().order_by('-pubdate')
+	eventsall=Event.objects.all().order_by('-pubdate')
+	regd=Registration.objects.filter(rby=request.user)
+	regdl=[]
+	for r in range(0,len(regd)):
+		cur=r[i]
+		eveid=cur.erref.id
+		eveele=Event.objects.filter(id=eveid)
+		regdl.append(eveele)
+	pubd=Event.objects.filter(by=request.user)
+	events3=Event.objects.filter(date__lt=c)
 	dic = {
 		"event_number": eves
 	}
-	users=User.objects.filter(is_staff=True).exclude(id=currentuserid)
+	users=User.objects.filter(is_staff=True).exclude(id=currentuserid).order_by('username')
 	users2=User.objects.filter(is_staff=False).exclude(id=currentuserid)
 	dic["users"] = users
-	dic["users"] = users2
+	dic["users2"] = users2
+	dic["registered"] = regdl
+	dic["published"] = pubd
+	dic["finished"] = events3
+	dic["allevents"] = eventsall
+	inbox2=[]
+	activities=[]
+	inbox3=[]
+	inboxms=[]
+	messagesmsm=Messaging.objects.filter(Q(sender=request.user) | Q(receiver=request.user)).order_by('-messagedate','-timee')
+	for i in range(0,len(messagesmsm)):
+		cur=messagesmsm[i]
+		if cur.receiver==request.user:
+			if cur.sender in activities:
+				pass
+			else:
+				mm2=Messaging.objects.filter(Q(receiver=request.user,sender=cur.sender) | Q(sender=request.user,receiver=cur.sender)).latest('messagedate','timee')
+				activities.append(cur.sender)
+				inbox2.append(mm2)
+		if cur.sender==request.user:
+			if cur.receiver in activities:
+				pass
+			else:
+				mm2=Messaging.objects.filter(Q(receiver=request.user,sender=cur.receiver) | Q(sender=request.user,receiver=cur.receiver)).latest('messagedate','timee')
+				activities.append(cur.receiver)
+				inbox2.append(mm2)
+	print(activities)
+	dic["recent"]=inbox2
+	dic["musers"]=activities
+	mmss=Messaging.objects.all().order_by('messagedate','timee')
+	dic["message2"]=mmss
+	groups=Groupmembers.objects.filter(members=request.user)
+	for i in range(0,len(groups)):
+		cur=groups[i]
+		print(cur.name)
+		ggr=Groupmessages.objects.filter(groupref=Groupmembers.objects.get(name=cur.name)).latest('gmessagedate','gtime')
+		inbox3.append(ggr)
+		print(ggr.gmessage)
+	dic["groups"]=groups
+	dic["groupr"]=inbox3
+	print(ggr)
+	comments=Comment.objects.all().order_by('cdate')
+	report=Addreport.objects.all()
+	regis=Registration.objects.all()
+	dic["comment_num"] = comments
+	dic["report_num"] = report
+	dic["regis"] = regis
 	return render(request, 'depactt/index.html',dic)
 
 
@@ -100,6 +158,20 @@ def getevents(request):
 def getmessages(request): 
 	if not request.user.is_authenticated:
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login')
+	eves=Event.objects.all().order_by('-pubdate')
+	dic = {
+		"event_number": eves
+	}
+	if request.method=='POST':
+		idc=request.POST['id']
+		response=[]
+		messagesm=Messaging.objects.filter(Q(receiver=request.user,messagesenderid=User.objects.get(username=idc),messageseen='third') | Q(receiver=User.objects.get(username=idc),messagesenderid=request.user)).order_by('messagedate','timee')
+		for msg in messagesm:
+			results=[msg.message,msg.timee]
+			response.append(results)
+		messagesms=Messaging.objects.filter(receiver=request.user,messagesenderid=User.objects.get(username=idc)).exclude(messageseen='third')
+		print(messagesms)
+		return JsonResponse(response,safe=False)
 	eves=Messagings.objects.all().order_by('messagedate','timee')
 	dicevents = {
 		"message_number": eves
@@ -841,6 +913,91 @@ def groupmessages(request):
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-groups')
 
 
+def editeventid(request,ide): 
+	if request.user.is_authenticated:
+		currentuser = request.user.username
+		currentuserid = request.user.id
+	ist = pytz.timezone('Asia/Calcutta')
+	c=datetime.now(ist)
+	eventscal = Event.objects.filter(date__lt=c).order_by('date')
+	eventscal2 = Event.objects.filter(date__gte=c).order_by('date')
+	users=User.objects.order_by('username')
+	dicevents = {
+		"event_number": eventscal
+	}
+	dicevents["event_number2"] = eventscal2
+	dicevents["user_num"] = users
+	if request.method=='POST':
+		eventname=request.POST['eventname']
+		eventpresenter=request.POST['eventpresenter']
+		eventdesignation=request.POST['eventdesignation']
+		eventorgc=request.POST['eventcommittee']
+		eventtype=request.POST['eventtype']
+		eventda=request.POST['eventdate']
+		eventfrotime=request.POST['eventtimefro']
+		eventtotime=request.POST['eventtimeto']
+		link=request.POST['regin']
+		fromreg=request.POST['regfrom']
+		toreg=request.POST['regto']
+		whatsapp=request.POST['eventwhatsapp']
+		eventcon1=request.POST['eventconvener1']
+		eventcon2=request.POST['eventconvener2']
+		eventcontact1=request.POST['contact1']
+		eventcontact2=request.POST['contact2']
+		eventorg1=request.POST['eventorganizer1']
+		eventorg2=request.POST['eventorganizer2']
+		eventorg3=request.POST['eventorganizer3']
+		eventdep=request.POST['eventdepartment']
+		eventdescription=request.POST['eventdesc']
+		eventperks=request.POST['eventperk']
+		eventfin=request.POST.get('eventcertificate',False)
+		ecom=request.POST['com']
+		publisher=request.user
+		print(publisher.is_staff)
+		if Event.objects.filter(title=eventname).exists():
+			curevent=Event.objects.get(title=eventname)
+			curevent.title=eventname
+			curevent.presenter=eventpresenter
+			curevent.presenterd=eventdesignation
+			curevent.organizer=eventorgc
+			curevent.etype=eventtype
+			curevent.date=eventda
+			curevent.tfrom=eventfrotime
+			curevent.tto=eventtotime
+			curevent.link=link
+			curevent.regfrom=fromreg
+			curevent.regto=toreg
+			curevent.whatsapp=whatsapp
+			curevent.convener1=eventcon1
+			curevent.convener2=eventcon2
+			curevent.contact1=eventcontact1
+			curevent.contact2=eventcontact2
+			curevent.teacher1=eventorg1
+			curevent.teacher2=eventorg2
+			curevent.teacher3=eventorg3
+			curevent.department=eventdep=request.POST['eventdepartment']
+			curevent.description=eventdescription
+			curevent.perks=eventperks
+			curevent.save()
+			messages.success(request,'Event successfully edited')
+			return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
+		else:
+			if (len(eventname)==0) or(len(eventda)==0) or(len(eventfrotime)==0) or(len(eventtotime)==0) or(len(fromreg)==0) or(len(toreg)==0):
+				messages.warning(request,'Please Enter All the Parameters Correctly')
+				return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
+			uss=User.objects.get(username=currentuser)
+			if uss.is_staff==True:
+				eventt= Event(title=eventname,description=eventdescription,perks=eventperks,link=link,whatsapp=whatsapp, date=eventda,tfrom=eventfrotime,tto=eventtotime,regfrom=fromreg,regto=toreg,etype=eventtype,presenter=eventpresenter,presenterd=eventdesignation, organizer=eventorgc, teacher1=eventorg1, teacher2=eventorg2, teacher3=eventorg3, convener1=eventcon1, convener2=eventcon2, contact1=eventcontact1, contact2=eventcontact2, certi=eventfin, department=eventdep, by=publisher, reminders=ecom)
+				eventt.save()
+				messages.success(request,'Event Successfully added')
+			else:
+				messages.warning(request,'You are not permitted to add event')
+			return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
+
+	else:
+		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
+
+
 def fullmessages(request,name): 
 	if not request.user.is_authenticated:
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login')
@@ -1121,6 +1278,15 @@ def toadmin(request):
 	else:
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-profile')
 
+
+def toadmpage(request):
+	if request.user.is_superuser == True:
+		return redirect('admin/kjsomaiyacollegeofengineering-teachers-department-admin')
+	else:
+		messages.warning(request,'You are not an admin')
+		return redirect('/')
+
+
 def tonormal(request):
 	if request.method == "POST":
 		print('entered post')
@@ -1148,6 +1314,7 @@ def ongoing(request):
 		event=Event.objects.get(id=evid)
 		event.status='Ongoing'
 		event.save()
+		messages.success(request,'Successfully marked the event as Ongoing')
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
 	else:
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
@@ -1159,6 +1326,7 @@ def confirmed(request):
 		event=Event.objects.get(id=evid)
 		event.status='Confirmed'
 		event.save()
+		messages.success(request,'Successfully marked the event as Confirmed')
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
 	else:
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
@@ -1170,6 +1338,7 @@ def pending(request):
 		event=Event.objects.get(id=evid)
 		event.status='Pending'
 		event.save()
+		messages.success(request,'Successfully marked the event as Pending')
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
 	else:
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
@@ -1261,36 +1430,34 @@ def adddetails(request):
 
 
 
-def userdetails(request): 
-	if request.method == "POST":
-		print('entered post')
-		sender=request.POST.get("send", "")
-		evid=request.POST.get("evid", "")
-		print(sender)
-		if User.objects.filter(username=sender).exists():
-			user=User.objects.filter(username=sender)
-			current=User.objects.get(username=sender)
-			userdetails=Details.objects.filter(urref=current)
-			dicuser = {
-				"user_number2": user
-			}
-			dicuser["page"]=evid
-			dicuser["details"]=userdetails
-		else:
-			print('not found')
+def userdetails(request,name): 
+	if User.objects.filter(username=name).exists():
+		user=User.objects.filter(username=name)
+		current=User.objects.get(username=name)
+		userdetails=Details.objects.filter(urref=current)
+		dicuser = {
+			"user_number2": user
+		}
+		dicuser["details"]=userdetails
 		return render(request, 'depactt/userdetails.html',dicuser)
 	else:
-		if request.user.is_authenticated:
-			currentuser = request.user.username
-			currentuserid = request.user.id
-		users=User.objects.exclude(id=currentuserid)
-		print(currentuserid)
-		print(currentuser)
-		print(users)
+		messages.warning(request,'User not Found')
+		return redirect('/')
+
+
+def useredit(request,name): 
+	if User.objects.filter(username=name).exists():
+		user=User.objects.filter(username=name)
+		current=User.objects.get(username=name)
+		userdetails=Details.objects.filter(urref=current)
 		dicuser = {
-			"user_number": users
+			"user_number2": user
 		}
-		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-messaging')
+		dicuser["details"]=userdetails
+		return render(request, 'depactt/userdetails2.html',dicuser)
+	else:
+		messages.warning(request,'User not Found')
+		return redirect('/')
 
 
 def eventdetails(request): 
@@ -1643,9 +1810,9 @@ def toxl(request):
 		ws.column_dimensions[get_column_letter(i+1)].width = column_width
 	if path.isfile('Downloads\\Events.xlsx')==True:
 		messages.warning(request,"Events.xlsx already exists in your desktop")
+		return redirect('/')
 	else:
 		wb.save(response)
-		messages.success(request,"Downloaded data to Events.xlsx file in your desktop")
 	return response
 
 
@@ -1747,7 +1914,6 @@ def totxtall(request):
 		response.write(""+conv2+"\t")
 		response.write("Contacts : "+cont1+" ")
 		response.write(""+cont2+"\t")
-		messages.success(request,"Downloaded data to Event"+evid+"data.txt file in your desktop")
 		return response
 	else:
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
@@ -1904,7 +2070,6 @@ def topdfall(request):
 		response = HttpResponse(pdf.output(name='Event'+evid+'_data.pdf',dest='S').encode('latin-1'), content_type='application/pdf')
 		content = "attachment; filename=%s " %(file)
 		response['Content-Disposition'] = content
-		messages.success(request,"Downloaded Report to Event"+evid+"_data.pdf file in your desktop")
 		return response
 
 
@@ -2033,7 +2198,6 @@ def tocerti(request):
 		response = HttpResponse(pdf.output(name='Certificate_'+evid+'.pdf',dest='S').encode('latin-1'), content_type='application/pdf')
 		content = "attachment; filename=%s " %(file)
 		response['Content-Disposition'] = content
-		messages.success(request,"Downloaded Report to Certificate_"+evid+".pdf file in your desktop")
 		return response
 	else:
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
@@ -2043,6 +2207,7 @@ def tocerti(request):
 def torep(request):
 	if request.method == "POST":
 		evid=request.POST.get("dell", "")
+		print(evid)
 		rep=Addreport.objects.get(id=evid)
 		rdate=str(rep.erref.date)
 		rfrom=str(rep.erref.tfrom)
@@ -2164,12 +2329,20 @@ def torep(request):
 		response = HttpResponse(pdf.output(name='Report_'+rnum+'.pdf',dest='S').encode('latin-1'), content_type='application/pdf')
 		content = "attachment; filename=%s " %(file)
 		response['Content-Disposition'] = content
-		messages.success(request,"Downloaded Report to Report_"+rnum+".pdf file in your desktop")
 		return response
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
 	else:
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-allevents')
 
+
+def usermanual(request):
+	url = staticfiles_storage.open('usermanual.pdf')
+	with open('/static/usermanual.pdf', 'rb') as pdf:
+		file='Report_'+rnum+'.pdf'
+		response = HttpResponse(pdf.read(), content_type='application/pdf')
+		content = "attachment; filename=%s " %(file)
+		response['Content-Disposition'] = content
+		return response
 
 def todocall(request):
 	if request.method == "POST":
@@ -2211,8 +2384,8 @@ def todocall(request):
 		p = edoc.add_paragraph('Contacts : '+cont1+', '+cont2)
 		if path.isfile('Event'+evid+'.docx')==True:
 			messages.warning(request,"File Event"+evid+".doc already exists in your desktop")
+			return redirect('/')
 		else:
-			messages.success(request,"Downloaded data to Event"+evid+".doc file in your desktop")
 			file='Event'+evid+'.docx'
 			response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document')
 			content = "attachment; filename=%s " %(file)
@@ -2283,7 +2456,7 @@ def complaints(request):
 		subject = 'User Complaint ('+user2+')'
 		message = user.first_name+' '+user.last_name+' says "'+evid+'"'
 		email_from = settings.EMAIL_HOST_USER
-		recipient_list = ['vivekananda.b@somaiya.edu','ashish.bhushan@somaiya.edu','vighnesh.chavan@somaiya.edu','vivekbilla345@gmail.com','martinchip03@gmail.com','vighneshchavan26@gmail.com']
+		recipient_list = ['vivekananda.b@somaiya.edu','ashish.bhushan@somaiya.edu','vighnesh.c@somaiya.edu','vivekbilla345@gmail.com','martinchip03@gmail.com','vighneshchavan26@gmail.com']
 		send_mail( subject, message, email_from, recipient_list )
 		messages.success(request,'Complaint sent Successfully, Thank you for your patience')
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-help')

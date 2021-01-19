@@ -3,7 +3,7 @@
 <html>
 <head>
 	<title>
-		Departmental Activity
+		DepAct
 	</title>
 	<script type="text/javascript">
 		if ( window.innerWidth <= 1200 ){
@@ -12,20 +12,54 @@
 	</script>
 	<link rel="icon" type="image/png" href="{% static 'kj.png' %}">
 	<link rel="manifest" crossorigin="use-credentials" href='{% static "manifest.json" %}'>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<style type="text/css">
 		body{
 			margin: 0px;
 			background-color: #FFF;
 			overflow-y: hidden;
 		}
+		/*-----------------------------------------------------------HEADER_HEADER_HEADER_HEADER------------------------------------------------------------------------
+		-------------------------------------------------------------HEADER_HEADER_HEADER_HEADER------------------------------------------------------------------------
+		-------------------------------------------------------------HEADER_HEADER_HEADER_HEADER------------------------------------------------------------------------
+		-------------------------------------------------------------HEADER_HEADER_HEADER_HEADER------------------------------------------------------------------------*/
+		/*-----------------------------------------------------------HEADER_HEADER_HEADER_HEADER------------------------------------------------------------------------
+		-------------------------------------------------------------HEADER_HEADER_HEADER_HEADER------------------------------------------------------------------------
+		-------------------------------------------------------------HEADER_HEADER_HEADER_HEADER------------------------------------------------------------------------
+		-------------------------------------------------------------HEADER_HEADER_HEADER_HEADER------------------------------------------------------------------------*/
+		/*-----------------------------------------------------------HEADER_HEADER_HEADER_HEADER------------------------------------------------------------------------
+		-------------------------------------------------------------HEADER_HEADER_HEADER_HEADER------------------------------------------------------------------------
+		-------------------------------------------------------------HEADER_HEADER_HEADER_HEADER------------------------------------------------------------------------
+		-------------------------------------------------------------HEADER_HEADER_HEADER_HEADER------------------------------------------------------------------------*/
+		/*-----------------------------------------------------------HEADER_HEADER_HEADER_HEADER------------------------------------------------------------------------
+		-------------------------------------------------------------HEADER_HEADER_HEADER_HEADER------------------------------------------------------------------------
+		-------------------------------------------------------------HEADER_HEADER_HEADER_HEADER------------------------------------------------------------------------
+		-------------------------------------------------------------HEADER_HEADER_HEADER_HEADER------------------------------------------------------------------------*/
 		.headd{
 			margin-top: 0;
-			height: 50%;
-			padding-top: 25px;
-			padding-bottom: 25px;
-			padding-left: 30px;
+			height: 80px;
+			padding-top: 15px;
+			padding-bottom: 15px;
+			padding-left: 10px;
 			background-color: #FFF ;
 			border-bottom: 1px solid #AAAABB;
+		}
+		.logog{
+			height: 100%;
+			margin-right: 10px;
+		}
+		.search{
+			padding: 15px 20px;
+			width: 400px;
+		}
+		.ingly{
+			position: absolute;
+			background-color: transparent;
+			height: 50px;
+			top: 15px;
+			left: 700px;
+			border: none;
+			outline: 0;
 		}
 		a{
 			text-decoration-style: none;
@@ -35,11 +69,34 @@
 			font-size: 1.7vw;
 			color: #17252A;
 			margin-top: 0px;
+			margin-right: 20px;
 			font-family: Calibri;
+			height: 100%;
 		}
 		.linkk:hover{
 			opacity: 0.8;
+			color: #17252A;
 		}
+		.nom2{
+			margin-top: 6px;
+			margin-bottom: 0px;
+		}
+		/*-----------------------------------------------------------LEFTSIDE------------------------------------------------------------------------
+		-------------------------------------------------------------LEFTSIDE------------------------------------------------------------------------
+		-------------------------------------------------------------LEFTSIDE------------------------------------------------------------------------
+		-------------------------------------------------------------LEFTSIDE------------------------------------------------------------------------*/
+		/*-----------------------------------------------------------LEFTSIDE------------------------------------------------------------------------
+		-------------------------------------------------------------LEFTSIDE------------------------------------------------------------------------
+		-------------------------------------------------------------LEFTSIDE------------------------------------------------------------------------
+		-------------------------------------------------------------LEFTSIDE------------------------------------------------------------------------*/
+		/*-----------------------------------------------------------LEFTSIDE------------------------------------------------------------------------
+		-------------------------------------------------------------LEFTSIDE------------------------------------------------------------------------
+		-------------------------------------------------------------LEFTSIDE------------------------------------------------------------------------
+		-------------------------------------------------------------LEFTSIDE------------------------------------------------------------------------*/
+		/*-----------------------------------------------------------LEFTSIDE------------------------------------------------------------------------
+		-------------------------------------------------------------LEFTSIDE------------------------------------------------------------------------
+		-------------------------------------------------------------LEFTSIDE------------------------------------------------------------------------
+		-------------------------------------------------------------LEFTSIDE------------------------------------------------------------------------*/
 		.leftside{
 			height: 100%;
 			width: 20%;
@@ -47,6 +104,82 @@
 			left: 0;
 			border-right: 1px solid #AAAABB;
 		}
+		.links{
+			text-decoration: none;
+			color: black;
+		}
+		.links:hover{
+			text-decoration: none;
+			color: black;
+		}
+		.leftlinkpara{
+			margin-top: 0px;
+			margin-bottom: 0px;
+		}
+		.links:hover .leftlinkpara{
+			border-bottom: 1px dotted black;
+		}
+		.lbuts{
+			background-color: transparent;
+			outline: 0;
+			border: none;
+		}
+		.leftlinks{
+			float: left;
+			width: 100%;
+			padding: 5px 10px;
+			color: black;
+		}
+		.notis{
+			float: left;
+			width: 100%;
+			height: 37%;
+			overflow-y: scroll;
+		}
+		.undernotis{
+			width: 100%;
+			height: 40px;
+			border-radius: 10px;
+		}
+		.notipara{
+			float: left;
+			margin-top: 8px;
+			margin-left: 8px;
+			font-size: 15px;
+		}
+		.notipara2{
+			margin-top: 8px;
+			margin-right: 8px;
+			font-size: 15px;
+		}
+		.error{
+			background-color: #ED4337;
+			color: white;
+		}
+		.success{
+			background-color: #4BB543;
+			color: white;
+		}
+		/*-----------------------------------------------------------CENTER------------------------------------------------------------------------
+		-------------------------------------------------------------CENTER------------------------------------------------------------------------
+		-------------------------------------------------------------CENTER------------------------------------------------------------------------
+		-------------------------------------------------------------CENTER------------------------------------------------------------------------*/
+		/*-----------------------------------------------------------CENTER------------------------------------------------------------------------
+		-------------------------------------------------------------CENTER------------------------------------------------------------------------
+		-------------------------------------------------------------CENTER------------------------------------------------------------------------
+		-------------------------------------------------------------CENTER------------------------------------------------------------------------*/
+		/*-----------------------------------------------------------CENTER------------------------------------------------------------------------
+		-------------------------------------------------------------CENTER------------------------------------------------------------------------
+		-------------------------------------------------------------CENTER------------------------------------------------------------------------
+		-------------------------------------------------------------CENTER------------------------------------------------------------------------*/
+		/*-----------------------------------------------------------CENTER------------------------------------------------------------------------
+		-------------------------------------------------------------CENTER------------------------------------------------------------------------
+		-------------------------------------------------------------CENTER------------------------------------------------------------------------
+		-------------------------------------------------------------CENTER------------------------------------------------------------------------*/
+		/*-----------------------------------------------------------CENTER------------------------------------------------------------------------
+		-------------------------------------------------------------CENTER------------------------------------------------------------------------
+		-------------------------------------------------------------CENTER------------------------------------------------------------------------
+		-------------------------------------------------------------CENTER------------------------------------------------------------------------*/
 		.center{
 			height: 100%;
 			width: 60%;
@@ -65,44 +198,457 @@
 			background-color: #17252A;
 			border-radius: 8px;
 		}
+		.centerg{
+			margin-top: 20%;
+			margin-left: 25%;
+		}
+		.zeroelement{
+			height: 7.5%;
+			width: 100%;
+			margin-left: 0%;
+			margin-top: 0px;
+			outline: 0;
+		}
+		.warning{
+			background-color: #ED4337;
+			color: white;
+		}
+		.firstelement{
+			background-color: white;
+			height: 8%;
+			width: 90%;
+			margin-left: 5%;
+			margin-top: 20px;
+			outline: 0;
+			border: 1px solid #AAAABB;
+		}
+		.secelement{
+			background-color: white;
+			height: 80%;
+			width: 90%;
+			margin-left: 5%;
+			margin-top: 0px;
+			overflow-y: hidden;
+			overflow-x: hidden;
+			white-space: nowrap;
+		}
+		.secelement2{
+			background-color: white;
+			height: 25px;
+			width: 25px;
+			border-radius: 14px;
+			margin-left: 95%;
+			margin-top: 20px;
+			overflow-y: hidden;
+			overflow-x: hidden;
+			white-space: nowrap;
+			outline: 0;
+		}
+		.secelement2 p{
+			margin-top: 0px;
+		}
+		.in{
+			float: left;
+			margin-left: 10px;
+			padding: 10px 10px;
+			outline: 0;
+			border: 1px solid #AAAABB;
+		}
+		.ind{
+			float: left;
+			margin-left: 10px;
+			padding: 8px 10px;
+			outline: 0;
+			border: 1px solid #AAAABB;
+		}
+		.inc{
+			float: left;
+			margin-left: 10px;
+			padding: 10px 10px;
+			outline: 0;
+			border: 1px solid #AAAABB;
+		}
+		.inc2{
+			padding: 10px 30px;
+		}
+		.inc3{
+			border: none;
+		}
+		.onesec{
+			float: left;
+			width: 100%;
+			padding: 5px 0px;
+		}
+		.onesec2{
+			margin-top: 5px;
+		}
+		.three{
+			width: 31%;
+		}
+		.lab{
+			margin-left: 10px;
+			margin-top: 10px;
+		}
+		.but{
+			padding: 10px 10px;
+			margin-left: 10px;
+			background-color: black;
+			color: white;
+		}
+		.but:hover {
+			background-color: white;
+			color: black;
+		}
+		.mainelements{
+			background-color: white;
+			height: 70%;
+			width: 90%;
+			margin-left: 5%;
+			margin-top: 20px;
+			border: 1px solid #AAAABB;
+		}
+		.lastelement{
+			height: 18%;
+			width: 90%;
+			margin-left: 5%;
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+		.lastl{
+			height: 40%;
+			width: 100%;
+			padding-top: 10px;
+			background-color: white;
+			border: 1px solid #AAAABB;
+		}
+		.firstsec{
+			width: 100%;
+			height: 13%;
+			float: left;
+		}
+		.secondsec{
+			width: 100%;
+			height: 64%;
+			float: left;
+		}
+		.thirdsec{
+			background-color: blue;
+			width: 100%;
+			height: 23%;
+			float: left;
+		}
+		.reginfo{
+			float: left;
+			background-color: cyan;
+			width: 100%;
+			font-size: 15px;
+			padding-top: 5px;
+			padding-left: 5px;
+			height: 26%;
+		}
+		.reging{
+			float: left;
+			width: 100%;
+			font-size: 15px;
+			padding-top: 5px;
+			padding-left: 5px;
+			height: 37%;
+		}
+		.rthird{
+			height: 100%;
+			float: left;
+			width: 25%;
+		}
+		.optionsec{
+			position: absolute;
+			right: 45px;
+			background-color: white;
+			width: 27.2%;
+			height: auto;
+			float: left;
+			border: 1px solid #AAAABB;
+			box-shadow: 0 3px 3px #AAAABB;
+		}
+		.firstinfirst{
+			float: left;
+			height: 100%;
+			width: 70%;
+		}
+		.ename{
+			float: left;
+			width: 100%;
+			height: 60%;
+			font-size: 20px;
+			text-decoration: none;
+			font-weight: bold;
+			overflow: hidden;
+		    text-overflow: ellipsis;
+		    white-space: nowrap;
+		    padding-top: 5px;
+		    padding-left: 5px;
+			color: #17252A;
+		}
+		.ename:hover{
+			color: #17252A;
+		}
+		.subtitle{
+			width: 100%;
+			overflow: hidden;
+		    text-overflow: ellipsis;
+		    white-space: nowrap;
+		    padding-left: 5px;
+			font-size: 15px;
+		}
+		.secondinfirst{
+			float: left;
+			height: 100%;
+			width: 0%;
+		}
+		.ongoing{
+			background-color: #A4D8E3;
+		}
+		.confirmed{
+			background-color: #B0F365;
+		}
+		.pending{
+			background-color: #F07373;
+		}
+		.status{
+			width: 9%;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			padding-left: 5px;
+			font-size: 15px;
+		}
+		.thirdinfirst{
+			float: left;
+			height: 100%;
+			width: 20%;
+		}
+		.publisher{
+			text-decoration: none;
+			float: left;
+			width: 100%;
+			height: 50%;
+			border-bottom: 1px solid #F3F3F6;
+		}
+		.publisher2{
+			text-decoration: none;
+			float: right;
+			width: auto;
+			height: 100%;
+			font-size: 15px;
+			font-weight: bold;
+			padding-top: 5px;
+			padding-right: 5px;
+		}
+		.publisher3{
+			text-decoration: none;
+			float: right;
+			width: auto;
+			height: 100%;
+			font-size: 15px;
+			padding-top: 5px;
+			padding-right: 5px;
+		}
+		.publisher2:hover{
+			text-decoration: underline;
+		}
+		.fourthinfirst{
+			float: left;
+			height: 100%;
+			width: 10%;
+		}
+		.firstinsec{
+			float: left;
+			width: 42%;
+			height: 100%;
+		}
+		.eimage, .ei, .emage{
+			background-color: lightgrey;
+			width: 100%;
+			height: 100%;
+		}
+		.vbuts{
+			position: absolute;
+			width: 50px;
+			height: 50px;
+			font-size: 18px;
+			color: black;
+			background-color: white;
+			outline: 0;
+			border-radius: 10px;
+			border: 1px solid #EBEBEB;
+		}
+		.vbuts:hover{
+			background-color: #EBEBEB;
+		}
+		.vbuts2{
+			left: 95px;
+		}
+		.buts{
+			color: black;
+			text-decoration: none;
+		}
+		.buts:hover{
+			color: black;
+			text-decoration: none;
+		}
+		.secinsec{
+			float: left;
+			width: 58%;
+			height: 100%;
+		}
+		.pre{
+			float: left;
+			width: 100%;
+			height: 10%;
+			font-size: 15px;
+			padding-top: 3px;
+			padding-left: 5px;
+		}
+		.taggings{
+			margin-top: 5px;
+			margin-left: 10px;
+		}
+		.desc{
+			float: left;
+			width: 100%;
+			height: 23%;
+			font-size: 15px;
+			padding-top: 3px;
+			padding-left: 5px;
+		}
+		.desc2{
+			float: left;
+			width: 100%;
+			height: 16%;
+			font-size: 15px;
+			padding-top: 3px;
+			padding-left: 5px;
+		}
+		.date{
+			float: left;
+			width: 100%;
+			padding-top: 3px;
+			padding-left: 5px;
+			font-size: 17px;
+			height: 12%;
+		}
+		.trans{
+			background-color: transparent;
+			border: none;
+			outline: 0;
+		}
+		.full{
+			width: 100%;
+			height: 100%;
+		}
+		.options{
+			width: 100%;
+			margin-top: 0px;
+			margin-bottom: 0px;
+		}
+		.optionbuts{
+			width: 100%;
+			border: none;
+			background-color: transparent;
+			padding: 10px 10px;
+			margin-top: 0px;
+			margin-bottom: 0px;
+			outline: 0;
+		}
+		.optionbuts:hover{
+			background-color: #EBEBEB;
+		}
+		.optionpara{
+			margin-top: 0px;
+			margin-bottom: 0px;
+		}
+		/*-----------------------------------------------------------RIGHTSIDE------------------------------------------------------------------------
+		-------------------------------------------------------------RIGHTSIDE------------------------------------------------------------------------
+		-------------------------------------------------------------RIGHTSIDE------------------------------------------------------------------------
+		-------------------------------------------------------------RIGHTSIDE------------------------------------------------------------------------*/
+		/*-----------------------------------------------------------RIGHTSIDE------------------------------------------------------------------------
+		-------------------------------------------------------------RIGHTSIDE------------------------------------------------------------------------
+		-------------------------------------------------------------RIGHTSIDE------------------------------------------------------------------------
+		-------------------------------------------------------------RIGHTSIDE------------------------------------------------------------------------*/
+		/*-----------------------------------------------------------RIGHTSIDE------------------------------------------------------------------------
+		-------------------------------------------------------------RIGHTSIDE------------------------------------------------------------------------
+		-------------------------------------------------------------RIGHTSIDE------------------------------------------------------------------------
+		-------------------------------------------------------------RIGHTSIDE------------------------------------------------------------------------*/
+		/*-----------------------------------------------------------RIGHTSIDE------------------------------------------------------------------------
+		-------------------------------------------------------------RIGHTSIDE------------------------------------------------------------------------
+		-------------------------------------------------------------RIGHTSIDE------------------------------------------------------------------------
+		-------------------------------------------------------------RIGHTSIDE------------------------------------------------------------------------*/
 		.rightside{
 			height: 100%;
 			width: 20%;
 			position: fixed;
 			right: 0;
-			overflow-y: scroll;
-		}
-		.rightside::-webkit-scrollbar{
-		    background-color: transparent;
-		    opacity: 0;
-		    width: 7px;
-		}
-		.rightside::-webkit-scrollbar-thumb{
-			background-color: #17252A;
-			border-radius: 8px;
-		}
-		.centerg{
-			margin-top: 20%;
-			margin-left: 25%;
+			overflow-y: hidden;
 		}
 		.rightg{
 			width: 200px;
 			margin-top: 85%;
 			margin-left: 20%;
 		}
-		.links{
-			text-decoration: none;
-		}
-		.links:hover{
-			text-decoration: none;
-			border-bottom: 1px dotted black;
-		}
-		.leftlinks{
-			float: left;
+		.fullsec{
 			width: 100%;
-			padding: 5px 10px;
-			color: black;
+			height: 37.2%;
+			overflow-y: scroll;
 		}
+		.fullsec::-webkit-scrollbar{
+		    background-color: transparent;
+		    opacity: 0;
+		    width: 7px;
+		}
+		.fullsec::-webkit-scrollbar-thumb{
+			background-color: #17252A;
+			border-radius: 8px;
+		}
+		.muser{
+			background-color: white;
+			width: 100%;
+			height: 80px;
+			margin-top: 0px;
+			margin-bottom: 0px;
+			border: none;
+			border-bottom: 1px solid #F3F3F6;
+			outline: 0;
+		}
+		.muser:hover{
+			background-color: #f5f5f5;
+		}
+		.currentchat{
+			background-color: #EBEBEB;
+		}
+		.title{
+			font-size: 17px;
+			width: 100%;
+		}
+		.context{
+			max-width: 90%;
+			overflow: hidden;
+		    text-overflow: ellipsis;
+		    white-space: nowrap;
+		}
+		/*-----------------------------------------------------------BASIC------------------------------------------------------------------------
+		-------------------------------------------------------------BASIC------------------------------------------------------------------------
+		-------------------------------------------------------------BASIC------------------------------------------------------------------------
+		-------------------------------------------------------------BASIC------------------------------------------------------------------------*/
+		/*-----------------------------------------------------------BASIC------------------------------------------------------------------------
+		-------------------------------------------------------------BASIC------------------------------------------------------------------------
+		-------------------------------------------------------------BASIC------------------------------------------------------------------------
+		-------------------------------------------------------------BASIC------------------------------------------------------------------------*/
+		/*-----------------------------------------------------------BASIC------------------------------------------------------------------------
+		-------------------------------------------------------------BASIC------------------------------------------------------------------------
+		-------------------------------------------------------------BASIC------------------------------------------------------------------------
+		-------------------------------------------------------------BASIC------------------------------------------------------------------------*/
+		/*-----------------------------------------------------------BASIC------------------------------------------------------------------------
+		-------------------------------------------------------------BASIC------------------------------------------------------------------------
+		-------------------------------------------------------------BASIC------------------------------------------------------------------------
+		-------------------------------------------------------------BASIC------------------------------------------------------------------------*/
 		.normbut{
 			outline: 0;
 			border: none;
@@ -113,17 +659,41 @@
 		.overlay{
 			position: absolute;
 			left: 20%;
-			width: 60%;
-			height: 100%;
+			width: 900px;
+			height: 900px;
+			background-color: white;
 		}
 		.overlay2{
 			position: absolute;
 			height: 100%;
 			width: 20%;
 			right: 0;
+			background-color: white;
 		}
 		.mediumfont{
-			font-size: 15px;
+			font-size: 17px;
+		}
+		.leftelements{
+			float: left;
+		}
+		.rightelements{
+			float: right;
+		}
+		.normin{
+			outline: 0;
+			border: 1px solid #AAAABB;
+		}
+		.nomargin{
+			margin: 0;
+		}
+		.nopadding{
+			padding: 0;
+		}
+		.fullwidth{
+			width: 100%;
+		}
+		.fullheight{
+			height: 100%;
 		}
 			/*-----------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------
 			-------------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------
@@ -137,97 +707,435 @@
 			-------------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------
 			-------------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------
 			-------------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------*/
-		.mainelements{
+		.chatbox{
+			position: absolute;
+			bottom: 0;
+			height: 50%;
+			width: 250px;
 			background-color: white;
-			height: 40%;
-			width: 90%;
-			margin-left: 5%;
-			margin-top: 20px;
+			border: 1px solid black;
 		}
-		.firstelement{
+		.chatbox2{
+			position: absolute;
+			bottom: 0;
+			height: 5%;
+			width: 250px;
 			background-color: white;
-			height: 10%;
-			width: 90%;
-			margin-left: 5%;
-			margin-top: 20px;
+			border: 1px solid black;
 		}
-		.secelement{
+		.chatst1{
+			right: 250px;
+		}
+		.chatst2{
+			right: 510px;
+		}
+		.chatst3{
+			right: 770px;
+		}
+		.chatbox a{
+			color: black;
+		}
+		.top{
+			width: 100%;
+			background-color: #DDDDEE;
+		}
+		.body{
 			background-color: white;
-			height: 80%;
-			width: 90%;
-			margin-left: 5%;
-			margin-top: 20px;
+			height: 85%;
+			width: 100%;
+			overflow-y: scroll;
+		}
+		.send{
+			width: 100%;
+			height: 8%;
+		}
+		.sbut{
+			width: 10%;
+			outline: 0;
+			height: 100%;
+		}
+		.sin{
+			width: 80%;
+			outline: 0;
+			height: 100%;
+		}
+		.topbut{
+			background-color: transparent;
+			outline: 0;
+			border: none; topbut
+		}
+		.mess{
+			width: auto;
+			background-color: blue;
 		}
 	</style>
 </head>
 <body>
 	<header class="headd">
-		<div>
-			<center><a class="linkk" href="{% url 'index' %}"> DEPARTMENT ACTIVITY</a></center>
-		</div>
-		
+		<a class="linkk leftelements" href="{% url 'index' %}"><img class="leftelements logog" src="{% static 'kj.png' %}" title="KJSIEIT Logo"><p class="leftelements nom2">DEPARTMENT ACTIVITY</p></a>
+		<input title="Search Anything" type="text" name="search" id="search" class="normin leftelements search" placeholder="Search Events/Users/Groups" autocomplete="off">
+		<button style="display: none;" onclick="clearing()" class="ingly" id="cross"><i class="glyphicon glyphicon-remove"></i></button>
 	</header>
 	<div class="leftside">
-		<a href="" class="leftlinks links">Profile</a>
-		<a href="" class="leftlinks links">Edit Profile</a>
-		<a href="" class="leftlinks links">Help</a>
-		<a href="" class="leftlinks links">Admin Page</a>
-		<a href="" class="leftlinks links">Convert to Staff</a>
-		<a href="" class="leftlinks links">Convert to Admin</a>
-		<a href="" class="leftlinks links">Logout</a>
-		<button class="leftlinks normbut">Notifications</button>
+		<a title="Visit yout own Profile" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-userdetails={{ user.username }}" class="leftlinks links"><p class="leftelements leftlinkpara">Profile</p></a>
+		<button title="Edit your Profile" href="" class="leftlinks links lbuts"><p class="leftelements leftlinkpara">Edit Profile</p></button>
+		<button title="Help" href="" class="leftlinks links lbuts"><p class="leftelements leftlinkpara">Help</p></button>
+		<button title="Convert your account to Faculty Account" href="" class="leftlinks links lbuts"><p class="leftelements leftlinkpara">Convert to Staff</p></button>
+		<button title="Convert your account to Admin Account" href="" class="leftlinks links lbuts"><p class="leftelements leftlinkpara">Convert to Admin</p></button>
+		<button title="Report a Complaint" href="" class="leftlinks links lbuts"><p class="leftelements leftlinkpara">Complaints</p></button>
+		<a title="Download User Manual for Faculty" href="{% static 'usermanual.pdf' %}" target="_blank" class="leftlinks links"><p class="leftelements leftlinkpara">Faculty-User Manual</p></a>
+		<a title="Download User Manual for Students" href="" class="leftlinks links"><p class="leftelements leftlinkpara">Students-User Manual</p></a>
+		{% if user.is_staff == True %}
+		<button title="Add an Event" class="leftlinks links lbuts" id="firstelement" onclick="add()"><p class="leftelements leftlinkpara">Add Event</p></button>
+		<button title="See the Events you Added" href="" class="leftlinks links lbuts"><p class="leftelements leftlinkpara">Your Events</p></button>
+		<button title="Download Specific Events on Excel Sheet" href="" class="leftlinks links lbuts"><p class="leftelements leftlinkpara">Get Full Data</p></button>
+		<button title="See all Finished Events" href="" class="leftlinks links lbuts"><p class="leftelements leftlinkpara">Finished Events</p></button>
+		{% else %}
+		<button title="See the Events you Registered in" href="" class="leftlinks links lbuts"><p class="leftelements leftlinkpara">Registered Events</p></button>
+		{% endif %}
+		{% if user.is_superuser == True %}
+		<a title="Visit Admin Page" href="toadmpage" class="leftlinks links" target="_blank"><p class="leftelements leftlinkpara">Admin Page</p></a>
+		{% else %}
+		<a title="Visit Admin Page" href="toadmpage" class="leftlinks links"><p class="leftelements leftlinkpara">Admin Page</p></a>
+		{% endif %}
+		<a title="Log out of your account" href="homelogout" class="leftlinks links"><p class="leftelements leftlinkpara">Logout</p></a>
+		<button title="Your all Notifications" class="leftlinks normbut">Notifications</button>
+		<div class="notis" id="notis">
+		</div>
 	</div>
 	<div class="main center elements" id="main">
-		<button class="firstelement"><p class="mediumfont">Add Event</p></button>
-		<form class="secelement">
+		{% if messages %}
+	    	{% for message in messages %}
+	        	<div class="zeroelement {{ message.tags }} alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">{{ message }} !</div>
+	    	{% endfor %}
+	    {% else %}
+	    	<div style="height: 0; width: 0;"> </div>
+		{% endif %}
+		<button style="display: none;" class="secelement2" id="secelement2" onclick="notadd()"><p class="mediumfont">x</p></button>
+		<form style="display: none;" class="secelement" id="secelement">
+			<div class="onesec onesec2">
+				<input autocomplete="off" placeholder="Event Name*" type="text" id="evnain" name="eventname" class="in three" required/>
+				<input autocomplete="off" placeholder="Organizing Committee/Department" type="text" id="orgcin" name="eventcommittee" class="in three" >
+				<input autocomplete="off" placeholder="Department" type="text" id="depin" name="eventdepartment" class="in three" >
+			</div>
+			<div class="onesec">
+				<label class="leftelements lab">Poster:</label>
+				<input type="file" name="eventpos" accept="image/*" class="inc inc3 four">
+				<label class="leftelements lab">Event Date:</label>
+				<input autocomplete="off" placeholder="Event Date" type="date" id="evdain" name="eventdate" class="ind four" title="Date of Event" >
+			</div>
+			<div class="onesec">
+				<label class="leftelements lab">Time From:</label>
+				<input autocomplete="off" placeholder="From" type="time" id="evtofroin" name="eventtimefro" class="ind inc2 four" title="Starts at" required/>
+				<label class="leftelements lab">Time To:</label>
+				<input autocomplete="off" placeholder="From" type="time" id="evtotoin" name="eventtimeto" class="ind inc2 four" title="Ends at" required/>
+			</div>
+			<div class="onesec">
+				<label class="leftelements lab">Registrations From:</label>
+				<input autocomplete="off" placeholder="Registration Date" type="date" id="regfroin" name="regfrom" title="Registration Starts" class="ind four" required/>
+				<label class="leftelements lab">Registrations To:</label>
+				<input autocomplete="off" placeholder="Registration Date" type="date" id="regtoin" name="regto" title="Registration Ends" class="ind four" required/>
+			</div>
+			<div class="onesec">
+				<input autocomplete="off" placeholder="Event Type" type="text" id="typein" name="eventtype" class="in three">
+				<input autocomplete="off" placeholder="Presenter" type="text" id="evpin" name="eventpresenter" class="in three">
+				<input autocomplete="off" placeholder="Designtion" type="text" id="evdin" name="eventdesignation" class="in three">
+			</div>
+			<div class="onesec">
+				<input autocomplete="off" placeholder="Faculty Co-ordinator*" type="text" id="org1in" name="eventorganizer1" class="in three" required/>
+				<input autocomplete="off" placeholder="Faculty Co-ordinator*" type="text" id="org2in" name="eventorganizer2" class="in three" required/>
+				<input autocomplete="off" placeholder="Faculty Co-ordinator" type="text" id="org3in" name="eventorganizer3" class="in three">
+			</div>
+			<div class="onesec">
+				<input autocomplete="off" placeholder="Convener*" type="text" id="con1in" name="eventconvener1" class="in three" required/>
+				<input autocomplete="off" placeholder="Convener" type="text" id="con2in" name="eventconvener2" class="in three">
+				<input autocomplete="off" placeholder="Meeting Link" type="text" id="regin" name="regin" class="in three">
+			</div>
+			<div class="onesec">
+				<input autocomplete="off" placeholder="Query Contact*" type="text" id="evq1in" name="contact1" class="in three" required/>
+				<input autocomplete="off" placeholder="Query Contact" type="text" id="evq2in" name="contact2" class="in three">
+				<input autocomplete="off" placeholder="Whatsapp Group Link" type="text" id="whatin" name="eventwhatsapp" class="in three">
+			</div>
+			<div class="onesec">
+				<input autocomplete="off" placeholder="Event Perks" type="text" id="evpein" name="eventperk" class="in three" >
+				<input autocomplete="off" placeholder="Reminders if any" id="comin" type="textarea" name="com" class="in three">
+				<select class="inc three" id="carsin" name="eventcertificate">
+					<option value="True">Cerificate : Yes</option>
+					<option value="False">Cerificate : No</option>
+				</select>
+			</div>
+			<div class="onesec">
+				<input autocomplete="off" placeholder="Event Description" type="text" id="evdein" name="eventdesc" class="in three" >
+				<select class="inc three" id="carsin2" name="tags" multiple="">
+					{% for u in users %}
+						<option value="{{ u.id }}">{{ u.username }}</option>
+					{% endfor %}
+				</select>
+				<button class="but">Submit</button>
+			</div>
 		</form>
-		{% for event in event_number %}
-		<div id="event{{ event.id }}" class="mainelements">
+		{% for e in event_number %}
+		<div id="e{{ e.id }}" class="mainelements">
+			<div class="firstsec">
+				<div class="firstinfirst">
+					<a title="Know More About {{ e.title }}" class="ename" href="#">{{ e.title }}</a>
+					<p title="Event Type:{{ e.etype }}" class="subtitle">{{ e.etype }} ({{ e.target }})</p>
+				</div>
+				<div class="secondinfirst">
+					<p style="position: absolute;" title="Status:{{ e.status }}" class="status leftelements {{ e.status|lower }}">{{ e.status }}</p>
+				</div>
+				<div class="thirdinfirst">
+					<a href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-userdetails={{ e.by.username }}" class="publisher"><p title="Know More About {{ e.by.first_name }} {{ e.by.last_name }}" class="publisher2">{{ e.by.username }}</p></a>
+					{% load humanize %}
+					<div title="Published Date" class="publisher"><p class="publisher3">{{ e.pubdate|naturaltime }}</p></div>
+				</div>
+				<div class="fourthinfirst">
+					<button title="Show Additional Options" class="leftelements full trans" onclick="options(1,'{{ e.id }}')" id="optbut1{{ e.id }}"><i class="glyphicon glyphicon-menu-down"></i></button>
+					<button title="Hide Additional Options" style="display: none;" class="leftelements full trans" onclick="options(2,'{{ e.id }}')" id="optbut2{{ e.id }}"><i class="glyphicon glyphicon-menu-down"></i></button>
+				</div>
+			</div>
+			<div class="secondsec">
+				<div class="firstinsec">
+					{% if e.poster %}
+					<div class="leftelements eimage">
+						<button title="View Poster" class="leftelements vbuts" id="view{{ e.id }}" onclick="pressed('{{ e.id }}')"><i class="glyphicon glyphicon-eye-open"></i></button>
+						<button title="Download Poster" class="leftelements vbuts vbuts2"><a class="buts" href="{{ e.poster.url }}" download><i class="glyphicon glyphicon-download-alt"></i></a></button>
+						<span style="position: absolute;background-color: lightgrey" class="leftelements spaimage" id="spa{{ e.id }}"></span>
+						<img title="Poster of {{ e.title }}" class="leftelements emage" id="pos{{e.id}}" style="margin-right: 0px;" width="183px" src="{{ e.poster.url }}">
+					</div>
+					{% else %}
+					<div class="leftelements ei"><p> No Image </p></div>
+					{% endif %}
+					<div id="myModal" class="modal">
+				  		<span class="close">&times;</span>
+				 		<img class="modal-content" id="img01">
+				  		<div id="caption"></div>
+					</div>
+					
+				</div>
+				<div class="secinsec" onclick="options(2,'{{ e.id }}')" >
+					<div class="date"><p class="leftelements">{{ e.date }} {{ e.tfrom }}-{{ e.tto }}</p></div>
+					<div class="pre"><p class="leftelements">{{ e.presenter }} ({{ e.presenterd }})</p></div>
+					<div class="desc"><p class="leftelements">{{ e.description }}</p></div>
+					<div class="desc2"><p class="leftelements">Faculty Co-ordinators : {{ e.teacher1 }}, {{ e.teacher2 }}, {{ e.teacher3 }}</p></div>
+					<div class="pre"><p class="leftelements">Conveners : {{ e.convener1 }}, {{ e.convener2 }}</p></div>
+					<div class="pre"><p class="leftelements"> Contacts : {{ e.contact1 }}, {{ e.contact2 }}</p></div>
+					<div class="desc2">
+						{% if e.tags %}
+						<p style="margin-top: 5px;" class="leftelements slmargin oned alagparaha">
+							Tags : 
+						</p>
+						{% for mem in e.tags.all %}
+						<a class="leftelements taggings" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-userdetails={{ mem }}">{{ mem }}</a>
+						{% endfor %}
+						{% endif %}	
+					</div>
+					
+				</div>
+				<div style="display: none;" class="optionsec" id="options{{ e.id }}">
+					{% ifequal e.by.username user.username %}
+					<form class="leftelements options"><button class="optionbuts"><p class="leftelements optionpara">Edit Event</p></button></form>
+					{% endifequal %}
+					{% if user.is_superuser == True %}
+					{% ifnotequal e.status 'Confirmed' %}
+					<form class="leftelements options"><button id="confirmed{{ e.id }}" value="{{ e.id }}" name="dell" type="button" onclick="mark('Confirmed','{{ e.id }}')" class="optionbuts"><p class="leftelements optionpara">Mark as Confirmed</p></button></form>
+					{% endifnotequal %}
+					{% ifnotequal e.status 'Ongoing' %}
+					<form class="leftelements options"><button id="ongoing{{ e.id }}" value="{{ e.id }}" name="dell" type="button" onclick="mark('Ongoing','{{ e.id }}')" class="optionbuts"><p class="leftelements optionpara">Mark as Ongoing</p></button></form>
+					{% endifnotequal %}
+					{% ifnotequal e.status 'Pending' %}
+					<form class="leftelements options"><button id="pending{{ e.id }}" value="{{ e.id }}" name="dell" type="button" onclick="mark('Pending','{{ e.id }}')" class="optionbuts"><p class="leftelements optionpara">Mark as Pending</p></button></form>
+					{% endifnotequal %}
+					<form class="leftelements options"><button class="optionbuts"><p class="leftelements optionpara">Delete</p></button></form>
+					{% endif %}
+					{% if user.is_staff == True %}
+					<form action="toreg" method="POST" class="leftelements options">{% csrf_token %}<button name="dell" class="optionbuts" id="finxls{{ e.id }}" value="{{ e.id }}"><p class="leftelements optionpara">Registrations ({{ r. }})</p></button></form>
+					{% for r in regis %}
+					{% ifequal r.erref.title e.title %}
+					<p style="display: none;"></p>
+					{% endifequal %}
+					{% endfor %}
+					{% for rep in report_num %}
+					{% ifequal rep.erref.title e.title %}
+					<form class="leftelements options" action="torep" method="POST">{% csrf_token %}<button class="optionbuts"name="dell" value="{{ rep.id }}"><p class="leftelements optionpara">Get Report</p></button></form>
+					{% endifequal %}
+					{% endfor %}
+					{% endif %}
+					<form class="leftelements options" action="todocall" method="POST">
+						{% csrf_token %}
+						<input style="display: none;" type="text" name="delltitle" value="{{ e.title }}">
+						<input style="display: none;" type="text" name="delldate" value="{{ e.date }}">
+						<input style="display: none;" type="text" name="delldesc" value="{{ e.description }}">
+						<input style="display: none;" type="text" name="delltype" value="{{ e.etype }}">
+						<input style="display: none;" type="text" name="dellfrom" value="{{ e.tfrom }}">
+						<input style="display: none;" type="text" name="dellto" value="{{ e.tto }}">
+						<input style="display: none;" type="text" name="dellregf" value="{{ e.regfrom }}">
+						<input style="display: none;" type="text" name="dellregt" value="{{ e.regto }}">
+						<input style="display: none;" type="text" name="dellorg" value="{{ e.organizer }}">
+						<input style="display: none;" type="text" name="dellpresenter" value="{{ e.presenter }}">
+						<input style="display: none;" type="text" name="dellpresenterd" value="{{ e.presenterd }}">
+						<input style="display: none;" type="text" name="delldep" value="{{ e.department }}">
+						<input style="display: none;" type="text" name="dellperks" value="{{ e.perks }}">
+						<input style="display: none;" type="text" name="dellcerti" value="{{ e.certi }}">
+						<input style="display: none;" type="text" name="dellfaccod1" value="{{ e.teacher1 }}">
+						<input style="display: none;" type="text" name="dellfaccod2" value="{{ e.teacher2 }}">
+						<input style="display: none;" type="text" name="dellfaccod3" value="{{ e.teacher3 }}">
+						<input style="display: none;" type="text" name="dellconv1" value="{{ e.convener1 }}">
+						<input style="display: none;" type="text" name="dellconv2" value="{{ e.convener2 }}">
+						<input style="display: none;" type="text" name="dellcont1" value="{{ e.contact1 }}">
+						<input style="display: none;" type="text" name="dellcont2" value="{{ e.contact2 }}">
+						<button class="optionbuts"name="dell" value="{{ e.id }}"><p class="leftelements optionpara">Get Data in DOC</p></button>
+					</form>
+					<form class="leftelements options" action="topdfall" method="POST">
+						{% csrf_token %}
+						<input style="display: none;" type="text" name="delltitle" value="{{ e.title }}">
+						<input style="display: none;" type="text" name="delldate" value="{{ e.date }}">
+						<input style="display: none;" type="text" name="delldesc" value="{{ e.description }}">
+						<input style="display: none;" type="text" name="delltype" value="{{ e.etype }}">
+						<input style="display: none;" type="text" name="dellfrom" value="{{ e.tfrom }}">
+						<input style="display: none;" type="text" name="dellto" value="{{ e.tto }}">
+						<input style="display: none;" type="text" name="dellregf" value="{{ e.regfrom }}">
+						<input style="display: none;" type="text" name="dellregt" value="{{ e.regto }}">
+						<input style="display: none;" type="text" name="dellorg" value="{{ e.organizer }}">
+						<input style="display: none;" type="text" name="dellpresenter" value="{{ e.presenter }}">
+						<input style="display: none;" type="text" name="dellpresenterd" value="{{ e.presenterd }}">
+						<input style="display: none;" type="text" name="delldep" value="{{ e.department }}">
+						<input style="display: none;" type="text" name="dellperks" value="{{ e.perks }}">
+						<input style="display: none;" type="text" name="dellcerti" value="{{ e.certi }}">
+						<input style="display: none;" type="text" name="dellfaccod1" value="{{ e.teacher1 }}">
+						<input style="display: none;" type="text" name="dellfaccod2" value="{{ e.teacher2 }}">
+						<input style="display: none;" type="text" name="dellfaccod3" value="{{ e.teacher3 }}">
+						<input style="display: none;" type="text" name="dellconv1" value="{{ e.convener1 }}">
+						<input style="display: none;" type="text" name="dellconv2" value="{{ e.convener2 }}">
+						<input style="display: none;" type="text" name="dellcont1" value="{{ e.contact1 }}">
+						<input style="display: none;" type="text" name="dellcont2" value="{{ e.contact2 }}">
+						<button class="optionbuts"name="dell" value="{{ e.id }}"><p class="leftelements optionpara">Get Data in PDF</p></button>
+					</form>
+					{% if e.whatsapp %}
+					<button onclick="copy('{{ e.id }}','{{ e.whatsapp }}')" class="optionbuts"name="dell"><p class="leftelements optionpara">Copy Whatsapp Group Link</p></button>
+					{% endif %}
+					{% if e.link %}
+					<button onclick="copy('{{ e.id }}','{{ e.link }}')" class="optionbuts"name="dell"><p class="leftelements optionpara">Copy Meeting Link</p></button>
+					{% endif %}
+				</div>
+				
+			</div>
+			<div class="thirdsec">
+				<div class="reginfo"><em>Registrations Start from {{ e.regfrom|date:"Y-m-d" }} and ends at {{ e.regto|date:"Y-m-d" }}</em></div>
+				<div class="reging"><button class="rthird trans">Certificate : {{ e.certi }}</button><button class="rthird trans">Register</button><button class="rthird trans">Share W</button><button class="rthird trans">Share GM</button></div>
+			</div>
 		</div>
 		{% endfor %}
+		<div class="lastelement"><div class="lastl"><center><p style="font-size: 20px;">You're all caught up!</p></center></div></div>
 	</div>
 	<div class="overlay" id="overlay">
 		<img class="centerg" src="{% static 'load.gif' %}" title="Loading....">
 	</div>
+	<input style="display: none;" type="text" name="what" id="what" value="none">
 	<aside class="rightside messaging">
-		<a href="" class="leftlinks links">Profile</a>
-		<a href="" class="leftlinks links">Edit Profile</a>
-		<a href="" class="leftlinks links">Help</a>
-		<a href="" class="leftlinks links">Admin Page</a>
-		<a href="" class="leftlinks links">Convert to Staff</a>
-		<a href="" class="leftlinks links">Convert to Admin</a>
-		<a href="" class="leftlinks links">Logout</a>
-		<button class="leftlinks normbut">Notifications</button>
-		<a href="" class="leftlinks links">Profile</a>
-		<a href="" class="leftlinks links">Edit Profile</a>
-		<a href="" class="leftlinks links">Help</a>
-		<a href="" class="leftlinks links">Admin Page</a>
-		<a href="" class="leftlinks links">Convert to Staff</a>
-		<a href="" class="leftlinks links">Convert to Admin</a>
-		<a href="" class="leftlinks links">Logout</a>
-		<button class="leftlinks normbut">Notifications</button>
-		<a href="" class="leftlinks links">Profile</a>
-		<a href="" class="leftlinks links">Edit Profile</a>
-		<a href="" class="leftlinks links">Help</a>
-		<a href="" class="leftlinks links">Admin Page</a>
-		<a href="" class="leftlinks links">Convert to Staff</a>
-		<a href="" class="leftlinks links">Convert to Admin</a>
-		<a href="" class="leftlinks links">Logout</a>
-		<button class="leftlinks normbut">Notifications</button>
-		<a href="" class="leftlinks links">Profile</a>
-		<a href="" class="leftlinks links">Edit Profile</a>
-		<a href="" class="leftlinks links">Help</a>
-		<a href="" class="leftlinks links">Admin Page</a>
-		<a href="" class="leftlinks links">Convert to Staff</a>
-		<a href="" class="leftlinks links">Convert to Admin</a>
-		<a href="" class="leftlinks links">Logout</a>
-		<button class="leftlinks normbut">Notifications</button>
+		<button title="Your Recent Chats" class="leftlinks normbut">Recent Messages</button>
+		<div class="fullsec" id="messagesec">
+			{% if musers %}
+			{% for m in musers %}
+			<form class="nomargin nopadding" method="POST">
+				<button title="Chat with {{ m.first_name }} {{ m.last_name }}" type="button" id="m{{ m.username }}" class="muser" onclick="chat('{{ m.username }}')">
+					<div class="leftelements title">
+						<p class="leftelements">{{ m.username }}</p>
+					</div>
+					<p class="leftelements context">
+						{% for g in recent %}
+
+						{% ifequal g.sender.username m.username %}
+						{{ g.message }}      [{{ g.timee }}]
+						{% ifnotequal g.messageseen 'third' %}
+						<p class="leftelements noticlass" style="width: 20px;height: 20px;background-color: red;border-radius: 10px;"></p>
+						{% endifnotequal %}
+						{% endifequal %}
+						{% ifequal g.sender.username request.user.username %}
+						{% ifequal g.receiver.username m.username %}
+						You:{{ g.message }}      [{{ g.timee }}]
+						{% endifequal %}
+						{% endifequal %}
+
+						{% endfor %}
+					</p>
+				</button>
+			</form>
+			{% endfor %}
+			{% else %}
+			<div>No recent Messages</div>
+			{% endif %}
+			<!-- {% for m in users %}
+			<form class="nomargin nopadding">
+				<button id="m{{ m.id }}" class="muser"><p class="leftelements">{{ m.username }}</p></button>
+			</form>
+			{% endfor %} -->
+		</div>
+		<button title="Your Group Chats" class="leftlinks normbut">Group Messages</button>
+		<div class="fullsec">
+			{% if groups %}
+			{% for m in groups %}
+			<form class="nomargin nopadding" method="POST">
+				<button title="Chat with Group : {{ m.name }}" id="m{{ m.id }}" class="muser">
+					<div class="leftelements title">
+						<p class="leftelements">{{ m.name }}</p>
+					</div>
+					<p class="leftelements context">
+						{% for g in groupr %}
+						{% ifequal g.groupref.name m.name %}
+						{{ g.gmessagesender }}:{{ g.gmessage }}  [{{ g.gtime }}]
+						{% endifequal %}
+						{% endfor %}
+					</p>
+				</button>
+			</form>
+			{% endfor %}
+			{% else %}
+			<div>You're not in any groups</div>
+			{% endif %}
+		</div>
+		<button title="Start a New Chat" class="leftlinks normbut">New Message</button>
+
 	</aside>
 	<div class="overlay2" id="overlay2">
 		<img class="rightg" src="{% static 'load.gif' %}" title="Loading....">
 	</div>
+	{% for m in musers %}
+	<div style="display: none;" class="chatbox" id="chatbox{{ m.username }}">
+		<div class="top leftelements">
+			<a class="leftelements" id="person" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-userdetails={{ m.username }}">{{ m.username }}</a>
+			<button class="topbut rightelements closebut" id="closebut" onclick="closing('{{ m.username }}')"><i class="glyphicon glyphicon-remove"></i></button>
+			<button class="topbut rightelements" onclick="minimize('{{ m.username }}')"><i class="glyphicon glyphicon-chevron-down"></i></button>
+		</div>
+		<div class="body leftelements" id="chatbody{{ m.username }}">
+			{% for ms in message2 %}
+			{% ifequal ms.sender.username m.username %}
+			<div class="leftelements fullwidth"><div class="fullheight leftelements mess">{{ ms.message }}</div></div>
+			{% endifequal %}
+			{% ifequal ms.receiver.username m.username %}
+			<div class="leftelements fullwidth"><div class="fullheight rightelements mess">{{ ms.message }}</div></div>
+			{% endifequal %}
+			{% endfor %}
+		</div>
+		<div class="send leftelements">
+			<button class="leftelements sbut topbut"><i class="glyphicon glyphicon-paperclip"></i></button>
+			<input type="text" name="message{{ m.username }}" id="message{{ m.username }}" class="leftelements sin" placeholder="Type Something" autocomplete="off">
+			<button class="leftelements sbut topbut" onclick="chatting('{{ m.username }}')"><i class="glyphicon glyphicon-send"></i></button>
+		</div>
+	</div>
+	{% endfor %}
+	{% for m in musers %}
+	<div style="display: none;" class="chatbox2" id="chatbox2{{ m.username }}">
+		<div class="top leftelements">
+			<p class="leftelements" id="person2" >{{ m.username }}</p>
+			<button class="rightelements topbut" id="closebut2"><i class="glyphicon glyphicon-remove"></i></button>
+			<button class="rightelements topbut" onclick="unminimize('{{ m.username }}')"><i class="glyphicon glyphicon-chevron-up"></i></button>
+		</div>
+	</div>
+	{% endfor %}
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script type="text/javascript">
+		var chatnum=0;
 		$(document).ready(function () {
 			console.log('Requesting JSON');
 			$.getJSON('{% url "getevents" %}'), function(events){
@@ -242,10 +1150,340 @@
 					console.log(current[3]);
 				}
 			}
+			x=document.getElementsByClassName('noticlass');
+			if (x.length>0){
+				document.title = document.title + ' ('+x.length+')';
+			}
 		});
+		function closing(ele){
+			numb='chatbox'+ele;
+			x2=document.getElementById(numb);
+			if (x2.classList.contains("chatst1")){
+				x2.classList.remove("chatst1")
+				secel=document.getElementsByClassName('chatst2');
+				if (secel[0]!=undefined){
+					secel[0].classList.add("chatst1")
+					secel[0].classList.remove("chatst2")
+				}
+				
+				secel2=document.getElementsByClassName('chatst3');
+				if (secel2[0]!=undefined){
+					secel2[0].classList.add("chatst2")
+					secel2[0].classList.remove("chatst3")
+				}
+				
+			}
+			if (x2.classList.contains("chatst2")){
+				console.log('thississ')
+				x2.classList.remove("chatst2")
+				secel3=document.getElementsByClassName('chatst3');
+				if (secel3[0]!=undefined){
+					secel3[0].classList.add("chatst2")
+					secel3[0].classList.remove("chatst3")
+				}
+				
+			}
+			document.getElementById(numb).style.display='none';
+			x=document.getElementsByClassName('chatbox');
+			var ss=0;
+			for (var i=0;i<x.length;i++){
+				if(x[i].style.display==='none'){
+					ss=ss;
+				}
+				else{
+					ss+=1;
+				}
+			}
+			chatnum=ss;
+			console.log(chatnum)
+		}
 		$(window).load(function(){
-			$('#overlay').fadeOut(2000);
-			$('#overlay2').fadeOut(2000);
+			$('#overlay').delay(1000).fadeOut(300);
+			$('#overlay2').delay(1000).fadeOut(300);
+		});
+		function clearing(){
+			document.getElementById('search').value='';
+			document.getElementById('cross').style.display='none';
+			document.getElementById('search').focus();
+		}
+		$('#search').keyup(function(){
+			if($.trim(this.value).length > 0)
+				$('#cross').show()
+			else
+				$('#cross').hide()
+		})
+		function chat(numb){
+			var pp=0;
+			element=document.getElementById('chatbox'+numb);
+			x=document.getElementsByClassName('chatbox');
+			for (var i=0;i<x.length;i++){
+				if (x[i].style.display==='none'){
+					console.log('no')
+				}
+				else{
+					pp+=1;
+				}
+			}
+			if (pp==3){
+				if (element.style.display==='none'){
+					console.log('oppppppppppppppppppppppppppppppppppppppppppppp')
+					console.log('chatbox'+numb)
+					cur=document.getElementById('chatbox'+numb);
+					cur.classList.remove("chatst1");
+					console.log(cur.id)
+					ele=document.getElementsByClassName('chatst1');
+					ele[0].style.display='none';
+					cur.style.display='';
+					ele[0].classList.remove("chatst1");
+					cur.classList.add("chatst1");
+				}
+			}
+			else{
+				if (element.style.display==='none'){
+			  		numb2='m'+numb;
+			  		numb3='chatbox'+numb;
+					x=document.getElementsByClassName('chatbox');
+					console.log(x.length)
+					console.log(chatnum)
+					for (var i=0;i<x.length;i++){
+						if (x[i].id===numb3){
+							console.log('yes')
+							document.getElementById('chatbox'+numb).style.display='';
+							myDiv=$('#chatbody'+numb);
+							scrollAmount=10;
+							myDiv.scrollTop(myDiv[0].scrollHeight - myDiv[0].clientHeight + scrollAmount);
+							chatnum+=1
+							console.log(chatnum)
+							num=chatnum.toString()
+							x[i].classList.add("chatst"+num);
+						}
+						else{
+							console.log('no')
+						}
+					}
+					console.log(x[0].id)
+					console.log(x[1].id)
+			  		
+			  		console.log(numb2)
+			  		document.getElementById(numb2).classList.add("currentchat");
+				}	
+			}
+			
+		}
+		function add(){
+			document.getElementById('secelement').style.display='';
+			document.getElementById('secelement2').style.display='';
+			document.getElementById('firstelement').style.display='none';
+		}
+		function notadd(){
+			document.getElementById('secelement').style.display='none';
+			document.getElementById('secelement2').style.display='none';
+			document.getElementById('firstelement').style.display='';
+		}
+		function minimize(numb){
+			document.getElementById('chatbox'+numb).style.display='none';
+			document.getElementById('chatbox2'+numb).style.display='';
+		}
+		function unminimize(numb){
+			document.getElementById('chatbox'+numb).style.display='';
+			document.getElementById('chatbox2'+numb).style.display='none';
+		}
+		function options(numb,event){
+			show='options'+event
+			but2='optbut2'+event
+			but1='optbut1'+event
+			if (numb==1){
+				document.getElementById(show).style.display='';
+				document.getElementById(but2).style.display='';
+				document.getElementById(but1).style.display='none';
+			}
+			if (numb==2){
+				document.getElementById(show).style.display='none';
+				document.getElementById(but2).style.display='none';
+				document.getElementById(but1).style.display='';
+			}
+			
+		}
+			
+		function mark(as,numb){
+			if (as==='Pending'){
+		  		jQuery.ajax({
+				      type: "POST",
+				      url: "pending",
+				      data:{
+				      	"dell":numb,
+				      	'csrfmiddlewaretoken': '{{ csrf_token }}'
+				      },
+				      success: function (response) {
+				  		console.log('success pending')
+				  		$("#main").load(" #main > *");
+				  		$("body").append('<div id="notidiv" style="position:absolute;width:400px;height:40px;top:80px;left:37%;" class="success"><p class="notipara">You marked it as '+as+' successfully</p><button id="noticl" onclick="close('+numb+')" class="lbuts rightelements notipara2">x</button></div>');
+				  		$("#notidiv").delay(3200).fadeOut(300);
+				      }
+				 });
+			    return false;
+			}
+			else if (as==='Ongoing'){
+		  		jQuery.ajax({
+				      type: "POST",
+				      url: "ongoing",
+				      data:{
+				      	"dell":numb,
+				      	'csrfmiddlewaretoken': '{{ csrf_token }}'
+				      },
+				      success: function (response) {
+				  		console.log('success')
+				  		$("#main").load(" #main > *");
+				  		$("body").append('<div id="notidiv" style="position:absolute;width:400px;height:40px;top:80px;left:37%;" class="success"><p class="notipara">You marked it as '+as+' successfully</p><button id="noticl" onclick="close('+numb+')" class="lbuts rightelements notipara2">x</button></div>');
+				  		$("#notidiv").delay(3200).fadeOut(300);
+				      }
+				 });
+			    return false;
+			}
+			else{
+		  		jQuery.ajax({
+				      type: "POST",
+				      url: "confirmed",
+				      data:{
+				      	"dell":numb,
+				      	'csrfmiddlewaretoken': '{{ csrf_token }}'
+				      },
+				      success: function (response) {
+				  		console.log('success')
+				  		$("#main").load(" #main > *");
+				  		$("body").append('<div id="notidiv" style="position:absolute;width:400px;height:40px;top:80px;left:37%;" class="success"><p class="notipara">You marked it as '+as+' successfully</p><button id="noticl" onclick="close('+numb+')" class="lbuts rightelements notipara2">x</button></div>');
+				  		$("#notidiv").delay(3200).fadeOut(300);
+				  		setTimeout(function(){
+						  $('#notidiv').remove();
+						}, 3200);
+				      }
+				 });
+			    return false;
+			}
+		}
+		function copy(numb,element){
+			options(2,numb);
+			console.log(element)
+			navigator.clipboard.writeText(element);
+	  		$("body").append('<div id="notidiv" style="position:absolute;width:400px;height:40px;top:80px;left:37%;" class="success"><p class="notipara">Copied the link  successfully</p><button id="noticl" onclick="close('+numb+')" class="lbuts rightelements notipara2">x</button></div>');
+	  		$("#notidiv").delay(3200).fadeOut(300);
+	  		setTimeout(function(){
+			  $('#notidiv').remove();
+			}, 3200);
+		}
+		document.addEventListener('keydown', function(event) {
+  			var scrollAmount= $("#main").scrollTop()
+			if (event.keyCode===40) {
+		  		var myDiv = $("#main");
+		  		gh=myDiv[0].scrollHeight-myDiv[0].clientHeight
+		    	if (scrollAmount < gh){
+		  			scrollAmount=scrollAmount+20;
+					myDiv.scrollTop(scrollAmount);
+				}
+			}
+			if (event.keyCode===38) {
+			  	var myDiv = $("#main");
+		    	if ((scrollAmount!=0) || (scrollAmount > 0)){
+		  			scrollAmount=scrollAmount-20;
+					myDiv.scrollTop(scrollAmount);
+				}
+			}
+		});
+		function chatting(numb) {
+		  	console.log('entered')
+		  	var token =  $('input[name="csrfmiddlewaretoken"]').attr('value')
+		  	var pro = document.getElementById('what').value;
+		  	if (pro==='file'){
+		  		jQuery.noConflict();
+		  		formdata = new FormData();
+		  		console.log('entered in file')
+		  		var file = document.getElementById('thefile').files[0];
+		  		formdata.append("file", file);
+		  		formdata.append("message", document.getElementById('sbar').value);
+		  		formdata.append("rece", document.getElementById('sender').value);
+		  		formdata.append("what", document.getElementById('what').value);
+		  		jQuery.ajax({
+			      type: "POST",
+			      url: "/kjsomaiyacollegeofengineeringandinformationtechnologyteachers-fullmessages/addmessage/chat/username="+ document.getElementById('sender').value,
+			      headers: {
+			      	'X-CSRFToken': token
+			      },
+			      data: formdata,
+			      processData: false,
+			      contentType: false,
+			      success: function (response) {
+			  		console.log('success')
+			  		jQuery("#mainelement").load(" #mainelement > *");
+			  		var scrollAmount=150;
+			  		document.getElementById('sbar').value="";
+			  		var myDiv = jQuery('#mainelement');
+	    			myDiv.scrollTop(myDiv[0].scrollHeight - myDiv[0].clientHeight + scrollAmount);
+	    			document.getElementById('thefile').value = '';
+				    noshowfile()
+			      }
+			    });
+		  	}
+		  	else if (pro==='image'){
+		  		jQuery.noConflict();
+		  		formdata = new FormData();
+		  		console.log('entered in file')
+		  		var file = document.getElementById('theimage').files[0];
+		  		formdata.append("share2", file);
+		  		formdata.append("message", document.getElementById('sbar').value);
+		  		formdata.append("rece", document.getElementById('sender').value);
+		  		formdata.append("what", document.getElementById('what').value);
+		  		jQuery.ajax({
+			      type: "POST",
+			      url: "/kjsomaiyacollegeofengineeringandinformationtechnologyteachers-fullmessages/addmessage/chat/username="+ document.getElementById('sender').value,
+			      headers: {
+			      	'X-CSRFToken': token
+			      },
+			      data: formdata,
+			      processData: false,
+			      contentType: false,
+			      success: function (response) {
+			  		console.log('success')
+			  		jQuery("#mainelement").load(" #mainelement > *");
+			  		var scrollAmount=150;
+			  		document.getElementById('sbar').value="";
+			  		var myDiv = jQuery('#mainelement');
+	    			myDiv.scrollTop(myDiv[0].scrollHeight - myDiv[0].clientHeight + scrollAmount);
+	    			document.getElementById('theimage').value = '';
+				    noshowfile()
+			      }
+			    });
+		  	}
+		  	else {
+		  		$.ajax({
+			      type: "POST",
+			      url: "/kjsomaiyacollegeofengineeringandinformationtechnologyteachers-fullmessages/addmessage/chat/username="+ numb,
+			      headers: {
+			      	'X-CSRFToken': token
+			      },
+			      data: {
+			        'message': document.getElementById('message'+numb).value,
+			        'rece': numb,
+			        'what': document.getElementById('what').value 
+			      },
+			      success: function (response) {
+			  		console.log('success')
+			  		element='#chatbody'+numb
+			  		loadele=' #chatbody'+numb+' > *'
+			  		$(element).load(loadele);
+			  		var scrollAmount=150;
+			  		document.getElementById('message'+numb).value="";
+			  		var myDiv = $(element);
+	    			myDiv.scrollTop(myDiv[0].scrollHeight - myDiv[0].clientHeight + scrollAmount);
+			      }
+			    });
+		  	}
+		    
+		    return false;
+		}
+		$(document).ready(function(){
+			setInterval(function(){
+			   $('#messagesec').load(" #messagesec > *");
+			}, 2000)
 		});
 	</script>
 </body>
