@@ -83,7 +83,7 @@ def index(request):
 	regd=Registration.objects.filter(rby=request.user)
 	regdl=[]
 	for r in range(0,len(regd)):
-		cur=r[i]
+		cur=regd[r]
 		eveid=cur.erref.id
 		eveele=Event.objects.filter(id=eveid)
 		regdl.append(eveele)

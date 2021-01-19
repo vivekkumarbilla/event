@@ -21,7 +21,7 @@ urlpatterns = [
     path('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-messaging', views.messaging, name='kjsomaiyacollegeofengineeringandinformationtechnologyteachers-messaging'),
     path('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-username=<name>', views.fullmessages, name='kjsomaiyacollegeofengineeringandinformationtechnologyteachers-username=<name>'),
     path('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-userdetails=<name>', views.userdetails, name='kjsomaiyacollegeofengineeringandinformationtechnologyteachers-userdetails=<name>'),
-    path('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-editevent=<int:ide>', views.editeventid, name='kjsomaiyacollegeofengineeringandinformationtechnologyteachers-editevent=<int:ide>'),
+    path('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-editevent=<ide>', views.editeventid, name='kjsomaiyacollegeofengineeringandinformationtechnologyteachers-editevent=<ide>'),
     path('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-fullmessages/addmessage/chat/username=<name>', views.addmessage, name='kjsomaiyacollegeofengineeringandinformationtechnologyteachers-fullmessages/addmessage/chat/username=<name>'),
     path('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-fullmessaging/username=<name>', views.fullmessaging, name='kjsomaiyacollegeofengineeringandinformationtechnologyteachers-fullmessaging/username=<name>'),
     path('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-eventdetails', views.eventdetails, name='kjsomaiyacollegeofengineeringandinformationtechnologyteachers-eventdetails'),
