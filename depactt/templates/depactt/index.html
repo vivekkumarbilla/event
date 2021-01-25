@@ -13,11 +13,13 @@
 	<link rel="icon" type="image/png" href="{% static 'kj.png' %}">
 	<link rel="manifest" crossorigin="use-credentials" href='{% static "manifest.json" %}'>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<style type="text/css">
 		body{
 			margin: 0px;
 			background-color: #FFF;
 			overflow-y: hidden;
+			zoom: 100%;
 		}
 		/*-----------------------------------------------------------HEADER_HEADER_HEADER_HEADER------------------------------------------------------------------------
 		-------------------------------------------------------------HEADER_HEADER_HEADER_HEADER------------------------------------------------------------------------
@@ -51,6 +53,14 @@
 		.search{
 			padding: 15px 20px;
 			width: 400px;
+		}
+		.searchb{
+			padding: 15px 20px;
+			background-color: transparent;
+			box-sizing: border-box;
+			outline: 0;
+			border: 1px solid #AAAABB;
+			border-left: none;
 		}
 		.ingly{
 			position: absolute;
@@ -431,6 +441,7 @@
 			width: 100%;
 			height: 50%;
 			border-bottom: 1px solid #F3F3F6;
+			overflow: hidden;
 		}
 		.publisher2{
 			text-decoration: none;
@@ -444,12 +455,14 @@
 		}
 		.publisher3{
 			text-decoration: none;
-			float: right;
+			float: left;
 			width: auto;
 			height: 100%;
 			font-size: 15px;
 			padding-top: 5px;
 			padding-right: 5px;
+		    text-overflow: ellipsis;
+		    white-space: nowrap;
 		}
 		.publisher2:hover{
 			text-decoration: underline;
@@ -682,6 +695,7 @@
 		.normin{
 			outline: 0;
 			border: 1px solid #AAAABB;
+			border-right: none;
 		}
 		.nomargin{
 			margin: 0;
@@ -694,6 +708,13 @@
 		}
 		.fullheight{
 			height: 100%;
+		}
+		.notidiv{
+			position: absolute;
+			width: 400px;
+			height: 40px;
+			top: 80px;
+			left: 37%;
 		}
 			/*-----------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------
 			-------------------------------------------------------------MEDIA MAIN MEDIA MAIN------------------------------------------------------------------------
@@ -773,8 +794,9 @@
 <body>
 	<header class="headd">
 		<a class="linkk leftelements" href="{% url 'index' %}"><img class="leftelements logog" src="{% static 'kj.png' %}" title="KJSIEIT Logo"><p class="leftelements nom2">DEPARTMENT ACTIVITY</p></a>
-		<input title="Search Anything" type="text" name="search" id="search" class="normin leftelements search" placeholder="Search Events/Users/Groups" autocomplete="off">
+		<input title="Search Anything" type="text" name="search" id="search" class="normin leftelements search" placeholder="Search Anything" autocomplete="off">
 		<button style="display: none;" onclick="clearing()" class="ingly" id="cross"><i class="glyphicon glyphicon-remove"></i></button>
+		<button onclick="" class="searchb" id="searchb"><i class="glyphicon glyphicon-search"></i></button>
 	</header>
 	<div class="leftside">
 		<a title="Visit yout own Profile" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-userdetails={{ user.username }}" class="leftlinks links"><p class="leftelements leftlinkpara">Profile</p></a>
@@ -798,6 +820,7 @@
 		{% else %}
 		<a title="Visit Admin Page" href="toadmpage" class="leftlinks links"><p class="leftelements leftlinkpara">Admin Page</p></a>
 		{% endif %}
+		<button title="Change your accounts Password" href="" class="leftlinks links lbuts"><p class="leftelements leftlinkpara">Change Password</p></button>
 		<a title="Log out of your account" href="homelogout" class="leftlinks links"><p class="leftelements leftlinkpara">Logout</p></a>
 		<button title="Your all Notifications" class="leftlinks normbut">Notifications</button>
 		<div class="notis" id="notis">
@@ -877,14 +900,14 @@
 		{% for e in event_number %}
 		<div id="e{{ e.id }}" class="mainelements">
 			<div class="firstsec">
-				<div class="firstinfirst">
+				<div class="firstinfirst" onclick="options(2,'{{ e.id }}')">
 					<a title="Know More About {{ e.title }}" class="ename" href="#">{{ e.title }}</a>
 					<p title="Event Type:{{ e.etype }}" class="subtitle">{{ e.etype }} ({{ e.target }})</p>
 				</div>
-				<div class="secondinfirst">
+				<div class="secondinfirst" onclick="options(2,'{{ e.id }}')">
 					<p style="position: absolute;" title="Status:{{ e.status }}" class="status leftelements {{ e.status|lower }}">{{ e.status }}</p>
 				</div>
-				<div class="thirdinfirst">
+				<div class="thirdinfirst" onclick="options(2,'{{ e.id }}')">
 					<a href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-userdetails={{ e.by.username }}" class="publisher"><p title="Know More About {{ e.by.first_name }} {{ e.by.last_name }}" class="publisher2">{{ e.by.username }}</p></a>
 					{% load humanize %}
 					<div title="Published Date" class="publisher"><p class="publisher3">{{ e.pubdate|naturaltime }}</p></div>
@@ -895,7 +918,7 @@
 				</div>
 			</div>
 			<div class="secondsec">
-				<div class="firstinsec">
+				<div class="firstinsec" onclick="options(2,'{{ e.id }}')">
 					{% if e.poster %}
 					<div class="leftelements eimage">
 						<button title="View Poster" class="leftelements vbuts" id="view{{ e.id }}" onclick="pressed('{{ e.id }}')"><i class="glyphicon glyphicon-eye-open"></i></button>
@@ -904,7 +927,7 @@
 						<img title="Poster of {{ e.title }}" class="leftelements emage" id="pos{{e.id}}" style="margin-right: 0px;" width="183px" src="{{ e.poster.url }}">
 					</div>
 					{% else %}
-					<div class="leftelements ei"><p> No Image </p></div>
+					<div class="leftelements ei" title="No Poster for {{ e.title }}"><p> No Image </p></div>
 					{% endif %}
 					<div id="myModal" class="modal">
 				  		<span class="close">&times;</span>
@@ -1020,9 +1043,14 @@
 				</div>
 				
 			</div>
-			<div class="thirdsec">
+			<div class="thirdsec" onclick="options(2,'{{ e.id }}')">
 				<div class="reginfo"><em>Registrations Start from {{ e.regfrom|date:"Y-m-d" }} and ends at {{ e.regto|date:"Y-m-d" }}</em></div>
-				<div class="reging"><button class="rthird trans">Certificate : {{ e.certi }}</button><button class="rthird trans">Register</button><button class="rthird trans">Share W</button><button class="rthird trans">Share GM</button></div>
+				<div class="reging">
+					<button class="rthird trans">Certificate : {{ e.certi }}</button>
+					<button class="rthird trans">Register</button>
+					<button class="rthird trans" onclick="sendmsg('{{ e.id }}')">Share<i class="fa fa-whatsapp"></i></button>
+					<button class="rthird trans">Share <i class="fa fa-envelope"></i></button>
+				</div>
 			</div>
 		</div>
 		{% endfor %}
@@ -1100,39 +1128,41 @@
 	<div class="overlay2" id="overlay2">
 		<img class="rightg" src="{% static 'load.gif' %}" title="Loading....">
 	</div>
-	{% for m in musers %}
-	<div style="display: none;" class="chatbox" id="chatbox{{ m.username }}">
-		<div class="top leftelements">
-			<a class="leftelements" id="person" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-userdetails={{ m.username }}">{{ m.username }}</a>
-			<button class="topbut rightelements closebut" id="closebut" onclick="closing('{{ m.username }}')"><i class="glyphicon glyphicon-remove"></i></button>
-			<button class="topbut rightelements" onclick="minimize('{{ m.username }}')"><i class="glyphicon glyphicon-chevron-down"></i></button>
+	<div class="chatsec" id="chatsec" style="background-color: blue;">
+		{% for m in musers %}
+		<div style="display: none;" class="chatbox" id="chatbox{{ m.username }}">
+			<div class="top leftelements">
+				<a class="leftelements" id="person" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-userdetails={{ m.username }}">{{ m.username }}</a>
+				<button class="topbut rightelements closebut" id="closebut" onclick="closing('{{ m.username }}')"><i class="glyphicon glyphicon-remove"></i></button>
+				<button class="topbut rightelements" onclick="minimize('{{ m.username }}')"><i class="glyphicon glyphicon-chevron-down"></i></button>
+			</div>
+			<div class="body leftelements" id="chatbody{{ m.username }}">
+				{% for ms in message2 %}
+				{% ifequal ms.sender.username m.username %}
+				<div class="leftelements fullwidth"><div class="fullheight leftelements mess">{{ ms.message }}</div></div>
+				{% endifequal %}
+				{% ifequal ms.receiver.username m.username %}
+				<div class="leftelements fullwidth"><div class="fullheight rightelements mess">{{ ms.message }}</div></div>
+				{% endifequal %}
+				{% endfor %}
+			</div>
+			<div class="send leftelements">
+				<button class="leftelements sbut topbut"><i class="glyphicon glyphicon-paperclip"></i></button>
+				<input type="text" name="message{{ m.username }}" id="message{{ m.username }}" class="leftelements sin" placeholder="Type Something" autocomplete="off">
+				<button class="leftelements sbut topbut" onclick="chatting('{{ m.username }}')"><i class="glyphicon glyphicon-send"></i></button>
+			</div>
 		</div>
-		<div class="body leftelements" id="chatbody{{ m.username }}">
-			{% for ms in message2 %}
-			{% ifequal ms.sender.username m.username %}
-			<div class="leftelements fullwidth"><div class="fullheight leftelements mess">{{ ms.message }}</div></div>
-			{% endifequal %}
-			{% ifequal ms.receiver.username m.username %}
-			<div class="leftelements fullwidth"><div class="fullheight rightelements mess">{{ ms.message }}</div></div>
-			{% endifequal %}
-			{% endfor %}
+		{% endfor %}
+		{% for m in musers %}
+		<div style="display: none;" class="chatbox2" id="chatbox2{{ m.username }}">
+			<div class="top leftelements">
+				<p class="leftelements" id="person2" >{{ m.username }}</p>
+				<button class="rightelements topbut" onclick="closing('{{ m.username }}')" id="closebut2"><i class="glyphicon glyphicon-remove"></i></button>
+				<button class="rightelements topbut" onclick="unminimize('{{ m.username }}')"><i class="glyphicon glyphicon-chevron-up"></i></button>
+			</div>
 		</div>
-		<div class="send leftelements">
-			<button class="leftelements sbut topbut"><i class="glyphicon glyphicon-paperclip"></i></button>
-			<input type="text" name="message{{ m.username }}" id="message{{ m.username }}" class="leftelements sin" placeholder="Type Something" autocomplete="off">
-			<button class="leftelements sbut topbut" onclick="chatting('{{ m.username }}')"><i class="glyphicon glyphicon-send"></i></button>
-		</div>
+		{% endfor %}
 	</div>
-	{% endfor %}
-	{% for m in musers %}
-	<div style="display: none;" class="chatbox2" id="chatbox2{{ m.username }}">
-		<div class="top leftelements">
-			<p class="leftelements" id="person2" >{{ m.username }}</p>
-			<button class="rightelements topbut" id="closebut2"><i class="glyphicon glyphicon-remove"></i></button>
-			<button class="rightelements topbut" onclick="unminimize('{{ m.username }}')"><i class="glyphicon glyphicon-chevron-up"></i></button>
-		</div>
-	</div>
-	{% endfor %}
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script type="text/javascript">
 		var chatnum=0;
@@ -1157,45 +1187,9 @@
 		});
 		function closing(ele){
 			numb='chatbox'+ele;
-			x2=document.getElementById(numb);
-			if (x2.classList.contains("chatst1")){
-				x2.classList.remove("chatst1")
-				secel=document.getElementsByClassName('chatst2');
-				if (secel[0]!=undefined){
-					secel[0].classList.add("chatst1")
-					secel[0].classList.remove("chatst2")
-				}
-				
-				secel2=document.getElementsByClassName('chatst3');
-				if (secel2[0]!=undefined){
-					secel2[0].classList.add("chatst2")
-					secel2[0].classList.remove("chatst3")
-				}
-				
-			}
-			if (x2.classList.contains("chatst2")){
-				console.log('thississ')
-				x2.classList.remove("chatst2")
-				secel3=document.getElementsByClassName('chatst3');
-				if (secel3[0]!=undefined){
-					secel3[0].classList.add("chatst2")
-					secel3[0].classList.remove("chatst3")
-				}
-				
-			}
+			numb2='chatbox2'+ele;
 			document.getElementById(numb).style.display='none';
-			x=document.getElementsByClassName('chatbox');
-			var ss=0;
-			for (var i=0;i<x.length;i++){
-				if(x[i].style.display==='none'){
-					ss=ss;
-				}
-				else{
-					ss+=1;
-				}
-			}
-			chatnum=ss;
-			console.log(chatnum)
+			document.getElementById(numb2).style.display='none';
 		}
 		$(window).load(function(){
 			$('#overlay').delay(1000).fadeOut(300);
@@ -1215,60 +1209,32 @@
 		function chat(numb){
 			var pp=0;
 			element=document.getElementById('chatbox'+numb);
+			if(element===null){
+				console.log('hogaya na bhai');
+				$('#chatsec').load(" #chatsec > *");
+	  			$("body").append('<div id="notidiv" class="notidiv error"><p class="notipara">Something went wrong!Try Again</p><button id="noticl" class="lbuts rightelements notipara2">x</button></div>');
+	  			$("#notidiv").delay(3200).fadeOut(300);
+		  		setTimeout(function(){
+				  $("#notidiv").remove();
+				}, 3200);
+			}
+			element2=document.getElementById('chatbox2'+numb);
 			x=document.getElementsByClassName('chatbox');
 			for (var i=0;i<x.length;i++){
-				if (x[i].style.display==='none'){
-					console.log('no')
-				}
-				else{
-					pp+=1;
-				}
+				i2=i+1
+				ii=i2.toString()
+				curname='chatst'+ii
+				x[i].classList.add(curname)
 			}
-			if (pp==3){
-				if (element.style.display==='none'){
-					console.log('oppppppppppppppppppppppppppppppppppppppppppppp')
-					console.log('chatbox'+numb)
-					cur=document.getElementById('chatbox'+numb);
-					cur.classList.remove("chatst1");
-					console.log(cur.id)
-					ele=document.getElementsByClassName('chatst1');
-					ele[0].style.display='none';
-					cur.style.display='';
-					ele[0].classList.remove("chatst1");
-					cur.classList.add("chatst1");
-				}
+			x2=document.getElementsByClassName('chatbox2');
+			for (var i=0;i<x2.length;i++){
+				i2=i+1
+				ii=i2.toString()
+				curname='chatst'+ii
+				x2[i].classList.add(curname)
 			}
-			else{
-				if (element.style.display==='none'){
-			  		numb2='m'+numb;
-			  		numb3='chatbox'+numb;
-					x=document.getElementsByClassName('chatbox');
-					console.log(x.length)
-					console.log(chatnum)
-					for (var i=0;i<x.length;i++){
-						if (x[i].id===numb3){
-							console.log('yes')
-							document.getElementById('chatbox'+numb).style.display='';
-							myDiv=$('#chatbody'+numb);
-							scrollAmount=10;
-							myDiv.scrollTop(myDiv[0].scrollHeight - myDiv[0].clientHeight + scrollAmount);
-							chatnum+=1
-							console.log(chatnum)
-							num=chatnum.toString()
-							x[i].classList.add("chatst"+num);
-						}
-						else{
-							console.log('no')
-						}
-					}
-					console.log(x[0].id)
-					console.log(x[1].id)
-			  		
-			  		console.log(numb2)
-			  		document.getElementById(numb2).classList.add("currentchat");
-				}	
-			}
-			
+			element.style.display='';
+			element2.style.display='';
 		}
 		function add(){
 			document.getElementById('secelement').style.display='';
@@ -1317,8 +1283,13 @@
 				      success: function (response) {
 				  		console.log('success pending')
 				  		$("#main").load(" #main > *");
-				  		$("body").append('<div id="notidiv" style="position:absolute;width:400px;height:40px;top:80px;left:37%;" class="success"><p class="notipara">You marked it as '+as+' successfully</p><button id="noticl" onclick="close('+numb+')" class="lbuts rightelements notipara2">x</button></div>');
-				  		$("#notidiv").delay(3200).fadeOut(300);
+				  		setTimeout(function(){
+					  		$("body").append('<div id="notidiv" class="notidiv success"><p class="notipara">You marked it as '+as+' successfully</p><button id="noticl" class="lbuts rightelements notipara2">x</button></div>');
+					  		$("#notidiv").delay(3200).fadeOut(300);
+					  		setTimeout(function(){
+							  $("#notidiv").remove();
+							}, 3200);
+						}, 2000);
 				      }
 				 });
 			    return false;
@@ -1334,8 +1305,13 @@
 				      success: function (response) {
 				  		console.log('success')
 				  		$("#main").load(" #main > *");
-				  		$("body").append('<div id="notidiv" style="position:absolute;width:400px;height:40px;top:80px;left:37%;" class="success"><p class="notipara">You marked it as '+as+' successfully</p><button id="noticl" onclick="close('+numb+')" class="lbuts rightelements notipara2">x</button></div>');
-				  		$("#notidiv").delay(3200).fadeOut(300);
+				  		setTimeout(function(){
+					  		$("body").append('<div id="notidiv" class="notidiv success"><p class="notipara">You marked it as '+as+' successfully</p><button id="noticl" class="lbuts rightelements notipara2">x</button></div>');
+					  		$("#notidiv").delay(3200).fadeOut(300);
+					  		setTimeout(function(){
+							  $("#notidiv").remove();
+							}, 3200);
+						}, 2000);
 				      }
 				 });
 			    return false;
@@ -1351,11 +1327,13 @@
 				      success: function (response) {
 				  		console.log('success')
 				  		$("#main").load(" #main > *");
-				  		$("body").append('<div id="notidiv" style="position:absolute;width:400px;height:40px;top:80px;left:37%;" class="success"><p class="notipara">You marked it as '+as+' successfully</p><button id="noticl" onclick="close('+numb+')" class="lbuts rightelements notipara2">x</button></div>');
-				  		$("#notidiv").delay(3200).fadeOut(300);
 				  		setTimeout(function(){
-						  $('#notidiv').remove();
-						}, 3200);
+					  		$("body").append('<div id="notidiv" class="notidiv success"><p class="notipara">You marked it as '+as+' successfully</p><button id="noticl" class="lbuts rightelements notipara2">x</button></div>');
+					  		$("#notidiv").delay(3200).fadeOut(300);
+					  		setTimeout(function(){
+							  $("#notidiv").remove();
+							}, 3200);
+						}, 2000);
 				      }
 				 });
 			    return false;
@@ -1365,7 +1343,7 @@
 			options(2,numb);
 			console.log(element)
 			navigator.clipboard.writeText(element);
-	  		$("body").append('<div id="notidiv" style="position:absolute;width:400px;height:40px;top:80px;left:37%;" class="success"><p class="notipara">Copied the link  successfully</p><button id="noticl" onclick="close('+numb+')" class="lbuts rightelements notipara2">x</button></div>');
+	  		$("body").append('<div id="notidiv" class="success"><p class="notipara">Copied the link  successfully</p><button id="noticl" onclick="close('+numb+')" class="lbuts rightelements notipara2">x</button></div>');
 	  		$("#notidiv").delay(3200).fadeOut(300);
 	  		setTimeout(function(){
 			  $('#notidiv').remove();
@@ -1481,10 +1459,31 @@
 		    return false;
 		}
 		$(document).ready(function(){
+			
 			setInterval(function(){
-			   $('#messagesec').load(" #messagesec > *");
+				$('#messagesec').load(" #messagesec > *");
+				x=document.getElementsByClassName('chatbox');
+				for (var i=0;i<x.length;i++){
+					if(x[i].style.display==='none'){
+						console.log('no')
+					}
+					else{
+						curid=x[i].id;
+						curid2='#'+curid;
+						curid3=' #'+curid+' > *'
+					}
+					$(curid2).load(curid3);
+				}
 			}, 2000)
 		});
+		function sendmsg(numb){
+			numb2=numb.toString();
+			gg='pos'+numb2;
+			x=document.getElementById(gg).src;
+			console.log(x)
+			let url = 'whatsapp://send?text='+encodeURIComponent(x);
+			window.open(url, 'sharer', 'toolbar=0,status=0,width=648,height=395,top=200,left=300');
+		}
 	</script>
 </body>
 </html>

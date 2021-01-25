@@ -105,7 +105,7 @@ def index(request):
 	inbox3=[]
 	inboxms=[]
 	messagesmsm=Messaging.objects.filter(Q(sender=request.user) | Q(receiver=request.user)).order_by('-messagedate','-timee')
-	for i in range(0,len(messagesmsm)):
+	for i in range(0,3):
 		cur=messagesmsm[i]
 		if cur.receiver==request.user:
 			if cur.sender in activities:
