@@ -1218,7 +1218,12 @@
 				  $("#notidiv").remove();
 				}, 3200);
 			}
-			element2=document.getElementById('chatbox2'+numb);
+	  		var myDiv = document.getElementById('chatbody'+numb);
+	  		console.log(myDiv.id)
+	  		gg='#'+myDiv.id
+  			var scrollAmount=150;
+	  		var myDiv2 = jQuery(gg);
+			myDiv2.scrollTop(myDiv2[0].scrollHeight - myDiv2[0].clientHeight + scrollAmount);
 			x=document.getElementsByClassName('chatbox');
 			for (var i=0;i<x.length;i++){
 				i2=i+1
@@ -1234,7 +1239,6 @@
 				x2[i].classList.add(curname)
 			}
 			element.style.display='';
-			element2.style.display='';
 		}
 		function add(){
 			document.getElementById('secelement').style.display='';
@@ -1468,11 +1472,15 @@
 						console.log('no')
 					}
 					else{
-						curid=x[i].id;
-						curid2='#'+curid;
-						curid3=' #'+curid+' > *'
+						curid=x[i].id.substring(7);
+						curid2='#chatbody'+curid;
+						curid3=' #chatbody'+curid+' > *';
+						$(curid2).load(curid3);
+				  		var scrollAmount=150;
+				  		var myDiv = $(curid2);
+		    			myDiv.scrollTop(myDiv[0].scrollHeight - myDiv[0].clientHeight + scrollAmount);
 					}
-					$(curid2).load(curid3);
+					
 				}
 			}, 2000)
 		});
