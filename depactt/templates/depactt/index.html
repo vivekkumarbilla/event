@@ -342,14 +342,12 @@
 			float: left;
 		}
 		.thirdsec{
-			background-color: blue;
 			width: 100%;
 			height: 23%;
 			float: left;
 		}
 		.reginfo{
 			float: left;
-			background-color: cyan;
 			width: 100%;
 			font-size: 15px;
 			padding-top: 5px;
@@ -1046,10 +1044,10 @@
 			<div class="thirdsec" onclick="options(2,'{{ e.id }}')">
 				<div class="reginfo"><em>Registrations Start from {{ e.regfrom|date:"Y-m-d" }} and ends at {{ e.regto|date:"Y-m-d" }}</em></div>
 				<div class="reging">
-					<button class="rthird trans">Certificate : {{ e.certi }}</button>
-					<button class="rthird trans">Register</button>
-					<button class="rthird trans" onclick="sendmsg('{{ e.id }}')">Share<i class="fa fa-whatsapp"></i></button>
-					<button class="rthird trans">Share <i class="fa fa-envelope"></i></button>
+					<button class="rthird trans" title="Will Certificates be given : {{ e.certi }}">Certificate : {{ e.certi }}</button>
+					<button class="rthird trans" title="Register in this e">Register</button>
+					<button class="rthird trans" onclick="sendmail('{{ e.title }}','{{ e.date |date }}','{{ e.description }}','{{ e.organizer }}','{{ e.perks }}','{{ e.link }}','{{ e.type }}','{{ e.tfrom }}','{{ e.tto }}','{{ e.regfrom }}','{{ e.regto }}','{{ e.presenter }}','{{ e.presenterd }}','{{ e.target }}','{{ e.department }}','{{ e.teacher1 }}','{{ e.teacher2 }}','{{ e.convener1 }}','{{ e.contact1 }}','{{ e.teacher3 }}','{{ e.convener2 }}','{{ e.contact2 }}')" title="Share to Gmail"><i class="fa fa-envelope"></i></button>
+					<button class="rthird trans" onclick="sendmsg('{{ e.id }}','{{ e.title }}','{{ e.date |date }}','{{ e.description }}','{{ e.organizer }}','{{ e.perks }}','{{ e.link }}','{{ e.type }}','{{ e.tfrom }}','{{ e.tto }}','{{ e.regfrom }}','{{ e.regto }}','{{ e.presenter }}','{{ e.presenterd }}','{{ e.target }}','{{ e.department }}','{{ e.teacher1 }}','{{ e.teacher2 }}','{{ e.convener1 }}','{{ e.contact1 }}','{{ e.teacher3 }}','{{ e.convener2 }}','{{ e.contact2 }}')" title="Share to Gmail"><i class="fa fa-whatsapp"></i></button>
 				</div>
 			</div>
 		</div>
@@ -1484,12 +1482,88 @@
 				}
 			}, 2000)
 		});
-		function sendmsg(numb){
-			numb2=numb.toString();
-			gg='pos'+numb2;
-			x=document.getElementById(gg).src;
-			console.log(x)
-			let url = 'whatsapp://send?text='+encodeURIComponent(x);
+		function sendmail(delltitle,delldate,delldesc,dellorg,dellperks,delllink,delltype,dellfro,dellto,dellregfro,dellregto,dellpres,dellpresd,delltarget,delldep,dellfaccod1,dellfaccod2,dellconv1,dellcont1,dellfaccod3,dellconv2,dellcont2){
+			msgbody1="K.J. somaiya Institute of Engineering and Information Technology (KJSIEIT) Sion, Mumbai"
+			msgbody2="KJSIEIT is accredited by NAAC with A grade Three programs accredited by National Board of Accreditation Best College awarded by University of Mumbai, ISTE (MH) and CSI (Mumbai)"
+			cname="KJSIEIT-"
+			str="%0D%0A"
+			space=" "
+			org1="is organizing a"
+			org2=" on topic "
+			org3=""
+			st="'"
+			if (delltarget!=undefined) {
+				org3=" for "
+			}
+			org4=" in association with "
+			fustp="."
+			sp=", "
+			dep=" Department"
+			msgbody3=cname.concat(dellorg,space,org1,space,delltype,org2,st,delltitle,st,org3,delltarget,org4,delldep,dep,fustp)
+			dte="Date : "
+			tme="Time : "
+			to=" to "
+			descc="Description : "
+			speaker="Speaker : "
+			msgbody4=dte.concat(delldate,str,tme,dellfro,to,dellto,str,speaker,dellpres,sp,dellpresd,fustp)
+			msgbody5=str.concat(str,descc,delldesc)
+			if (dellperks!=undefined) {
+				msgbodyo=msgbody5.concat(str,dellperks);
+			}
+			subj=delltitle
+			reg="Meeting Link : "
+			msgbody5=reg.concat(space,delllink,str,dellregfro,to,dellregto)
+			dep="Department : "
+			faccod="Faculty Co-ordinators : "
+			conv="Conveners : "
+			cont="Contact : "
+			msgbody6=faccod.concat(dellfaccod1,sp,dellfaccod2,sp,dellfaccod3,str,conv,dellconv1,sp,dellconv2,str,cont,dellcont1,dellcont2)
+			msgbodyf=msgbody1.concat(str,str,msgbody2,str,str,msgbody3,str,str,msgbody4,str,str,msgbody5,str,str,msgbody6)
+
+			subj=delltitle
+			console.log(msgbodyf)
+			let url = 'https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=&su='+subj+'&body='+msgbodyf+'&ui=2&tf=1&pli=1';
+			window.open(url, 'sharer', 'toolbar=0,status=0,width=648,height=395,top=200,left=300');
+		}
+		function sendmsg(numb,delltitle,delldate,delldesc,dellorg,dellperks,delllink,delltype,dellfro,dellto,dellregfro,dellregto,dellpres,dellpresd,delltarget,delldep,dellfaccod1,dellfaccod2,dellconv1,dellcont1,dellfaccod3,dellconv2,dellcont2){
+			msgbody1="K.J. somaiya Institute of Engineering and Information Technology (KJSIEIT) Sion, Mumbai"
+			msgbody2="KJSIEIT is accredited by NAAC with A grade Three programs accredited by National Board of Accreditation Best College awarded by University of Mumbai, ISTE (MH) and CSI (Mumbai)"
+			cname="KJSIEIT-"
+			str="%0D%0A"
+			space=" "
+			org1="is organizing a"
+			org2=" on topic "
+			org3=""
+			st="*"
+			if (delltarget!=undefined) {
+				org3=" for "
+			}
+			org4=" in association with "
+			fustp="."
+			sp=", "
+			dep=" Department"
+			msgbody3=cname.concat(dellorg,space,org1,space,delltype,org2,st,delltitle,st,org3,delltarget,org4,delldep,dep,fustp)
+			dte="Date : "
+			tme="Time : "
+			to=" to "
+			descc="Description : "
+			speaker="Speaker : "
+			msgbody4=dte.concat(delldate,str,tme,dellfro,to,dellto,str,speaker,dellpres,sp,dellpresd,fustp)
+			msgbody5=str.concat(str,descc,delldesc)
+			if (dellperks!=undefined) {
+				msgbodyo=msgbody5.concat(str,dellperks);
+			}
+			subj=delltitle
+			reg="Meeting Link : "
+			msgbody5=reg.concat(space,delllink,str,dellregfro,to,dellregto)
+			dep="Department : "
+			faccod="Faculty Co-ordinators : "
+			conv="Conveners : "
+			cont="Contact : "
+			msgbody6=faccod.concat(dellfaccod1,sp,dellfaccod2,sp,dellfaccod3,str,conv,dellconv1,sp,dellconv2,str,cont,dellcont1,dellcont2)
+			msgbodyf=msgbody1.concat(str,str,msgbody2,str,str,msgbody3,str,str,msgbody4,str,str,msgbody5,str,str,msgbody6)
+			console.log(numb)
+			let url = 'whatsapp://send?text='+msgbodyf;
 			window.open(url, 'sharer', 'toolbar=0,status=0,width=648,height=395,top=200,left=300');
 		}
 	</script>
