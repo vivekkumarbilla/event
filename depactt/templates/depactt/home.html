@@ -1028,8 +1028,8 @@
 				</div>
 				<div style="display: none;" id="msgs">
 					{% for nom in nomessages2 %}
-						<button class="mnoti" value="{{ nom.messagesender }} : {{ nom.message }} [{{ nom.timee }}]" style="display: none;"></button>
-						<a href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-username={{ nom.sender }}" class="leftelements noti2 but3 fullheight" ><p class="leftelements para2"><b>{{ nom.messagesender }}</b></p><p style="margin-left: 5px;" class="leftelements para">{{ nom.message }}  </p><p style="margin-left: 5px;" class="rightelements para"> [{{ nom.timee }}]</p></a>
+						<button class="mnoti" value="{{ nom.sender }} : {{ nom.message }} [{{ nom.timee }}]" style="display: none;"></button>
+						<a href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-username={{ nom.sender }}" class="leftelements noti2 but3 fullheight" ><p class="leftelements para2"><b>{{ nom.sender }}</b></p><p style="margin-left: 5px;" class="leftelements para">{{ nom.message }}  </p><p style="margin-left: 5px;" class="rightelements para"> [{{ nom.timee }}]</p></a>
 					{% endfor %}
 				</div>
 			</div>
@@ -1379,7 +1379,6 @@
 		var listem =  'liss';
 		document.getElementById('basicdate').innerHTML=d+"/"+(mo+1)+"/"+y;
 		function startTime() {
-			noti()
 		}
 		function noti() {
 			if ( window.innerWidth >= 1200 ){

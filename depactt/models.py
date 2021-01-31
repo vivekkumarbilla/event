@@ -59,7 +59,7 @@ class Messaging(models.Model):
 	messagetag = models.ForeignKey('self',null=True, blank=True, on_delete=models.CASCADE)
 	image = models.ImageField(upload_to='Images', blank=True)
 	file = models.FileField(upload_to='Files', blank=True)
-	messageseen = models.CharField(max_length=200,default="first")
+	messageseen = models.BooleanField(default=False)
 
 
 class Comment(models.Model):

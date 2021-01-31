@@ -92,10 +92,12 @@ def index(request):
 	dic = {
 		"event_number": eves
 	}
+	users3=User.objects.filter(id=currentuserid)
 	users=User.objects.filter(is_staff=True).exclude(id=currentuserid).order_by('username')
 	users2=User.objects.filter(is_staff=False).exclude(id=currentuserid)
 	dic["users"] = users
 	dic["users2"] = users2
+	dic["profile"] = users3
 	dic["registered"] = regdl
 	dic["published"] = pubd
 	dic["finished"] = events3
@@ -106,21 +108,25 @@ def index(request):
 	inboxms=[]
 	messagesmsm=Messaging.objects.filter(Q(sender=request.user) | Q(receiver=request.user)).order_by('-messagedate','-timee')
 	for i in range(0,3):
-		cur=messagesmsm[i]
-		if cur.receiver==request.user:
-			if cur.sender in activities:
-				pass
-			else:
-				mm2=Messaging.objects.filter(Q(receiver=request.user,sender=cur.sender) | Q(sender=request.user,receiver=cur.sender)).latest('messagedate','timee')
-				activities.append(cur.sender)
-				inbox2.append(mm2)
-		if cur.sender==request.user:
-			if cur.receiver in activities:
-				pass
-			else:
-				mm2=Messaging.objects.filter(Q(receiver=request.user,sender=cur.receiver) | Q(sender=request.user,receiver=cur.receiver)).latest('messagedate','timee')
-				activities.append(cur.receiver)
-				inbox2.append(mm2)
+		if len(messagesmsm) > i:
+			cur=messagesmsm[i]
+			print(cur.receiver)
+			print(cur.sender)
+			print(cur.message)
+			if cur.receiver==request.user:
+				if cur.sender in activities:
+					pass
+				else:
+					mm2=Messaging.objects.filter(Q(receiver=request.user,sender=cur.sender) | Q(sender=request.user,receiver=cur.sender)).latest('messagedate','timee')
+					activities.append(cur.sender)
+					inbox2.append(mm2)
+			if cur.sender==request.user:
+				if cur.receiver in activities:
+					pass
+				else:
+					mm2=Messaging.objects.filter(Q(receiver=request.user,sender=cur.receiver) | Q(sender=request.user,receiver=cur.receiver)).latest('messagedate','timee')
+					activities.append(cur.receiver)
+					inbox2.append(mm2)
 	print(activities)
 	dic["recent"]=inbox2
 	dic["musers"]=activities
@@ -1141,33 +1147,34 @@ def addmessage(request,name):
 			mmess.save()
 		messagesm2=Messaging.objects.filter(receiver=request.user,messagesenderid=User.objects.get(username=rname))
 		for i in range(0,len(messagesm2)):
-			cur=messagesm2[i]
-			print(messagesm2[i].messageseen)
-			if cur.receiver==User.objects.get(username=currentuser):
-				if cur.messageseen=='first':
-					cur.messageseen='second'
-					cur.save()
-				if cur.messageseen=='second':
-					cur.messageseen='second1'
-					cur.save()
-				if cur.messageseen=='second1':
-					cur.messageseen='second2'
-					cur.save()
-				if cur.messageseen=='second2':
-					cur.messageseen='second3'
-					cur.save()
-				if cur.messageseen=='second3':
-					cur.messageseen='second4'
-					cur.save()
-				if cur.messageseen=='second4':
-					cur.messageseen='second5'
-					cur.save()
-				if cur.messageseen=='second5':
-					cur.messageseen='second6'
-					cur.save()
-				if cur.messageseen=='second6':
-					cur.messageseen='third'
-					cur.save()
+			if len(messagesm2) > i:
+				cur=messagesm2[i]
+				print(messagesm2[i].messageseen)
+				if cur.receiver==User.objects.get(username=currentuser):
+					if cur.messageseen=='first':
+						cur.messageseen='second'
+						cur.save()
+					if cur.messageseen=='second':
+						cur.messageseen='second1'
+						cur.save()
+					if cur.messageseen=='second1':
+						cur.messageseen='second2'
+						cur.save()
+					if cur.messageseen=='second2':
+						cur.messageseen='second3'
+						cur.save()
+					if cur.messageseen=='second3':
+						cur.messageseen='second4'
+						cur.save()
+					if cur.messageseen=='second4':
+						cur.messageseen='second5'
+						cur.save()
+					if cur.messageseen=='second5':
+						cur.messageseen='second6'
+						cur.save()
+					if cur.messageseen=='second6':
+						cur.messageseen='third'
+						cur.save()
 		return render(request, 'depactt/fullmessages.html',dicmessages)
 	else:
 		return render(request, 'depactt/xamp.html',dicmessages)
@@ -2457,7 +2464,6 @@ def complaints(request):
 		email_from = settings.EMAIL_HOST_USER
 		recipient_list = ['vivekananda.b@somaiya.edu','ashish.bhushan@somaiya.edu','vighnesh.c@somaiya.edu','vivekbilla345@gmail.com','martinchip03@gmail.com','vighneshchavan26@gmail.com']
 		send_mail( subject, message, email_from, recipient_list )
-		messages.success(request,'Complaint sent Successfully, Thank you for your patience')
-		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-help')
+		return redirect('/')
 	else:
-		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-home')
+		return redirect('/')
