@@ -5,6 +5,7 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('addevent2', views.addevent2, name='add-an-event'),
     path('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login', views.login, name='kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login'),
     path('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-signup', views.signup, name='kjsomaiyacollegeofengineeringandinformationtechnologyteachers-signup'),
     path('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-home', views.home, name='kjsomaiyacollegeofengineeringandinformationtechnologyteachers-home'),

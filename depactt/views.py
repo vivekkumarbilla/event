@@ -110,9 +110,6 @@ def index(request):
 	for i in range(0,3):
 		if len(messagesmsm) > i:
 			cur=messagesmsm[i]
-			print(cur.receiver)
-			print(cur.sender)
-			print(cur.message)
 			if cur.receiver==request.user:
 				if cur.sender in activities:
 					pass
@@ -127,7 +124,6 @@ def index(request):
 					mm2=Messaging.objects.filter(Q(receiver=request.user,sender=cur.receiver) | Q(sender=request.user,receiver=cur.receiver)).latest('messagedate','timee')
 					activities.append(cur.receiver)
 					inbox2.append(mm2)
-	print(activities)
 	dic["recent"]=inbox2
 	dic["musers"]=activities
 	mmss=Messaging.objects.all().order_by('messagedate','timee')
@@ -135,10 +131,8 @@ def index(request):
 	groups=Groupmembers.objects.filter(members=request.user)
 	for i in range(0,len(groups)):
 		cur=groups[i]
-		print(cur.name)
 		ggr=Groupmessages.objects.filter(groupref=Groupmembers.objects.get(name=cur.name)).latest('gmessagedate','gtime')
 		inbox3.append(ggr)
-		print(ggr.gmessage)
 	dic["groups"]=groups
 	dic["groupr"]=inbox3
 	comments=Comment.objects.all().order_by('cdate')
@@ -265,6 +259,79 @@ def signup(request):
 		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login')
 
 
+def addevent2(request):
+	if not request.user.is_authenticated:
+		return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-login')
+	if request.user.is_authenticated:
+		currentuser = request.user.username
+		currentuserid = request.user.id
+	ist = pytz.timezone('Asia/Calcutta')
+	c=datetime.now(ist)
+	eventscal = Event.objects.filter(date__lt=c).order_by('date')
+	eventscal2 = Event.objects.filter(date__gte=c).order_by('date')
+	users=User.objects.order_by('username')
+	dicevents = {
+		"event_number": eventscal
+	}
+	dicevents["event_number2"] = eventscal2
+	dicevents["user_num"] = users
+	if request.method=='POST':
+		eventpos=request.FILES['eventpos']
+		eventname=request.POST['eventname']
+		eventpresenter=request.POST['eventpresenter']
+		eventdesignation=request.POST['eventdesignation']
+		eventorgc=request.POST['eventcommittee']
+		eventtype=request.POST['eventtype']
+		eventda=request.POST['eventdate']
+		eventfrotime=request.POST['eventtimefro']
+		eventtotime=request.POST['eventtimeto']
+		link=request.POST['regin']
+		fromreg=request.POST['regfrom']
+		toreg=request.POST['regto']
+		whatsapp=request.POST['eventwhatsapp']
+		eventcon1=request.POST['eventconvener1']
+		eventcon2=request.POST['eventconvener2']
+		eventcontact1=request.POST['contact1']
+		eventcontact2=request.POST['contact2']
+		eventorg1=request.POST['eventorganizer1']
+		eventorg2=request.POST['eventorganizer2']
+		eventorg3=request.POST['eventorganizer3']
+		eventdep=request.POST['eventdepartment']
+		eventdescription=request.POST['eventdesc']
+		eventperks=request.POST['eventperk']
+		gmem=request.POST['tags']
+		eventfin=request.POST.get('eventcertificate',False)
+		ecom=request.POST['com']
+		publisher=request.user
+		print(publisher.is_staff)
+		print(gmem)
+		if Event.objects.filter(title=eventname).exists():
+			messages.warning(request,'Event already exists.')
+			return redirect('/')
+		else:
+			if (len(eventname)==0) or(len(eventda)==0) or(len(eventfrotime)==0) or(len(eventtotime)==0) or(len(fromreg)==0) or(len(toreg)==0):
+				messages.warning(request,'Please Enter All the Parameters Correctly')
+				return redirect('kjsomaiyacollegeofengineeringandinformationtechnologyteachers-addevent')
+			uss=User.objects.get(username=currentuser)
+			if uss.is_staff==True:
+				if len(eventpos)>0:
+					eventt= Event(poster=eventpos,title=eventname,description=eventdescription,perks=eventperks,link=link,whatsapp=whatsapp, date=eventda,tfrom=eventfrotime,tto=eventtotime,regfrom=fromreg,regto=toreg,etype=eventtype,presenter=eventpresenter,presenterd=eventdesignation, organizer=eventorgc, teacher1=eventorg1, teacher2=eventorg2, teacher3=eventorg3, convener1=eventcon1, convener2=eventcon2, contact1=eventcontact1, contact2=eventcontact2, certi=eventfin, department=eventdep, by=publisher, reminders=ecom)
+				else:
+					eventt= Event(title=eventname,description=eventdescription,perks=eventperks,link=link,whatsapp=whatsapp, date=eventda,tfrom=eventfrotime,tto=eventtotime,regfrom=fromreg,regto=toreg,etype=eventtype,presenter=eventpresenter,presenterd=eventdesignation, organizer=eventorgc, teacher1=eventorg1, teacher2=eventorg2, teacher3=eventorg3, convener1=eventcon1, convener2=eventcon2, contact1=eventcontact1, contact2=eventcontact2, certi=eventfin, department=eventdep, by=publisher, reminders=ecom)
+				for i in range(len(gmem)):
+					print(gmem[i])
+					try:
+						curuser=User.objects.get(username=gmem[i])
+						eventt.add(curuser)
+					except:
+						pass
+				eventt.save()
+			else:
+				messages.warning(request,'You are not permitted to add event')
+			return redirect('/')
+
+	else:
+		return render(request,'depactt/addevent.html',dicevents)
 
 # ------00000000000000000000000000000000000000----------------000000---------------0000000--0000000------------------0000000----------------------------
 # ------00000000000000000000000000000000000000---------------00000000--------------0000000--000000000----------------0000000----------------------------
@@ -350,14 +417,14 @@ def home(request):
 	if request.user.is_authenticated:
 		currentuser = request.user.username
 		currentuserid = request.user.id
-		messagesm=Messaging.objects.filter(receiver=request.user).exclude(messageseen='third')
+		messagesm=Messaging.objects.filter(receiver=request.user).exclude(messageseen=True)
 		noofmessages=0
 		inbox=[]
 		inbox2=[]
 		msender=[]
 		for i in range(0,len(messagesm)):
 			cur=messagesm[i]
-			if cur.messageseen!='third':
+			if cur.messageseen!=True:
 				if cur.sender in inbox:
 					print('it exists')
 				else:

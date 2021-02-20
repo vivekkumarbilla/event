@@ -1027,14 +1027,17 @@
 			width: auto;
 			background-color: blue;
 		}
+		/*.blurred{
+			filter: blur(3px);
+		}*/
 	</style>
 </head>
 <body>
 	<header class="headd">
-		<a class="linkk leftelements" href="{% url 'index' %}"><img class="leftelements logog" src="{% static 'kj.png' %}" title="KJSIEIT Logo"><p class="leftelements nom2">DEPARTMENT ACTIVITY</p></a>
+		<a class="linkk leftelements" href="{% url 'index' %}"><img class="leftelements logog" src="{% static 'kj.png' %}" title="KJSIEIT Logo"><p title="Department Activity Web" class="leftelements nom2">DEPARTMENT ACTIVITY</p></a>
 		<input title="Search Anything" type="text" name="search" id="search" class="normin leftelements search" placeholder="Search Anything" autocomplete="off">
 		<button style="display: none;" onclick="clearing()" class="ingly" id="cross"><i class="glyphicon glyphicon-remove"></i></button>
-		<button onclick="" class="searchb" id="searchb"><i class="glyphicon glyphicon-search"></i></button>
+		<button onclick="" title="Search" class="searchb" id="searchb"><i class="glyphicon glyphicon-search"></i></button>
 	</header>
 	<div class="leftside">
 		<button title="Show your Profile Details" class="leftlinks links lbuts" onclick="showprofile()"><p class="leftelements leftlinkpara">Profile</p></button>
@@ -1081,7 +1084,7 @@
 			</div>
 			<div class="onesec">
 				<label class="leftelements lab">Poster:</label>
-				<input type="file" name="eventpos" accept="image/*" class="inc inc3 four">
+				<input type="file" name="eventpos" accept="image/*" id="posterfile" class="inc inc3 four">
 				<label class="leftelements lab">Event Date:</label>
 				<input autocomplete="off" placeholder="Event Date" type="date" id="evdain" name="eventdate" class="ind four" title="Date of Event" >
 			</div>
@@ -1129,10 +1132,10 @@
 				<input autocomplete="off" placeholder="Event Description" type="text" id="evdein" name="eventdesc" class="in three" >
 				<select class="inc three" id="carsin2" name="tags" multiple="">
 					{% for u in users %}
-						<option value="{{ u.id }}">{{ u.username }}</option>
+						<option value="{{ u.username }}">{{ u.username }}</option>
 					{% endfor %}
 				</select>
-				<button class="but">Submit</button>
+				<button class="but" type="button" onclick="addevent()">Submit</button>
 			</div>
 		</form>
 		{% for e in event_number %}
@@ -1140,13 +1143,13 @@
 			<div class="firstsec">
 				<div class="firstinfirst" onclick="options(2,'{{ e.id }}')">
 					<button value="{{ e.title }}" title="Know More About {{ e.title }}" class="ename" onclick="specific('{{ e.id }}')" id="title{{ e.id }}">{{ e.title }}</button>
-					<p title="Event Type:{{ e.etype }}" class="subtitle" id="type{{ e.id }}">{{ e.etype }} ({{ e.target }})</p>
+					<p title="Event Type : {{ e.etype }}" class="subtitle" id="type{{ e.id }}">{{ e.etype }} ({{ e.target }})</p>
 				</div>
 				<div class="secondinfirst" onclick="options(2,'{{ e.id }}')">
-					<p style="position: absolute;" title="Status:{{ e.status }}" class="status leftelements {{ e.status|lower }}">{{ e.status }}</p>
+					<p style="position: absolute;" title="Event Status : {{ e.status }}" class="status leftelements {{ e.status|lower }}">{{ e.status }}</p>
 				</div>
 				<div class="thirdinfirst" onclick="options(2,'{{ e.id }}')">
-					<a href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-userdetails={{ e.by.username }}" class="publisher"><p title="Know More About {{ e.by.first_name }} {{ e.by.last_name }}" class="publisher2">{{ e.by.username }}</p></a>
+					<a href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-userdetails={{ e.by.username }}" class="publisher"><p title="Know More About the Publisher : {{ e.by.first_name }} {{ e.by.last_name }}" class="publisher2">{{ e.by.username }}</p></a>
 					{% load humanize %}
 					<div title="Published Date" class="publisher"><p class="publisher3">{{ e.pubdate|naturaltime }}</p></div>
 				</div>
@@ -1174,7 +1177,7 @@
 					</div>
 					
 				</div>
-				<div class="secinsec" onclick="options(2,'{{ e.id }}')" >
+				<div class="secinsec" id="bl{{e.id}}" onclick="options(2,'{{ e.id }}')" >
 					<div class="date"><p class="leftelements">{{ e.date }} {{ e.tfrom }}-{{ e.tto }}</p></div>
 					<div class="pre"><p class="leftelements">{{ e.presenter }} ({{ e.presenterd }})</p></div>
 					<div class="desc"><p class="leftelements">{{ e.description }}</p></div>
@@ -1284,7 +1287,11 @@
 			<div class="thirdsec" onclick="options(2,'{{ e.id }}')">
 				<div class="reginfo"><em>Registrations Start from {{ e.regfrom|date:"Y-m-d" }} and ends at {{ e.regto|date:"Y-m-d" }}</em></div>
 				<div class="reging">
-					<button class="rthird trans" title="Will Certificates be given : {{ e.certi }}">Certificate : {{ e.certi }}</button>
+					{% ifequal e.certi True %}
+					<button style="pointer-events: none;" class="rthird trans" title="Will Certificates be given : {{ e.certi }}">Certificate : Yes</button>
+					{% else %}
+					<button style="pointer-events: none;" class="rthird trans" title="Will Certificates be given : {{ e.certi }}">Certificate : No</button>
+					{% endifequal %}
 					<button class="rthird trans" title="Register in this e">Register</button>
 					<button class="rthird trans" onclick="sendmail('{{ e.title }}','{{ e.date |date }}','{{ e.description }}','{{ e.organizer }}','{{ e.perks }}','{{ e.link }}','{{ e.type }}','{{ e.tfrom }}','{{ e.tto }}','{{ e.regfrom }}','{{ e.regto }}','{{ e.presenter }}','{{ e.presenterd }}','{{ e.target }}','{{ e.department }}','{{ e.teacher1 }}','{{ e.teacher2 }}','{{ e.convener1 }}','{{ e.contact1 }}','{{ e.teacher3 }}','{{ e.convener2 }}','{{ e.contact2 }}')" title="Share to Gmail"><i class="fa fa-envelope"></i></button>
 					<button class="rthird trans" onclick="sendmsg('{{ e.id }}','{{ e.title }}','{{ e.date |date }}','{{ e.description }}','{{ e.organizer }}','{{ e.perks }}','{{ e.link }}','{{ e.type }}','{{ e.tfrom }}','{{ e.tto }}','{{ e.regfrom }}','{{ e.regto }}','{{ e.presenter }}','{{ e.presenterd }}','{{ e.target }}','{{ e.department }}','{{ e.teacher1 }}','{{ e.teacher2 }}','{{ e.convener1 }}','{{ e.contact1 }}','{{ e.teacher3 }}','{{ e.convener2 }}','{{ e.contact2 }}')" title="Share to Gmail"><i class="fa fa-whatsapp"></i></button>
@@ -1301,7 +1308,7 @@
 	<input style="display: none;" type="text" name="what" id="what" value="none">
 	<aside class="rightside messaging">
 		<button title="Your Recent Chats" class="rightlinks normbut">Recent Messages</button>
-		<button title="Your Recent Chats" class="rightlinks2 normbut" onclick="allchats()"><i class="glyphicon glyphicon-plus"></i></button>
+		<button title="Start a New Chat" class="rightlinks2 normbut" onclick="allchats()"><i class="glyphicon glyphicon-plus"></i></button>
 		<div class="fullsec" id="messagesec">
 			{% if musers %}
 			{% for m in musers %}
@@ -1339,8 +1346,8 @@
 			</form>
 			{% endfor %} -->
 		</div>
-		<button title="Your Recent Chats" class="rightlinks normbut">Group Messages</button>
-		<button title="Your Recent Chats" class="rightlinks2 normbut"><i class="glyphicon glyphicon-plus"></i></button>
+		<button title="Your Group Chats" class="rightlinks normbut">Group Messages</button>
+		<button title="Start a New Group Chat" class="rightlinks2 normbut"><i class="glyphicon glyphicon-plus"></i></button>
 		<div class="fullsec fullsec2">
 			{% if groups %}
 			{% for m in groups %}
@@ -1372,8 +1379,8 @@
 		<div style="display: none;" class="chatbox" id="chatbox{{ m.username }}">
 			<div class="top leftelements">
 				<a class="leftelements" id="person" href="kjsomaiyacollegeofengineeringandinformationtechnologyteachers-userdetails={{ m.username }}">{{ m.username }}</a>
-				<button class="topbut rightelements closebut" id="closebut" onclick="closing('{{ m.username }}')"><i class="glyphicon glyphicon-remove"></i></button>
-				<button class="topbut rightelements" onclick="minimize('{{ m.username }}')"><i class="glyphicon glyphicon-chevron-down"></i></button>
+				<button class="topbut rightelements closebut" id="closebut" title="Close" onclick="closing('{{ m.username }}')"><i class="glyphicon glyphicon-remove"></i></button>
+				<button class="topbut rightelements" title="Minimize" onclick="minimize('{{ m.username }}')"><i class="glyphicon glyphicon-chevron-down"></i></button>
 			</div>
 			<div class="body leftelements" id="chatbody{{ m.username }}">
 				{% for ms in message2 %}
@@ -1634,21 +1641,92 @@
 		}
 		function options(numb,event){
 			show='options'+event
+			cadd='bl'+event
 			but2='optbut2'+event
 			but1='optbut1'+event
 			if (numb==1){
 				document.getElementById(show).style.display='';
 				document.getElementById(but2).style.display='';
 				document.getElementById(but1).style.display='none';
+				document.getElementById(cadd).classList.add('blurred');
 			}
 			if (numb==2){
 				document.getElementById(show).style.display='none';
 				document.getElementById(but2).style.display='none';
 				document.getElementById(but1).style.display='';
+				document.getElementById(cadd).classList.remove('blurred')
 			}
 			
 		}
 			
+		function pressed(numb){
+			show='pos'+numb;
+			gg=document.getElementById(show).src;
+			window.open(gg, '_blank');
+		}
+
+		function addevent(){
+			jQuery("body").append('<div id="notidiv" class="notidiv error"><p class="notipara">Please wait a second</p><button id="noticl" class="lbuts rightelements notipara2">x</button></div>');
+			console.log(carsin2.length)
+			for (i=0;i<carsin2.length;i++){
+				console.log(carsin2[i].value)
+			}
+	  		jQuery.noConflict();
+	  		formdata = new FormData();
+		  	var token =  jQuery('input[name="csrfmiddlewaretoken"]').attr('value')
+	  		console.log('entered in file')
+	  		var file = document.getElementById('posterfile').files[0];
+	  		formdata.append("eventpos", file);
+	  		formdata.append("eventname", document.getElementById('evnain').value);
+	  		formdata.append("eventpresenter", document.getElementById('evpin').value);
+	  		formdata.append("eventdesignation", document.getElementById('evdin').value);
+	  		formdata.append("eventcommittee", document.getElementById('orgcin').value);
+	  		formdata.append("eventtype", document.getElementById('typein').value);
+	  		formdata.append("eventdate", document.getElementById('evdain').value);
+	  		formdata.append("eventtimefro", document.getElementById('evtofroin').value);
+	  		formdata.append("eventtimeto", document.getElementById('evtotoin').value);
+	  		formdata.append("regin", document.getElementById('regin').value);
+	  		formdata.append("regfrom", document.getElementById('regfroin').value);
+	  		formdata.append("regto", document.getElementById('regtoin').value);
+	  		formdata.append("eventwhatsapp", document.getElementById('whatin').value);
+	  		formdata.append("eventconvener1", document.getElementById('con1in').value);
+	  		formdata.append("eventconvener2", document.getElementById('con2in').value);
+	  		formdata.append("contact1", document.getElementById('evq1in').value);
+	  		formdata.append("contact2", document.getElementById('evq2in').value);
+	  		formdata.append("eventorganizer1", document.getElementById('org1in').value);
+	  		formdata.append("eventorganizer2", document.getElementById('org2in').value);
+	  		formdata.append("eventorganizer3", document.getElementById('org3in').value);
+	  		formdata.append("eventdepartment", document.getElementById('depin').value);
+	  		formdata.append("eventdesc", document.getElementById('evdein').value);
+	  		formdata.append("eventperk", document.getElementById('evpein').value);
+	  		formdata.append("tags", document.getElementById('carsin2').value);
+	  		formdata.append("eventcertificate", document.getElementById('carsin').value);
+	  		formdata.append("com", document.getElementById('comin').value);
+	  		jQuery.ajax({
+		      type: "POST",
+		      url: "/addevent2",
+		      headers: {
+		      	'X-CSRFToken': token
+		      },
+		      data: formdata,
+		      processData: false,
+		      contentType: false,
+		      success: function (response) {
+		      	jQuery("#notidiv").fadeOut(300);
+		      	jQuery("#notidiv").remove();
+		  		console.log('success')
+		  		jQuery("#mainelement").load(" #mainelement > *");
+		  		var scrollAmount=150;
+		  		setTimeout(function(){
+			  		jQuery("body").append('<div id="notidiv" class="notidiv success"><p class="notipara">Event added successfully</p><button id="noticl" class="lbuts rightelements notipara2">x</button></div>');
+			  		jQuery("#notidiv").delay(3200).fadeOut(300);
+			  		setTimeout(function(){
+					  jQuery("#notidiv").remove();
+					}, 3200);
+				}, 2000);
+		      }
+		    });
+		}
 		function mark(as,numb){
 			if (as==='Pending'){
 		  		jQuery.ajax({
@@ -1839,17 +1917,17 @@
 		$(document).ready(function(){
 			
 			setInterval(function(){
-				$('#messagesec').load(" #messagesec > *");
+				jQuery('#messagesec').load(" #messagesec > *");
 				x=document.getElementsByClassName('chatbox');
 				for (var i=0;i<x.length;i++){
 					if(x[i].style.display==='none'){
-						console.log('no')
+						console.log('')
 					}
 					else{
 						curid=x[i].id.substring(7);
 						curid2='#chatbody'+curid;
 						curid3=' #chatbody'+curid+' > *';
-						$(curid2).load(curid3);
+						jQuery(curid2).load(curid3);
 					}
 					
 				}
