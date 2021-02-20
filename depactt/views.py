@@ -423,12 +423,13 @@ def home(request):
 		inbox2=[]
 		msender=[]
 		for i in range(0,len(messagesm)):
-			cur=messagesm[i]
-			if cur.messageseen!=True:
-				if cur.sender in inbox:
-					print('it exists')
-				else:
-					inbox.append(cur.sender)
+			if len(messagesmsm) > i:
+				cur=messagesm[i]
+				if cur.messageseen!=True:
+					if cur.sender in inbox:
+						print('it exists')
+					else:
+						inbox.append(cur.sender)
 		print(inbox)
 		dicevents["nomessages"] = inbox
 		dicevents["nomessages2"] = messagesm
